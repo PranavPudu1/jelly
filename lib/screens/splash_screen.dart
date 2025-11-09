@@ -1,111 +1,100 @@
 import 'package:flutter/material.dart';
 import '../theme/app_theme.dart';
-import 'swipe_screen.dart';
+import 'questionnaire_screen.dart';
 
-class SplashScreen extends StatelessWidget {
+class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
   @override
+  State<SplashScreen> createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _animationController;
+  late Animation<Offset> _slideAnimation;
+  late Animation<double> _fadeAnimation;
+  bool _showQuestionnaire = false;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _animationController = AnimationController(
+      duration: const Duration(milliseconds: 750),
+      vsync: this,
+    );
+
+    _slideAnimation = Tween<Offset>(
+      begin: const Offset(0, 1.5), // Start from bottom of screen
+      end: const Offset(0, -0.3), // End at top portion of screen
+    ).animate(CurvedAnimation(
+      parent: _animationController,
+      curve: Curves.easeInOutCubic,
+    ));
+
+    _fadeAnimation = Tween<double>(
+      begin: 0.0,
+      end: 1.0,
+    ).animate(CurvedAnimation(
+      parent: _animationController,
+      curve: const Interval(0.0, 0.5, curve: Curves.easeIn),
+    ));
+
+    // Start animation after a brief delay
+    Future.delayed(const Duration(milliseconds: 500), () {
+      _animationController.forward();
+    });
+
+    // Show questionnaire after animation completes
+    _animationController.addStatusListener((status) {
+      if (status == AnimationStatus.completed) {
+        Future.delayed(const Duration(milliseconds: 500), () {
+          if (mounted) {
+            setState(() {
+              _showQuestionnaire = true;
+            });
+          }
+        });
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    if (_showQuestionnaire) {
+      return const QuestionnaireScreen();
+    }
+
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [
-              AppColors.gradientStart,
-              AppColors.background,
-              AppColors.gradientEnd,
-            ],
-            stops: const [0.0, 0.5, 1.0],
-          ),
+          color: AppColors.primary
         ),
         child: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.all(40.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Spacer(flex: 2),
-                // Decorative element
-                Container(
-                  padding: const EdgeInsets.all(20),
-                  decoration: BoxDecoration(
-                    color: AppColors.white.withOpacity(0.5),
-                    shape: BoxShape.circle,
-                  ),
-                  child: const Text(
-                    '🍴',
-                    style: TextStyle(fontSize: 48),
-                  ),
-                ),
-                const SizedBox(height: 32),
-                // Logo
-                Text(
-                  'Jelly',
-                  style: Theme.of(context).textTheme.displayLarge?.copyWith(
-                        color: AppColors.primary,
-                        fontSize: 64,
-                        fontWeight: FontWeight.w600,
-                        letterSpacing: -2,
-                      ),
-                ),
-                const SizedBox(height: 12),
-                // Tagline
-                Text(
-                  'Swipe. Taste. Repeat.',
-                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                        color: AppColors.textLight,
-                        fontSize: 17,
-                        fontWeight: FontWeight.w400,
-                        letterSpacing: 1.2,
-                      ),
-                ),
-                const Spacer(flex: 3),
-                // Start button - premium style
-                Container(
-                  width: double.infinity,
-                  height: 58,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30),
-                    boxShadow: [
-                      BoxShadow(
-                        color: AppColors.primary.withOpacity(0.3),
-                        blurRadius: 20,
-                        offset: const Offset(0, 10),
-                      ),
-                    ],
-                  ),
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.of(context).pushReplacement(
-                        MaterialPageRoute(
-                          builder: (context) => const SwipeScreen(),
-                        ),
-                      );
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.primary,
-                      foregroundColor: AppColors.white,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                      elevation: 0,
-                    ),
-                    child: Text(
-                      'Start Discovering',
-                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                            color: AppColors.white,
-                            fontWeight: FontWeight.w600,
-                            fontSize: 17,
-                            letterSpacing: 0.3,
-                          ),
+          child: Center(
+            child: AnimatedBuilder(
+              animation: _animationController,
+              builder: (context, child) {
+                return SlideTransition(
+                  position: _slideAnimation,
+                  child: FadeTransition(
+                    opacity: _fadeAnimation,
+                    child: Image.asset(
+                      'assets/images/Logo.png',
+                      width: 200,
+                      height: 200,
+                      fit: BoxFit.contain,
                     ),
                   ),
-                ),
-                const SizedBox(height: 40),
-              ],
+                );
+              },
             ),
           ),
         ),

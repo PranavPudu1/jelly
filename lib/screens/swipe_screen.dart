@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jelly/theme/app_theme.dart';
 import 'package:swipable_stack/swipable_stack.dart';
 import '../data/mock_restaurants.dart';
 import '../models/restaurant.dart';
@@ -43,7 +44,7 @@ class _SwipeScreenState extends State<SwipeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFFFE5EC),
+      backgroundColor: AppColors.background,
       body: Stack(
         children: [
           // Full-screen swipable stack
@@ -56,7 +57,8 @@ class _SwipeScreenState extends State<SwipeScreen> {
                   verticalSwipeThreshold: 1.0,
                   overlayBuilder: (context, properties) {
                     final opacity = properties.swipeProgress.clamp(0.0, 1.0);
-                    final isRight = properties.direction == SwipeDirection.right;
+                    final isRight =
+                        properties.direction == SwipeDirection.right;
                     final isLeft = properties.direction == SwipeDirection.left;
 
                     return Stack(
@@ -120,9 +122,7 @@ class _SwipeScreenState extends State<SwipeScreen> {
                   },
                   builder: (context, properties) {
                     final itemIndex = properties.index % _restaurants.length;
-                    return RestaurantCard(
-                      restaurant: _restaurants[itemIndex],
-                    );
+                    return RestaurantCard(restaurant: _restaurants[itemIndex]);
                   },
                 ),
 
@@ -133,10 +133,10 @@ class _SwipeScreenState extends State<SwipeScreen> {
             bottom: 0,
             child: Container(
               decoration: BoxDecoration(
-                color: const Color(0xFFFFA07A),
+                color: AppColors.primary,
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withOpacity(0.15),
+                    color: Colors.black,
                     blurRadius: 10,
                     offset: const Offset(0, -2),
                   ),
@@ -180,7 +180,7 @@ class _SwipeScreenState extends State<SwipeScreen> {
       children: [
         Icon(
           icon,
-          color: isSelected ? Colors.white : Colors.white.withOpacity(0.6),
+          color: isSelected ? AppColors.textDark : AppColors.textLight,
           size: 24,
         ),
         const SizedBox(height: 4),
@@ -188,7 +188,7 @@ class _SwipeScreenState extends State<SwipeScreen> {
           label,
           style: TextStyle(
             fontSize: 12,
-            color: isSelected ? Colors.white : Colors.white.withOpacity(0.6),
+            color: isSelected ? AppColors.textDark : AppColors.textLight,
             fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
           ),
         ),
@@ -226,11 +226,7 @@ class _SwipeScreenState extends State<SwipeScreen> {
           const SizedBox(height: 12),
           const Text(
             'Come back later for more\nrestaurant recommendations',
-            style: TextStyle(
-              fontSize: 16,
-              color: Colors.grey,
-              height: 1.5,
-            ),
+            style: TextStyle(fontSize: 16, color: Colors.grey, height: 1.5),
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 40),
@@ -251,10 +247,7 @@ class _SwipeScreenState extends State<SwipeScreen> {
             ),
             child: const Text(
               'Start Over',
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w600,
-              ),
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
             ),
           ),
         ],

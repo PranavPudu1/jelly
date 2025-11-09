@@ -1,27 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:jelly/theme/app_theme.dart';
 import '../models/restaurant.dart';
 
 class RestaurantCard extends StatefulWidget {
   final Restaurant restaurant;
 
-  const RestaurantCard({
-    super.key,
-    required this.restaurant,
-  });
+  const RestaurantCard({super.key, required this.restaurant});
 
   @override
   State<RestaurantCard> createState() => _RestaurantCardState();
 }
 
 class _RestaurantCardState extends State<RestaurantCard> {
-
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 8),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16),
-        color: const Color(0xFFFFE5EC),
+        color: AppColors.background,
       ),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(16),
@@ -73,19 +70,23 @@ class _RestaurantCardState extends State<RestaurantCard> {
                             style: const TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.w700,
-                              color: Color(0xFF2D2D2D),
+                              color: AppColors.primary,
                               letterSpacing: -0.5,
                             ),
                           ),
                         ),
                         const SizedBox(width: 6),
-                        // Price indicator in light salmon
-                        Text(
-                          '\$\$\$',
-                          style: const TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w600,
-                            color: Color(0xFFFFA07A),
+                        // TODO: Prices is not aligned center with the restaurant name
+                        Align(
+                          alignment: AlignmentGeometry.topCenter,
+                          child: // Price indicator in light salmon
+                          Text(
+                            '\$\$\$',
+                            style: const TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w600,
+                              color: AppColors.white,
+                            ),
                           ),
                         ),
                       ],
@@ -98,7 +99,7 @@ class _RestaurantCardState extends State<RestaurantCard> {
                         index < widget.restaurant.rating.floor()
                             ? Icons.star
                             : Icons.star_border,
-                        color: const Color(0xFFFFA07A),
+                        color: AppColors.primary,
                         size: 14,
                       );
                     }),
@@ -111,7 +112,7 @@ class _RestaurantCardState extends State<RestaurantCard> {
                 'Italian Contemporary',
                 style: const TextStyle(
                   fontSize: 12,
-                  color: Color(0xFF666666),
+                  color: AppColors.textLight,
                   fontWeight: FontWeight.w400,
                 ),
               ),
@@ -121,59 +122,41 @@ class _RestaurantCardState extends State<RestaurantCard> {
 
         // Hero food image - larger and more prominent
         ClipRRect(
-          borderRadius: const BorderRadius.all(Radius.circular(12)),
+          borderRadius: BorderRadius.circular(16),
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8),
             child: Image.network(
               widget.restaurant.heroImageUrl,
-              height: 480,
+              height:
+                  MediaQuery.of(context).size.height * 0.4, // quarter of screen
               width: double.infinity,
               fit: BoxFit.cover,
               errorBuilder: (context, error, stackTrace) {
                 return Container(
-                  height: 480,
+                  height: MediaQuery.of(context).size.height * 0.25,
                   decoration: BoxDecoration(
                     color: Colors.grey[200],
-                    borderRadius: BorderRadius.circular(12),
+                    borderRadius: BorderRadius.circular(16),
                   ),
-                  child: const Icon(Icons.restaurant, size: 80, color: Colors.grey),
+                  child: const Icon(
+                    Icons.restaurant,
+                    size: 64,
+                    color: Colors.grey,
+                  ),
                 );
               },
             ),
           ),
         ),
 
-        // Location with pin and distance
-        Padding(
-          padding: const EdgeInsets.fromLTRB(12, 8, 12, 0),
-          child: Row(
-            children: [
-              const Icon(Icons.location_on, size: 14, color: Color(0xFF666666)),
-              const SizedBox(width: 4),
-              Text(
-                widget.restaurant.location,
-                style: const TextStyle(
-                  fontSize: 11,
-                  color: Color(0xFF666666),
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-              const SizedBox(width: 6),
-              Text(
-                '• 2.3 miles',
-                style: const TextStyle(
-                  fontSize: 11,
-                  color: Color(0xFF666666),
-                  fontWeight: FontWeight.w400,
-                ),
-              ),
-            ],
-          ),
-        ),
-
         // Restaurant info table - more compact
-        Padding(
-          padding: const EdgeInsets.fromLTRB(12, 8, 12, 0),
+        Container(
+          margin: const EdgeInsets.fromLTRB(12, 8, 12, 0),
+          decoration: BoxDecoration(
+            color: AppColors.primary,
+            borderRadius: BorderRadius.circular(12),
+            border: Border.all(color: Colors.grey[300]!, width: 1),
+          ),
           child: Column(
             children: widget.restaurant.infoList.map((info) {
               IconData icon;
@@ -191,30 +174,28 @@ class _RestaurantCardState extends State<RestaurantCard> {
                 case 'Kid-Friendly':
                   icon = Icons.emoji_emotions;
                   break;
-                case 'Reservations':
-                  icon = Icons.event_available;
-                  break;
                 default:
                   icon = Icons.info;
               }
 
               return Container(
-                padding: const EdgeInsets.symmetric(vertical: 8),
+                padding: const EdgeInsets.symmetric(
+                  vertical: 10,
+                  horizontal: 12,
+                ),
                 decoration: BoxDecoration(
                   border: Border(
                     bottom: BorderSide(
-                      color: Colors.grey[200]!,
+                      color: info != widget.restaurant.infoList.last
+                          ? Colors.grey[300]!
+                          : Colors.transparent,
                       width: 1,
                     ),
                   ),
                 ),
                 child: Row(
                   children: [
-                    Icon(
-                      icon,
-                      size: 16,
-                      color: const Color(0xFFFFA07A),
-                    ),
+                    Icon(icon, size: 18, color: AppColors.textDark),
                     const SizedBox(width: 10),
                     Expanded(
                       child: Column(
@@ -222,19 +203,19 @@ class _RestaurantCardState extends State<RestaurantCard> {
                         children: [
                           Text(
                             info.label,
-                            style: const TextStyle(
-                              fontSize: 10,
-                              color: Color(0xFF666666),
+                            style: TextStyle(
+                              fontSize: 11,
+                              color: AppColors.textDark.withOpacity(0.7),
                               fontWeight: FontWeight.w400,
                             ),
                           ),
-                          const SizedBox(height: 1),
+                          const SizedBox(height: 2),
                           Text(
                             info.value,
-                            style: const TextStyle(
-                              fontSize: 12,
+                            style: TextStyle(
+                              fontSize: 13,
                               fontWeight: FontWeight.w600,
-                              color: Color(0xFF2D2D2D),
+                              color: AppColors.textDark,
                             ),
                           ),
                         ],
@@ -293,7 +274,11 @@ class _RestaurantCardState extends State<RestaurantCard> {
                       errorBuilder: (context, error, stackTrace) {
                         return Container(
                           color: Colors.grey[200],
-                          child: const Icon(Icons.image, size: 80, color: Colors.grey),
+                          child: const Icon(
+                            Icons.image,
+                            size: 80,
+                            color: Colors.grey,
+                          ),
                         );
                       },
                     ),
@@ -408,7 +393,9 @@ class _RestaurantCardState extends State<RestaurantCard> {
                 Expanded(
                   child: GestureDetector(
                     onTap: () {
-                      debugPrint('Instagram clicked: ${widget.restaurant.instagramHandle}');
+                      debugPrint(
+                        'Instagram clicked: ${widget.restaurant.instagramHandle}',
+                      );
                     },
                     child: Container(
                       padding: const EdgeInsets.all(10),
@@ -446,7 +433,8 @@ class _RestaurantCardState extends State<RestaurantCard> {
                   ),
                 ),
 
-              if (widget.restaurant.instagramHandle.isNotEmpty && widget.restaurant.tiktokHandle.isNotEmpty)
+              if (widget.restaurant.instagramHandle.isNotEmpty &&
+                  widget.restaurant.tiktokHandle.isNotEmpty)
                 const SizedBox(width: 8),
 
               // TikTok
@@ -454,7 +442,9 @@ class _RestaurantCardState extends State<RestaurantCard> {
                 Expanded(
                   child: GestureDetector(
                     onTap: () {
-                      debugPrint('TikTok clicked: ${widget.restaurant.tiktokHandle}');
+                      debugPrint(
+                        'TikTok clicked: ${widget.restaurant.tiktokHandle}',
+                      );
                     },
                     child: Container(
                       padding: const EdgeInsets.all(10),
@@ -500,7 +490,9 @@ class _RestaurantCardState extends State<RestaurantCard> {
           ...foodItems.asMap().entries.map((entry) {
             final index = entry.key;
             final foodItem = entry.value;
-            final isImageLeft = index % 2 == 0; // Alternating: 0, 2, 4... = left; 1, 3, 5... = right
+            final isImageLeft =
+                index % 2 ==
+                0; // Alternating: 0, 2, 4... = left; 1, 3, 5... = right
             final firstReview = foodItem.reviews.isNotEmpty
                 ? foodItem.reviews[0]
                 : Review(author: 'Guest', quote: 'Delicious!', rating: 5.0);
@@ -516,7 +508,11 @@ class _RestaurantCardState extends State<RestaurantCard> {
                   children: isImageLeft
                       ? [
                           // Image on LEFT
-                          _buildFoodImage(foodItem.images.isNotEmpty ? foodItem.images[0] : ''),
+                          _buildFoodImage(
+                            foodItem.images.isNotEmpty
+                                ? foodItem.images[0]
+                                : '',
+                          ),
                           const SizedBox(width: 8),
                           // Review on RIGHT
                           Expanded(child: _buildReviewSnippet(firstReview)),
@@ -526,7 +522,11 @@ class _RestaurantCardState extends State<RestaurantCard> {
                           Expanded(child: _buildReviewSnippet(firstReview)),
                           const SizedBox(width: 8),
                           // Image on RIGHT
-                          _buildFoodImage(foodItem.images.isNotEmpty ? foodItem.images[0] : ''),
+                          _buildFoodImage(
+                            foodItem.images.isNotEmpty
+                                ? foodItem.images[0]
+                                : '',
+                          ),
                         ],
                 ),
               ),
@@ -598,9 +598,7 @@ class _RestaurantCardState extends State<RestaurantCard> {
         Row(
           children: List.generate(5, (index) {
             return Icon(
-              index < review.rating.floor()
-                  ? Icons.star
-                  : Icons.star_border,
+              index < review.rating.floor() ? Icons.star : Icons.star_border,
               color: const Color(0xFFFFA07A),
               size: 11,
             );
@@ -655,7 +653,9 @@ class _RestaurantCardState extends State<RestaurantCard> {
                   return Container(
                     width: 260,
                     margin: EdgeInsets.only(
-                      right: index < widget.restaurant.menuImages.length - 1 ? 10 : 0,
+                      right: index < widget.restaurant.menuImages.length - 1
+                          ? 10
+                          : 0,
                     ),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(10),
@@ -665,7 +665,11 @@ class _RestaurantCardState extends State<RestaurantCard> {
                         errorBuilder: (context, error, stackTrace) {
                           return Container(
                             color: Colors.grey[200],
-                            child: const Icon(Icons.menu_book, color: Colors.grey, size: 48),
+                            child: const Icon(
+                              Icons.menu_book,
+                              color: Colors.grey,
+                              size: 48,
+                            ),
                           );
                         },
                       ),
@@ -688,7 +692,10 @@ class _RestaurantCardState extends State<RestaurantCard> {
                   return Container(
                     width: 320,
                     margin: EdgeInsets.only(
-                      right: index < widget.restaurant.popularDishPhotos.length - 1 ? 10 : 0,
+                      right:
+                          index < widget.restaurant.popularDishPhotos.length - 1
+                          ? 10
+                          : 0,
                     ),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(10),
@@ -698,7 +705,11 @@ class _RestaurantCardState extends State<RestaurantCard> {
                         errorBuilder: (context, error, stackTrace) {
                           return Container(
                             color: Colors.grey[200],
-                            child: const Icon(Icons.restaurant, color: Colors.grey, size: 48),
+                            child: const Icon(
+                              Icons.restaurant,
+                              color: Colors.grey,
+                              size: 48,
+                            ),
                           );
                         },
                       ),
@@ -721,7 +732,13 @@ class _RestaurantCardState extends State<RestaurantCard> {
 
     final reviews = widget.restaurant.reviews.isNotEmpty
         ? widget.restaurant.reviews
-        : [Review(author: widget.restaurant.reviewAuthor, quote: widget.restaurant.reviewQuote, rating: widget.restaurant.rating)];
+        : [
+            Review(
+              author: widget.restaurant.reviewAuthor,
+              quote: widget.restaurant.reviewQuote,
+              rating: widget.restaurant.rating,
+            ),
+          ];
 
     showModalBottomSheet(
       context: context,
@@ -763,7 +780,8 @@ class _FullscreenPhotoGallery extends StatefulWidget {
   });
 
   @override
-  State<_FullscreenPhotoGallery> createState() => _FullscreenPhotoGalleryState();
+  State<_FullscreenPhotoGallery> createState() =>
+      _FullscreenPhotoGalleryState();
 }
 
 class _FullscreenPhotoGalleryState extends State<_FullscreenPhotoGallery> {
@@ -786,9 +804,7 @@ class _FullscreenPhotoGalleryState extends State<_FullscreenPhotoGallery> {
   Widget build(BuildContext context) {
     return Container(
       height: MediaQuery.of(context).size.height,
-      decoration: const BoxDecoration(
-        color: Colors.black,
-      ),
+      decoration: const BoxDecoration(color: Colors.black),
       child: SafeArea(
         child: Column(
           children: [
@@ -807,7 +823,11 @@ class _FullscreenPhotoGalleryState extends State<_FullscreenPhotoGallery> {
                     ),
                   ),
                   IconButton(
-                    icon: const Icon(Icons.close, color: Colors.white, size: 28),
+                    icon: const Icon(
+                      Icons.close,
+                      color: Colors.white,
+                      size: 28,
+                    ),
                     onPressed: () => Navigator.pop(context),
                   ),
                 ],
@@ -832,7 +852,9 @@ class _FullscreenPhotoGalleryState extends State<_FullscreenPhotoGallery> {
                           itemCount: widget.photos.length,
                           itemBuilder: (context, index) {
                             return Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 16),
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 16,
+                              ),
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(16),
                                 child: Image.network(
@@ -841,7 +863,11 @@ class _FullscreenPhotoGalleryState extends State<_FullscreenPhotoGallery> {
                                   errorBuilder: (context, error, stackTrace) {
                                     return Container(
                                       color: Colors.grey[800],
-                                      child: const Icon(Icons.image, size: 80, color: Colors.grey),
+                                      child: const Icon(
+                                        Icons.image,
+                                        size: 80,
+                                        color: Colors.grey,
+                                      ),
                                     );
                                   },
                                 ),
@@ -862,7 +888,9 @@ class _FullscreenPhotoGalleryState extends State<_FullscreenPhotoGallery> {
                               (index) => Container(
                                 width: 8,
                                 height: 8,
-                                margin: const EdgeInsets.symmetric(horizontal: 4),
+                                margin: const EdgeInsets.symmetric(
+                                  horizontal: 4,
+                                ),
                                 decoration: BoxDecoration(
                                   shape: BoxShape.circle,
                                   color: _currentPage == index
@@ -896,7 +924,10 @@ class _FullscreenPhotoGalleryState extends State<_FullscreenPhotoGallery> {
                           children: [
                             // Drag handle - more prominent
                             Container(
-                              margin: const EdgeInsets.only(top: 12, bottom: 12),
+                              margin: const EdgeInsets.only(
+                                top: 12,
+                                bottom: 12,
+                              ),
                               width: 50,
                               height: 5,
                               decoration: BoxDecoration(
@@ -909,10 +940,14 @@ class _FullscreenPhotoGalleryState extends State<_FullscreenPhotoGallery> {
                             Expanded(
                               child: ListView(
                                 controller: scrollController,
-                                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 0),
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 20,
+                                  vertical: 0,
+                                ),
                                 children: [
                                   Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
                                     children: [
                                       const Text(
                                         'Reviews',
@@ -943,7 +978,8 @@ class _FullscreenPhotoGalleryState extends State<_FullscreenPhotoGallery> {
                                         borderRadius: BorderRadius.circular(12),
                                       ),
                                       child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
                                         children: [
                                           Row(
                                             children: [
@@ -962,23 +998,30 @@ class _FullscreenPhotoGalleryState extends State<_FullscreenPhotoGallery> {
                                               const SizedBox(width: 12),
                                               Expanded(
                                                 child: Column(
-                                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
                                                   children: [
                                                     Text(
                                                       review.author,
                                                       style: const TextStyle(
                                                         fontSize: 14,
-                                                        fontWeight: FontWeight.bold,
+                                                        fontWeight:
+                                                            FontWeight.bold,
                                                         color: Colors.white,
                                                       ),
                                                     ),
                                                     const SizedBox(height: 2),
                                                     Row(
-                                                      children: List.generate(5, (index) {
+                                                      children: List.generate(5, (
+                                                        index,
+                                                      ) {
                                                         return Icon(
-                                                          index < review.rating.floor()
+                                                          index <
+                                                                  review.rating
+                                                                      .floor()
                                                               ? Icons.star
-                                                              : Icons.star_border,
+                                                              : Icons
+                                                                    .star_border,
                                                           color: Colors.orange,
                                                           size: 12,
                                                         );

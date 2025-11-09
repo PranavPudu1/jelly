@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//c/Users/hjkar/OneDrive/Desktop/Master/Coding/jelly/**)",
+      "Bash(del \"c:\\Users\\hjkar\\OneDrive\\Desktop\\Master\\Coding\\jelly\\server\\readme.md\")",
+      "Bash(tree -L 3 -I \"node_modules|dist\")",
+      "Bash(npm info @typescript-eslint/parser@6.21.0 peerDependencies)",
+      "Bash(cat \"c:/Users/hjkar/OneDrive/Desktop/Master/Coding/jelly/server/src/models/restaurant.model.ts\")",
+      "Bash(move /Y \"c:\\Users\\hjkar\\OneDrive\\Desktop\\Master\\Coding\\jelly\\server\\src\\scripts\\seedDatabase_updated.ts\" \"c:\\Users\\hjkar\\OneDrive\\Desktop\\Master\\Coding\\jelly\\server\\src\\scripts\\seedDatabase.ts\")"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

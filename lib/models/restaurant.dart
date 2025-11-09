@@ -40,18 +40,13 @@ class RestaurantInfo {
   final String label;
   final String value;
 
-  const RestaurantInfo({
-    required this.label,
-    required this.value,
-  });
+  const RestaurantInfo({required this.label, required this.value});
 }
 
 class AmbiencePhoto {
   final String imageUrl;
 
-  const AmbiencePhoto({
-    required this.imageUrl,
-  });
+  const AmbiencePhoto({required this.imageUrl});
 }
 
 class Review {
@@ -59,11 +54,7 @@ class Review {
   final String quote;
   final double rating;
 
-  const Review({
-    required this.author,
-    required this.quote,
-    this.rating = 5.0,
-  });
+  const Review({required this.author, required this.quote, this.rating = 5.0});
 }
 
 class FoodItem {

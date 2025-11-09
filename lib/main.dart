@@ -14,7 +14,7 @@ class JellyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Jelly',
       debugShowCheckedModeBanner: false,
-      theme: AppTheme.lightTheme,
+      theme: AppTheme.darkTheme,
       home: const SplashScreen(),
     );
   }
