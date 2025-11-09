@@ -21,7 +21,7 @@ class _RestaurantCardState extends State<RestaurantCard> {
       margin: const EdgeInsets.symmetric(horizontal: 8),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16),
-        color: Colors.white,
+        color: const Color(0xFFFFE5EC),
       ),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(16),
@@ -73,19 +73,19 @@ class _RestaurantCardState extends State<RestaurantCard> {
                             style: const TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.w700,
-                              color: Colors.black,
+                              color: Color(0xFF2D2D2D),
                               letterSpacing: -0.5,
                             ),
                           ),
                         ),
                         const SizedBox(width: 6),
-                        // Price indicator in orange
+                        // Price indicator in light salmon
                         Text(
                           '\$\$\$',
                           style: const TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.w600,
-                            color: Colors.orange,
+                            color: Color(0xFFFFA07A),
                           ),
                         ),
                       ],
@@ -98,7 +98,7 @@ class _RestaurantCardState extends State<RestaurantCard> {
                         index < widget.restaurant.rating.floor()
                             ? Icons.star
                             : Icons.star_border,
-                        color: Colors.orange,
+                        color: const Color(0xFFFFA07A),
                         size: 14,
                       );
                     }),
@@ -111,7 +111,7 @@ class _RestaurantCardState extends State<RestaurantCard> {
                 'Italian Contemporary',
                 style: const TextStyle(
                   fontSize: 12,
-                  color: Colors.grey,
+                  color: Color(0xFF666666),
                   fontWeight: FontWeight.w400,
                 ),
               ),
@@ -148,13 +148,13 @@ class _RestaurantCardState extends State<RestaurantCard> {
           padding: const EdgeInsets.fromLTRB(12, 8, 12, 0),
           child: Row(
             children: [
-              const Icon(Icons.location_on, size: 14, color: Colors.grey),
+              const Icon(Icons.location_on, size: 14, color: Color(0xFF666666)),
               const SizedBox(width: 4),
               Text(
                 widget.restaurant.location,
                 style: const TextStyle(
                   fontSize: 11,
-                  color: Colors.grey,
+                  color: Color(0xFF666666),
                   fontWeight: FontWeight.w500,
                 ),
               ),
@@ -163,7 +163,7 @@ class _RestaurantCardState extends State<RestaurantCard> {
                 '• 2.3 miles',
                 style: const TextStyle(
                   fontSize: 11,
-                  color: Colors.grey,
+                  color: Color(0xFF666666),
                   fontWeight: FontWeight.w400,
                 ),
               ),
@@ -213,7 +213,7 @@ class _RestaurantCardState extends State<RestaurantCard> {
                     Icon(
                       icon,
                       size: 16,
-                      color: Colors.grey[600],
+                      color: const Color(0xFFFFA07A),
                     ),
                     const SizedBox(width: 10),
                     Expanded(
@@ -222,9 +222,9 @@ class _RestaurantCardState extends State<RestaurantCard> {
                         children: [
                           Text(
                             info.label,
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 10,
-                              color: Colors.grey[600],
+                              color: Color(0xFF666666),
                               fontWeight: FontWeight.w400,
                             ),
                           ),
@@ -234,7 +234,7 @@ class _RestaurantCardState extends State<RestaurantCard> {
                             style: const TextStyle(
                               fontSize: 12,
                               fontWeight: FontWeight.w600,
-                              color: Colors.black,
+                              color: Color(0xFF2D2D2D),
                             ),
                           ),
                         ],
@@ -264,7 +264,7 @@ class _RestaurantCardState extends State<RestaurantCard> {
               style: TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.bold,
-                color: Colors.black,
+                color: Color(0xFF2D2D2D),
               ),
             ),
           ),
@@ -380,7 +380,7 @@ class _RestaurantCardState extends State<RestaurantCard> {
               style: TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.bold,
-                color: Colors.black,
+                color: Color(0xFF2D2D2D),
               ),
             ),
           ),
@@ -393,7 +393,7 @@ class _RestaurantCardState extends State<RestaurantCard> {
               "Here's what people are saying online",
               style: TextStyle(
                 fontSize: 11,
-                color: Colors.grey,
+                color: Color(0xFF666666),
                 fontWeight: FontWeight.w400,
               ),
             ),
@@ -568,7 +568,7 @@ class _RestaurantCardState extends State<RestaurantCard> {
           children: [
             CircleAvatar(
               radius: 10,
-              backgroundColor: Colors.orange,
+              backgroundColor: const Color(0xFFC41E3A),
               child: Text(
                 review.author[0],
                 style: const TextStyle(
@@ -585,7 +585,7 @@ class _RestaurantCardState extends State<RestaurantCard> {
                 style: const TextStyle(
                   fontSize: 11,
                   fontWeight: FontWeight.w600,
-                  color: Colors.black,
+                  color: Color(0xFF2D2D2D),
                 ),
                 overflow: TextOverflow.ellipsis,
               ),
@@ -601,7 +601,7 @@ class _RestaurantCardState extends State<RestaurantCard> {
               index < review.rating.floor()
                   ? Icons.star
                   : Icons.star_border,
-              color: Colors.orange,
+              color: const Color(0xFFFFA07A),
               size: 11,
             );
           }),
@@ -613,7 +613,7 @@ class _RestaurantCardState extends State<RestaurantCard> {
           '"${review.quote}"',
           style: const TextStyle(
             fontSize: 11,
-            color: Colors.black87,
+            color: Color(0xFF444444),
             height: 1.3,
           ),
           maxLines: 4,
@@ -637,7 +637,7 @@ class _RestaurantCardState extends State<RestaurantCard> {
               style: TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.bold,
-                color: Colors.black,
+                color: Color(0xFF2D2D2D),
               ),
             ),
           ),

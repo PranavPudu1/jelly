@@ -43,120 +43,156 @@ class _SwipeScreenState extends State<SwipeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF5F5F5),
-      body: SafeArea(
-        child: Column(
-          children: [
-            // Simple header
-            Padding(
-              padding: const EdgeInsets.all(20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Text(
-                    'Jelly',
-                    style: TextStyle(
-                      fontSize: 28,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
-                    ),
-                  ),
-                  Text(
-                    '${_currentIndex + 1}/${_restaurants.length}',
-                    style: const TextStyle(
-                      fontSize: 16,
-                      color: Colors.grey,
-                    ),
+      backgroundColor: const Color(0xFFFFE5EC),
+      body: Stack(
+        children: [
+          // Full-screen swipable stack
+          _currentIndex >= _restaurants.length
+              ? _buildEndScreen()
+              : SwipableStack(
+                  controller: _controller,
+                  onSwipeCompleted: _onSwipeCompleted,
+                  horizontalSwipeThreshold: 0.7,
+                  verticalSwipeThreshold: 1.0,
+                  overlayBuilder: (context, properties) {
+                    final opacity = properties.swipeProgress.clamp(0.0, 1.0);
+                    final isRight = properties.direction == SwipeDirection.right;
+                    final isLeft = properties.direction == SwipeDirection.left;
+
+                    return Stack(
+                      children: [
+                        // Like indicator
+                        if (isRight)
+                          Positioned(
+                            top: 60,
+                            left: 40,
+                            child: Opacity(
+                              opacity: opacity,
+                              child: Container(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 20,
+                                  vertical: 12,
+                                ),
+                                decoration: BoxDecoration(
+                                  color: Colors.green,
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                child: const Text(
+                                  'LIKE',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        // Pass indicator
+                        if (isLeft)
+                          Positioned(
+                            top: 60,
+                            right: 40,
+                            child: Opacity(
+                              opacity: opacity,
+                              child: Container(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 20,
+                                  vertical: 12,
+                                ),
+                                decoration: BoxDecoration(
+                                  color: Colors.red,
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                child: const Text(
+                                  'PASS',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                      ],
+                    );
+                  },
+                  builder: (context, properties) {
+                    final itemIndex = properties.index % _restaurants.length;
+                    return RestaurantCard(
+                      restaurant: _restaurants[itemIndex],
+                    );
+                  },
+                ),
+
+          // Bottom navigation bar
+          Positioned(
+            left: 0,
+            right: 0,
+            bottom: 0,
+            child: Container(
+              decoration: BoxDecoration(
+                color: const Color(0xFFFFA07A),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.15),
+                    blurRadius: 10,
+                    offset: const Offset(0, -2),
                   ),
                 ],
               ),
+              child: SafeArea(
+                top: false,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 12),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      _buildNavItem(
+                        icon: Icons.bookmark,
+                        label: 'Saved Places',
+                        isSelected: true,
+                      ),
+                      _buildNavItem(
+                        icon: Icons.settings,
+                        label: 'Settings',
+                        isSelected: false,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
             ),
-
-            // Swipable stack
-            Expanded(
-              child: _currentIndex >= _restaurants.length
-                  ? _buildEndScreen()
-                  : SwipableStack(
-                      controller: _controller,
-                      onSwipeCompleted: _onSwipeCompleted,
-                      horizontalSwipeThreshold: 0.7,
-                      verticalSwipeThreshold: 1.0,
-                      overlayBuilder: (context, properties) {
-                        final opacity = properties.swipeProgress.clamp(0.0, 1.0);
-                        final isRight = properties.direction == SwipeDirection.right;
-                        final isLeft = properties.direction == SwipeDirection.left;
-
-                        return Stack(
-                          children: [
-                            // Like indicator
-                            if (isRight)
-                              Positioned(
-                                top: 40,
-                                left: 40,
-                                child: Opacity(
-                                  opacity: opacity,
-                                  child: Container(
-                                    padding: const EdgeInsets.symmetric(
-                                      horizontal: 20,
-                                      vertical: 12,
-                                    ),
-                                    decoration: BoxDecoration(
-                                      color: Colors.green,
-                                      borderRadius: BorderRadius.circular(8),
-                                    ),
-                                    child: const Text(
-                                      'LIKE',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 18,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            // Pass indicator
-                            if (isLeft)
-                              Positioned(
-                                top: 40,
-                                right: 40,
-                                child: Opacity(
-                                  opacity: opacity,
-                                  child: Container(
-                                    padding: const EdgeInsets.symmetric(
-                                      horizontal: 20,
-                                      vertical: 12,
-                                    ),
-                                    decoration: BoxDecoration(
-                                      color: Colors.red,
-                                      borderRadius: BorderRadius.circular(8),
-                                    ),
-                                    child: const Text(
-                                      'PASS',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 18,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                          ],
-                        );
-                      },
-                      builder: (context, properties) {
-                        final itemIndex = properties.index % _restaurants.length;
-                        return RestaurantCard(
-                          restaurant: _restaurants[itemIndex],
-                        );
-                      },
-                    ),
-            ),
-
-          ],
-        ),
+          ),
+        ],
       ),
+    );
+  }
+
+  Widget _buildNavItem({
+    required IconData icon,
+    required String label,
+    required bool isSelected,
+  }) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Icon(
+          icon,
+          color: isSelected ? Colors.white : Colors.white.withOpacity(0.6),
+          size: 24,
+        ),
+        const SizedBox(height: 4),
+        Text(
+          label,
+          style: TextStyle(
+            fontSize: 12,
+            color: isSelected ? Colors.white : Colors.white.withOpacity(0.6),
+            fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
+          ),
+        ),
+      ],
     );
   }
 
