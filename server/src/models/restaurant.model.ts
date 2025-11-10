@@ -1,65 +1,59 @@
 /**
  * Restaurant Data Models
- * Matches the Flutter app's data structure for seamless integration
+ * Re-exports types from the centralized type system
+ *
+ * @deprecated This file is kept for backward compatibility.
+ * New code should import directly from '@/types' or '../types'
  */
 
-export interface MenuItem {
-  name: string;
-  price: string;
-  emoji: string;
-  imageUrl: string;
-}
+// Re-export enums (as both types and values)
+export {
+    PriceTier,
+    Status,
+    SwipeDecision,
+    ImageRole,
+    ReviewSource,
+    ModerationStatus,
+    Provider,
+    MenuStatus,
+} from '../types';
 
-export interface Review {
-  text: string;
-  author: string;
-}
-
-export interface Restaurant {
-  id?: string; // Firestore document ID
-  name: string;
-  tagline: string;
-  location: string;
-  imageUrl: string;
-  additionalPhotos: string[];
-  popularItems: MenuItem[];
-  reviews: Review[];
-  ambianceTags: string[];
-  reservationInfo: string;
-  priceRange: string; // '$', '$$', '$$$', '$$$$'
-  cuisine: string;
-  createdAt?: Date;
-  updatedAt?: Date;
-}
-
-export interface UserSwipe {
-  id?: string;
-  userId: string;
-  restaurantId: string;
-  action: 'like' | 'dislike';
-  timestamp: Date;
-}
-
-export interface PaginatedResponse<T> {
-  data: T[];
-  page: number;
-  limit: number;
-  total: number;
-  hasMore: boolean;
-}
-
-// Request/Response DTOs
-export interface GetRestaurantsQuery {
-  userId?: string;
-  page?: number;
-  limit?: number;
-  cuisine?: string;
-  priceRange?: string;
-  location?: string;
-}
-
-export interface SaveSwipeRequest {
-  userId: string;
-  restaurantId: string;
-  action: 'like' | 'dislike';
-}
+// Re-export type-only exports
+export type {
+    // Database entities
+    GeoPoint,
+    DayHours,
+    SpecialDayHours,
+    Restaurant,
+    RestaurantStats,
+    Cuisine,
+    RestaurantCuisine,
+    Tag,
+    RestaurantTag,
+    User,
+    UserPreferences,
+    UserSwipe,
+    SavedRestaurant,
+    RestaurantImage,
+    Review,
+    ReviewImage,
+    Hours,
+    PlaceSource,
+    RestaurantAlias,
+    Menu,
+    MenuSection,
+    MenuItem,
+    // DTOs
+    PaginatedResponse,
+    RestaurantWithStats,
+    RestaurantPopulated,
+    GetRestaurantsQuery,
+    CreateRestaurantRequest,
+    UpdateRestaurantRequest,
+    SaveSwipeRequest,
+    CreateReviewRequest,
+    SaveRestaurantRequest,
+    LegacyMenuItem,
+    LegacyReview,
+    LegacyRestaurant,
+} from '../types';

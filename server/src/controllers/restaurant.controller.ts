@@ -5,7 +5,7 @@
 
 import { Request, Response, NextFunction } from 'express';
 import { RestaurantService } from '../services/restaurant.service';
-import { GetRestaurantsQuery, SaveSwipeRequest } from '../models/restaurant.model';
+import type { GetRestaurantsQuery, SaveSwipeRequest } from '../types';
 import { validationResult } from 'express-validator';
 
 export class RestaurantController {
@@ -31,8 +31,6 @@ export class RestaurantController {
                 userId: req.query.userId as string,
                 page: req.query.page ? parseInt(req.query.page as string, 10) : undefined,
                 limit: req.query.limit ? parseInt(req.query.limit as string, 10) : undefined,
-                cuisine: req.query.cuisine as string,
-                priceRange: req.query.priceRange as string,
                 location: req.query.location as string,
             };
 

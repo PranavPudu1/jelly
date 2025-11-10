@@ -1,10 +1,10 @@
 /**
  * Server Entry Point
- * Initializes Firebase and starts Express server
+ * Initializes Supabase and starts Express server
  */
 
 import { createApp } from './app';
-import { initializeFirebase } from './config/firebase.config';
+import { initializeSupabase } from './config/supabase.config';
 import { config, validateEnv } from './config/env.config';
 
 /**
@@ -15,8 +15,8 @@ const startServer = async (): Promise<void> => {
     // Validate environment variables
         validateEnv();
 
-        // Initialize Firebase
-        initializeFirebase();
+        // Initialize Supabase
+        initializeSupabase();
 
         // Create Express app
         const app = createApp();
@@ -25,7 +25,7 @@ const startServer = async (): Promise<void> => {
         const PORT = config.PORT;
         app.listen(PORT, () => {
             console.log('='.repeat(50));
-            console.log(`🚀 Jelly API Server`);
+            console.log(`🚀 Jelly API Server (Supabase)`);
             console.log(`📍 Environment: ${config.NODE_ENV}`);
             console.log(`🌐 Server running on: http://localhost:${PORT}`);
             console.log(`📊 API endpoints: http://localhost:${PORT}/api`);

@@ -1,147 +1,155 @@
 /**
  * Database Seeding Script
- * Populates Firestore with sample restaurant data
+ * Populates Supabase with sample restaurant data using the comprehensive schema
  */
 
-import { initializeFirebase, COLLECTIONS } from '../config/firebase.config';
-import { Restaurant } from '../models/restaurant.model';
+import { initializeSupabase, TABLES } from '../config/supabase.config';
+import { PriceTier } from '../types';
 
-const sampleRestaurants: Omit<Restaurant, 'id'>[] = [
+interface SeedRestaurant {
+    name: string;
+    formatted_address: string;
+    latitude: number;
+    longitude: number;
+    price_tier: PriceTier;
+    phone?: string;
+    website?: string;
+    cuisines: string[];
+    tags: string[];
+}
+
+const sampleRestaurants: SeedRestaurant[] = [
     {
         name: 'Sushi Garden',
-        tagline: 'Experience authentic Japanese sushi artistry',
-        location: 'East Village, NYC',
-        imageUrl: 'https://images.unsplash.com/photo-1579584425555-c3ce17fd4351',
-        additionalPhotos: [
-            'https://images.unsplash.com/photo-1579584425555-c3ce17fd4351',
-            'https://images.unsplash.com/photo-1563612116625-3012372fccce',
-            'https://images.unsplash.com/photo-1559058922-7a2c81b17f46',
-        ],
-        popularItems: [
-            { name: 'Dragon Roll', price: '$18', emoji: '🐉', imageUrl: 'https://images.unsplash.com/photo-1579584425555-c3ce17fd4351' },
-            { name: 'Omakase', price: '$85', emoji: '🍱', imageUrl: 'https://images.unsplash.com/photo-1583623025817-d180a2221d0a' },
-            { name: 'Sake Flight', price: '$24', emoji: '🍶', imageUrl: 'https://images.unsplash.com/photo-1545569341-9eb8b30979d9' },
-        ],
-        reviews: [
-            { text: 'Best sushi in NYC. The omakase was incredible!', author: 'Sarah M.' },
-            { text: 'Fresh fish, authentic flavors. Will be back!', author: 'James K.' },
-        ],
-        ambianceTags: ['Intimate', 'Authentic', 'Date Night'],
-        reservationInfo: 'Walk-ins welcome. Reservations recommended for dinner.',
-        priceRange: '$$$',
-        cuisine: 'Japanese',
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        formatted_address: '123 E 10th St, New York, NY 10003',
+        latitude: 40.7295,
+        longitude: -73.9876,
+        price_tier: PriceTier.EXPENSIVE,
+        phone: '+1-212-555-0101',
+        website: 'https://sushigarden.example.com',
+        cuisines: ['Japanese', 'Sushi'],
+        tags: ['Intimate', 'Authentic', 'Date Night', 'Fresh Fish'],
     },
     {
         name: 'Taco Theory',
-        tagline: 'Modern Mexican fusion with bold flavors',
-        location: 'Mission District, SF',
-        imageUrl: 'https://images.unsplash.com/photo-1599974579688-8dbdd335e3d3',
-        additionalPhotos: [
-            'https://images.unsplash.com/photo-1599974579688-8dbdd335e3d3',
-            'https://images.unsplash.com/photo-1565299585323-38d6b0865b47',
-            'https://images.unsplash.com/photo-1552332386-f8dd00dc2f85',
-        ],
-        popularItems: [
-            { name: 'Korean BBQ Tacos', price: '$14', emoji: '🌮', imageUrl: 'https://images.unsplash.com/photo-1565299585323-38d6b0865b47' },
-            { name: 'Spicy Margarita', price: '$12', emoji: '🍹', imageUrl: 'https://images.unsplash.com/photo-1551024601-bec78aea704b' },
-            { name: 'Street Corn', price: '$8', emoji: '🌽', imageUrl: 'https://images.unsplash.com/photo-1551462147-37d3e2990253' },
-        ],
-        reviews: [
-            { text: 'Innovative takes on classic tacos. Love the fusion!', author: 'Alex R.' },
-            { text: 'Great vibe, amazing cocktails, creative menu.', author: 'Maria G.' },
-        ],
-        ambianceTags: ['Trendy', 'Lively', 'Creative'],
-        reservationInfo: 'First come, first served. Expect a wait during peak hours.',
-        priceRange: '$$',
-        cuisine: 'Mexican Fusion',
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        formatted_address: '456 Mission St, San Francisco, CA 94110',
+        latitude: 37.7599,
+        longitude: -122.4148,
+        price_tier: PriceTier.MODERATE,
+        phone: '+1-415-555-0102',
+        website: 'https://tacotheory.example.com',
+        cuisines: ['Mexican', 'Fusion'],
+        tags: ['Trendy', 'Lively', 'Creative', 'Cocktails'],
     },
     {
         name: 'Pasta Lab',
-        tagline: 'Handcrafted pasta made fresh daily',
-        location: 'West Loop, Chicago',
-        imageUrl: 'https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9',
-        additionalPhotos: [
-            'https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9',
-            'https://images.unsplash.com/photo-1612940960267-4549a58fb257',
-            'https://images.unsplash.com/photo-1608219992759-8d74ed8d76eb',
-        ],
-        popularItems: [
-            { name: 'Truffle Carbonara', price: '$22', emoji: '🍝', imageUrl: 'https://images.unsplash.com/photo-1612940960267-4549a58fb257' },
-            { name: 'Burrata', price: '$16', emoji: '🧀', imageUrl: 'https://images.unsplash.com/photo-1587486913049-53fc88980cfc' },
-            { name: 'Tiramisu', price: '$10', emoji: '🍰', imageUrl: 'https://images.unsplash.com/photo-1571877227200-a0d98ea607e9' },
-        ],
-        reviews: [
-            { text: 'Pasta perfection! You can taste the quality.', author: 'David L.' },
-            {
-                text: 'Best Italian outside of Italy. The carbonara is life-changing.',
-                author: 'Emma W.',
-            },
-        ],
-        ambianceTags: ['Romantic', 'Elegant', 'Cozy'],
-        reservationInfo: 'Reservations required. Book 2 weeks in advance.',
-        priceRange: '$$$',
-        cuisine: 'Italian Contemporary',
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        formatted_address: '789 W Randolph St, Chicago, IL 60607',
+        latitude: 41.8847,
+        longitude: -87.6476,
+        price_tier: PriceTier.EXPENSIVE,
+        phone: '+1-312-555-0103',
+        website: 'https://pastalab.example.com',
+        cuisines: ['Italian', 'Contemporary'],
+        tags: ['Romantic', 'Elegant', 'Cozy', 'Handmade Pasta'],
     },
     {
         name: 'Burger Haus',
-        tagline: 'Elevated burgers with a European twist',
-        location: 'Brooklyn, NYC',
-        imageUrl: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd',
-        additionalPhotos: [
-            'https://images.unsplash.com/photo-1568901346375-23c9450c58cd',
-            'https://images.unsplash.com/photo-1550547660-d9450f859349',
-            'https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5',
-        ],
-        popularItems: [
-            { name: 'Truffle Burger', price: '$19', emoji: '🍔', imageUrl: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd' },
-            { name: 'Loaded Fries', price: '$9', emoji: '🍟', imageUrl: 'https://images.unsplash.com/photo-1573080496219-bb080dd4f877' },
-            { name: 'Craft Beer', price: '$8', emoji: '🍺', imageUrl: 'https://images.unsplash.com/photo-1608270586620-248524c67de9' },
-        ],
-        reviews: [
-            { text: 'These are not your average burgers. Premium quality!', author: 'Mike T.' },
-            {
-                text: 'Great beer selection and the truffle fries are addictive.',
-                author: 'Lisa P.',
-            },
-        ],
-        ambianceTags: ['Casual', 'Hip', 'Fun'],
-        reservationInfo: 'No reservations. Counter service.',
-        priceRange: '$$',
-        cuisine: 'American',
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        formatted_address: '321 Bedford Ave, Brooklyn, NY 11211',
+        latitude: 40.7181,
+        longitude: -73.9571,
+        price_tier: PriceTier.MODERATE,
+        phone: '+1-718-555-0104',
+        cuisines: ['American', 'Burgers'],
+        tags: ['Casual', 'Hip', 'Fun', 'Craft Beer'],
     },
     {
         name: 'Pho King',
-        tagline: 'Authentic Vietnamese soul food',
-        location: 'Little Saigon, OC',
-        imageUrl: 'https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43',
-        additionalPhotos: [
-            'https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43',
-            'https://images.unsplash.com/photo-1555126634-323283e090fa',
-            'https://images.unsplash.com/photo-1559510981-10719ce4266a',
-        ],
-        popularItems: [
-            { name: 'Pho Bo', price: '$14', emoji: '🍜', imageUrl: 'https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43' },
-            { name: 'Banh Mi', price: '$9', emoji: '🥖', imageUrl: 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea' },
-            { name: 'Iced Coffee', price: '$5', emoji: '☕', imageUrl: 'https://images.unsplash.com/photo-1517487881594-2787fef5ebf7' },
-        ],
+        formatted_address: '567 Bolsa Ave, Westminster, CA 92683',
+        latitude: 33.7455,
+        longitude: -117.9943,
+        price_tier: PriceTier.CHEAP,
+        phone: '+1-714-555-0105',
+        cuisines: ['Vietnamese'],
+        tags: ['Authentic', 'Casual', 'Family-Friendly', 'Quick Service'],
+    },
+];
+
+// Sample reviews to add
+const sampleReviews = [
+    {
+        restaurantName: 'Sushi Garden',
         reviews: [
-            { text: 'Most authentic pho outside of Vietnam. Incredible broth!', author: 'Tran N.' },
-            { text: 'Family-run gem. Always fresh, always delicious.', author: 'Kevin H.' },
+            {
+                rating: 5,
+                body: 'Best sushi in NYC. The omakase was incredible! Fresh ingredients and expert preparation.',
+                source: 'MANUAL' as const,
+            },
+            {
+                rating: 4.5,
+                body: 'Fresh fish, authentic flavors. Will be back for sure!',
+                source: 'MANUAL' as const,
+            },
         ],
-        ambianceTags: ['Authentic', 'Casual', 'Family-Friendly'],
-        reservationInfo: 'Walk-ins only. Cash preferred.',
-        priceRange: '$',
-        cuisine: 'Vietnamese',
-        createdAt: new Date(),
-        updatedAt: new Date(),
+    },
+    {
+        restaurantName: 'Taco Theory',
+        reviews: [
+            {
+                rating: 4.5,
+                body: 'Innovative takes on classic tacos. Love the Korean BBQ fusion!',
+                source: 'MANUAL' as const,
+            },
+            {
+                rating: 5,
+                body: 'Great vibe, amazing cocktails, creative menu. A must-visit!',
+                source: 'MANUAL' as const,
+            },
+        ],
+    },
+    {
+        restaurantName: 'Pasta Lab',
+        reviews: [
+            {
+                rating: 5,
+                body: 'Pasta perfection! You can taste the quality in every bite.',
+                source: 'MANUAL' as const,
+            },
+            {
+                rating: 5,
+                body: 'Best Italian outside of Italy. The truffle carbonara is life-changing.',
+                source: 'MANUAL' as const,
+            },
+        ],
+    },
+    {
+        restaurantName: 'Burger Haus',
+        reviews: [
+            {
+                rating: 4,
+                body: 'These are not your average burgers. Premium quality ingredients!',
+                source: 'MANUAL' as const,
+            },
+            {
+                rating: 4.5,
+                body: 'Great beer selection and the truffle fries are absolutely addictive.',
+                source: 'MANUAL' as const,
+            },
+        ],
+    },
+    {
+        restaurantName: 'Pho King',
+        reviews: [
+            {
+                rating: 5,
+                body: 'Most authentic pho outside of Vietnam. The broth is incredible!',
+                source: 'MANUAL' as const,
+            },
+            {
+                rating: 5,
+                body: 'Family-run gem. Always fresh, always delicious. Cash only but worth it!',
+                source: 'MANUAL' as const,
+            },
+        ],
     },
 ];
 
@@ -152,17 +160,138 @@ const seedDatabase = async (): Promise<void> => {
     try {
         console.log('🌱 Starting database seeding...');
 
-        const db = initializeFirebase();
+        const supabase = initializeSupabase();
 
-        for (const restaurant of sampleRestaurants) {
-            const docRef = await db.collection(COLLECTIONS.RESTAURANTS).add(restaurant);
-            console.log(`✅ Created restaurant: ${restaurant.name} (ID: ${docRef.id})`);
+        // First, create cuisines
+        console.log('\n📋 Creating cuisines...');
+        const cuisineNames = Array.from(
+            new Set(sampleRestaurants.flatMap((r) => r.cuisines))
+        );
+        const cuisineMap = new Map<string, string>();
+
+        for (const cuisineName of cuisineNames) {
+            const { data, error } = await supabase
+                .from(TABLES.CUISINES)
+                .insert({ name: cuisineName })
+                .select()
+                .single();
+
+            if (error) {
+                console.error(`Error creating cuisine ${cuisineName}:`, error.message);
+            } else {
+                cuisineMap.set(cuisineName, data.id);
+                console.log(`✅ Created cuisine: ${cuisineName}`);
+            }
         }
 
-        console.log('🎉 Database seeding completed successfully!');
+        // Create tags
+        console.log('\n🏷️  Creating tags...');
+        const tagNames = Array.from(new Set(sampleRestaurants.flatMap((r) => r.tags)));
+        const tagMap = new Map<string, string>();
+
+        for (const tagName of tagNames) {
+            const { data, error } = await supabase
+                .from(TABLES.TAGS)
+                .insert({ name: tagName, type: 'ambiance' })
+                .select()
+                .single();
+
+            if (error) {
+                console.error(`Error creating tag ${tagName}:`, error.message);
+            } else {
+                tagMap.set(tagName, data.id);
+                console.log(`✅ Created tag: ${tagName}`);
+            }
+        }
+
+        // Create restaurants
+        console.log('\n🍽️  Creating restaurants...');
+        const restaurantMap = new Map<string, string>();
+
+        for (const restaurant of sampleRestaurants) {
+            const { cuisines, tags, latitude, longitude, ...restaurantData } = restaurant;
+
+            // Insert restaurant with PostGIS point
+            const { data, error } = await supabase
+                .from(TABLES.RESTAURANTS)
+                .insert({
+                    ...restaurantData,
+                    geo: `POINT(${longitude} ${latitude})`,
+                })
+                .select()
+                .single();
+
+            if (error) {
+                console.error(`Error creating restaurant ${restaurant.name}:`, error.message);
+                continue;
+            }
+
+            restaurantMap.set(restaurant.name, data.id);
+            console.log(`✅ Created restaurant: ${restaurant.name} (ID: ${data.id})`);
+
+            // Add cuisine associations
+            for (const cuisineName of cuisines) {
+                const cuisineId = cuisineMap.get(cuisineName);
+                if (cuisineId) {
+                    await supabase.from(TABLES.RESTAURANT_CUISINES).insert({
+                        restaurant_id: data.id,
+                        cuisine_id: cuisineId,
+                    });
+                }
+            }
+
+            // Add tag associations
+            for (const tagName of tags) {
+                const tagId = tagMap.get(tagName);
+                if (tagId) {
+                    await supabase.from(TABLES.RESTAURANT_TAGS).insert({
+                        restaurant_id: data.id,
+                        tag_id: tagId,
+                    });
+                }
+            }
+        }
+
+        // Create reviews
+        console.log('\n⭐ Creating reviews...');
+        for (const restaurantReviews of sampleReviews) {
+            const restaurantId = restaurantMap.get(restaurantReviews.restaurantName);
+            if (!restaurantId) continue;
+
+            for (const review of restaurantReviews.reviews) {
+                const { error } = await supabase.from(TABLES.REVIEWS).insert({
+                    restaurant_id: restaurantId,
+                    source: review.source,
+                    rating: review.rating,
+                    body: review.body,
+                    is_anonymous: true,
+                    moderation_status: 'APPROVED',
+                });
+
+                if (error) {
+                    console.error(
+                        `Error creating review for ${restaurantReviews.restaurantName}:`,
+                        error.message
+                    );
+                } else {
+                    console.log(
+                        `✅ Created review for ${restaurantReviews.restaurantName} (${review.rating}★)`
+                    );
+                }
+            }
+        }
+
+        console.log('\n🎉 Database seeding completed successfully!');
+        console.log('\n📊 Summary:');
+        console.log(`   - ${cuisineMap.size} cuisines created`);
+        console.log(`   - ${tagMap.size} tags created`);
+        console.log(`   - ${restaurantMap.size} restaurants created`);
+        console.log(
+            `   - ${sampleReviews.reduce((sum, r) => sum + r.reviews.length, 0)} reviews created`
+        );
+
         process.exit(0);
-    }
-    catch (error) {
+    } catch (error) {
         console.error('❌ Error seeding database:', error);
         process.exit(1);
     }

@@ -33,11 +33,12 @@ export const createApp = (): Application => {
     app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
     // Compression middleware
-    app.use(compression());
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    app.use(compression() as any);
 
     // Request logging in development
     if (config.NODE_ENV === 'development') {
-        app.use((req, res, next) => {
+        app.use((req, _res, next) => {
             console.log(`${req.method} ${req.path}`);
             next();
         });
@@ -47,11 +48,11 @@ export const createApp = (): Application => {
     app.use('/api', routes);
 
     // Root endpoint
-    app.get('/', (req, res) => {
+    app.get('/', (_req, res) => {
         res.status(200).json({
             success: true,
-            message: 'Welcome to Jelly API',
-            version: '1.0.0',
+            message: 'Welcome to Jelly API - Supabase Edition',
+            version: '2.0.0',
             documentation: '/api/health',
         });
     });

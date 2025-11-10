@@ -15,10 +15,9 @@ export interface ApiError extends Error {
  */
 export const errorHandler = (
     err: ApiError,
-    req: Request,
+    _req: Request,
     res: Response,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    next: NextFunction
+    _next: NextFunction
 ): void => {
     console.error('Error:', err);
 

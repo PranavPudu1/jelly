@@ -1,34 +1,43 @@
 /**
  * Restaurant Service
- * Handles business logic and Firestore queries for restaurants
+ * Handles business logic and Supabase queries for restaurants
  */
 
-import { getFirestore, COLLECTIONS } from '../config/firebase.config';
-import {
-    Restaurant,
+import { getSupabase, TABLES } from '../config/supabase.config';
+import type {
     UserSwipe,
     PaginatedResponse,
     GetRestaurantsQuery,
     SaveSwipeRequest,
-} from '../models/restaurant.model';
+    RestaurantWithStats,
+    CreateRestaurantRequest,
+    UpdateRestaurantRequest,
+} from '../types';
+import { SwipeDecision } from '../types';
 import { config } from '../config/env.config';
 
 export class RestaurantService {
-    private db = getFirestore();
+    private supabase = getSupabase();
 
     /**
-   * Get paginated restaurants excluding those the user has already swiped on
-   */
+     * Get paginated restaurants excluding those the user has already swiped on
+     * Supports filtering by cuisine, price tier, location, distance, tags, and rating
+     */
     async getRestaurants(
         queryParams: GetRestaurantsQuery
-    ): Promise<PaginatedResponse<Restaurant>> {
+    ): Promise<PaginatedResponse<RestaurantWithStats>> {
         const {
             userId,
             page = 1,
             limit = config.DEFAULT_PAGE_SIZE,
-            cuisine,
-            priceRange,
-            location,
+            cuisines,
+            priceMin,
+            priceMax,
+            latitude,
+            longitude,
+            maxDistanceMeters,
+            tags,
+            minRating,
         } = queryParams;
 
         // Enforce max page size
@@ -39,265 +48,387 @@ export class RestaurantService {
             // Get user's swiped restaurant IDs if userId is provided
             const swipedRestaurantIds = userId ? await this.getUserSwipedRestaurants(userId) : [];
 
-            // Build Firestore query
-            let query = this.db.collection(COLLECTIONS.RESTAURANTS).orderBy('createdAt', 'desc');
+            // Build base query using the restaurants_with_stats view
+            let query = this.supabase
+                .from('restaurants_with_stats')
+                .select('*', { count: 'exact' })
+                .eq('is_active', true)
+                .order('created_at', { ascending: false });
 
             // Apply filters
-            if (cuisine) {
-                query = query.where('cuisine', '==', cuisine);
-            }
-            if (priceRange) {
-                query = query.where('priceRange', '==', priceRange);
-            }
-            if (location) {
-                query = query.where('location', '==', location);
+            if (swipedRestaurantIds.length > 0) {
+                query = query.not('id', 'in', `(${swipedRestaurantIds.join(',')})`);
             }
 
-            // Execute query
-            const snapshot = await query.get();
+            if (priceMin || priceMax) {
+                const priceTiers = ['FREE', 'CHEAP', 'MODERATE', 'EXPENSIVE', 'LUXURY'];
+                const minIndex = priceMin ? priceTiers.indexOf(priceMin) : 0;
+                const maxIndex = priceMax ? priceTiers.indexOf(priceMax) : priceTiers.length - 1;
+                const allowedTiers = priceTiers.slice(minIndex, maxIndex + 1);
+                query = query.in('price_tier', allowedTiers);
+            }
 
-            // Filter out swiped restaurants and apply pagination manually
-            // (Firestore doesn't support NOT IN for arrays larger than 10 items)
-            const allRestaurants: Restaurant[] = snapshot.docs
-                .map((doc) => ({
-                    id: doc.id,
-                    ...doc.data(),
-                }))
-                .filter((restaurant) => !swipedRestaurantIds.includes(restaurant.id!)) as Restaurant[];
+            if (minRating) {
+                query = query.gte('rating_avg', minRating);
+            }
 
-            const total = allRestaurants.length;
-            const paginatedRestaurants = allRestaurants.slice(offset, offset + pageSize);
+            // Filter by cuisines (requires join)
+            if (cuisines && cuisines.length > 0) {
+                const { data: restaurantCuisines } = await this.supabase
+                    .from(TABLES.RESTAURANT_CUISINES)
+                    .select('restaurant_id')
+                    .in('cuisine_id', cuisines);
+
+                if (restaurantCuisines && restaurantCuisines.length > 0) {
+                    const restaurantIds = restaurantCuisines.map((rc) => rc.restaurant_id);
+                    query = query.in('id', restaurantIds);
+                } else {
+                    // No restaurants match the cuisine filter
+                    return {
+                        data: [],
+                        page,
+                        limit: pageSize,
+                        total: 0,
+                        hasMore: false,
+                    };
+                }
+            }
+
+            // Filter by tags (requires join)
+            if (tags && tags.length > 0) {
+                const { data: restaurantTags } = await this.supabase
+                    .from(TABLES.RESTAURANT_TAGS)
+                    .select('restaurant_id')
+                    .in('tag_id', tags);
+
+                if (restaurantTags && restaurantTags.length > 0) {
+                    const restaurantIds = restaurantTags.map((rt) => rt.restaurant_id);
+                    query = query.in('id', restaurantIds);
+                } else {
+                    // No restaurants match the tag filter
+                    return {
+                        data: [],
+                        page,
+                        limit: pageSize,
+                        total: 0,
+                        hasMore: false,
+                    };
+                }
+            }
+
+            // Geospatial filtering (if latitude/longitude provided)
+            if (latitude !== undefined && longitude !== undefined && maxDistanceMeters) {
+                // Use PostGIS ST_DWithin for efficient distance queries
+                const { data: nearbyRestaurants, error: geoError } = await this.supabase.rpc(
+                    'restaurants_within_distance',
+                    {
+                        lat: latitude,
+                        lon: longitude,
+                        distance_meters: maxDistanceMeters,
+                    }
+                );
+
+                if (geoError) {
+                    console.error('Geospatial query error:', geoError);
+                } else if (nearbyRestaurants && nearbyRestaurants.length > 0) {
+                    const nearbyIds = nearbyRestaurants.map((r: any) => r.id);
+                    query = query.in('id', nearbyIds);
+                } else {
+                    // No restaurants within distance
+                    return {
+                        data: [],
+                        page,
+                        limit: pageSize,
+                        total: 0,
+                        hasMore: false,
+                    };
+                }
+            }
+
+            // Execute paginated query
+            const { data, error, count } = await query.range(offset, offset + pageSize - 1);
+
+            if (error) {
+                console.error('Error fetching restaurants:', error);
+                throw new Error(`Failed to fetch restaurants: ${error.message}`);
+            }
+
+            const total = count || 0;
 
             return {
-                data: paginatedRestaurants,
+                data: (data || []) as RestaurantWithStats[],
                 page,
                 limit: pageSize,
                 total,
                 hasMore: offset + pageSize < total,
             };
-        }
-        catch (error) {
+        } catch (error) {
             console.error('Error fetching restaurants:', error);
             throw new Error('Failed to fetch restaurants');
         }
     }
 
     /**
-   * Get a single restaurant by ID
-   */
-    async getRestaurantById(id: string): Promise<Restaurant | null> {
+     * Get a single restaurant by ID with stats
+     */
+    async getRestaurantById(id: string): Promise<RestaurantWithStats | null> {
         try {
-            const doc = await this.db.collection(COLLECTIONS.RESTAURANTS).doc(id).get();
+            const { data, error } = await this.supabase
+                .from('restaurants_with_stats')
+                .select('*')
+                .eq('id', id)
+                .single();
 
-            if (!doc.exists) {
-                return null;
+            if (error) {
+                if (error.code === 'PGRST116') {
+                    // Not found
+                    return null;
+                }
+                console.error('Error fetching restaurant by ID:', error);
+                throw new Error(`Failed to fetch restaurant: ${error.message}`);
             }
 
-            return {
-                id: doc.id,
-                ...doc.data(),
-            } as Restaurant;
-        }
-        catch (error) {
+            return data as RestaurantWithStats;
+        } catch (error) {
             console.error('Error fetching restaurant by ID:', error);
             throw new Error('Failed to fetch restaurant');
         }
     }
 
     /**
-   * Create a new restaurant
-   */
-    async createRestaurant(restaurant: Omit<Restaurant, 'id'>): Promise<Restaurant> {
+     * Create a new restaurant
+     */
+    async createRestaurant(
+        restaurantData: CreateRestaurantRequest
+    ): Promise<RestaurantWithStats> {
         try {
-            const now = new Date();
-            const docRef = await this.db.collection(COLLECTIONS.RESTAURANTS).add({
-                ...restaurant,
-                createdAt: now,
-                updatedAt: now,
-            });
+            const { cuisine_ids, tag_ids, latitude, longitude, ...restaurantFields } =
+                restaurantData;
 
-            const newDoc = await docRef.get();
-            return {
-                id: newDoc.id,
-                ...newDoc.data(),
-            } as Restaurant;
-        }
-        catch (error) {
+            // Create GeoJSON point for PostGIS
+            const geoPoint = `POINT(${longitude} ${latitude})`;
+
+            const { data, error } = await this.supabase
+                .from(TABLES.RESTAURANTS)
+                .insert({
+                    ...restaurantFields,
+                    geo: geoPoint,
+                })
+                .select()
+                .single();
+
+            if (error) {
+                console.error('Error creating restaurant:', error);
+                throw new Error(`Failed to create restaurant: ${error.message}`);
+            }
+
+            const restaurantId = data.id;
+
+            // Add cuisine associations
+            if (cuisine_ids && cuisine_ids.length > 0) {
+                const cuisineAssociations = cuisine_ids.map((cuisine_id) => ({
+                    restaurant_id: restaurantId,
+                    cuisine_id,
+                }));
+
+                const { error: cuisineError } = await this.supabase
+                    .from(TABLES.RESTAURANT_CUISINES)
+                    .insert(cuisineAssociations);
+
+                if (cuisineError) {
+                    console.error('Error adding cuisines:', cuisineError);
+                }
+            }
+
+            // Add tag associations
+            if (tag_ids && tag_ids.length > 0) {
+                const tagAssociations = tag_ids.map((tag_id) => ({
+                    restaurant_id: restaurantId,
+                    tag_id,
+                }));
+
+                const { error: tagError } = await this.supabase
+                    .from(TABLES.RESTAURANT_TAGS)
+                    .insert(tagAssociations);
+
+                if (tagError) {
+                    console.error('Error adding tags:', tagError);
+                }
+            }
+
+            // Fetch the created restaurant with stats
+            const created = await this.getRestaurantById(restaurantId);
+            if (!created) {
+                throw new Error('Failed to fetch created restaurant');
+            }
+
+            return created;
+        } catch (error) {
             console.error('Error creating restaurant:', error);
             throw new Error('Failed to create restaurant');
         }
     }
 
     /**
-   * Update a restaurant
-   */
-    async updateRestaurant(id: string, updates: Partial<Restaurant>): Promise<Restaurant | null> {
+     * Update a restaurant
+     */
+    async updateRestaurant(
+        id: string,
+        updates: UpdateRestaurantRequest
+    ): Promise<RestaurantWithStats | null> {
         try {
-            const docRef = this.db.collection(COLLECTIONS.RESTAURANTS).doc(id);
-            const doc = await docRef.get();
+            const { latitude, longitude, ...otherUpdates } = updates;
 
-            if (!doc.exists) {
-                return null;
+            const updateData: any = { ...otherUpdates };
+
+            // Update geo point if coordinates provided
+            if (latitude !== undefined && longitude !== undefined) {
+                updateData.geo = `POINT(${longitude} ${latitude})`;
             }
 
-            await docRef.update({
-                ...updates,
-                updatedAt: new Date(),
-            });
+            const { error } = await this.supabase
+                .from(TABLES.RESTAURANTS)
+                .update(updateData)
+                .eq('id', id)
+                .select()
+                .single();
 
-            const updatedDoc = await docRef.get();
-            return {
-                id: updatedDoc.id,
-                ...updatedDoc.data(),
-            } as Restaurant;
-        }
-        catch (error) {
+            if (error) {
+                if (error.code === 'PGRST116') {
+                    // Not found
+                    return null;
+                }
+                console.error('Error updating restaurant:', error);
+                throw new Error(`Failed to update restaurant: ${error.message}`);
+            }
+
+            // Fetch the updated restaurant with stats
+            return await this.getRestaurantById(id);
+        } catch (error) {
             console.error('Error updating restaurant:', error);
             throw new Error('Failed to update restaurant');
         }
     }
 
     /**
-   * Delete a restaurant
-   */
+     * Delete a restaurant
+     */
     async deleteRestaurant(id: string): Promise<boolean> {
         try {
-            const docRef = this.db.collection(COLLECTIONS.RESTAURANTS).doc(id);
-            const doc = await docRef.get();
+            const { error } = await this.supabase
+                .from(TABLES.RESTAURANTS)
+                .delete()
+                .eq('id', id);
 
-            if (!doc.exists) {
-                return false;
+            if (error) {
+                console.error('Error deleting restaurant:', error);
+                throw new Error(`Failed to delete restaurant: ${error.message}`);
             }
 
-            await docRef.delete();
             return true;
-        }
-        catch (error) {
+        } catch (error) {
             console.error('Error deleting restaurant:', error);
             throw new Error('Failed to delete restaurant');
         }
     }
 
     /**
-   * Save user swipe (like or dislike)
-   */
+     * Save user swipe (like, pass, or superlike)
+     */
     async saveSwipe(swipeData: SaveSwipeRequest): Promise<UserSwipe> {
-        const { userId, restaurantId, action } = swipeData;
+        const { user_id, restaurant_id, decision, session_id } = swipeData;
 
         try {
-            // Check if swipe already exists
-            const existingSwipe = await this.db
-                .collection(COLLECTIONS.USER_SWIPES)
-                .where('userId', '==', userId)
-                .where('restaurantId', '==', restaurantId)
-                .get();
+            // Upsert the swipe (insert or update if exists)
+            const { data, error } = await this.supabase
+                .from(TABLES.USER_SWIPES)
+                .upsert(
+                    {
+                        user_id,
+                        restaurant_id,
+                        decision,
+                        session_id,
+                        decided_at: new Date().toISOString(),
+                    },
+                    {
+                        onConflict: 'user_id,restaurant_id',
+                    }
+                )
+                .select()
+                .single();
 
-            // If swipe exists, update it
-            if (!existingSwipe.empty) {
-                const docRef = existingSwipe.docs[0].ref;
-                await docRef.update({
-                    action,
-                    timestamp: new Date(),
-                });
-
-                const updatedDoc = await docRef.get();
-                return {
-                    id: updatedDoc.id,
-                    ...updatedDoc.data(),
-                } as UserSwipe;
+            if (error) {
+                console.error('Error saving swipe:', error);
+                throw new Error(`Failed to save swipe: ${error.message}`);
             }
 
-            // Otherwise, create new swipe
-            const swipe: Omit<UserSwipe, 'id'> = {
-                userId,
-                restaurantId,
-                action,
-                timestamp: new Date(),
-            };
-
-            const docRef = await this.db.collection(COLLECTIONS.USER_SWIPES).add(swipe);
-            const newDoc = await docRef.get();
-
-            return {
-                id: newDoc.id,
-                ...newDoc.data(),
-            } as UserSwipe;
-        }
-        catch (error) {
+            return data as UserSwipe;
+        } catch (error) {
             console.error('Error saving swipe:', error);
             throw new Error('Failed to save swipe');
         }
     }
 
     /**
-   * Get all restaurant IDs that a user has swiped on
-   */
+     * Get all restaurant IDs that a user has swiped on
+     */
     private async getUserSwipedRestaurants(userId: string): Promise<string[]> {
         try {
-            const snapshot = await this.db
-                .collection(COLLECTIONS.USER_SWIPES)
-                .where('userId', '==', userId)
-                .get();
+            const { data, error } = await this.supabase
+                .from(TABLES.USER_SWIPES)
+                .select('restaurant_id')
+                .eq('user_id', userId);
 
-            return snapshot.docs.map((doc) => doc.data().restaurantId);
-        }
-        catch (error) {
+            if (error) {
+                console.error('Error fetching user swipes:', error);
+                return [];
+            }
+
+            return (data || []).map((swipe) => swipe.restaurant_id);
+        } catch (error) {
             console.error('Error fetching user swipes:', error);
             return [];
         }
     }
 
     /**
-   * Get user's saved restaurants (liked only)
-   */
-    async getUserSavedRestaurants(userId: string): Promise<Restaurant[]> {
+     * Get user's saved restaurants (liked only)
+     */
+    async getUserSavedRestaurants(userId: string): Promise<RestaurantWithStats[]> {
         try {
-            const swipesSnapshot = await this.db
-                .collection(COLLECTIONS.USER_SWIPES)
-                .where('userId', '==', userId)
-                .where('action', '==', 'like')
-                .get();
+            // Get liked restaurant IDs from swipes
+            const { data: swipes, error: swipesError } = await this.supabase
+                .from(TABLES.USER_SWIPES)
+                .select('restaurant_id')
+                .eq('user_id', userId)
+                .eq('decision', 'LIKE' as SwipeDecision);
 
-            const restaurantIds = swipesSnapshot.docs.map((doc) => doc.data().restaurantId);
+            if (swipesError) {
+                console.error('Error fetching user swipes:', swipesError);
+                throw new Error(`Failed to fetch saved restaurants: ${swipesError.message}`);
+            }
 
-            if (restaurantIds.length === 0) {
+            if (!swipes || swipes.length === 0) {
                 return [];
             }
 
-            // Firestore 'in' query supports up to 10 items at a time
-            const restaurants: Restaurant[] = [];
-            const chunks = this.chunkArray(restaurantIds, 10);
+            const restaurantIds = swipes.map((swipe) => swipe.restaurant_id);
 
-            for (const chunk of chunks) {
-                const snapshot = await this.db
-                    .collection(COLLECTIONS.RESTAURANTS)
-                    .where('__name__', 'in', chunk)
-                    .get();
+            // Fetch restaurants with stats
+            const { data, error } = await this.supabase
+                .from('restaurants_with_stats')
+                .select('*')
+                .in('id', restaurantIds);
 
-                const chunkRestaurants = snapshot.docs.map((doc) => ({
-                    id: doc.id,
-                    ...doc.data(),
-                })) as Restaurant[];
-
-                restaurants.push(...chunkRestaurants);
+            if (error) {
+                console.error('Error fetching saved restaurants:', error);
+                throw new Error(`Failed to fetch saved restaurants: ${error.message}`);
             }
 
-            return restaurants;
-        }
-        catch (error) {
+            return (data || []) as RestaurantWithStats[];
+        } catch (error) {
             console.error('Error fetching user saved restaurants:', error);
             throw new Error('Failed to fetch saved restaurants');
         }
-    }
-
-    /**
-   * Helper: Split array into chunks
-   */
-    private chunkArray<T>(array: T[], size: number): T[][] {
-        const chunks: T[][] = [];
-        for (let i = 0; i < array.length; i += size) {
-            chunks.push(array.slice(i, i + size));
-        }
-        return chunks;
     }
 }
