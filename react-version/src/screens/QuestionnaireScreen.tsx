@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 import {
     View,
@@ -6,12 +6,11 @@ import {
     StyleSheet,
     TouchableOpacity,
     Animated,
+    PanResponder,
 } from 'react-native';
 
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { SafeAreaView } from 'react-native-safe-area-context';
-
-import { Ionicons } from '@expo/vector-icons';
 
 import { RootStackParamList } from '../../App';
 
@@ -26,17 +25,87 @@ type QuestionnaireScreenProps = {
 export default function QuestionnaireScreen({
     navigation,
 }: QuestionnaireScreenProps) {
-    const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+    const [currentQuestionIndex, setCurrentQuestionIndex] = useState(-1); // -1 = welcome screen
     const [answers, setAnswers] = useState<QuestionnaireAnswers>({});
+    const [carouselIndex, setCarouselIndex] = useState(0);
 
     const [fadeAnim] = useState(new Animated.Value(1));
     const [slideAnim] = useState(new Animated.Value(0));
+    const carouselFadeAnim = useRef(new Animated.Value(1)).current;
+    const swipePosition = useRef(new Animated.Value(0)).current;
 
-    const currentQuestion = QUESTIONS[currentQuestionIndex];
+    const carouselWords = ['lunch', 'brunch', 'dinner', 'date spot'];
 
-    const progress = (currentQuestionIndex + 1) / QUESTIONS.length;
+    // PanResponder for swipe gestures
+    const panResponder = useRef(
+        PanResponder.create({
+            onStartShouldSetPanResponder: () => !isWelcomeScreen,
+            onMoveShouldSetPanResponder: (_, gestureState) => {
+                // Only respond to horizontal swipes when not on welcome screen
+                return !isWelcomeScreen && Math.abs(gestureState.dx) > 10;
+            },
+            onPanResponderMove: (_, gestureState) => {
+                // Only allow left swipe to go back (positive dx)
+                if (gestureState.dx > 0 && currentQuestionIndex > 0) {
+                    swipePosition.setValue(gestureState.dx);
+                }
+            },
+            onPanResponderRelease: (_, gestureState) => {
+                // If swiped left more than 100px, go back
+                if (gestureState.dx > 100 && currentQuestionIndex > 0) {
+                    handleBack();
+                }
+                // Reset swipe position
+                Animated.spring(swipePosition, {
+                    toValue: 0,
+                    useNativeDriver: true,
+                }).start();
+            },
+        }),
+    ).current;
+
+    // Carousel animation for welcome screen
+    useEffect(() => {
+        if (currentQuestionIndex === -1) {
+            const interval = setInterval(() => {
+                Animated.sequence([
+                    Animated.timing(carouselFadeAnim, {
+                        toValue: 0,
+                        duration: 200,
+                        useNativeDriver: true,
+                    }),
+                    Animated.timing(carouselFadeAnim, {
+                        toValue: 1,
+                        duration: 200,
+                        useNativeDriver: true,
+                    }),
+                ]).start();
+
+                setCarouselIndex((prev) => (prev + 1) % carouselWords.length);
+            }, 800);
+
+            // Auto-advance to first question after 3 seconds
+            const autoAdvance = setTimeout(() => {
+                setCurrentQuestionIndex(0);
+            }, 3000);
+
+            return () => {
+                clearInterval(interval);
+                clearTimeout(autoAdvance);
+            };
+        }
+    }, [currentQuestionIndex, carouselFadeAnim, carouselWords.length]);
+
+    const isWelcomeScreen = currentQuestionIndex === -1;
+    const currentQuestion = !isWelcomeScreen
+        ? QUESTIONS[currentQuestionIndex]
+        : null;
+
+    const progress = isWelcomeScreen
+        ? 0
+        : (currentQuestionIndex + 1) / QUESTIONS.length;
     const isLastQuestion = currentQuestionIndex === QUESTIONS.length - 1;
-    const currentAnswer = answers[currentQuestion.id];
+    const currentAnswer = currentQuestion ? answers[currentQuestion.id] : null;
 
     function handleAnswerSelect(questionId: string, option: string) {
         setAnswers((prev) => ({
@@ -106,111 +175,131 @@ export default function QuestionnaireScreen({
     return (
         <SafeAreaView style={styles.container}>
             {/* Progress Bar */}
-            <View style={styles.progressBarContainer}>
-                <Animated.View
-                    style={[
-                        styles.progressBarFill,
-                        { width: `${progress * 100}%` },
-                    ]}
-                />
-            </View>
+            {!isWelcomeScreen && (
+                <View style={styles.progressBarContainer}>
+                    <Animated.View
+                        style={[
+                            styles.progressBarFill,
+                            { width: `${progress * 100}%` },
+                        ]}
+                    />
+                </View>
+            )}
+
+            {/* Welcome Screen */}
+            {isWelcomeScreen && (
+                <View style={styles.welcomeContainer}>
+                    <View style={styles.welcomeContent}>
+                        <Text style={styles.welcomeText}>
+                            Welcome to Jelly!
+                        </Text>
+                        <View style={styles.carouselContainer}>
+                            <Text style={styles.carouselText}>
+                                Let's find your next{' '}
+                            </Text>
+                            <Animated.Text
+                                style={[
+                                    styles.carouselWord,
+                                    { opacity: carouselFadeAnim },
+                                ]}
+                            >
+                                {carouselWords[carouselIndex]}
+                            </Animated.Text>
+                        </View>
+                    </View>
+                </View>
+            )}
 
             {/* Question Content */}
-            <Animated.View
-                style={[
-                    styles.content,
-                    {
-                        opacity: fadeAnim,
-                        transform: [{ translateY: slideAnim }],
-                    },
-                ]}
-            >
-                <View style={styles.questionContainer}>
-                    <Text style={styles.questionNumber}>
-                        Question {currentQuestionIndex + 1} of{' '}
-                        {QUESTIONS.length}
-                    </Text>
-                    <Text style={styles.questionText}>
-                        {currentQuestion.question}
-                    </Text>
-                </View>
-
-                <View style={styles.optionsContainer}>
-                    {currentQuestion.options.map((option) => {
-                        const isSelected = currentAnswer === option;
-                        return (
-                            <TouchableOpacity
-                                key={option}
-                                style={[
-                                    styles.optionButton,
-                                    isSelected && styles.optionButtonSelected,
-                                ]}
-                                onPress={() =>
-                                    handleAnswerSelect(
-                                        currentQuestion.id,
-                                        option,
-                                    )
-                                }
-                                activeOpacity={0.7}
-                            >
-                                <View style={styles.optionContent}>
-                                    <View
-                                        style={[
-                                            styles.optionRadio,
-                                            isSelected &&
-                                                styles.optionRadioSelected,
-                                        ]}
-                                    >
-                                        {isSelected && (
-                                            <View
-                                                style={styles.optionRadioInner}
-                                            />
-                                        )}
-                                    </View>
-
-                                    <Text
-                                        style={[
-                                            styles.optionText,
-                                            isSelected &&
-                                                styles.optionTextSelected,
-                                        ]}
-                                    >
-                                        {option}
-                                    </Text>
-                                </View>
-                            </TouchableOpacity>
-                        );
-                    })}
-                </View>
-
-                {/* Back Button */}
-                {currentQuestionIndex > 0 && (
-                    <TouchableOpacity
-                        style={styles.backButton}
-                        onPress={handleBack}
-                        activeOpacity={0.7}
-                    >
-                        <Ionicons
-                            name="chevron-back"
-                            size={28}
-                            color={AppColors.primary}
-                        />
-                    </TouchableOpacity>
-                )}
-
-                {/* Start Discovering Button (only on last question) */}
-                {isLastQuestion && currentAnswer && (
-                    <TouchableOpacity
-                        style={styles.startButton}
-                        onPress={handleStartDiscovering}
-                        activeOpacity={0.8}
-                    >
-                        <Text style={styles.startButtonText}>
-                            Start Discovering
+            {!isWelcomeScreen && currentQuestion && (
+                <Animated.View
+                    style={[
+                        styles.content,
+                        {
+                            opacity: fadeAnim,
+                            transform: [
+                                { translateY: slideAnim },
+                                { translateX: swipePosition },
+                            ],
+                        },
+                    ]}
+                    {...panResponder.panHandlers}
+                >
+                    <View style={styles.questionContainer}>
+                        <Text style={styles.questionNumber}>
+                            Question {currentQuestionIndex + 1} of{' '}
+                            {QUESTIONS.length}
                         </Text>
-                    </TouchableOpacity>
-                )}
-            </Animated.View>
+                        <Text style={styles.questionText}>
+                            {currentQuestion.question}
+                        </Text>
+                    </View>
+
+                    <View style={styles.optionsContainer}>
+                        {currentQuestion.options.map((option) => {
+                            const isSelected = currentAnswer === option;
+                            return (
+                                <TouchableOpacity
+                                    key={option}
+                                    style={[
+                                        styles.optionButton,
+                                        isSelected &&
+                                            styles.optionButtonSelected,
+                                    ]}
+                                    onPress={() =>
+                                        handleAnswerSelect(
+                                            currentQuestion.id,
+                                            option,
+                                        )
+                                    }
+                                    activeOpacity={0.7}
+                                >
+                                    <View style={styles.optionContent}>
+                                        <View
+                                            style={[
+                                                styles.optionRadio,
+                                                isSelected &&
+                                                    styles.optionRadioSelected,
+                                            ]}
+                                        >
+                                            {isSelected && (
+                                                <View
+                                                    style={
+                                                        styles.optionRadioInner
+                                                    }
+                                                />
+                                            )}
+                                        </View>
+
+                                        <Text
+                                            style={[
+                                                styles.optionText,
+                                                isSelected &&
+                                                    styles.optionTextSelected,
+                                            ]}
+                                        >
+                                            {option}
+                                        </Text>
+                                    </View>
+                                </TouchableOpacity>
+                            );
+                        })}
+                    </View>
+
+                    {/* Start Discovering Button (only on last question) */}
+                    {isLastQuestion && currentAnswer && (
+                        <TouchableOpacity
+                            style={styles.startButton}
+                            onPress={handleStartDiscovering}
+                            activeOpacity={0.8}
+                        >
+                            <Text style={styles.startButtonText}>
+                                Start Discovering
+                            </Text>
+                        </TouchableOpacity>
+                    )}
+                </Animated.View>
+            )}
         </SafeAreaView>
     );
 }
@@ -219,6 +308,44 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: AppColors.white, // TODO
+    },
+    welcomeContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingHorizontal: Spacing.xl,
+    },
+    welcomeContent: {
+        alignItems: 'center',
+    },
+    welcomeText: {
+        ...Typography.displayLarge,
+        fontSize: 42,
+        fontWeight: '700',
+        color: AppColors.textDark,
+        marginBottom: Spacing.lg,
+        textAlign: 'center',
+    },
+    carouselContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexWrap: 'wrap',
+        minHeight: 60,
+    },
+    carouselText: {
+        ...Typography.displaySmall,
+        fontSize: 28,
+        fontWeight: '600',
+        color: AppColors.textDark,
+        textAlign: 'center',
+    },
+    carouselWord: {
+        ...Typography.displaySmall,
+        fontSize: 28,
+        fontWeight: '700',
+        color: AppColors.primary,
+        textAlign: 'center',
     },
     progressBarContainer: {
         height: 4,
@@ -229,18 +356,6 @@ const styles = StyleSheet.create({
         height: '100%',
         backgroundColor: AppColors.primary,
         borderRadius: 2,
-    },
-    backButton: {
-        position: 'absolute',
-        bottom: 20,
-        left: Spacing.lg,
-        zIndex: 10,
-        width: 40,
-        height: 40,
-        borderRadius: 20,
-        backgroundColor: AppColors.background,
-        alignItems: 'center',
-        justifyContent: 'center',
     },
     content: {
         flex: 1,

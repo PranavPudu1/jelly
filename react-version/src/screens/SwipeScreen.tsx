@@ -141,10 +141,25 @@ export default function SwipeScreen() {
                     animateCardOpacity
                     verticalSwipe={false}
                     horizontalThreshold={width * 0.3}
+                    verticalThreshold={height * 0.15}
                     cardVerticalMargin={0}
                     cardHorizontalMargin={0}
                     disableBottomSwipe
                     disableTopSwipe
+                    useViewOverflow={false}
+                    animateOverlayLabelsOpacity
+                    inputOverlayLabelsOpacityRangeX={[-width / 3, -width / 6, 0, width / 6, width / 3]}
+                    outputOverlayLabelsOpacityRangeX={[1, 0, 0, 0, 1]}
+                    swipeBackCard={false}
+                    marginTop={0}
+                    marginBottom={0}
+                    dragStart={() => {
+                        // Optional: Disable scroll when drag starts
+                        return true;
+                    }}
+                    dragEnd={() => {
+                        // Optional: Re-enable scroll when drag ends
+                    }}
                     overlayLabels={{
                         left: {
                             title: 'PASS',

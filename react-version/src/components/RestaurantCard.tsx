@@ -7,12 +7,14 @@ import {
     ScrollView,
     TouchableOpacity,
     Dimensions,
+    GestureResponderEvent,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Restaurant } from '../types';
 import { AppColors, Typography, Spacing, BorderRadius } from '../theme';
-import PhotoModal from './PhotoModal';
+import ReelModal from './ReelModal';
+import MenuModal from './MenuModal';
 
 const { width, height } = Dimensions.get('window');
 const NAVIGATION_BAR_HEIGHT = 80; // Approximate height of navigation bar
@@ -23,11 +25,15 @@ interface RestaurantCardProps {
 }
 
 export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
-    const [modalVisible, setModalVisible] = useState(false);
+    const [heroReelVisible, setHeroReelVisible] = useState(false);
+    const [foodReelVisible, setFoodReelVisible] = useState(false);
+    const [ambianceModalVisible, setAmbianceModalVisible] = useState(false);
+    const [menuModalVisible, setMenuModalVisible] = useState(false);
     const [initialPhotoIndex, setInitialPhotoIndex] = useState(0);
-    const [currentPhotos, setCurrentPhotos] = useState<
-        Array<{ imageUrl: string }>
+    const [currentReelPhotos, setCurrentReelPhotos] = useState<
+        Array<{ imageUrl: string; review?: any }>
     >([]);
+    const scrollViewRef = React.useRef<ScrollView>(null);
 
     function renderStars(rating: number) {
         const stars = [];
@@ -87,12 +93,67 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
         return colors[index % colors.length];
     }
 
+    function handleTouchStart(event: GestureResponderEvent) {
+        touchStart.x = event.nativeEvent.pageX;
+        touchStart.y = event.nativeEvent.pageY;
+        touchStart.time = Date.now();
+        hasScrolled.current = false;
+
+        // Always ensure scroll is enabled when starting a new touch
+        if (!scrollEnabled) {
+            setScrollEnabled(true);
+        }
+    }
+
+    function handleTouchMove(event: GestureResponderEvent) {
+        const currentX = event.nativeEvent.pageX;
+        const currentY = event.nativeEvent.pageY;
+
+        const deltaX = Math.abs(currentX - touchStart.x);
+        const deltaY = Math.abs(currentY - touchStart.y);
+
+        // Extremely sensitive to vertical movement - even 1px locks to scroll
+        if (deltaY > 1) {
+            hasScrolled.current = true;
+            if (!scrollEnabled) {
+                setScrollEnabled(true);
+            }
+            return;
+        }
+
+        // Only disable scroll if PURELY horizontal movement
+        // Requires 50px horizontal AND absolutely zero vertical movement
+        if (!hasScrolled.current && deltaX > 50 && deltaY === 0) {
+            if (scrollEnabled) {
+                setScrollEnabled(false);
+            }
+        }
+    }
+
+    function handleTouchEnd() {
+        // Immediately re-enable scroll when touch ends
+        hasScrolled.current = false;
+        if (!scrollEnabled) {
+            setScrollEnabled(true);
+        }
+    }
+
     return (
-        <View style={styles.card}>
+        <View
+            style={styles.card}
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
+        >
             <ScrollView
+                ref={scrollViewRef}
                 style={styles.scrollView}
                 showsVerticalScrollIndicator={false}
                 bounces={true}
+                scrollEventThrottle={16}
+                nestedScrollEnabled={true}
+                directionalLockEnabled={true}
+                scrollEnabled={scrollEnabled}
             >
                 {/* Hero Section */}
                 <View style={styles.heroSection}>
@@ -122,23 +183,20 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
                         <Text style={styles.cuisine}>{restaurant.cuisine}</Text>
                     </View>
 
-                    {/* Fullscreen Photo Modal */}
-                    <PhotoModal
-                        visible={modalVisible}
-                        onClose={() => setModalVisible(false)}
-                        photos={currentPhotos}
-                        reviews={restaurant.reviews}
-                        initialPhotoIndex={initialPhotoIndex}
+                    {/* Hero Image Reel Modal */}
+                    <ReelModal
+                        visible={heroReelVisible}
+                        onClose={() => setHeroReelVisible(false)}
+                        photos={[{ imageUrl: restaurant.heroImageUrl }]}
+                        allReviews={restaurant.reviews}
+                        initialPhotoIndex={0}
+                        tooltipText="Hero image"
                     />
 
                     <TouchableOpacity
                         activeOpacity={0.9}
                         onPress={() => {
-                            setCurrentPhotos([
-                                { imageUrl: restaurant.heroImageUrl },
-                            ]);
-                            setInitialPhotoIndex(0);
-                            setModalVisible(true);
+                            setHeroReelVisible(true);
                         }}
                     >
                         <Image
@@ -179,33 +237,45 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
                     </View>
                 </View>
 
-                {/* Ambience Section */}
-                <TouchableOpacity
-                    style={styles.ambienceSection}
-                    onPress={() => {
-                        setCurrentPhotos(restaurant.ambiencePhotos);
-                        setInitialPhotoIndex(0);
-                        setModalVisible(true);
-                    }}
-                    activeOpacity={0.9}
-                >
-                    <Image
-                        source={{ uri: restaurant.ambientImageUrl }}
-                        style={styles.ambienceImage}
-                        resizeMode="cover"
-                    />
-                    <LinearGradient
-                        colors={['transparent', 'rgba(0,0,0,0.8)']}
-                        style={styles.gradient}
+                {/* Ambiance Section */}
+                <View style={styles.ambianceContainer}>
+                    <Text style={styles.ambianceLabel}>Ambiance</Text>
+
+                    <TouchableOpacity
+                        style={styles.ambienceSection}
+                        onPress={() => {
+                            setAmbianceModalVisible(true);
+                        }}
+                        activeOpacity={0.9}
                     >
-                        <Text style={styles.quoteText}>
-                            "{restaurant.reviewQuote}"
-                        </Text>
-                        <Text style={styles.quoteAuthor}>
-                            - {restaurant.reviewAuthor}
-                        </Text>
-                    </LinearGradient>
-                </TouchableOpacity>
+                        <Image
+                            source={{ uri: restaurant.ambientImageUrl }}
+                            style={styles.ambienceImage}
+                            resizeMode="cover"
+                        />
+                        <LinearGradient
+                            colors={['transparent', 'rgba(0,0,0,0.8)']}
+                            style={styles.gradient}
+                        >
+                            <Text style={styles.quoteText}>
+                                "{restaurant.reviewQuote}"
+                            </Text>
+                            <Text style={styles.quoteAuthor}>
+                                - {restaurant.reviewAuthor}
+                            </Text>
+                        </LinearGradient>
+                    </TouchableOpacity>
+                </View>
+
+                {/* Ambiance Reel Modal */}
+                <ReelModal
+                    visible={ambianceModalVisible}
+                    onClose={() => setAmbianceModalVisible(false)}
+                    photos={restaurant.ambiencePhotos}
+                    allReviews={restaurant.reviews}
+                    initialPhotoIndex={0}
+                    tooltipText="Scroll for more ambiance pictures"
+                />
 
                 {/* Food Reviews Section */}
                 <View style={styles.reviewsSection}>
@@ -251,8 +321,8 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
                         )}
                     </View>
 
-                    {/* Food Items */}
-                    {restaurant.foodItems.map((foodItem, index) => {
+                    {/* Food Items - Show first 3 */}
+                    {restaurant.foodItems.slice(0, 3).map((foodItem, index) => {
                         const isEven = index % 2 === 0;
                         return (
                             <View
@@ -268,13 +338,14 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
                                     <TouchableOpacity
                                         activeOpacity={0.9}
                                         onPress={() => {
-                                            setCurrentPhotos(
-                                                foodItem.images.map((img) => ({
+                                            setCurrentReelPhotos(
+                                                foodItem.images.map((img, imgIndex) => ({
                                                     imageUrl: img,
+                                                    review: foodItem.reviews[imgIndex] || foodItem.reviews[0],
                                                 })),
                                             );
                                             setInitialPhotoIndex(0);
-                                            setModalVisible(true);
+                                            setFoodReelVisible(true);
                                         }}
                                     >
                                         <Image
@@ -360,13 +431,14 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
                                     <TouchableOpacity
                                         activeOpacity={0.9}
                                         onPress={() => {
-                                            setCurrentPhotos(
-                                                foodItem.images.map((img) => ({
+                                            setCurrentReelPhotos(
+                                                foodItem.images.map((img, imgIndex) => ({
                                                     imageUrl: img,
+                                                    review: foodItem.reviews[imgIndex] || foodItem.reviews[0],
                                                 })),
                                             );
                                             setInitialPhotoIndex(0);
-                                            setModalVisible(true);
+                                            setFoodReelVisible(true);
                                         }}
                                     >
                                         <Image
@@ -379,62 +451,81 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
                             </View>
                         );
                     })}
+
+                    {/* View All Items and Menu Button */}
+                    <TouchableOpacity
+                        style={styles.viewAllButton}
+                        onPress={() => setMenuModalVisible(true)}
+                        activeOpacity={0.8}
+                    >
+                        <Text style={styles.viewAllButtonText}>
+                            View All Items and Menu
+                        </Text>
+                        <Ionicons
+                            name="chevron-forward"
+                            size={20}
+                            color={AppColors.textDark}
+                        />
+                    </TouchableOpacity>
                 </View>
 
-                {/* Menu & Popular Dishes Section */}
-                <View style={styles.menuSection}>
-                    <Text style={styles.menuTitle}>
-                        Here's the menu and popular pics
+                {/* Reservation Section */}
+                <View style={styles.reservationSection}>
+                    <Text style={styles.reservationTitle}>
+                        Make your reservation now
                     </Text>
-
-                    {/* Menu Images */}
-                    {restaurant.menuImages.length > 0 && (
-                        <>
-                            <Text style={styles.subsectionTitle}>Menu</Text>
-                            <ScrollView
-                                horizontal
-                                showsHorizontalScrollIndicator={false}
-                                style={styles.horizontalScroll}
-                                bounces={true}
-                            >
-                                {restaurant.menuImages.map((image, index) => (
-                                    <Image
-                                        key={index}
-                                        source={{ uri: image }}
-                                        style={styles.menuImage}
-                                        resizeMode="cover"
-                                    />
-                                ))}
-                            </ScrollView>
-                        </>
-                    )}
-
-                    {/* Popular Dishes */}
-                    {restaurant.popularDishPhotos.length > 0 && (
-                        <>
-                            <Text style={styles.subsectionTitle}>
-                                Popular Dishes
+                    <View style={styles.reservationButtons}>
+                        <TouchableOpacity
+                            style={styles.reservationButton}
+                            activeOpacity={0.8}
+                        >
+                            <Ionicons
+                                name="restaurant"
+                                size={32}
+                                color="#DA3743"
+                            />
+                            <Text style={styles.reservationButtonText}>
+                                OpenTable
                             </Text>
-                            <ScrollView
-                                horizontal
-                                showsHorizontalScrollIndicator={false}
-                                style={styles.horizontalScroll}
-                                bounces={true}
-                            >
-                                {restaurant.popularDishPhotos.map(
-                                    (photo, index) => (
-                                        <Image
-                                            key={index}
-                                            source={{ uri: photo }}
-                                            style={styles.popularDishImage}
-                                            resizeMode="cover"
-                                        />
-                                    ),
-                                )}
-                            </ScrollView>
-                        </>
-                    )}
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            style={styles.reservationButton}
+                            activeOpacity={0.8}
+                        >
+                            <Ionicons
+                                name="logo-yelp"
+                                size={32}
+                                color="#D32323"
+                            />
+                            <Text style={styles.reservationButtonText}>
+                                Yelp
+                            </Text>
+                        </TouchableOpacity>
+                    </View>
                 </View>
+
+                {/* Food Reel Modal */}
+                <ReelModal
+                    visible={foodReelVisible}
+                    onClose={() => setFoodReelVisible(false)}
+                    photos={currentReelPhotos}
+                    allReviews={restaurant.reviews}
+                    initialPhotoIndex={initialPhotoIndex}
+                    tooltipText="Scroll for more food pictures"
+                />
+
+                {/* Menu Modal */}
+                <MenuModal
+                    visible={menuModalVisible}
+                    onClose={() => setMenuModalVisible(false)}
+                    foodItems={restaurant.foodItems}
+                    menuImages={restaurant.menuImages}
+                    onPhotoPress={(photos, index) => {
+                        setCurrentReelPhotos(photos.map((img) => ({ imageUrl: img })));
+                        setInitialPhotoIndex(index);
+                        setFoodReelVisible(true);
+                    }}
+                />
             </ScrollView>
         </View>
     );
@@ -538,9 +629,17 @@ const styles = StyleSheet.create({
         fontSize: 11,
     },
 
-    // Ambience Section
+    // Ambiance Section
+    ambianceContainer: {
+        marginTop: Spacing.lg,
+    },
+    ambianceLabel: {
+        ...Typography.bodyMedium,
+        color: AppColors.textLight,
+        paddingHorizontal: Spacing.md,
+        marginBottom: Spacing.md,
+    },
     ambienceSection: {
-        marginTop: Spacing.md,
         marginHorizontal: Spacing.md,
         borderRadius: BorderRadius.md,
         overflow: 'hidden',
@@ -660,41 +759,67 @@ const styles = StyleSheet.create({
         color: AppColors.textLight,
         lineHeight: 16,
     },
-
-    // Menu Section
-    menuSection: {
-        paddingVertical: Spacing.xl,
+    viewAllButton: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingVertical: Spacing.md,
+        paddingHorizontal: Spacing.lg,
+        marginTop: Spacing.lg,
+        borderWidth: 2,
+        borderColor: AppColors.primary,
+        borderRadius: BorderRadius.md,
+        backgroundColor: AppColors.white,
+        gap: Spacing.xs,
     },
-    menuTitle: {
-        ...Typography.titleMedium,
-        fontWeight: 'bold',
-        color: AppColors.text,
-        paddingHorizontal: Spacing.md,
-        marginBottom: Spacing.md,
-    },
-    subsectionTitle: {
+    viewAllButtonText: {
         ...Typography.bodyMedium,
-        fontWeight: '600',
-        color: AppColors.textLight,
+        fontSize: 16,
+        fontWeight: '700',
+        color: AppColors.textDark,
+    },
+
+    // Reservation Section
+    reservationSection: {
         paddingHorizontal: Spacing.md,
-        marginBottom: Spacing.sm,
-        marginTop: Spacing.md,
+        paddingVertical: Spacing.xxl,
+        alignItems: 'center',
     },
-    horizontalScroll: {
-        paddingLeft: Spacing.md,
+    reservationTitle: {
+        ...Typography.titleLarge,
+        fontSize: 28,
+        fontWeight: '700',
+        color: AppColors.textDark,
+        textAlign: 'center',
+        marginBottom: Spacing.xl,
     },
-    menuImage: {
-        width: 260,
-        height: 360,
+    reservationButtons: {
+        flexDirection: 'row',
+        gap: Spacing.lg,
+        justifyContent: 'center',
+    },
+    reservationButton: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingVertical: Spacing.lg,
+        paddingHorizontal: Spacing.xl,
         borderRadius: BorderRadius.md,
-        marginRight: Spacing.sm,
         backgroundColor: AppColors.surface,
+        minWidth: 140,
+        gap: Spacing.sm,
+        shadowColor: '#000',
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.1,
+        shadowRadius: 4,
+        elevation: 3,
     },
-    popularDishImage: {
-        width: 320,
-        height: 240,
-        borderRadius: BorderRadius.md,
-        marginRight: Spacing.sm,
-        backgroundColor: AppColors.surface,
+    reservationButtonText: {
+        ...Typography.bodyMedium,
+        fontSize: 14,
+        fontWeight: '600',
+        color: AppColors.textDark,
     },
 });

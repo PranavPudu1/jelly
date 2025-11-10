@@ -24,6 +24,7 @@ export interface FoodItem {
 
 export interface AmbiencePhoto {
   imageUrl: string;
+  review?: Review;
 }
 
 export interface Restaurant {
