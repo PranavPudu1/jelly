@@ -1,38 +1,40 @@
 /**
- * Restaurant Service
- * Handles business logic and Supabase queries for restaurants
+ * Restaurant Service (New Schema)
+ * Handles business logic and Supabase queries for restaurants using the new simplified schema
  */
 
-import { getSupabase, TABLES } from '../config/supabase.config';
+import { getSupabase } from '../config/supabase.config';
 import type {
+    Restaurant,
     UserSwipe,
     PaginatedResponse,
     GetRestaurantsQuery,
     SaveSwipeRequest,
-    RestaurantWithStats,
     CreateRestaurantRequest,
     UpdateRestaurantRequest,
+    RestaurantPopulated,
+    Tag,
+    Review,
+    RestaurantImage,
+    RestaurantItem,
+    Database,
+    TablesInsert,
+    TablesUpdate,
 } from '../types';
-import { SwipeDecision } from '../types';
-import { config } from '../config/env.config';
 
 export class RestaurantService {
     private supabase = getSupabase();
 
     /**
      * Get paginated restaurants excluding those the user has already swiped on
-     * Supports filtering by cuisine, price tier, location, distance, tags, and rating
      */
     async getRestaurants(
         queryParams: GetRestaurantsQuery
-    ): Promise<PaginatedResponse<RestaurantWithStats>> {
+    ): Promise<PaginatedResponse<Restaurant>> {
         const {
             userId,
             page = 1,
-            limit = config.DEFAULT_PAGE_SIZE,
-            cuisines,
-            priceMin,
-            priceMax,
+            limit = 20,
             latitude,
             longitude,
             maxDistanceMeters,
@@ -40,72 +42,40 @@ export class RestaurantService {
             minRating,
         } = queryParams;
 
-        // Enforce max page size
-        const pageSize = Math.min(limit, config.MAX_PAGE_SIZE);
+        const pageSize = Math.min(limit, 100); // Max 100 items per page
         const offset = (page - 1) * pageSize;
 
         try {
             // Get user's swiped restaurant IDs if userId is provided
             const swipedRestaurantIds = userId ? await this.getUserSwipedRestaurants(userId) : [];
 
-            // Build base query using the restaurants_with_stats view
+            // Build base query
             let query = this.supabase
-                .from('restaurants_with_stats')
+                .from('restaurants')
                 .select('*', { count: 'exact' })
-                .eq('is_active', true)
-                .order('created_at', { ascending: false });
+                .eq('is_closed', false)
+                .order('date_added', { ascending: false });
 
             // Apply filters
             if (swipedRestaurantIds.length > 0) {
                 query = query.not('id', 'in', `(${swipedRestaurantIds.join(',')})`);
             }
 
-            if (priceMin || priceMax) {
-                const priceTiers = ['FREE', 'CHEAP', 'MODERATE', 'EXPENSIVE', 'LUXURY'];
-                const minIndex = priceMin ? priceTiers.indexOf(priceMin) : 0;
-                const maxIndex = priceMax ? priceTiers.indexOf(priceMax) : priceTiers.length - 1;
-                const allowedTiers = priceTiers.slice(minIndex, maxIndex + 1);
-                query = query.in('price_tier', allowedTiers);
-            }
-
             if (minRating) {
-                query = query.gte('rating_avg', minRating);
-            }
-
-            // Filter by cuisines (requires join)
-            if (cuisines && cuisines.length > 0) {
-                const { data: restaurantCuisines } = await this.supabase
-                    .from(TABLES.RESTAURANT_CUISINES)
-                    .select('restaurant_id')
-                    .in('cuisine_id', cuisines);
-
-                if (restaurantCuisines && restaurantCuisines.length > 0) {
-                    const restaurantIds = restaurantCuisines.map((rc) => rc.restaurant_id);
-                    query = query.in('id', restaurantIds);
-                } else {
-                    // No restaurants match the cuisine filter
-                    return {
-                        data: [],
-                        page,
-                        limit: pageSize,
-                        total: 0,
-                        hasMore: false,
-                    };
-                }
+                query = query.gte('rating', minRating);
             }
 
             // Filter by tags (requires join)
             if (tags && tags.length > 0) {
                 const { data: restaurantTags } = await this.supabase
-                    .from(TABLES.RESTAURANT_TAGS)
+                    .from('restaurant_tags')
                     .select('restaurant_id')
-                    .in('tag_id', tags);
+                    .in('tag_id', tags) as any;
 
                 if (restaurantTags && restaurantTags.length > 0) {
-                    const restaurantIds = restaurantTags.map((rt) => rt.restaurant_id);
+                    const restaurantIds = restaurantTags.map((rt: any) => rt.restaurant_id);
                     query = query.in('id', restaurantIds);
                 } else {
-                    // No restaurants match the tag filter
                     return {
                         data: [],
                         page,
@@ -118,7 +88,6 @@ export class RestaurantService {
 
             // Geospatial filtering (if latitude/longitude provided)
             if (latitude !== undefined && longitude !== undefined && maxDistanceMeters) {
-                // Use PostGIS ST_DWithin for efficient distance queries
                 const { data: nearbyRestaurants, error: geoError } = await this.supabase.rpc(
                     'restaurants_within_distance',
                     {
@@ -134,7 +103,6 @@ export class RestaurantService {
                     const nearbyIds = nearbyRestaurants.map((r: any) => r.id);
                     query = query.in('id', nearbyIds);
                 } else {
-                    // No restaurants within distance
                     return {
                         data: [],
                         page,
@@ -156,7 +124,7 @@ export class RestaurantService {
             const total = count || 0;
 
             return {
-                data: (data || []) as RestaurantWithStats[],
+                data: (data || []) as Restaurant[],
                 page,
                 limit: pageSize,
                 total,
@@ -169,26 +137,47 @@ export class RestaurantService {
     }
 
     /**
-     * Get a single restaurant by ID with stats
+     * Get a single restaurant by ID with all its relationships populated
      */
-    async getRestaurantById(id: string): Promise<RestaurantWithStats | null> {
+    async getRestaurantById(id: string): Promise<RestaurantPopulated | null> {
         try {
-            const { data, error } = await this.supabase
-                .from('restaurants_with_stats')
+            // Get base restaurant
+            const { data: restaurant, error } = await this.supabase
+                .from('restaurants')
                 .select('*')
                 .eq('id', id)
                 .single();
 
             if (error) {
                 if (error.code === 'PGRST116') {
-                    // Not found
                     return null;
                 }
                 console.error('Error fetching restaurant by ID:', error);
                 throw new Error(`Failed to fetch restaurant: ${error.message}`);
             }
 
-            return data as RestaurantWithStats;
+            if (!restaurant) {
+                return null;
+            }
+
+            // Fetch related data in parallel
+            const [tagsResult, reviewsResult, imagesResult, menuItemsResult] = await Promise.all([
+                this.getRestaurantTags(id),
+                this.getRestaurantReviews(id),
+                this.getRestaurantImages(id),
+                this.getRestaurantMenuItems(id),
+            ]);
+
+            const populated: RestaurantPopulated = {
+                ...restaurant as Restaurant,
+                tags: tagsResult,
+                reviews: reviewsResult,
+                images: imagesResult,
+                menu: menuItemsResult.all,
+                popularItems: menuItemsResult.popular,
+            };
+
+            return populated;
         } catch (error) {
             console.error('Error fetching restaurant by ID:', error);
             throw new Error('Failed to fetch restaurant');
@@ -200,20 +189,13 @@ export class RestaurantService {
      */
     async createRestaurant(
         restaurantData: CreateRestaurantRequest
-    ): Promise<RestaurantWithStats> {
+    ): Promise<Restaurant> {
         try {
-            const { cuisine_ids, tag_ids, latitude, longitude, ...restaurantFields } =
-                restaurantData;
-
-            // Create GeoJSON point for PostGIS
-            const geoPoint = `POINT(${longitude} ${latitude})`;
+            const { tag_ids, ...restaurantFields } = restaurantData;
 
             const { data, error } = await this.supabase
-                .from(TABLES.RESTAURANTS)
-                .insert({
-                    ...restaurantFields,
-                    geo: geoPoint,
-                })
+                .from('restaurants')
+                .insert(restaurantFields)
                 .select()
                 .single();
 
@@ -224,22 +206,6 @@ export class RestaurantService {
 
             const restaurantId = data.id;
 
-            // Add cuisine associations
-            if (cuisine_ids && cuisine_ids.length > 0) {
-                const cuisineAssociations = cuisine_ids.map((cuisine_id) => ({
-                    restaurant_id: restaurantId,
-                    cuisine_id,
-                }));
-
-                const { error: cuisineError } = await this.supabase
-                    .from(TABLES.RESTAURANT_CUISINES)
-                    .insert(cuisineAssociations);
-
-                if (cuisineError) {
-                    console.error('Error adding cuisines:', cuisineError);
-                }
-            }
-
             // Add tag associations
             if (tag_ids && tag_ids.length > 0) {
                 const tagAssociations = tag_ids.map((tag_id) => ({
@@ -248,7 +214,7 @@ export class RestaurantService {
                 }));
 
                 const { error: tagError } = await this.supabase
-                    .from(TABLES.RESTAURANT_TAGS)
+                    .from('restaurant_tags')
                     .insert(tagAssociations);
 
                 if (tagError) {
@@ -256,13 +222,7 @@ export class RestaurantService {
                 }
             }
 
-            // Fetch the created restaurant with stats
-            const created = await this.getRestaurantById(restaurantId);
-            if (!created) {
-                throw new Error('Failed to fetch created restaurant');
-            }
-
-            return created;
+            return data as Restaurant;
         } catch (error) {
             console.error('Error creating restaurant:', error);
             throw new Error('Failed to create restaurant');
@@ -275,35 +235,24 @@ export class RestaurantService {
     async updateRestaurant(
         id: string,
         updates: UpdateRestaurantRequest
-    ): Promise<RestaurantWithStats | null> {
+    ): Promise<Restaurant | null> {
         try {
-            const { latitude, longitude, ...otherUpdates } = updates;
-
-            const updateData: any = { ...otherUpdates };
-
-            // Update geo point if coordinates provided
-            if (latitude !== undefined && longitude !== undefined) {
-                updateData.geo = `POINT(${longitude} ${latitude})`;
-            }
-
-            const { error } = await this.supabase
-                .from(TABLES.RESTAURANTS)
-                .update(updateData)
+            const { error, data } = await this.supabase
+                .from('restaurants')
+                .update(updates)
                 .eq('id', id)
                 .select()
                 .single();
 
             if (error) {
                 if (error.code === 'PGRST116') {
-                    // Not found
                     return null;
                 }
                 console.error('Error updating restaurant:', error);
                 throw new Error(`Failed to update restaurant: ${error.message}`);
             }
 
-            // Fetch the updated restaurant with stats
-            return await this.getRestaurantById(id);
+            return data as Restaurant;
         } catch (error) {
             console.error('Error updating restaurant:', error);
             throw new Error('Failed to update restaurant');
@@ -316,7 +265,7 @@ export class RestaurantService {
     async deleteRestaurant(id: string): Promise<boolean> {
         try {
             const { error } = await this.supabase
-                .from(TABLES.RESTAURANTS)
+                .from('restaurants')
                 .delete()
                 .eq('id', id);
 
@@ -333,22 +282,22 @@ export class RestaurantService {
     }
 
     /**
-     * Save user swipe (like, pass, or superlike)
+     * Save user swipe
      */
     async saveSwipe(swipeData: SaveSwipeRequest): Promise<UserSwipe> {
-        const { user_id, restaurant_id, decision, session_id } = swipeData;
+        const { user_id, restaurant_id, decided, session_id } = swipeData;
 
         try {
-            // Upsert the swipe (insert or update if exists)
+            // Upsert the swipe
             const { data, error } = await this.supabase
-                .from(TABLES.USER_SWIPES)
+                .from('user_swipes')
                 .upsert(
                     {
                         user_id,
                         restaurant_id,
-                        decision,
-                        session_id,
-                        decided_at: new Date().toISOString(),
+                        decided,
+                        session_id: session_id || null,
+                        date_swiped: new Date().toISOString(),
                     },
                     {
                         onConflict: 'user_id,restaurant_id',
@@ -362,6 +311,23 @@ export class RestaurantService {
                 throw new Error(`Failed to save swipe: ${error.message}`);
             }
 
+            // If decided is true (liked), also save to user_saves
+            if (decided) {
+                await this.supabase
+                    .from('user_saves')
+                    .upsert(
+                        {
+                            user_id,
+                            restaurant_id,
+                            session_id: session_id || null,
+                            swipe_id: data.id,
+                        },
+                        {
+                            onConflict: 'user_id,restaurant_id',
+                        }
+                    );
+            }
+
             return data as UserSwipe;
         } catch (error) {
             console.error('Error saving swipe:', error);
@@ -370,12 +336,49 @@ export class RestaurantService {
     }
 
     /**
-     * Get all restaurant IDs that a user has swiped on
+     * Get user's saved (liked) restaurants
      */
+    async getUserSavedRestaurants(userId: string): Promise<Restaurant[]> {
+        try {
+            const { data: saves, error: savesError } = await this.supabase
+                .from('user_saves')
+                .select('restaurant_id')
+                .eq('user_id', userId);
+
+            if (savesError) {
+                console.error('Error fetching user saves:', savesError);
+                throw new Error(`Failed to fetch saved restaurants: ${savesError.message}`);
+            }
+
+            if (!saves || saves.length === 0) {
+                return [];
+            }
+
+            const restaurantIds = saves.map((save) => save.restaurant_id);
+
+            const { data, error } = await this.supabase
+                .from('restaurants')
+                .select('*')
+                .in('id', restaurantIds);
+
+            if (error) {
+                console.error('Error fetching saved restaurants:', error);
+                throw new Error(`Failed to fetch saved restaurants: ${error.message}`);
+            }
+
+            return (data || []) as Restaurant[];
+        } catch (error) {
+            console.error('Error fetching user saved restaurants:', error);
+            throw new Error('Failed to fetch saved restaurants');
+        }
+    }
+
+    // Private helper methods
+
     private async getUserSwipedRestaurants(userId: string): Promise<string[]> {
         try {
             const { data, error } = await this.supabase
-                .from(TABLES.USER_SWIPES)
+                .from('user_swipes')
                 .select('restaurant_id')
                 .eq('user_id', userId);
 
@@ -391,44 +394,90 @@ export class RestaurantService {
         }
     }
 
-    /**
-     * Get user's saved restaurants (liked only)
-     */
-    async getUserSavedRestaurants(userId: string): Promise<RestaurantWithStats[]> {
-        try {
-            // Get liked restaurant IDs from swipes
-            const { data: swipes, error: swipesError } = await this.supabase
-                .from(TABLES.USER_SWIPES)
-                .select('restaurant_id')
-                .eq('user_id', userId)
-                .eq('decision', 'LIKE' as SwipeDecision);
+    private async getRestaurantTags(restaurantId: string): Promise<Tag[]> {
+        const { data, error } = await this.supabase
+            .from('restaurant_tags')
+            .select(`
+                tag_id,
+                tags:tag_id (*)
+            `)
+            .eq('restaurant_id', restaurantId);
 
-            if (swipesError) {
-                console.error('Error fetching user swipes:', swipesError);
-                throw new Error(`Failed to fetch saved restaurants: ${swipesError.message}`);
-            }
-
-            if (!swipes || swipes.length === 0) {
-                return [];
-            }
-
-            const restaurantIds = swipes.map((swipe) => swipe.restaurant_id);
-
-            // Fetch restaurants with stats
-            const { data, error } = await this.supabase
-                .from('restaurants_with_stats')
-                .select('*')
-                .in('id', restaurantIds);
-
-            if (error) {
-                console.error('Error fetching saved restaurants:', error);
-                throw new Error(`Failed to fetch saved restaurants: ${error.message}`);
-            }
-
-            return (data || []) as RestaurantWithStats[];
-        } catch (error) {
-            console.error('Error fetching user saved restaurants:', error);
-            throw new Error('Failed to fetch saved restaurants');
+        if (error) {
+            console.error('Error fetching restaurant tags:', error);
+            return [];
         }
+
+        return (data || [])
+            .map((item: any) => item.tags)
+            .filter(Boolean) as Tag[];
+    }
+
+    private async getRestaurantReviews(restaurantId: string): Promise<Review[]> {
+        const { data, error } = await this.supabase
+            .from('restaurant_reviews')
+            .select(`
+                review_id,
+                reviews:review_id (*)
+            `)
+            .eq('restaurant_id', restaurantId);
+
+        if (error) {
+            console.error('Error fetching restaurant reviews:', error);
+            return [];
+        }
+
+        return (data || [])
+            .map((item: any) => item.reviews)
+            .filter(Boolean) as Review[];
+    }
+
+    private async getRestaurantImages(restaurantId: string): Promise<RestaurantImage[]> {
+        const { data, error } = await this.supabase
+            .from('restaurant_image_links')
+            .select(`
+                image_id,
+                restaurant_images:image_id (*)
+            `)
+            .eq('restaurant_id', restaurantId);
+
+        if (error) {
+            console.error('Error fetching restaurant images:', error);
+            return [];
+        }
+
+        return (data || [])
+            .map((item: any) => item.restaurant_images)
+            .filter(Boolean) as RestaurantImage[];
+    }
+
+    private async getRestaurantMenuItems(restaurantId: string): Promise<{
+        all: RestaurantItem[];
+        popular: RestaurantItem[];
+    }> {
+        const { data, error } = await this.supabase
+            .from('restaurant_item_links')
+            .select(`
+                item_id,
+                is_popular,
+                restaurant_items:item_id (*)
+            `)
+            .eq('restaurant_id', restaurantId);
+
+        if (error) {
+            console.error('Error fetching restaurant menu items:', error);
+            return { all: [], popular: [] };
+        }
+
+        const allItems = (data || [])
+            .map((item: any) => item.restaurant_items)
+            .filter(Boolean) as RestaurantItem[];
+
+        const popularItems = (data || [])
+            .filter((item: any) => item.is_popular)
+            .map((item: any) => item.restaurant_items)
+            .filter(Boolean) as RestaurantItem[];
+
+        return { all: allItems, popular: popularItems };
     }
 }

@@ -1,88 +1,53 @@
 /**
- * Central Type Exports
- * Re-export all types for convenient imports across the application
- *
- * Usage:
- *   import { Restaurant, PriceTier, CreateRestaurantRequest } from '@/types';
+ * Central export point for all type definitions
  */
 
-// ============================================================
-// ENUMS
-// ============================================================
-export {
-    PriceTier,
-    Status,
-    SwipeDecision,
-    ImageRole,
-    ReviewSource,
-    ModerationStatus,
-    Provider,
-    MenuStatus,
-} from './enums';
+// Export enums (as both types and values)
+export { Source, TagType } from './enums';
 
-// ============================================================
-// DATABASE ENTITY TYPES
-// ============================================================
+// Export database types
 export type {
     TimestampedEntity,
-    GeoPoint,
-    DayHours,
-    SpecialDayHours,
     Restaurant,
-    RestaurantStats,
-    Cuisine,
-    RestaurantCuisine,
     Tag,
-    RestaurantTag,
-    User,
-    UserPreferences,
-    UserSwipe,
-    SavedRestaurant,
-    RestaurantImage,
     Review,
-    ReviewImage,
-    Hours,
-    PlaceSource,
-    RestaurantAlias,
-    Menu,
-    MenuSection,
-    MenuItem,
+    RestaurantImage,
+    RestaurantItem,
+    User,
+    UserSwipe,
+    UserSave,
+    Session,
+    UserPreferences,
+    RestaurantTag,
+    RestaurantReview,
+    RestaurantImageLink,
+    RestaurantItemLink,
+    RestaurantItemImage,
+    RestaurantItemTag,
+    RestaurantImageTag,
 } from './database.types';
 
-// ============================================================
-// DTO TYPES
-// ============================================================
+// Export DTO types
 export type {
     PaginatedResponse,
-    RestaurantWithStats,
     RestaurantPopulated,
-    ApiErrorResponse,
     GetRestaurantsQuery,
     CreateRestaurantRequest,
     UpdateRestaurantRequest,
     SaveSwipeRequest,
     CreateReviewRequest,
     SaveRestaurantRequest,
-    // Legacy types
-    LegacyMenuItem,
-    LegacyReview,
-    LegacyRestaurant,
+    CreateTagRequest,
+    ApiErrorResponse,
 } from './dto.types';
 
-// ============================================================
-// SUPABASE TYPES
-// ============================================================
+// Export Supabase types
 export type {
     Database,
     Tables,
     TablesInsert,
     TablesUpdate,
     Enums,
-    Views,
     Functions,
+    Views,
 } from './supabase.types';
-
-// ============================================================
-// ERROR TYPES
-// ============================================================
-export type { ApiError } from '../middleware/errorHandler';

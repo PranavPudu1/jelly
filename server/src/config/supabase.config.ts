@@ -4,16 +4,17 @@
  */
 
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
+import type { Database } from '../types/supabase.types';
 import * as dotenv from 'dotenv';
 
 dotenv.config();
 
-let supabase: SupabaseClient;
+let supabase: SupabaseClient<Database>;
 
 /**
  * Initialize Supabase Client
  */
-export const initializeSupabase = (): SupabaseClient => {
+export const initializeSupabase = (): SupabaseClient<Database> => {
     if (supabase) {
         return supabase;
     }
@@ -26,7 +27,7 @@ export const initializeSupabase = (): SupabaseClient => {
             throw new Error('Missing Supabase credentials. Please set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY environment variables.');
         }
 
-        supabase = createClient(supabaseUrl, supabaseKey, {
+        supabase = createClient<Database>(supabaseUrl, supabaseKey, {
             auth: {
                 autoRefreshToken: false,
                 persistSession: false,
@@ -45,7 +46,7 @@ export const initializeSupabase = (): SupabaseClient => {
 /**
  * Get Supabase instance
  */
-export const getSupabase = (): SupabaseClient => {
+export const getSupabase = (): SupabaseClient<Database> => {
     if (!supabase) {
         return initializeSupabase();
     }
@@ -57,22 +58,20 @@ export const getSupabase = (): SupabaseClient => {
  */
 export const TABLES = {
     RESTAURANTS: 'restaurants',
-    RESTAURANT_STATS: 'restaurant_stats',
-    CUISINES: 'cuisines',
-    RESTAURANT_CUISINES: 'restaurant_cuisines',
     TAGS: 'tags',
     RESTAURANT_TAGS: 'restaurant_tags',
-    USERS: 'users',
-    USER_PREFERENCES: 'user_preferences',
-    USER_SWIPES: 'user_swipes',
-    SAVED_RESTAURANTS: 'saved_restaurants',
-    RESTAURANT_IMAGES: 'restaurant_images',
     REVIEWS: 'reviews',
-    REVIEW_IMAGES: 'review_images',
-    HOURS: 'hours',
-    PLACE_SOURCES: 'place_sources',
-    RESTAURANT_ALIASES: 'restaurant_aliases',
-    MENUS: 'menus',
-    MENU_SECTIONS: 'menu_sections',
-    MENU_ITEMS: 'menu_items',
+    RESTAURANT_REVIEWS: 'restaurant_reviews',
+    RESTAURANT_IMAGES: 'restaurant_images',
+    RESTAURANT_IMAGE_LINKS: 'restaurant_image_links',
+    RESTAURANT_IMAGE_TAGS: 'restaurant_image_tags',
+    RESTAURANT_ITEMS: 'restaurant_items',
+    RESTAURANT_ITEM_LINKS: 'restaurant_item_links',
+    RESTAURANT_ITEM_IMAGES: 'restaurant_item_images',
+    RESTAURANT_ITEM_TAGS: 'restaurant_item_tags',
+    USERS: 'users',
+    SESSIONS: 'sessions',
+    USER_SWIPES: 'user_swipes',
+    USER_SAVES: 'user_saves',
+    USER_PREFERENCES: 'user_preferences',
 } as const;

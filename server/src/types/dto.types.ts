@@ -1,18 +1,11 @@
 /**
- * Data Transfer Objects (DTOs)
- * Request and response types for API endpoints
+ * Data Transfer Object types for API requests and responses
  */
 
-import { PriceTier, SwipeDecision, ReviewSource } from './enums';
-import { Restaurant, RestaurantImage, Review } from './database.types';
+import { Restaurant, Tag, Review, RestaurantImage, RestaurantItem } from './database.types';
+import { Source, TagType } from './enums';
 
-// ============================================================
-// RESPONSE TYPES
-// ============================================================
-
-/**
- * Generic paginated response wrapper
- */
+// Pagination
 export interface PaginatedResponse<T> {
     data: T[];
     page: number;
@@ -21,208 +14,109 @@ export interface PaginatedResponse<T> {
     hasMore: boolean;
 }
 
-/**
- * Restaurant with aggregated statistics
- * Used for list views and detail views
- */
-export interface RestaurantWithStats extends Restaurant {
-    // Stats from restaurant_stats table
-    rating_avg?: number;
-    rating_count?: number;
-    photo_count?: number;
-    save_count?: number;
-    like_count?: number;
-    last_review_at?: string;
+// Restaurant with populated relationships
+export interface RestaurantPopulated extends Restaurant {
+    tags: Tag[];
+    reviews: Review[];
+    images: RestaurantImage[];
+    menu: RestaurantItem[];
+    popularItems: RestaurantItem[];
 }
 
-/**
- * Restaurant with populated relations
- * Includes related data for complete views
- */
-export interface RestaurantPopulated extends RestaurantWithStats {
-    cuisines?: string[];
-    tags?: string[];
-    images?: RestaurantImage[];
-    reviews?: Review[];
-    hours?: {
-        mon?: any;
-        tue?: any;
-        wed?: any;
-        thu?: any;
-        fri?: any;
-        sat?: any;
-        sun?: any;
-        special_days?: any;
-    };
-}
-
-/**
- * API error response
- */
-export interface ApiErrorResponse {
-    error: {
-        code: string;
-        message: string;
-        details?: any;
-    };
-}
-
-// ============================================================
-// REQUEST TYPES - QUERY PARAMETERS
-// ============================================================
-
-/**
- * Query parameters for GET /restaurants
- */
+// API Query types
 export interface GetRestaurantsQuery {
-    // Pagination
+    userId?: string;
     page?: number;
     limit?: number;
-
-    // User context
-    userId?: string;
-
-    // Filters
-    cuisines?: string[]; // Array of cuisine IDs or names
-    tags?: string[]; // Array of tag IDs or names
-    priceMin?: PriceTier;
-    priceMax?: PriceTier;
-    minRating?: number;
-    openNowOnly?: boolean;
-
-    // Location-based
     location?: string;
     latitude?: number;
     longitude?: number;
     maxDistanceMeters?: number;
-
-    // Search
-    search?: string;
+    tags?: string[];
+    minRating?: number;
 }
 
-// ============================================================
-// REQUEST TYPES - BODY PAYLOADS
-// ============================================================
-
-/**
- * Create restaurant request
- */
+// Request types
 export interface CreateRestaurantRequest {
-    // Required fields
+    sourceId?: string;
+    source: Source;
     name: string;
-    latitude: number;
-    longitude: number;
-    price_tier: PriceTier;
-
-    // Address fields
-    formatted_address?: string;
-    street?: string;
-    city_id?: string;
-    region?: string;
-    postal_code?: string;
-    country_code?: string;
-
-    // Contact
-    phone?: string;
-    website?: string;
-
-    // Relations
-    cuisine_ids?: string[];
+    image_url: string;
+    is_closed: boolean;
+    url: string;
+    review_count: number;
+    rating: number;
+    lat: number;
+    long: number;
+    transactions: string[];
+    price?: string;
+    address: string;
+    city: string;
+    country: string;
+    state: string;
+    zipCode: number;
+    phone: string;
+    instagram?: string;
+    tiktok?: string;
     tag_ids?: string[];
 }
 
-/**
- * Update restaurant request
- * All fields optional - partial update
- */
 export interface UpdateRestaurantRequest {
+    sourceId?: string;
     name?: string;
-    formatted_address?: string;
-    street?: string;
-    city_id?: string;
-    region?: string;
-    postal_code?: string;
-    country_code?: string;
-    latitude?: number;
-    longitude?: number;
-    price_tier?: PriceTier;
-    status?: string;
+    image_url?: string;
+    is_closed?: boolean;
+    url?: string;
+    review_count?: number;
+    rating?: number;
+    lat?: number;
+    long?: number;
+    transactions?: string[];
+    price?: string;
+    address?: string;
+    city?: string;
+    country?: string;
+    state?: string;
+    zipCode?: number;
     phone?: string;
-    website?: string;
-    is_active?: boolean;
+    instagram?: string;
+    tiktok?: string;
 }
 
-/**
- * Save user swipe decision
- */
 export interface SaveSwipeRequest {
     user_id: string;
     restaurant_id: string;
-    decision: SwipeDecision;
+    decided: boolean;
     session_id?: string;
 }
 
-/**
- * Create review request
- */
 export interface CreateReviewRequest {
     restaurant_id: string;
-    author_user_id?: string;
-    source: ReviewSource;
-    rating?: number;
-    title?: string;
-    body: string;
-    is_anonymous?: boolean;
-    visited_at?: string;
+    sourceId?: string;
+    source: Source;
+    sourceUrl?: string;
+    review: string;
+    rating: number;
+    reviewedBy?: string;
 }
 
-/**
- * Save restaurant to favorites
- */
 export interface SaveRestaurantRequest {
     user_id: string;
     restaurant_id: string;
-    notes?: string;
+    session_id?: string;
+    swipe_id?: string;
 }
 
-// ============================================================
-// LEGACY TYPES (for backward compatibility)
-// ============================================================
-
-/**
- * @deprecated Use MenuItem from database.types.ts
- */
-export interface LegacyMenuItem {
-    name: string;
-    price: string;
-    emoji: string;
-    imageUrl: string;
+export interface CreateTagRequest {
+    source: Source;
+    value: string;
+    type: TagType;
+    sourceAlias?: string;
 }
 
-/**
- * @deprecated Use Review from database.types.ts
- */
-export interface LegacyReview {
-    text: string;
-    author: string;
-}
-
-/**
- * @deprecated Legacy restaurant format
- */
-export interface LegacyRestaurant {
-    id?: string;
-    name: string;
-    tagline: string;
-    location: string;
-    imageUrl: string;
-    additionalPhotos: string[];
-    popularItems: LegacyMenuItem[];
-    reviews: LegacyReview[];
-    ambianceTags: string[];
-    reservationInfo: string;
-    priceRange: string; // '$', '$$', '$$$', '$$$$'
-    cuisine: string;
-    createdAt?: Date;
-    updatedAt?: Date;
+// Response types
+export interface ApiErrorResponse {
+    success: false;
+    message: string;
+    errors?: any[];
 }
