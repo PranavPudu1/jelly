@@ -25,6 +25,8 @@ interface RestaurantCardProps {
 }
 
 export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
+    const [scrollEnabled, setScrollEnabled] = useState(true);
+
     const [heroReelVisible, setHeroReelVisible] = useState(false);
     const [foodReelVisible, setFoodReelVisible] = useState(false);
     const [ambianceModalVisible, setAmbianceModalVisible] = useState(false);
@@ -34,6 +36,8 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
         Array<{ imageUrl: string; review?: any }>
     >([]);
     const scrollViewRef = React.useRef<ScrollView>(null);
+    const touchStart = React.useRef({ x: 0, y: 0, time: 0 });
+    const hasScrolled = React.useRef(false);
 
     function renderStars(rating: number) {
         const stars = [];
@@ -94,9 +98,9 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
     }
 
     function handleTouchStart(event: GestureResponderEvent) {
-        touchStart.x = event.nativeEvent.pageX;
-        touchStart.y = event.nativeEvent.pageY;
-        touchStart.time = Date.now();
+        touchStart.current.x = event.nativeEvent.pageX;
+        touchStart.current.y = event.nativeEvent.pageY;
+        touchStart.current.time = Date.now();
         hasScrolled.current = false;
 
         // Always ensure scroll is enabled when starting a new touch
@@ -109,8 +113,8 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
         const currentX = event.nativeEvent.pageX;
         const currentY = event.nativeEvent.pageY;
 
-        const deltaX = Math.abs(currentX - touchStart.x);
-        const deltaY = Math.abs(currentY - touchStart.y);
+        const deltaX = Math.abs(currentX - touchStart.current.x);
+        const deltaY = Math.abs(currentY - touchStart.current.y);
 
         // Extremely sensitive to vertical movement - even 1px locks to scroll
         if (deltaY > 1) {
@@ -488,12 +492,12 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
                                 OpenTable
                             </Text>
                         </TouchableOpacity>
+                        
                         <TouchableOpacity
                             style={styles.reservationButton}
                             activeOpacity={0.8}
                         >
                             <Ionicons
-                                name="logo-yelp"
                                 size={32}
                                 color="#D32323"
                             />
