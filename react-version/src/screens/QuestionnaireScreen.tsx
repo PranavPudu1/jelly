@@ -71,12 +71,12 @@ export default function QuestionnaireScreen({
                 Animated.sequence([
                     Animated.timing(carouselFadeAnim, {
                         toValue: 0,
-                        duration: 200,
+                        duration: 300,
                         useNativeDriver: true,
                     }),
                     Animated.timing(carouselFadeAnim, {
                         toValue: 1,
-                        duration: 200,
+                        duration: 300,
                         useNativeDriver: true,
                     }),
                 ]).start();
@@ -87,7 +87,7 @@ export default function QuestionnaireScreen({
             // Auto-advance to first question after 3 seconds
             const autoAdvance = setTimeout(() => {
                 setCurrentQuestionIndex(0);
-            }, 3000);
+            }, 3500);
 
             return () => {
                 clearInterval(interval);
@@ -118,19 +118,19 @@ export default function QuestionnaireScreen({
             if (!isLastQuestion) {
                 handleNext();
             }
-        }, 400);
+        }, 100);
     }
 
     function animateTransition(callback: () => void) {
         Animated.parallel([
             Animated.timing(fadeAnim, {
                 toValue: 0,
-                duration: 200,
+                duration: 100,
                 useNativeDriver: true,
             }),
             Animated.timing(slideAnim, {
                 toValue: -20,
-                duration: 200,
+                duration: 100,
                 useNativeDriver: true,
             }),
         ]).start(() => {
@@ -139,12 +139,12 @@ export default function QuestionnaireScreen({
             Animated.parallel([
                 Animated.timing(fadeAnim, {
                     toValue: 1,
-                    duration: 300,
+                    duration: 200,
                     useNativeDriver: true,
                 }),
                 Animated.timing(slideAnim, {
                     toValue: 0,
-                    duration: 300,
+                    duration: 200,
                     useNativeDriver: true,
                 }),
             ]).start();

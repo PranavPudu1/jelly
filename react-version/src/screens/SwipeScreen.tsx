@@ -10,19 +10,20 @@ import {
 import { Ionicons } from '@expo/vector-icons';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import Swiper from 'react-native-deck-swiper';
+import { Swiper, SwiperCardRefType } from 'rn-swiper-list';
 
 import RestaurantCard from '../components/RestaurantCard';
 
 import { AppColors, Typography, Spacing } from '../theme';
 import { MOCK_RESTAURANTS } from '../data/mockRestaurants';
+import type { Restaurant } from '../types';
 
 const { width, height } = Dimensions.get('window');
 
 export default function SwipeScreen() {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [activeTab, setActiveTab] = useState(0);
-    const swiperRef = useRef<Swiper<any>>(null);
+    const swiperRef = useRef<SwiperCardRefType>(null);
 
     function handleSwipedRight(index: number) {
         console.log('Liked:', MOCK_RESTAURANTS[index].name);
@@ -39,6 +40,22 @@ export default function SwipeScreen() {
 
     function handleStartOver() {
         setCurrentIndex(0);
+    }
+
+    function handleIndexChange(index: number) {
+        setCurrentIndex(index);
+    }
+
+    function handleNavTab0() {
+        setActiveTab(0);
+    }
+
+    function handleNavTab1() {
+        setActiveTab(1);
+    }
+
+    function renderCard(restaurant: Restaurant) {
+        return <RestaurantCard restaurant={restaurant} />;
     }
 
     if (currentIndex >= MOCK_RESTAURANTS.length) {
@@ -73,7 +90,7 @@ export default function SwipeScreen() {
                 <View style={styles.bottomNav}>
                     <TouchableOpacity
                         style={styles.navItem}
-                        onPress={() => setActiveTab(0)}
+                        onPress={handleNavTab0}
                         activeOpacity={0.7}
                     >
                         <Ionicons
@@ -96,7 +113,7 @@ export default function SwipeScreen() {
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={styles.navItem}
-                        onPress={() => setActiveTab(1)}
+                        onPress={handleNavTab1}
                         activeOpacity={0.7}
                     >
                         <Ionicons
@@ -122,113 +139,104 @@ export default function SwipeScreen() {
         );
     }
 
+    function OverlayLabelLeft() {
+        return (
+            <View
+                style={{
+                    position: 'absolute',
+                    right: 20,
+                    top: 20,
+                }}
+            >
+                <View
+                    style={{
+                        backgroundColor: AppColors.accent,
+                        borderRadius: 12,
+                        paddingVertical: 12,
+                        paddingHorizontal: 16,
+                        borderWidth: 2,
+                        borderColor: AppColors.surfaceVariant,
+                    }}
+                >
+                    <Text
+                        style={{
+                            color: AppColors.white,
+                            fontSize: 26,
+                            fontWeight: 'bold',
+                        }}
+                    >
+                        PASS
+                    </Text>
+                </View>
+            </View>
+        );
+    }
+
+    function OverlayLabelRight() {
+        return (
+            <View
+                style={{
+                    position: 'absolute',
+                    left: 20,
+                    top: 20,
+                }}
+            >
+                <View
+                    style={{
+                        backgroundColor: AppColors.primary,
+                        borderRadius: 12,
+                        paddingVertical: 12,
+                        paddingHorizontal: 16,
+                        borderWidth: 2,
+                        borderColor: AppColors.primary,
+                    }}
+                >
+                    <Text
+                        style={{
+                            color: AppColors.textDark,
+                            fontSize: 26,
+                            fontWeight: 'bold',
+                        }}
+                    >
+                        LIKE
+                    </Text>
+                </View>
+            </View>
+        );
+    }
+
     return (
         <SafeAreaView style={styles.container} edges={['top']}>
             <View style={styles.cardContainer}>
                 <Swiper
                     ref={swiperRef}
-                    cards={MOCK_RESTAURANTS}
-                    renderCard={(restaurant) => (
-                        <RestaurantCard restaurant={restaurant} />
-                    )}
-                    onSwipedRight={handleSwipedRight}
-                    onSwipedLeft={handleSwipedLeft}
+                    data={MOCK_RESTAURANTS}
+                    renderCard={renderCard}
+                    onSwipeRight={handleSwipedRight}
+                    onSwipeLeft={handleSwipedLeft}
                     onSwipedAll={handleSwipedAll}
-                    onSwiped={(cardIndex) => setCurrentIndex(cardIndex + 1)}
-                    cardIndex={currentIndex}
-                    backgroundColor="transparent"
-                    stackSize={2}
-                    stackScale={10}
-                    stackSeparation={14}
-                    animateCardOpacity
-                    verticalSwipe={false}
-                    useViewOverflow={false}
-                    disableBottomSwipe
-                    disableTopSwipe
-                    swipeBackCard={false}
-                    cardVerticalMargin={0}
-                    cardHorizontalMargin={0}
-                    marginTop={0}
-                    marginBottom={0}
-                    // ↓↓↓ Make swipe less sensitive ↓↓↓
-                    horizontalThreshold={width * 0.35} // larger threshold before triggering a swipe
-                    verticalThreshold={height * 0.25} // more buffer vertically
-                    swipeAnimationDuration={280} // slower, smoother swipe animation
-                    // ↓↓↓ Overlay label smoothing ↓↓↓
-                    animateOverlayLabelsOpacity
-                    inputOverlayLabelsOpacityRangeX={[
-                        -width / 3,
-                        -width / 5,
-                        0,
-                        width / 5,
-                        width / 3,
-                    ]}
-                    outputOverlayLabelsOpacityRangeX={[1, 0.5, 0, 0.5, 1]}
-                    overlayLabels={{
-                        left: {
-                            title: 'PASS',
-                            style: {
-                                label: {
-                                    backgroundColor: AppColors.accent,
-                                    color: AppColors.white,
-                                    fontSize: 26,
-                                    fontWeight: 'bold',
-                                    borderRadius: 12,
-                                    paddingVertical: 12,
-                                    paddingHorizontal: 16,
-                                    borderWidth: 2,
-                                    borderColor: AppColors.surfaceVariant,
-                                    opacity: 0.9, // subtle transparency for smoothness
-                                    transform: [{ scale: 1.05 }],
-                                },
-                                wrapper: {
-                                    flexDirection: 'column',
-                                    alignItems: 'flex-end',
-                                    justifyContent: 'flex-start',
-                                    marginTop: 20,
-                                    marginLeft: -20,
-                                },
-                            },
-                        },
-                        right: {
-                            title: 'LIKE',
-                            style: {
-                                label: {
-                                    backgroundColor: AppColors.primary,
-                                    color: AppColors.textDark,
-                                    fontSize: 26,
-                                    fontWeight: 'bold',
-                                    borderRadius: 12,
-                                    paddingVertical: 12,
-                                    paddingHorizontal: 16,
-                                    borderWidth: 2,
-                                    borderColor: AppColors.primary,
-                                    opacity: 0.9,
-                                    transform: [{ scale: 1.05 }],
-                                },
-                                wrapper: {
-                                    flexDirection: 'column',
-                                    alignItems: 'flex-start',
-                                    justifyContent: 'flex-start',
-                                    marginTop: 20,
-                                    marginLeft: 20,
-                                },
-                            },
-                        },
+                    onIndexChange={handleIndexChange}
+                    cardStyle={{
+                        width: width - 40,
+                        height: height * 0.7,
                     }}
-                    // ↓↓↓ Define larger scroll-safe middle zone ↓↓↓
-                    // Optionally, you can intercept touch gestures in your parent ScrollView or
-                    // use gestureHandlerRootHOC to balance between scrolling and swiping.
-                    // The higher thresholds above already help reduce unwanted swipes.
-                    preventSwipeDirectionThreshold={0.3} // (custom prop simulation)
-                    // swipeAnimationDuration={250}
+                    disableTopSwipe
+                    disableBottomSwipe
+                    translateXRange={[-width / 3, 0, width / 3]}
+                    inputOverlayLabelRightOpacityRange={[0, width / 5, width / 3]}
+                    outputOverlayLabelRightOpacityRange={[0, 0.5, 1]}
+                    inputOverlayLabelLeftOpacityRange={[-width / 3, -width / 5, 0]}
+                    outputOverlayLabelLeftOpacityRange={[1, 0.5, 0]}
+                    OverlayLabelLeft={OverlayLabelLeft}
+                    OverlayLabelRight={OverlayLabelRight}
+                    swipeVelocityThreshold={800}
                 />
             </View>
 
             <View style={styles.bottomNav}>
                 <TouchableOpacity
                     style={styles.navItem}
-                    onPress={() => setActiveTab(0)}
+                    onPress={handleNavTab0}
                     activeOpacity={0.7}
                 >
                     <Ionicons
@@ -251,7 +259,7 @@ export default function SwipeScreen() {
                 </TouchableOpacity>
                 <TouchableOpacity
                     style={styles.navItem}
-                    onPress={() => setActiveTab(1)}
+                    onPress={handleNavTab1}
                     activeOpacity={0.7}
                 >
                     <Ionicons

@@ -4,11 +4,10 @@ import {
     Text,
     StyleSheet,
     Image,
-    ScrollView,
     TouchableOpacity,
     Dimensions,
-    GestureResponderEvent,
 } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Restaurant } from '../types';
@@ -25,8 +24,6 @@ interface RestaurantCardProps {
 }
 
 export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
-    const [scrollEnabled, setScrollEnabled] = useState(true);
-
     const [heroReelVisible, setHeroReelVisible] = useState(false);
     const [foodReelVisible, setFoodReelVisible] = useState(false);
     const [ambianceModalVisible, setAmbianceModalVisible] = useState(false);
@@ -36,8 +33,6 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
         Array<{ imageUrl: string; review?: any }>
     >([]);
     const scrollViewRef = React.useRef<ScrollView>(null);
-    const touchStart = React.useRef({ x: 0, y: 0, time: 0 });
-    const hasScrolled = React.useRef(false);
 
     function renderStars(rating: number) {
         const stars = [];
@@ -97,76 +92,15 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
         return colors[index % colors.length];
     }
 
-    function handleTouchStart(event: GestureResponderEvent) {
-        touchStart.current.x = event.nativeEvent.pageX;
-        touchStart.current.y = event.nativeEvent.pageY;
-        touchStart.current.time = Date.now();
-        hasScrolled.current = false;
-
-        // Always ensure scroll is enabled when starting a new touch
-        if (!scrollEnabled) {
-            setScrollEnabled(true);
-        }
-    }
-
-    function handleTouchMove(event: GestureResponderEvent) {
-        const currentX = event.nativeEvent.pageX;
-        const currentY = event.nativeEvent.pageY;
-
-        const deltaX = Math.abs(currentX - touchStart.current.x);
-        const deltaY = Math.abs(currentY - touchStart.current.y);
-
-        // Only make a decision once we have meaningful movement
-        const totalMovement = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
-
-        if (totalMovement < 10) {
-            // Not enough movement to determine intent yet
-            return;
-        }
-
-        // Determine if this is primarily vertical or horizontal movement
-        // Use a ratio to determine intent - if vertical movement is significantly more than horizontal, it's a scroll
-        const isVerticalIntent = deltaY > deltaX * 1.5;
-        const isHorizontalIntent = deltaX > deltaY * 1.5;
-
-        if (isVerticalIntent && !hasScrolled.current) {
-            // This is a scroll gesture
-            hasScrolled.current = true;
-            if (!scrollEnabled) {
-                setScrollEnabled(true);
-            }
-        } else if (isHorizontalIntent && !hasScrolled.current && deltaX > 20) {
-            // This is a swipe gesture - disable scroll to let swiper take over
-            if (scrollEnabled) {
-                setScrollEnabled(false);
-            }
-        }
-    }
-
-    function handleTouchEnd() {
-        // Immediately re-enable scroll when touch ends
-        hasScrolled.current = false;
-        if (!scrollEnabled) {
-            setScrollEnabled(true);
-        }
-    }
-
     return (
-        <View
-            style={styles.card}
-            onTouchStart={handleTouchStart}
-            onTouchMove={handleTouchMove}
-            onTouchEnd={handleTouchEnd}
-        >
+        <View style={styles.card}>
             <ScrollView
                 ref={scrollViewRef}
                 style={styles.scrollView}
                 showsVerticalScrollIndicator={false}
                 bounces={true}
                 scrollEventThrottle={16}
-                nestedScrollEnabled={true}
-                directionalLockEnabled={true}
-                scrollEnabled={scrollEnabled}
+                waitFor={undefined}
             >
                 {/* Hero Section */}
                 <View style={styles.heroSection}>

@@ -1,8 +1,12 @@
 import React, { useCallback, useEffect, useState } from 'react';
+
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+
 import * as SplashScreen from 'expo-splash-screen';
 import * as Font from 'expo-font';
+
 import SplashScreenComponent from './src/screens/SplashScreen';
 import QuestionnaireScreen from './src/screens/QuestionnaireScreen';
 import SwipeScreen from './src/screens/SwipeScreen';
@@ -34,11 +38,9 @@ export default function App() {
                     'Inter-SemiBold': require('./assets/fonts/Inter-SemiBold.ttf'),
                     'Inter-Bold': require('./assets/fonts/Inter-Bold.ttf'),
                 });
-            }
-            catch (e) {
+            } catch (e) {
                 console.warn(e);
-            }
-            finally {
+            } finally {
                 setAppIsReady(true);
             }
         }
@@ -57,20 +59,22 @@ export default function App() {
     }
 
     return (
-        <NavigationContainer onReady={ onLayoutRootView }>
-            <Stack.Navigator
-                screenOptions={ {
-                    headerShown: false,
-                    animation: 'fade',
-                } }
-            >
-                <Stack.Screen name="Splash" component={ SplashScreenComponent } />
-                <Stack.Screen
-                    name="Questionnaire"
-                    component={ QuestionnaireScreen }
-                />
-                <Stack.Screen name="Swipe" component={ SwipeScreen } />
-            </Stack.Navigator>
-        </NavigationContainer>
+        <GestureHandlerRootView>
+            <NavigationContainer onReady={onLayoutRootView}>
+                <Stack.Navigator
+                    screenOptions={{
+                        headerShown: false,
+                        animation: 'fade',
+                    }}
+                >
+                    <Stack.Screen name="Splash" component={SplashScreenComponent} />
+                    <Stack.Screen
+                        name="Questionnaire"
+                        component={QuestionnaireScreen}
+                    />
+                    <Stack.Screen name="Swipe" component={SwipeScreen} />
+                </Stack.Navigator>
+            </NavigationContainer>
+        </GestureHandlerRootView>
     );
 }
