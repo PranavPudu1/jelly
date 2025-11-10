@@ -1,17 +1,11 @@
 import React, { useEffect, useRef } from 'react';
-import {
-    View,
-    Image,
-    StyleSheet,
-    Animated,
-    Dimensions,
-} from 'react-native';
+import { View, Image, StyleSheet, Animated, Dimensions } from 'react-native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../App';
 import { AppColors } from '../theme';
 
 type SplashScreenProps = {
-  navigation: NativeStackNavigationProp<RootStackParamList, 'Splash'>;
+    navigation: NativeStackNavigationProp<RootStackParamList, 'Splash'>;
 };
 
 const { height } = Dimensions.get('window');
@@ -21,7 +15,7 @@ const SplashScreen: React.FC<SplashScreenProps> = ({ navigation }) => {
     const fadeAnim = useRef(new Animated.Value(0)).current;
 
     useEffect(() => {
-    // Delay before starting animation
+        // Delay before starting animation
         const startDelay = setTimeout(() => {
             // Start animations
             Animated.parallel([
@@ -47,19 +41,19 @@ const SplashScreen: React.FC<SplashScreenProps> = ({ navigation }) => {
     }, [navigation, slideAnim, fadeAnim]);
 
     return (
-        <View style={ styles.container }>
+        <View style={styles.container}>
             <Animated.View
-                style={ [
+                style={[
                     styles.logoContainer,
                     {
                         transform: [{ translateY: slideAnim }],
                         opacity: fadeAnim,
                     },
-                ] }
+                ]}
             >
                 <Image
-                    source={ require('../../assets/Logo.png') }
-                    style={ styles.logo }
+                    source={require('../../assets/Logo.png')}
+                    style={styles.logo}
                     resizeMode="contain"
                 />
             </Animated.View>

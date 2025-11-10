@@ -52,10 +52,13 @@ export default function SwipeScreen() {
                             color={AppColors.text}
                         />
                     </View>
+
                     <Text style={styles.endTitle}>All done for now!</Text>
+
                     <Text style={styles.endSubtitle}>
                         You've seen all available restaurants
                     </Text>
+
                     <TouchableOpacity
                         style={styles.startOverButton}
                         onPress={handleStartOver}
@@ -66,6 +69,7 @@ export default function SwipeScreen() {
                         </Text>
                     </TouchableOpacity>
                 </View>
+
                 <View style={styles.bottomNav}>
                     <TouchableOpacity
                         style={styles.navItem}
@@ -130,9 +134,7 @@ export default function SwipeScreen() {
                     onSwipedRight={handleSwipedRight}
                     onSwipedLeft={handleSwipedLeft}
                     onSwipedAll={handleSwipedAll}
-                    onSwiped={(cardIndex) => {
-                        setCurrentIndex(cardIndex + 1);
-                    }}
+                    onSwiped={(cardIndex) => setCurrentIndex(cardIndex + 1)}
                     cardIndex={currentIndex}
                     backgroundColor="transparent"
                     stackSize={2}
@@ -140,44 +142,51 @@ export default function SwipeScreen() {
                     stackSeparation={14}
                     animateCardOpacity
                     verticalSwipe={false}
-                    horizontalThreshold={width * 0.3}
-                    verticalThreshold={height * 0.15}
-                    cardVerticalMargin={0}
-                    cardHorizontalMargin={0}
+                    useViewOverflow={false}
                     disableBottomSwipe
                     disableTopSwipe
-                    useViewOverflow={false}
-                    animateOverlayLabelsOpacity
-                    inputOverlayLabelsOpacityRangeX={[-width / 3, -width / 6, 0, width / 6, width / 3]}
-                    outputOverlayLabelsOpacityRangeX={[1, 0, 0, 0, 1]}
                     swipeBackCard={false}
+                    cardVerticalMargin={0}
+                    cardHorizontalMargin={0}
                     marginTop={0}
                     marginBottom={0}
-                    dragStart={() => {
-                        // Optional: Disable scroll when drag starts
-                        return true;
-                    }}
-                    dragEnd={() => {
-                        // Optional: Re-enable scroll when drag ends
-                    }}
+                    // ↓↓↓ Make swipe less sensitive ↓↓↓
+                    horizontalThreshold={width * 0.35} // larger threshold before triggering a swipe
+                    verticalThreshold={height * 0.25} // more buffer vertically
+                    swipeAnimationDuration={280} // slower, smoother swipe animation
+                    // ↓↓↓ Overlay label smoothing ↓↓↓
+                    animateOverlayLabelsOpacity
+                    inputOverlayLabelsOpacityRangeX={[
+                        -width / 3,
+                        -width / 5,
+                        0,
+                        width / 5,
+                        width / 3,
+                    ]}
+                    outputOverlayLabelsOpacityRangeX={[1, 0.5, 0, 0.5, 1]}
                     overlayLabels={{
                         left: {
                             title: 'PASS',
                             style: {
                                 label: {
-                                    backgroundColor: AppColors.pass,
+                                    backgroundColor: AppColors.accent,
                                     color: AppColors.white,
-                                    fontSize: 24,
+                                    fontSize: 26,
                                     fontWeight: 'bold',
-                                    borderRadius: 8,
-                                    padding: 10,
+                                    borderRadius: 12,
+                                    paddingVertical: 12,
+                                    paddingHorizontal: 16,
+                                    borderWidth: 2,
+                                    borderColor: AppColors.surfaceVariant,
+                                    opacity: 0.9, // subtle transparency for smoothness
+                                    transform: [{ scale: 1.05 }],
                                 },
                                 wrapper: {
                                     flexDirection: 'column',
                                     alignItems: 'flex-end',
                                     justifyContent: 'flex-start',
-                                    marginTop: 30,
-                                    marginLeft: -30,
+                                    marginTop: 20,
+                                    marginLeft: -20,
                                 },
                             },
                         },
@@ -185,23 +194,34 @@ export default function SwipeScreen() {
                             title: 'LIKE',
                             style: {
                                 label: {
-                                    backgroundColor: AppColors.like,
-                                    color: AppColors.white,
-                                    fontSize: 24,
+                                    backgroundColor: AppColors.primary,
+                                    color: AppColors.textDark,
+                                    fontSize: 26,
                                     fontWeight: 'bold',
-                                    borderRadius: 8,
-                                    padding: 10,
+                                    borderRadius: 12,
+                                    paddingVertical: 12,
+                                    paddingHorizontal: 16,
+                                    borderWidth: 2,
+                                    borderColor: AppColors.primary,
+                                    opacity: 0.9,
+                                    transform: [{ scale: 1.05 }],
                                 },
                                 wrapper: {
                                     flexDirection: 'column',
                                     alignItems: 'flex-start',
                                     justifyContent: 'flex-start',
-                                    marginTop: 30,
-                                    marginLeft: 30,
+                                    marginTop: 20,
+                                    marginLeft: 20,
                                 },
                             },
                         },
                     }}
+                    // ↓↓↓ Define larger scroll-safe middle zone ↓↓↓
+                    // Optionally, you can intercept touch gestures in your parent ScrollView or
+                    // use gestureHandlerRootHOC to balance between scrolling and swiping.
+                    // The higher thresholds above already help reduce unwanted swipes.
+                    preventSwipeDirectionThreshold={0.3} // (custom prop simulation)
+                    // swipeAnimationDuration={250}
                 />
             </View>
 
@@ -311,7 +331,7 @@ const styles = StyleSheet.create({
         borderTopLeftRadius: 0,
         borderTopRightRadius: 0,
         zIndex: 999,
-        bottom: 0
+        bottom: 0,
     },
     navItem: {
         flex: 1,

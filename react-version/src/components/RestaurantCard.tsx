@@ -116,18 +116,27 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
         const deltaX = Math.abs(currentX - touchStart.current.x);
         const deltaY = Math.abs(currentY - touchStart.current.y);
 
-        // Extremely sensitive to vertical movement - even 1px locks to scroll
-        if (deltaY > 1) {
+        // Only make a decision once we have meaningful movement
+        const totalMovement = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+
+        if (totalMovement < 10) {
+            // Not enough movement to determine intent yet
+            return;
+        }
+
+        // Determine if this is primarily vertical or horizontal movement
+        // Use a ratio to determine intent - if vertical movement is significantly more than horizontal, it's a scroll
+        const isVerticalIntent = deltaY > deltaX * 1.5;
+        const isHorizontalIntent = deltaX > deltaY * 1.5;
+
+        if (isVerticalIntent && !hasScrolled.current) {
+            // This is a scroll gesture
             hasScrolled.current = true;
             if (!scrollEnabled) {
                 setScrollEnabled(true);
             }
-            return;
-        }
-
-        // Only disable scroll if PURELY horizontal movement
-        // Requires 50px horizontal AND absolutely zero vertical movement
-        if (!hasScrolled.current && deltaX > 50 && deltaY === 0) {
+        } else if (isHorizontalIntent && !hasScrolled.current && deltaX > 20) {
+            // This is a swipe gesture - disable scroll to let swiper take over
             if (scrollEnabled) {
                 setScrollEnabled(false);
             }
@@ -163,20 +172,18 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
                 <View style={styles.heroSection}>
                     <View style={styles.headerInfo}>
                         <View style={styles.nameRow}>
-                            <Text style={styles.restaurantName}>
-                                {restaurant.name}
-                            </Text>
+                            <View style={styles.nameContainer}>
+                                <Text style={styles.restaurantName}>
+                                    {restaurant.name}
+                                </Text>
 
-                            <View style={styles.dotSeparator}>
-                                <Text style={styles.separatorDot}>•</Text>
-                            </View>
+                                <View style={styles.dotSeparator}>
+                                    <Text style={styles.separatorDot}>•</Text>
+                                </View>
 
-                            <Text style={styles.priceLevel}>
-                                {restaurant.priceLevel}
-                            </Text>
-
-                            <View style={styles.dotSeparator}>
-                                <Text style={styles.separatorDot}>•</Text>
+                                <Text style={styles.priceLevel}>
+                                    {restaurant.priceLevel}
+                                </Text>
                             </View>
 
                             <View style={styles.ratingRow}>
@@ -343,10 +350,16 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
                                         activeOpacity={0.9}
                                         onPress={() => {
                                             setCurrentReelPhotos(
-                                                foodItem.images.map((img, imgIndex) => ({
-                                                    imageUrl: img,
-                                                    review: foodItem.reviews[imgIndex] || foodItem.reviews[0],
-                                                })),
+                                                foodItem.images.map(
+                                                    (img, imgIndex) => ({
+                                                        imageUrl: img,
+                                                        review:
+                                                            foodItem.reviews[
+                                                                imgIndex
+                                                            ] ||
+                                                            foodItem.reviews[0],
+                                                    }),
+                                                ),
                                             );
                                             setInitialPhotoIndex(0);
                                             setFoodReelVisible(true);
@@ -422,6 +435,7 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
                                                     </View>
                                                 </View>
                                             </View>
+
                                             <Text
                                                 style={styles.reviewQuote}
                                                 numberOfLines={4}
@@ -436,10 +450,16 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
                                         activeOpacity={0.9}
                                         onPress={() => {
                                             setCurrentReelPhotos(
-                                                foodItem.images.map((img, imgIndex) => ({
-                                                    imageUrl: img,
-                                                    review: foodItem.reviews[imgIndex] || foodItem.reviews[0],
-                                                })),
+                                                foodItem.images.map(
+                                                    (img, imgIndex) => ({
+                                                        imageUrl: img,
+                                                        review:
+                                                            foodItem.reviews[
+                                                                imgIndex
+                                                            ] ||
+                                                            foodItem.reviews[0],
+                                                    }),
+                                                ),
                                             );
                                             setInitialPhotoIndex(0);
                                             setFoodReelVisible(true);
@@ -492,15 +512,12 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
                                 OpenTable
                             </Text>
                         </TouchableOpacity>
-                        
+
                         <TouchableOpacity
                             style={styles.reservationButton}
                             activeOpacity={0.8}
                         >
-                            <Ionicons
-                                size={32}
-                                color="#D32323"
-                            />
+                            <Ionicons size={32} color="#D32323" />
                             <Text style={styles.reservationButtonText}>
                                 Yelp
                             </Text>
@@ -525,7 +542,9 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
                     foodItems={restaurant.foodItems}
                     menuImages={restaurant.menuImages}
                     onPhotoPress={(photos, index) => {
-                        setCurrentReelPhotos(photos.map((img) => ({ imageUrl: img })));
+                        setCurrentReelPhotos(
+                            photos.map((img) => ({ imageUrl: img })),
+                        );
                         setInitialPhotoIndex(index);
                         setFoodReelVisible(true);
                     }}
@@ -560,9 +579,15 @@ const styles = StyleSheet.create({
     },
     nameRow: {
         flexDirection: 'row',
+        justifyContent: 'space-between',
         alignItems: 'center',
         gap: 8,
         marginBottom: 4,
+    },
+    nameContainer: {
+        flexDirection: 'row',
+        gap: 6,
+        alignItems: 'center',
     },
     restaurantName: {
         ...Typography.titleLarge,
