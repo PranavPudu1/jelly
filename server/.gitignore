@@ -5,7 +5,6 @@ package-lock.json
 # Build output
 dist/
 build/
-*.js
 *.js.map
 *.d.ts
 !jest.config.js
