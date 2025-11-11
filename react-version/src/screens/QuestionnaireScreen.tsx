@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useRef, useContext, useEffect } from 'react';
 
 import {
     View,
@@ -17,6 +17,8 @@ import { RootStackParamList } from '../../App';
 import { AppColors, Typography, Spacing, BorderRadius } from '../theme';
 import { QuestionnaireAnswers } from '../types';
 import { QUESTIONS } from '../data/questions';
+import { UserContext } from '../contexts/userContext';
+import WelcomeCarousel from '../components/WelcomeCarousel';
 
 type QuestionnaireScreenProps = {
     navigation: NativeStackNavigationProp<RootStackParamList, 'Questionnaire'>;
@@ -25,16 +27,18 @@ type QuestionnaireScreenProps = {
 export default function QuestionnaireScreen({
     navigation,
 }: QuestionnaireScreenProps) {
-    const [currentQuestionIndex, setCurrentQuestionIndex] = useState(-1); // -1 = welcome screen
+    const { user } = useContext(UserContext);
+
+    const [currentQuestionIndex, setCurrentQuestionIndex] = useState(user === null ? -1 : 0); // -1 = welcome screen
+
     const [answers, setAnswers] = useState<QuestionnaireAnswers>({});
-    const [carouselIndex, setCarouselIndex] = useState(0);
 
     const [fadeAnim] = useState(new Animated.Value(1));
     const [slideAnim] = useState(new Animated.Value(0));
-    const carouselFadeAnim = useRef(new Animated.Value(1)).current;
-    const swipePosition = useRef(new Animated.Value(0)).current;
+    const [buttonOpacity] = useState(new Animated.Value(0));
+    const [buttonTranslateY] = useState(new Animated.Value(20));
 
-    const carouselWords = ['lunch', 'brunch', 'dinner', 'date spot'];
+    const swipePosition = useRef(new Animated.Value(0)).current;
 
     // PanResponder for swipe gestures
     const panResponder = useRef(
@@ -64,39 +68,12 @@ export default function QuestionnaireScreen({
         }),
     ).current;
 
-    // Carousel animation for welcome screen
-    useEffect(() => {
-        if (currentQuestionIndex === -1) {
-            const interval = setInterval(() => {
-                Animated.sequence([
-                    Animated.timing(carouselFadeAnim, {
-                        toValue: 0,
-                        duration: 300,
-                        useNativeDriver: true,
-                    }),
-                    Animated.timing(carouselFadeAnim, {
-                        toValue: 1,
-                        duration: 300,
-                        useNativeDriver: true,
-                    }),
-                ]).start();
-
-                setCarouselIndex((prev) => (prev + 1) % carouselWords.length);
-            }, 800);
-
-            // Auto-advance to first question after 3 seconds
-            const autoAdvance = setTimeout(() => {
-                setCurrentQuestionIndex(0);
-            }, 3500);
-
-            return () => {
-                clearInterval(interval);
-                clearTimeout(autoAdvance);
-            };
-        }
-    }, [currentQuestionIndex, carouselFadeAnim, carouselWords.length]);
-
     const isWelcomeScreen = currentQuestionIndex === -1;
+
+    function handleWelcomeAutoAdvance() {
+        setCurrentQuestionIndex(0);
+    }
+
     const currentQuestion = !isWelcomeScreen
         ? QUESTIONS[currentQuestionIndex]
         : null;
@@ -106,6 +83,28 @@ export default function QuestionnaireScreen({
         : (currentQuestionIndex + 1) / QUESTIONS.length;
     const isLastQuestion = currentQuestionIndex === QUESTIONS.length - 1;
     const currentAnswer = currentQuestion ? answers[currentQuestion.id] : null;
+
+    // Animate the "Start Discovering" button when it appears
+    useEffect(() => {
+        if (isLastQuestion && currentAnswer) {
+            // Reset and animate in
+            buttonOpacity.setValue(0);
+            buttonTranslateY.setValue(20);
+            Animated.parallel([
+                Animated.timing(buttonOpacity, {
+                    toValue: 1,
+                    duration: 500,
+                    useNativeDriver: true,
+                }),
+                Animated.spring(buttonTranslateY, {
+                    toValue: 0,
+                    tension: 50,
+                    friction: 7,
+                    useNativeDriver: true,
+                }),
+            ]).start();
+        }
+    }, [isLastQuestion, currentAnswer, buttonOpacity, buttonTranslateY]);
 
     function handleAnswerSelect(questionId: string, option: string) {
         setAnswers((prev) => ({
@@ -169,7 +168,7 @@ export default function QuestionnaireScreen({
 
     function handleStartDiscovering() {
         // TODO: Save preferences for restaurant filtering
-        navigation.replace('Swipe');
+        navigation.replace('MainTabs');
     }
 
     return (
@@ -188,26 +187,7 @@ export default function QuestionnaireScreen({
 
             {/* Welcome Screen */}
             {isWelcomeScreen && (
-                <View style={styles.welcomeContainer}>
-                    <View style={styles.welcomeContent}>
-                        <Text style={styles.welcomeText}>
-                            Welcome to Jelly!
-                        </Text>
-                        <View style={styles.carouselContainer}>
-                            <Text style={styles.carouselText}>
-                                Let's find your next{' '}
-                            </Text>
-                            <Animated.Text
-                                style={[
-                                    styles.carouselWord,
-                                    { opacity: carouselFadeAnim },
-                                ]}
-                            >
-                                {carouselWords[carouselIndex]}
-                            </Animated.Text>
-                        </View>
-                    </View>
-                </View>
+                <WelcomeCarousel onAutoAdvance={handleWelcomeAutoAdvance} />
             )}
 
             {/* Question Content */}
@@ -233,6 +213,30 @@ export default function QuestionnaireScreen({
                         <Text style={styles.questionText}>
                             {currentQuestion.question}
                         </Text>
+                        {/* Decorative squiggly line */}
+                        <View style={styles.squigglyLineContainer}>
+                            <View style={styles.squigglyLine}>
+                                {[...Array(8)].map((_, i) => (
+                                    <View
+                                        key={i}
+                                        style={[
+                                            styles.squiggleDot,
+                                            {
+                                                transform: [
+                                                    {
+                                                        translateY:
+                                                            Math.sin(
+                                                                (i * Math.PI) /
+                                                                    2,
+                                                            ) * 3,
+                                                    },
+                                                ],
+                                            },
+                                        ]}
+                                    />
+                                ))}
+                            </View>
+                        </View>
                     </View>
 
                     <View style={styles.optionsContainer}>
@@ -288,15 +292,22 @@ export default function QuestionnaireScreen({
 
                     {/* Start Discovering Button (only on last question) */}
                     {isLastQuestion && currentAnswer && (
-                        <TouchableOpacity
-                            style={styles.startButton}
-                            onPress={handleStartDiscovering}
-                            activeOpacity={0.8}
+                        <Animated.View
+                            style={{
+                                opacity: buttonOpacity,
+                                transform: [{ translateY: buttonTranslateY }],
+                            }}
                         >
-                            <Text style={styles.startButtonText}>
-                                Start Discovering
-                            </Text>
-                        </TouchableOpacity>
+                            <TouchableOpacity
+                                style={styles.startButton}
+                                onPress={handleStartDiscovering}
+                                activeOpacity={0.8}
+                            >
+                                <Text style={styles.startButtonText}>
+                                    Start Discovering
+                                </Text>
+                            </TouchableOpacity>
+                        </Animated.View>
                     )}
                 </Animated.View>
             )}
@@ -309,47 +320,9 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: AppColors.white, // TODO
     },
-    welcomeContainer: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        paddingHorizontal: Spacing.xl,
-    },
-    welcomeContent: {
-        alignItems: 'center',
-    },
-    welcomeText: {
-        ...Typography.displayLarge,
-        fontSize: 42,
-        fontWeight: '700',
-        color: AppColors.textDark,
-        marginBottom: Spacing.lg,
-        textAlign: 'center',
-    },
-    carouselContainer: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center',
-        flexWrap: 'wrap',
-        minHeight: 60,
-    },
-    carouselText: {
-        ...Typography.displaySmall,
-        fontSize: 28,
-        fontWeight: '600',
-        color: AppColors.textDark,
-        textAlign: 'center',
-    },
-    carouselWord: {
-        ...Typography.displaySmall,
-        fontSize: 28,
-        fontWeight: '700',
-        color: AppColors.primary,
-        textAlign: 'center',
-    },
     progressBarContainer: {
         height: 4,
-        backgroundColor: AppColors.accent,
+        backgroundColor: AppColors.background,
         width: '100%',
     },
     progressBarFill: {
@@ -369,7 +342,7 @@ const styles = StyleSheet.create({
     },
     questionNumber: {
         ...Typography.bodySmall,
-        color: AppColors.accent,
+        color: AppColors.secondary,
         fontWeight: '600',
         marginBottom: Spacing.sm,
         textTransform: 'uppercase',
@@ -381,6 +354,22 @@ const styles = StyleSheet.create({
         fontSize: 28,
         lineHeight: 36,
         fontWeight: '700',
+    },
+    squigglyLineContainer: {
+        marginTop: Spacing.md,
+        alignItems: 'flex-start',
+    },
+    squigglyLine: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        height: 8,
+    },
+    squiggleDot: {
+        width: 12,
+        height: 2,
+        backgroundColor: AppColors.primary,
+        marginHorizontal: 1,
+        borderRadius: 1,
     },
     optionsContainer: {
         flex: 1,

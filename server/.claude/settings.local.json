@@ -1,17 +1,12 @@
 {
   "permissions": {
     "allow": [
+      "Bash(dir \"c:\\Users\\hjkar\\OneDrive\\Desktop\\Master\\Coding\\jelly\\server\" /s /b)",
+      "Bash(findstr /E \"\\.ts$|\\.js$|\\.tsx$|\\.jsx$\")",
+      "Bash(cat src/types/index.ts)",
       "Read(//c/Users/hjkar/OneDrive/Desktop/Master/Coding/jelly/**)",
-      "Bash(del \"c:\\Users\\hjkar\\OneDrive\\Desktop\\Master\\Coding\\jelly\\server\\readme.md\")",
-      "Bash(tree -L 3 -I \"node_modules|dist\")",
-      "Bash(npm info @typescript-eslint/parser@6.21.0 peerDependencies)",
-      "Bash(cat \"c:/Users/hjkar/OneDrive/Desktop/Master/Coding/jelly/server/src/models/restaurant.model.ts\")",
-      "Bash(move /Y \"c:\\Users\\hjkar\\OneDrive\\Desktop\\Master\\Coding\\jelly\\server\\src\\scripts\\seedDatabase_updated.ts\" \"c:\\Users\\hjkar\\OneDrive\\Desktop\\Master\\Coding\\jelly\\server\\src\\scripts\\seedDatabase.ts\")",
-      "Bash(npm uninstall firebase-admin)",
-      "Bash(npm install @supabase/supabase-js)",
-      "Bash(npm run build)",
-      "Bash(tree -L 2 -I \"node_modules|dist\" \"c:\\Users\\hjkar\\OneDrive\\Desktop\\Master\\Coding\\jelly\\server\")",
-      "Bash(dir /B /A)"
+      "Bash(npx tsc --noEmit)",
+      "Bash(npx tsc --traceResolution --noEmit)"
     ],
     "deny": [],
     "ask": []

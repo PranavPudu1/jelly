@@ -5,6 +5,7 @@ import {
     StyleSheet,
     TouchableOpacity,
     Dimensions,
+    ScrollView,
 } from 'react-native';
 
 import { Ionicons } from '@expo/vector-icons';
@@ -20,10 +21,22 @@ import type { Restaurant } from '../types';
 
 const { width, height } = Dimensions.get('window');
 
+type FilterType = {
+    price: string[];
+    distance: string | null;
+    cuisine: string[];
+    rating: string | null;
+};
+
 export default function SwipeScreen() {
     const [currentIndex, setCurrentIndex] = useState(0);
-    const [activeTab, setActiveTab] = useState(0);
     const swiperRef = useRef<SwiperCardRefType>(null);
+    const [filters, setFilters] = useState<FilterType>({
+        price: [],
+        distance: null,
+        cuisine: [],
+        rating: null,
+    });
 
     function handleSwipedRight(index: number) {
         console.log('Liked:', MOCK_RESTAURANTS[index].name);
@@ -46,16 +59,70 @@ export default function SwipeScreen() {
         setCurrentIndex(index);
     }
 
-    function handleNavTab0() {
-        setActiveTab(0);
+    function togglePriceFilter(price: string) {
+        setFilters((prev) => ({
+            ...prev,
+            price: prev.price.includes(price)
+                ? prev.price.filter((p) => p !== price)
+                : [...prev.price, price],
+        }));
     }
 
-    function handleNavTab1() {
-        setActiveTab(1);
+    function toggleDistanceFilter(distance: string) {
+        setFilters((prev) => ({
+            ...prev,
+            distance: prev.distance === distance ? null : distance,
+        }));
+    }
+
+    function toggleCuisineFilter(cuisine: string) {
+        setFilters((prev) => ({
+            ...prev,
+            cuisine: prev.cuisine.includes(cuisine)
+                ? prev.cuisine.filter((c) => c !== cuisine)
+                : [...prev.cuisine, cuisine],
+        }));
+    }
+
+    function toggleRatingFilter(rating: string) {
+        setFilters((prev) => ({
+            ...prev,
+            rating: prev.rating === rating ? null : rating,
+        }));
     }
 
     function renderCard(restaurant: Restaurant) {
         return <RestaurantCard restaurant={restaurant} />;
+    }
+
+    function FilterChip({
+        label,
+        isActive,
+        onPress,
+    }: {
+        label: string;
+        isActive: boolean;
+        onPress: () => void;
+    }) {
+        return (
+            <TouchableOpacity
+                style={[
+                    styles.filterChip,
+                    isActive && styles.filterChipActive,
+                ]}
+                onPress={onPress}
+                activeOpacity={0.7}
+            >
+                <Text
+                    style={[
+                        styles.filterChipText,
+                        isActive && styles.filterChipTextActive,
+                    ]}
+                >
+                    {label}
+                </Text>
+            </TouchableOpacity>
+        );
     }
 
     if (currentIndex >= MOCK_RESTAURANTS.length) {
@@ -66,7 +133,7 @@ export default function SwipeScreen() {
                         <Ionicons
                             name="restaurant"
                             size={64}
-                            color={AppColors.text}
+                            color={AppColors.textDark}
                         />
                     </View>
 
@@ -86,60 +153,11 @@ export default function SwipeScreen() {
                         </Text>
                     </TouchableOpacity>
                 </View>
-
-                <View style={styles.bottomNav}>
-                    <TouchableOpacity
-                        style={styles.navItem}
-                        onPress={handleNavTab0}
-                        activeOpacity={0.7}
-                    >
-                        <Ionicons
-                            name="bookmark"
-                            size={24}
-                            color={
-                                activeTab === 0
-                                    ? AppColors.textDark
-                                    : AppColors.accent
-                            }
-                        />
-                        <Text
-                            style={[
-                                styles.navText,
-                                activeTab === 0 && styles.navTextActive,
-                            ]}
-                        >
-                            Saved Places
-                        </Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        style={styles.navItem}
-                        onPress={handleNavTab1}
-                        activeOpacity={0.7}
-                    >
-                        <Ionicons
-                            name="settings"
-                            size={24}
-                            color={
-                                activeTab === 1
-                                    ? AppColors.textDark
-                                    : AppColors.accent
-                            }
-                        />
-                        <Text
-                            style={[
-                                styles.navText,
-                                activeTab === 1 && styles.navTextActive,
-                            ]}
-                        >
-                            Settings
-                        </Text>
-                    </TouchableOpacity>
-                </View>
             </SafeAreaView>
         );
     }
 
-    function OverlayLabelLeft() {
+    function OverlayLabelRight() {
         return (
             <View
                 style={{
@@ -150,12 +168,12 @@ export default function SwipeScreen() {
             >
                 <View
                     style={{
-                        backgroundColor: AppColors.accent,
+                        backgroundColor: AppColors.background,
                         borderRadius: 12,
                         paddingVertical: 12,
                         paddingHorizontal: 16,
                         borderWidth: 2,
-                        borderColor: AppColors.surfaceVariant,
+                        borderColor: AppColors.background,
                     }}
                 >
                     <Text
@@ -172,7 +190,7 @@ export default function SwipeScreen() {
         );
     }
 
-    function OverlayLabelRight() {
+    function OverlayLabelLeft() {
         return (
             <View
                 style={{
@@ -207,6 +225,54 @@ export default function SwipeScreen() {
 
     return (
         <SafeAreaView style={styles.container} edges={['top']}>
+            <View style={styles.filterContainer}>
+                <ScrollView
+                    horizontal
+                    showsHorizontalScrollIndicator={false}
+                    contentContainerStyle={styles.filterScrollContent}
+                >
+                    <FilterChip
+                        label="$"
+                        isActive={filters.price.includes('$')}
+                        onPress={() => togglePriceFilter('$')}
+                    />
+                    <FilterChip
+                        label="$$"
+                        isActive={filters.price.includes('$$')}
+                        onPress={() => togglePriceFilter('$$')}
+                    />
+                    <FilterChip
+                        label="$$$"
+                        isActive={filters.price.includes('$$$')}
+                        onPress={() => togglePriceFilter('$$$')}
+                    />
+                    <FilterChip
+                        label="< 1 mi"
+                        isActive={filters.distance === '< 1 mi'}
+                        onPress={() => toggleDistanceFilter('< 1 mi')}
+                    />
+                    <FilterChip
+                        label="< 3 mi"
+                        isActive={filters.distance === '< 3 mi'}
+                        onPress={() => toggleDistanceFilter('< 3 mi')}
+                    />
+                    <FilterChip
+                        label="< 5 mi"
+                        isActive={filters.distance === '< 5 mi'}
+                        onPress={() => toggleDistanceFilter('< 5 mi')}
+                    />
+                    <FilterChip
+                        label="4.0+ ⭐"
+                        isActive={filters.rating === '4.0+'}
+                        onPress={() => toggleRatingFilter('4.0+')}
+                    />
+                    <FilterChip
+                        label="4.5+ ⭐"
+                        isActive={filters.rating === '4.5+'}
+                        onPress={() => toggleRatingFilter('4.5+')}
+                    />
+                </ScrollView>
+            </View>
             <View style={styles.cardContainer}>
                 <Swiper
                     ref={swiperRef}
@@ -218,7 +284,7 @@ export default function SwipeScreen() {
                     onIndexChange={handleIndexChange}
                     cardStyle={{
                         width: width - 40,
-                        height: height * 0.7,
+                        height: height * 0.65,
                     }}
                     disableTopSwipe
                     disableBottomSwipe
@@ -227,59 +293,12 @@ export default function SwipeScreen() {
                     outputOverlayLabelRightOpacityRange={[0, 0.5, 1]}
                     inputOverlayLabelLeftOpacityRange={[-width / 3, -width / 5, 0]}
                     outputOverlayLabelLeftOpacityRange={[1, 0.5, 0]}
-                    OverlayLabelLeft={OverlayLabelLeft}
-                    OverlayLabelRight={OverlayLabelRight}
+                    // For some reason these are flipped
+                    OverlayLabelLeft={OverlayLabelRight}
+                    OverlayLabelRight={OverlayLabelLeft}
+
                     swipeVelocityThreshold={800}
                 />
-            </View>
-
-            <View style={styles.bottomNav}>
-                <TouchableOpacity
-                    style={styles.navItem}
-                    onPress={handleNavTab0}
-                    activeOpacity={0.7}
-                >
-                    <Ionicons
-                        name="bookmark"
-                        size={24}
-                        color={
-                            activeTab === 0
-                                ? AppColors.textDark
-                                : AppColors.accent
-                        }
-                    />
-                    <Text
-                        style={[
-                            styles.navText,
-                            activeTab === 0 && styles.navTextActive,
-                        ]}
-                    >
-                        Saved Places
-                    </Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                    style={styles.navItem}
-                    onPress={handleNavTab1}
-                    activeOpacity={0.7}
-                >
-                    <Ionicons
-                        name="settings"
-                        size={24}
-                        color={
-                            activeTab === 1
-                                ? AppColors.textDark
-                                : AppColors.accent
-                        }
-                    />
-                    <Text
-                        style={[
-                            styles.navText,
-                            activeTab === 1 && styles.navTextActive,
-                        ]}
-                    >
-                        Settings
-                    </Text>
-                </TouchableOpacity>
             </View>
         </SafeAreaView>
     );
@@ -288,7 +307,38 @@ export default function SwipeScreen() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: AppColors.background,
+        backgroundColor: AppColors.white,
+    },
+    filterContainer: {
+        paddingVertical: Spacing.md,
+        backgroundColor: AppColors.white,
+        borderBottomWidth: 1,
+        borderBottomColor: '#F0F0F0',
+    },
+    filterScrollContent: {
+        paddingHorizontal: Spacing.md,
+        gap: Spacing.sm,
+    },
+    filterChip: {
+        paddingHorizontal: 16,
+        paddingVertical: 8,
+        borderRadius: 20,
+        backgroundColor: AppColors.white,
+        borderWidth: 1.5,
+        borderColor: '#E0E0E0',
+        marginRight: Spacing.sm,
+    },
+    filterChipActive: {
+        backgroundColor: AppColors.textDark,
+        borderColor: AppColors.textDark,
+    },
+    filterChipText: {
+        fontSize: 14,
+        fontWeight: '600',
+        color: AppColors.textDark,
+    },
+    filterChipTextActive: {
+        color: AppColors.white,
     },
     cardContainer: {
         flex: 1,
@@ -304,7 +354,7 @@ const styles = StyleSheet.create({
         width: 120,
         height: 120,
         borderRadius: 60,
-        backgroundColor: AppColors.surface,
+        backgroundColor: AppColors.primary,
         justifyContent: 'center',
         alignItems: 'center',
         marginBottom: Spacing.xl,
@@ -330,30 +380,5 @@ const styles = StyleSheet.create({
     startOverButtonText: {
         ...Typography.button,
         color: AppColors.textDark,
-    },
-    bottomNav: {
-        flexDirection: 'row',
-        backgroundColor: AppColors.primary,
-        paddingVertical: Spacing.md,
-        paddingHorizontal: Spacing.xl,
-        borderTopLeftRadius: 0,
-        borderTopRightRadius: 0,
-        zIndex: 999,
-        bottom: 0,
-    },
-    navItem: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    navText: {
-        ...Typography.bodySmall,
-        color: AppColors.accent,
-        marginTop: 4,
-        fontSize: 11,
-    },
-    navTextActive: {
-        color: AppColors.textDark,
-        fontWeight: '600',
     },
 });

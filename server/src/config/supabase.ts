@@ -4,7 +4,7 @@
  */
 
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
-import type { Database } from '../types/supabase.types';
+import type { Database } from '../types';
 import * as dotenv from 'dotenv';
 
 dotenv.config();
@@ -14,7 +14,7 @@ let supabase: SupabaseClient<Database>;
 /**
  * Initialize Supabase Client
  */
-export const initializeSupabase = (): SupabaseClient<Database> => {
+export function initializeSupabase(): SupabaseClient<Database> {
     if (supabase) {
         return supabase;
     }
@@ -41,17 +41,17 @@ export const initializeSupabase = (): SupabaseClient<Database> => {
         console.error('❌ Failed to initialize Supabase:', error);
         throw new Error('Supabase initialization failed');
     }
-};
+}
 
 /**
  * Get Supabase instance
  */
-export const getSupabase = (): SupabaseClient<Database> => {
+export function getSupabase(): SupabaseClient<Database> {
     if (!supabase) {
         return initializeSupabase();
     }
     return supabase;
-};
+}
 
 /**
  * Table names constants

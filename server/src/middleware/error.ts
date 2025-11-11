@@ -4,21 +4,17 @@
  */
 
 import { Request, Response, NextFunction } from 'express';
-
-export interface ApiError extends Error {
-  statusCode?: number;
-  errors?: unknown[];
-}
+import type { ApiError } from '../types';
 
 /**
  * Global error handling middleware
  */
-export const errorHandler = (
+export function errorHandler(
     err: ApiError,
     _req: Request,
     res: Response,
     _next: NextFunction
-): void => {
+): void {
     console.error('Error:', err);
 
     const statusCode = err.statusCode || 500;
@@ -30,14 +26,14 @@ export const errorHandler = (
         errors: err.errors,
         ...(process.env.NODE_ENV === 'development' && { stack: err.stack }),
     });
-};
+}
 
 /**
  * 404 Not Found handler
  */
-export const notFoundHandler = (req: Request, res: Response): void => {
+export function notFoundHandler(req: Request, res: Response): void {
     res.status(404).json({
         success: false,
         message: `Route ${req.method} ${req.path} not found`,
     });
-};
+}

@@ -39,13 +39,15 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
         const fullStars = Math.floor(rating);
         const hasHalfStar = rating % 1 !== 0;
 
+        const starSize = 18;
+
         for (let i = 0; i < fullStars; i++) {
             stars.push(
                 <Ionicons
                     key={i}
                     name="star"
-                    size={14}
-                    color={AppColors.primary}
+                    size={starSize}
+                    color={AppColors.secondary}
                 />,
             );
         }
@@ -54,8 +56,8 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
                 <Ionicons
                     key="half"
                     name="star-half"
-                    size={14}
-                    color={AppColors.primary}
+                    size={starSize}
+                    color={AppColors.secondary}
                 />,
             );
         }
@@ -65,11 +67,12 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
                 <Ionicons
                     key={`empty-${i}`}
                     name="star-outline"
-                    size={14}
-                    color={AppColors.primary}
+                    size={starSize}
+                    color={AppColors.secondary}
                 />,
             );
         }
+
         return stars;
     }
 
@@ -94,6 +97,31 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
 
     return (
         <View style={styles.card}>
+            {/* Sticky Header */}
+            <View style={styles.stickyHeader}>
+                <View style={styles.nameRow}>
+                    <View style={styles.nameContainer}>
+                        <Text style={styles.restaurantName} numberOfLines={1}>
+                            {restaurant.name}
+                        </Text>
+
+                        <View style={styles.dotSeparator}>
+                            <Text style={styles.separatorDot}>•</Text>
+                        </View>
+
+                        <Text style={styles.priceLevel}>
+                            {restaurant.priceLevel}
+                        </Text>
+                    </View>
+
+                    <View style={styles.ratingRow}>
+                        {renderStars(restaurant.rating)}
+                    </View>
+                </View>
+
+                <Text style={styles.cuisine}>{restaurant.cuisine}</Text>
+            </View>
+
             <ScrollView
                 ref={scrollViewRef}
                 style={styles.scrollView}
@@ -104,29 +132,6 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
             >
                 {/* Hero Section */}
                 <View style={styles.heroSection}>
-                    <View style={styles.headerInfo}>
-                        <View style={styles.nameRow}>
-                            <View style={styles.nameContainer}>
-                                <Text style={styles.restaurantName}>
-                                    {restaurant.name}
-                                </Text>
-
-                                <View style={styles.dotSeparator}>
-                                    <Text style={styles.separatorDot}>•</Text>
-                                </View>
-
-                                <Text style={styles.priceLevel}>
-                                    {restaurant.priceLevel}
-                                </Text>
-                            </View>
-
-                            <View style={styles.ratingRow}>
-                                {renderStars(restaurant.rating)}
-                            </View>
-                        </View>
-
-                        <Text style={styles.cuisine}>{restaurant.cuisine}</Text>
-                    </View>
 
                     {/* Hero Image Reel Modal */}
                     <ReelModal
@@ -157,23 +162,15 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
                             <View
                                 key={index}
                                 style={[
-                                    styles.infoRow,
-                                    index !== restaurant.infoList.length - 1 &&
-                                        styles.infoRowBorder,
+                                    styles.infoCell,
+                                    index >= 2 && styles.infoCellBottomRow
                                 ]}
                             >
-                                <View style={styles.infoLeft}>
-                                    <Ionicons
-                                        name={getIconName(info.icon || '')}
-                                        size={16}
-                                        color={AppColors.textDark}
-                                    />
-
-                                    <Text style={styles.infoLabel}>
-                                        {info.label}
-                                    </Text>
-                                </View>
-
+                                <Ionicons
+                                    name={getIconName(info.icon || '')}
+                                    size={16}
+                                    color={AppColors.textDark}
+                                />
                                 <Text style={styles.infoValue}>
                                     {info.value}
                                 </Text>
@@ -343,6 +340,7 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
                                                                 .author
                                                         }
                                                     </Text>
+
                                                     <View
                                                         style={
                                                             styles.reviewStars
@@ -492,23 +490,27 @@ const styles = StyleSheet.create({
     card: {
         width: width,
         height: CARD_HEIGHT,
-        backgroundColor: AppColors.background,
+        backgroundColor: AppColors.white,
         borderRadius: 0,
         overflow: 'hidden',
         marginHorizontal: 0,
+        paddingTop: Spacing.sm,
+        paddingHorizontal: Spacing.sm,
+    },
+    stickyHeader: {
+        backgroundColor: AppColors.white,
+        paddingBottom: Spacing.sm,
+        borderBottomWidth: 1,
+        borderBottomColor: 'rgba(0,0,0,0.05)',
+        zIndex: 10,
     },
     scrollView: {
         flex: 1,
     },
 
     // Hero Section
-    heroSection: {
-        // backgroundColor: AppColors.primary,
-        paddingBottom: Spacing.md,
-    },
+    heroSection: {},
     headerInfo: {
-        paddingHorizontal: Spacing.md,
-        paddingTop: Spacing.md,
         paddingBottom: Spacing.sm,
     },
     nameRow: {
@@ -516,26 +518,28 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         gap: 8,
-        marginBottom: 4,
+        marginBottom: 4
     },
     nameContainer: {
         flexDirection: 'row',
         gap: 6,
         alignItems: 'center',
+        flex: 1,
     },
     restaurantName: {
         ...Typography.titleLarge,
         fontSize: 24,
         fontWeight: '700',
-        color: AppColors.primary,
+        color: AppColors.textDark,
         flexShrink: 1,
+        maxWidth: '70%',
     },
     dotSeparator: {
         paddingHorizontal: 8,
     },
     separatorDot: {
         fontSize: 16,
-        color: AppColors.accent,
+        color: AppColors.textLight,
         lineHeight: 24,
     },
     priceLevel: {
@@ -549,12 +553,13 @@ const styles = StyleSheet.create({
     },
     cuisine: {
         ...Typography.bodySmall,
-        color: AppColors.accent,
+        color: AppColors.textLight,
     },
     heroImage: {
         width: '100%',
         height: height * 0.4,
-        backgroundColor: AppColors.surface,
+        backgroundColor: '#f0f0f0',
+        borderRadius: 5,
     },
     infoTable: {
         marginTop: Spacing.md,
@@ -563,33 +568,27 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
         borderColor: 'rgba(0,0,0,0.1)',
         paddingVertical: Spacing.xs,
-        backgroundColor: AppColors.primary,
-    },
-    infoRow: {
+        backgroundColor: AppColors.white,
         flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        paddingVertical: Spacing.xs,
+        flexWrap: 'wrap',
     },
-    infoRowBorder: {
-        borderBottomWidth: 1,
-        borderBottomColor: 'rgba(0,0,0,0.08)',
-    },
-    infoLeft: {
+    infoCell: {
         flexDirection: 'row',
         alignItems: 'center',
+        justifyContent: 'center',
+        gap: 6,
+        width: '50%',
+        paddingVertical: Spacing.sm,
     },
-    infoLabel: {
-        ...Typography.bodySmall,
-        color: AppColors.textDark,
-        marginLeft: Spacing.xs,
-        fontSize: 11,
+    infoCellBottomRow: {
+        borderTopWidth: 1,
+        borderTopColor: 'rgba(0,0,0,0.08)',
     },
     infoValue: {
         ...Typography.bodySmall,
         color: AppColors.textDark,
-        fontWeight: '600',
-        fontSize: 11,
+        fontWeight: '500',
+        fontSize: 12,
     },
 
     // Ambiance Section
@@ -599,18 +598,19 @@ const styles = StyleSheet.create({
     ambianceLabel: {
         ...Typography.bodyMedium,
         color: AppColors.textLight,
-        paddingHorizontal: Spacing.md,
+        paddingHorizontal: Spacing.sm,
         marginBottom: Spacing.md,
     },
     ambienceSection: {
-        marginHorizontal: Spacing.md,
-        borderRadius: BorderRadius.md,
+        marginHorizontal: Spacing.sm,
+        borderRadius: 5,
         overflow: 'hidden',
         height: 400,
     },
     ambienceImage: {
         width: '100%',
         height: '100%',
+        borderRadius: 5,
     },
     gradient: {
         position: 'absolute',
@@ -633,7 +633,7 @@ const styles = StyleSheet.create({
 
     // Reviews Section
     reviewsSection: {
-        paddingHorizontal: Spacing.md,
+        paddingHorizontal: Spacing.sm,
         paddingTop: Spacing.xl,
     },
     sectionTitle: {
@@ -652,7 +652,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: Spacing.sm,
         paddingVertical: 6,
         borderRadius: BorderRadius.sm,
-        backgroundColor: 'rgba(228, 64, 95, 0.1)',
+        backgroundColor: AppColors.primary,
         gap: 6,
     },
     tiktokButton: {
@@ -678,8 +678,8 @@ const styles = StyleSheet.create({
     foodImage: {
         width: 160,
         height: 160,
-        borderRadius: BorderRadius.sm,
-        backgroundColor: AppColors.surface,
+        borderRadius: 5,
+        backgroundColor: '#f0f0f0',
     },
     foodReview: {
         flex: 1,
@@ -710,7 +710,7 @@ const styles = StyleSheet.create({
         ...Typography.bodySmall,
         fontSize: 11,
         fontWeight: '600',
-        color: AppColors.text,
+        color: AppColors.textDark,
     },
     reviewStars: {
         flexDirection: 'row',
@@ -744,7 +744,7 @@ const styles = StyleSheet.create({
 
     // Reservation Section
     reservationSection: {
-        paddingHorizontal: Spacing.md,
+        paddingHorizontal: Spacing.sm,
         paddingVertical: Spacing.xxl,
         alignItems: 'center',
     },
@@ -767,7 +767,7 @@ const styles = StyleSheet.create({
         paddingVertical: Spacing.lg,
         paddingHorizontal: Spacing.xl,
         borderRadius: BorderRadius.md,
-        backgroundColor: AppColors.surface,
+        backgroundColor: AppColors.primary,
         minWidth: 140,
         gap: Spacing.sm,
         shadowColor: '#000',

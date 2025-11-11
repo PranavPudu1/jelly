@@ -4,15 +4,15 @@
  */
 
 import { createApp } from './app';
-import { initializeSupabase } from './config/supabase.config';
-import { config, validateEnv } from './config/env.config';
+import { initializeSupabase } from './config/supabase';
+import { config, validateEnv } from './config/env';
 
 /**
  * Start the server
  */
-const startServer = async (): Promise<void> => {
+async function startServer(): Promise<void> {
     try {
-    // Validate environment variables
+        // Validate environment variables
         validateEnv();
 
         // Initialize Supabase
@@ -37,7 +37,7 @@ const startServer = async (): Promise<void> => {
         console.error('❌ Failed to start server:', error);
         process.exit(1);
     }
-};
+}
 
 // Handle unhandled promise rejections
 process.on('unhandledRejection', (reason, promise) => {

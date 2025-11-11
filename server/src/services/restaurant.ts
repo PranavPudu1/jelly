@@ -3,7 +3,7 @@
  * Handles business logic and Supabase queries for restaurants using the new simplified schema
  */
 
-import { getSupabase } from '../config/supabase.config';
+import { getSupabase, TABLES } from '../config/supabase';
 import type {
     Restaurant,
     UserSwipe,
@@ -75,7 +75,8 @@ export class RestaurantService {
                 if (restaurantTags && restaurantTags.length > 0) {
                     const restaurantIds = restaurantTags.map((rt: any) => rt.restaurant_id);
                     query = query.in('id', restaurantIds);
-                } else {
+                }
+                else {
                     return {
                         data: [],
                         page,
@@ -99,10 +100,12 @@ export class RestaurantService {
 
                 if (geoError) {
                     console.error('Geospatial query error:', geoError);
-                } else if (nearbyRestaurants && nearbyRestaurants.length > 0) {
+                }
+                else if (nearbyRestaurants && nearbyRestaurants.length > 0) {
                     const nearbyIds = nearbyRestaurants.map((r: any) => r.id);
                     query = query.in('id', nearbyIds);
-                } else {
+                }
+                else {
                     return {
                         data: [],
                         page,
@@ -130,7 +133,8 @@ export class RestaurantService {
                 total,
                 hasMore: offset + pageSize < total,
             };
-        } catch (error) {
+        }
+        catch (error) {
             console.error('Error fetching restaurants:', error);
             throw new Error('Failed to fetch restaurants');
         }
@@ -178,7 +182,8 @@ export class RestaurantService {
             };
 
             return populated;
-        } catch (error) {
+        }
+        catch (error) {
             console.error('Error fetching restaurant by ID:', error);
             throw new Error('Failed to fetch restaurant');
         }
@@ -223,7 +228,8 @@ export class RestaurantService {
             }
 
             return data as Restaurant;
-        } catch (error) {
+        }
+        catch (error) {
             console.error('Error creating restaurant:', error);
             throw new Error('Failed to create restaurant');
         }
@@ -253,7 +259,8 @@ export class RestaurantService {
             }
 
             return data as Restaurant;
-        } catch (error) {
+        }
+        catch (error) {
             console.error('Error updating restaurant:', error);
             throw new Error('Failed to update restaurant');
         }
@@ -275,7 +282,8 @@ export class RestaurantService {
             }
 
             return true;
-        } catch (error) {
+        }
+        catch (error) {
             console.error('Error deleting restaurant:', error);
             throw new Error('Failed to delete restaurant');
         }
@@ -329,7 +337,8 @@ export class RestaurantService {
             }
 
             return data as UserSwipe;
-        } catch (error) {
+        }
+        catch (error) {
             console.error('Error saving swipe:', error);
             throw new Error('Failed to save swipe');
         }
@@ -367,7 +376,8 @@ export class RestaurantService {
             }
 
             return (data || []) as Restaurant[];
-        } catch (error) {
+        }
+        catch (error) {
             console.error('Error fetching user saved restaurants:', error);
             throw new Error('Failed to fetch saved restaurants');
         }
@@ -388,7 +398,8 @@ export class RestaurantService {
             }
 
             return (data || []).map((swipe) => swipe.restaurant_id);
-        } catch (error) {
+        }
+        catch (error) {
             console.error('Error fetching user swipes:', error);
             return [];
         }

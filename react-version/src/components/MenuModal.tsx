@@ -391,7 +391,7 @@ const styles = StyleSheet.create({
         ...Typography.bodySmall,
         fontSize: 11,
         fontWeight: '600',
-        color: AppColors.text,
+        color: AppColors.textDark,
     },
     reviewStars: {
         flexDirection: 'row',

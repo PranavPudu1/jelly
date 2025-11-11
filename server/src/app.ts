@@ -3,18 +3,38 @@
  * Sets up middleware, routes, and error handling
  */
 
-import express, { Application } from 'express';
+import express, { Application, Request, Response, NextFunction } from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import compression from 'compression';
-import { config } from './config/env.config';
-import { errorHandler, notFoundHandler } from './middleware/errorHandler';
+import { config } from './config/env';
+import { errorHandler, notFoundHandler } from './middleware/error';
 import routes from './routes';
+
+/**
+ * Development request logger middleware
+ */
+function logRequest(req: Request, _res: Response, next: NextFunction): void {
+    console.log(`${req.method} ${req.path}`);
+    next();
+}
+
+/**
+ * Root endpoint handler
+ */
+function handleRoot(_req: Request, res: Response): void {
+    res.status(200).json({
+        success: true,
+        message: 'Welcome to Jelly API - Supabase Edition',
+        version: '2.0.0',
+        documentation: '/api/health',
+    });
+}
 
 /**
  * Create and configure Express application
  */
-export const createApp = (): Application => {
+export function createApp(): Application {
     const app = express();
 
     // Security middleware
@@ -38,24 +58,14 @@ export const createApp = (): Application => {
 
     // Request logging in development
     if (config.NODE_ENV === 'development') {
-        app.use((req, _res, next) => {
-            console.log(`${req.method} ${req.path}`);
-            next();
-        });
+        app.use(logRequest);
     }
 
     // API routes
     app.use('/api', routes);
 
     // Root endpoint
-    app.get('/', (_req, res) => {
-        res.status(200).json({
-            success: true,
-            message: 'Welcome to Jelly API - Supabase Edition',
-            version: '2.0.0',
-            documentation: '/api/health',
-        });
-    });
+    app.get('/', handleRoot);
 
     // 404 handler
     app.use(notFoundHandler);
@@ -64,4 +74,4 @@ export const createApp = (): Application => {
     app.use(errorHandler);
 
     return app;
-};
+}

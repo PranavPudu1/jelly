@@ -1,14 +1,20 @@
-enum Source {
+declare interface UserPreferences {
+    id: string;
+
+    dateChanged: Date;
+}
+
+declare enum Source {
     YELP = 'YELP',
     GOOGLE = 'GOOGLE'
 }
 
-enum TagType {
+declare enum TagType {
     FOOD = 'FOOD',
     AMBIANCE = 'AMBIANCE',
 }
 
-export interface Restaurant {
+declare interface Restaurant {
     id: string;
 
     sourceId?: string;
@@ -51,7 +57,7 @@ export interface Restaurant {
     dateAdded: Date;
 }
 
-export interface Tag {
+declare interface Tag {
     id: string;
 
     source: Source;
@@ -62,7 +68,7 @@ export interface Tag {
     sourceAlias?: string;
 }
 
-export interface Review {
+declare interface Review {
     id: string;
 
     sourceId?: string;
@@ -74,7 +80,7 @@ export interface Review {
     reviewedBy?: string; 
 }
 
-export interface RestaurantImage {
+declare interface RestaurantImage {
     id: string;
 
     sourceId?: string;
@@ -85,7 +91,7 @@ export interface RestaurantImage {
     dateAdded: Date;
 }
 
-export interface RestaurantItem {
+declare interface RestaurantItem {
     id: string;
 
     sourceId?: string;
@@ -105,7 +111,7 @@ export interface RestaurantItem {
 
 // Users
 
-export interface User {
+declare interface User {
     id: string;
     email?: string 
     name: string;
@@ -120,7 +126,7 @@ export interface User {
     swiped: UserSwipe[];
 }
 
-export interface UserSwipe {
+declare interface UserSwipe {
     id: string;
     decided: boolean;
     dateSwiped: Date;
@@ -128,21 +134,15 @@ export interface UserSwipe {
     session: Session;
 }
 
-export interface UserSave {
+declare interface UserSave {
     id: string;
     restaurant: Restaurant;
     session: Session;
     swipe: UserSwipe;
 }
 
-export interface Session {
+declare interface Session {
     id: string;
     dateStarted: Date;
     dateEnded: Date;
-}
-
-export interface UserPreferences {
-    id: string;
-
-    dateChanged: Date;
 }

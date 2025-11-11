@@ -4,7 +4,7 @@
  */
 
 import { Request, Response, NextFunction } from 'express';
-import { RestaurantService } from '../services/restaurant.service';
+import { RestaurantService } from '../services/restaurant';
 import type { GetRestaurantsQuery, SaveSwipeRequest } from '../types';
 import { validationResult } from 'express-validator';
 
@@ -19,7 +19,7 @@ export class RestaurantController {
    * GET /api/restaurants
    * Get paginated list of restaurants, excluding ones user has swiped on
    */
-    getRestaurants = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+    async getRestaurants(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
             const errors = validationResult(req);
             if (!errors.isEmpty()) {
@@ -50,13 +50,13 @@ export class RestaurantController {
         catch (error) {
             next(error);
         }
-    };
+    }
 
     /**
    * GET /api/restaurants/:id
    * Get a single restaurant by ID
    */
-    getRestaurantById = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+    async getRestaurantById(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
             const { id } = req.params;
 
@@ -78,13 +78,13 @@ export class RestaurantController {
         catch (error) {
             next(error);
         }
-    };
+    }
 
     /**
    * POST /api/restaurants
    * Create a new restaurant (admin endpoint)
    */
-    createRestaurant = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+    async createRestaurant(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
             const errors = validationResult(req);
             if (!errors.isEmpty()) {
@@ -103,13 +103,13 @@ export class RestaurantController {
         catch (error) {
             next(error);
         }
-    };
+    }
 
     /**
    * PUT /api/restaurants/:id
    * Update a restaurant (admin endpoint)
    */
-    updateRestaurant = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+    async updateRestaurant(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
             const errors = validationResult(req);
             if (!errors.isEmpty()) {
@@ -137,13 +137,13 @@ export class RestaurantController {
         catch (error) {
             next(error);
         }
-    };
+    }
 
     /**
    * DELETE /api/restaurants/:id
    * Delete a restaurant (admin endpoint)
    */
-    deleteRestaurant = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+    async deleteRestaurant(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
             const { id } = req.params;
             const deleted = await this.restaurantService.deleteRestaurant(id);
@@ -164,13 +164,13 @@ export class RestaurantController {
         catch (error) {
             next(error);
         }
-    };
+    }
 
     /**
    * POST /api/restaurants/swipe
    * Save user swipe action (like or dislike)
    */
-    saveSwipe = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+    async saveSwipe(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
             const errors = validationResult(req);
             if (!errors.isEmpty()) {
@@ -190,17 +190,17 @@ export class RestaurantController {
         catch (error) {
             next(error);
         }
-    };
+    }
 
     /**
    * GET /api/restaurants/saved/:userId
    * Get user's saved (liked) restaurants
    */
-    getUserSavedRestaurants = async (
+    async getUserSavedRestaurants(
         req: Request,
         res: Response,
         next: NextFunction
-    ): Promise<void> => {
+    ): Promise<void> {
         try {
             const { userId } = req.params;
 
@@ -215,5 +215,5 @@ export class RestaurantController {
         catch (error) {
             next(error);
         }
-    };
+    }
 }

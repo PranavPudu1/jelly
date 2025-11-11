@@ -4,7 +4,7 @@
  */
 
 import { Router } from 'express';
-import { RestaurantController } from '../controllers/restaurant.controller';
+import { RestaurantController } from '../controllers/restaurant';
 import {
     getRestaurantsValidator,
     createRestaurantValidator,

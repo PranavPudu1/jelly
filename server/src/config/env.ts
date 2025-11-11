@@ -4,24 +4,14 @@
  */
 
 import * as dotenv from 'dotenv';
+import type { EnvConfig } from '../types';
 
 dotenv.config();
-
-interface EnvConfig {
-  NODE_ENV: string;
-  PORT: number;
-  SUPABASE_URL: string;
-  SUPABASE_SERVICE_ROLE_KEY: string;
-  SUPABASE_ANON_KEY?: string;
-  CORS_ORIGIN: string;
-  DEFAULT_PAGE_SIZE: number;
-  MAX_PAGE_SIZE: number;
-}
 
 /**
  * Validate and parse environment variables
  */
-const getEnvConfig = (): EnvConfig => {
+function getEnvConfig(): EnvConfig {
     return {
         NODE_ENV: process.env.NODE_ENV || 'development',
         PORT: parseInt(process.env.PORT || '3000', 10),
@@ -32,14 +22,14 @@ const getEnvConfig = (): EnvConfig => {
         DEFAULT_PAGE_SIZE: parseInt(process.env.DEFAULT_PAGE_SIZE || '10', 10),
         MAX_PAGE_SIZE: parseInt(process.env.MAX_PAGE_SIZE || '50', 10),
     };
-};
+}
 
 export const config = getEnvConfig();
 
 /**
  * Validate required environment variables
  */
-export const validateEnv = (): void => {
+export function validateEnv(): void {
     const requiredVars: (keyof EnvConfig)[] = ['SUPABASE_URL', 'SUPABASE_SERVICE_ROLE_KEY'];
 
     const missingVars = requiredVars.filter((key) => !config[key]);
@@ -51,4 +41,4 @@ export const validateEnv = (): void => {
     }
 
     console.log('✅ Environment configuration validated');
-};
+}

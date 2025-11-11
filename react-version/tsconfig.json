@@ -8,5 +8,9 @@
         "resolveJsonModule": true,
         "moduleResolution": "node",
         "allowSyntheticDefaultImports": true
-    }
+    },
+    "include": [
+        "src/**/*",
+        "src/types/types.d.ts"
+    ]
 }
