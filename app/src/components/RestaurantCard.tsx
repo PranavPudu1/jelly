@@ -1,4 +1,15 @@
-import React, { useState } from 'react';
+/**
+ * RestaurantCard Component
+ *
+ * Enhanced with delightful design system:
+ * - 💫 Gentle spring animations on all interactive elements
+ * - 🍰 Soft shadows and depth using new Shadow presets
+ * - 💖 Friendly, conversational microcopy
+ * - ✨ Dreamy gradients for visual depth
+ * - 🎨 Consistent border radius from design system
+ */
+
+import React, { useState, useRef } from 'react';
 import {
     View,
     Text,
@@ -6,14 +17,27 @@ import {
     Image,
     TouchableOpacity,
     Dimensions,
+    Animated,
 } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Restaurant } from '../types';
-import { AppColors, Typography, Spacing, BorderRadius } from '../theme';
+import {
+    AppColors,
+    Typography,
+    Spacing,
+    BorderRadius,
+    Shadows,
+    Gradients,
+    SpringConfig,
+    AnimationScale,
+    Microcopy,
+    getRandomMicrocopy,
+} from '../theme';
 import ReelModal from './ReelModal';
 import MenuModal from './MenuModal';
+import DelightfulButton from './DelightfulButton';
 
 const { width, height } = Dimensions.get('window');
 const NAVIGATION_BAR_HEIGHT = 80; // Approximate height of navigation bar
@@ -33,6 +57,25 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
         Array<{ imageUrl: string; review?: any }>
     >([]);
     const scrollViewRef = React.useRef<ScrollView>(null);
+
+    // Animation values for image interactions (DelightfulButton handles button animations)
+    const heroImageScale = useRef(new Animated.Value(1)).current;
+    const ambianceScale = useRef(new Animated.Value(1)).current;
+
+    // Delightful animation helpers for images
+    const animatePressIn = (scale: Animated.Value) => {
+        Animated.spring(scale, {
+            toValue: AnimationScale.press,
+            ...SpringConfig.gentle,
+        }).start();
+    };
+
+    const animatePressOut = (scale: Animated.Value) => {
+        Animated.spring(scale, {
+            toValue: 1,
+            ...SpringConfig.playful,
+        }).start();
+    };
 
     function renderStars(rating: number) {
         const stars = [];
@@ -132,7 +175,6 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
             >
                 {/* Hero Section */}
                 <View style={styles.heroSection}>
-
                     {/* Hero Image Reel Modal */}
                     <ReelModal
                         visible={heroReelVisible}
@@ -143,18 +185,24 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
                         tooltipText="Hero image"
                     />
 
-                    <TouchableOpacity
-                        activeOpacity={0.9}
-                        onPress={() => {
-                            setHeroReelVisible(true);
-                        }}
+                    <Animated.View
+                        style={{ transform: [{ scale: heroImageScale }] }}
                     >
-                        <Image
-                            source={{ uri: restaurant.heroImageUrl }}
-                            style={styles.heroImage}
-                            resizeMode="cover"
-                        />
-                    </TouchableOpacity>
+                        <TouchableOpacity
+                            activeOpacity={0.9}
+                            onPressIn={() => animatePressIn(heroImageScale)}
+                            onPressOut={() => animatePressOut(heroImageScale)}
+                            onPress={() => {
+                                setHeroReelVisible(true);
+                            }}
+                        >
+                            <Image
+                                source={{ uri: restaurant.heroImageUrl }}
+                                style={styles.heroImage}
+                                resizeMode="cover"
+                            />
+                        </TouchableOpacity>
+                    </Animated.View>
 
                     {/* Info Table */}
                     <View style={styles.infoTable}>
@@ -163,7 +211,7 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
                                 key={index}
                                 style={[
                                     styles.infoCell,
-                                    index >= 2 && styles.infoCellBottomRow
+                                    index >= 2 && styles.infoCellBottomRow,
                                 ]}
                             >
                                 <Ionicons
@@ -183,30 +231,38 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
                 <View style={styles.ambianceContainer}>
                     <Text style={styles.ambianceLabel}>Ambiance</Text>
 
-                    <TouchableOpacity
-                        style={styles.ambienceSection}
-                        onPress={() => {
-                            setAmbianceModalVisible(true);
-                        }}
-                        activeOpacity={0.9}
+                    <Animated.View
+                        style={{ transform: [{ scale: ambianceScale }] }}
                     >
-                        <Image
-                            source={{ uri: restaurant.ambientImageUrl }}
-                            style={styles.ambienceImage}
-                            resizeMode="cover"
-                        />
-                        <LinearGradient
-                            colors={['transparent', 'rgba(0,0,0,0.8)']}
-                            style={styles.gradient}
+                        <TouchableOpacity
+                            style={styles.ambienceSection}
+                            onPressIn={() => animatePressIn(ambianceScale)}
+                            onPressOut={() => animatePressOut(ambianceScale)}
+                            onPress={() => {
+                                setAmbianceModalVisible(true);
+                            }}
+                            activeOpacity={0.9}
                         >
-                            <Text style={styles.quoteText}>
-                                "{restaurant.reviewQuote}"
-                            </Text>
-                            <Text style={styles.quoteAuthor}>
-                                - {restaurant.reviewAuthor}
-                            </Text>
-                        </LinearGradient>
-                    </TouchableOpacity>
+                            <Image
+                                source={{ uri: restaurant.ambientImageUrl }}
+                                style={styles.ambienceImage}
+                                resizeMode="cover"
+                            />
+                            <LinearGradient
+                                colors={Gradients.translucentOverlay.colors}
+                                start={Gradients.translucentOverlay.start}
+                                end={Gradients.translucentOverlay.end}
+                                style={styles.gradient}
+                            >
+                                <Text style={styles.quoteText}>
+                                    "{restaurant.reviewQuote}"
+                                </Text>
+                                <Text style={styles.quoteAuthor}>
+                                    - {restaurant.reviewAuthor}
+                                </Text>
+                            </LinearGradient>
+                        </TouchableOpacity>
+                    </Animated.View>
                 </View>
 
                 {/* Ambiance Reel Modal */}
@@ -222,7 +278,7 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
                 {/* Food Reviews Section */}
                 <View style={styles.reviewsSection}>
                     <Text style={styles.sectionTitle}>
-                        Here's what people are saying online
+                        What people are loving!
                     </Text>
 
                     {/* Social Handles */}
@@ -409,51 +465,55 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
                     })}
 
                     {/* View All Items and Menu Button */}
-                    <TouchableOpacity
-                        style={styles.viewAllButton}
-                        onPress={() => setMenuModalVisible(true)}
-                        activeOpacity={0.8}
-                    >
-                        <Text style={styles.viewAllButtonText}>
-                            View All Items and Menu
-                        </Text>
-                        <Ionicons
-                            name="chevron-forward"
-                            size={20}
-                            color={AppColors.textDark}
+                    <View style={styles.viewAllButtonContainer}>
+                        <DelightfulButton
+                            title="View Full Menu & More ›"
+                            onPress={() => setMenuModalVisible(true)}
+                            variant="primary"
+                            size="large"
                         />
-                    </TouchableOpacity>
+                    </View>
                 </View>
 
                 {/* Reservation Section */}
                 <View style={styles.reservationSection}>
                     <Text style={styles.reservationTitle}>
-                        Make your reservation now
+                        Ready to go? Book your table!
                     </Text>
                     <View style={styles.reservationButtons}>
-                        <TouchableOpacity
-                            style={styles.reservationButton}
-                            activeOpacity={0.8}
-                        >
+                        <View style={styles.reservationButtonWrapper}>
                             <Ionicons
                                 name="restaurant"
                                 size={32}
                                 color="#DA3743"
+                                style={styles.reservationIcon}
                             />
-                            <Text style={styles.reservationButtonText}>
-                                OpenTable
-                            </Text>
-                        </TouchableOpacity>
+                            <DelightfulButton
+                                title="OpenTable"
+                                onPress={() => {
+                                    // TODO: Open OpenTable reservation
+                                }}
+                                variant="primary"
+                                size="medium"
+                            />
+                        </View>
 
-                        <TouchableOpacity
-                            style={styles.reservationButton}
-                            activeOpacity={0.8}
-                        >
-                            <Ionicons size={32} color="#D32323" />
-                            <Text style={styles.reservationButtonText}>
-                                Yelp
-                            </Text>
-                        </TouchableOpacity>
+                        <View style={styles.reservationButtonWrapper}>
+                            <Ionicons
+                                name="star"
+                                size={32}
+                                color="#D32323"
+                                style={styles.reservationIcon}
+                            />
+                            <DelightfulButton
+                                title="Yelp"
+                                onPress={() => {
+                                    // TODO: Open Yelp reservation
+                                }}
+                                variant="primary"
+                                size="medium"
+                            />
+                        </View>
                     </View>
                 </View>
 
@@ -491,23 +551,16 @@ const styles = StyleSheet.create({
         width: width - 16,
         height: CARD_HEIGHT,
         backgroundColor: AppColors.white,
-        borderRadius: 12,
+        borderRadius: BorderRadius.lg,
         overflow: 'hidden',
         marginHorizontal: 8,
         paddingTop: Spacing.sm,
         paddingHorizontal: Spacing.sm,
         borderWidth: 1,
         borderColor: 'rgba(0, 0, 0, 0.05)',
-        shadowColor: '#000',
-        shadowOffset: {
-            width: 0,
-            height: 1,
-        },
-        shadowOpacity: 0.05,
-        shadowRadius: 8,
-        elevation: 4,
+        ...Shadows.soft,
         zIndex: 9999,
-        marginTop: 8
+        marginTop: 8,
     },
     stickyHeader: {
         backgroundColor: AppColors.white,
@@ -530,7 +583,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         gap: 8,
-        marginBottom: 4
+        marginBottom: 4,
     },
     nameContainer: {
         flexDirection: 'row',
@@ -571,7 +624,7 @@ const styles = StyleSheet.create({
         width: '100%',
         height: height * 0.4,
         backgroundColor: '#f0f0f0',
-        borderRadius: 5,
+        borderRadius: BorderRadius.md,
     },
     infoTable: {
         marginTop: Spacing.md,
@@ -615,14 +668,15 @@ const styles = StyleSheet.create({
     },
     ambienceSection: {
         marginHorizontal: Spacing.sm,
-        borderRadius: 5,
+        borderRadius: BorderRadius.md,
         overflow: 'hidden',
         height: 400,
+        ...Shadows.subtle,
     },
     ambienceImage: {
         width: '100%',
         height: '100%',
-        borderRadius: 5,
+        borderRadius: BorderRadius.md,
     },
     gradient: {
         position: 'absolute',
@@ -663,9 +717,10 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingHorizontal: Spacing.sm,
         paddingVertical: 6,
-        borderRadius: BorderRadius.sm,
+        borderRadius: BorderRadius.md,
         backgroundColor: AppColors.primary,
         gap: 6,
+        ...Shadows.subtle,
     },
     tiktokButton: {
         backgroundColor: 'rgba(0, 0, 0, 0.05)',
@@ -690,7 +745,7 @@ const styles = StyleSheet.create({
     foodImage: {
         width: 160,
         height: 160,
-        borderRadius: 5,
+        borderRadius: BorderRadius.md,
         backgroundColor: '#f0f0f0',
     },
     foodReview: {
@@ -734,24 +789,8 @@ const styles = StyleSheet.create({
         color: AppColors.textLight,
         lineHeight: 16,
     },
-    viewAllButton: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center',
-        paddingVertical: Spacing.md,
-        paddingHorizontal: Spacing.lg,
+    viewAllButtonContainer: {
         marginTop: Spacing.lg,
-        borderWidth: 2,
-        borderColor: AppColors.primary,
-        borderRadius: BorderRadius.md,
-        backgroundColor: AppColors.white,
-        gap: Spacing.xs,
-    },
-    viewAllButtonText: {
-        ...Typography.bodyMedium,
-        fontSize: 16,
-        fontWeight: '700',
-        color: AppColors.textDark,
     },
 
     // Reservation Section
@@ -773,28 +812,11 @@ const styles = StyleSheet.create({
         gap: Spacing.lg,
         justifyContent: 'center',
     },
-    reservationButton: {
+    reservationButtonWrapper: {
         alignItems: 'center',
-        justifyContent: 'center',
-        paddingVertical: Spacing.lg,
-        paddingHorizontal: Spacing.xl,
-        borderRadius: BorderRadius.md,
-        backgroundColor: AppColors.primary,
-        minWidth: 140,
         gap: Spacing.sm,
-        shadowColor: '#000',
-        shadowOffset: {
-            width: 0,
-            height: 2,
-        },
-        shadowOpacity: 0.1,
-        shadowRadius: 4,
-        elevation: 3,
     },
-    reservationButtonText: {
-        ...Typography.bodyMedium,
-        fontSize: 14,
-        fontWeight: '600',
-        color: AppColors.textDark,
+    reservationIcon: {
+        marginBottom: Spacing.xs,
     },
 });

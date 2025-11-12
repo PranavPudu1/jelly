@@ -17,7 +17,7 @@ import SwipeScreen from './src/screens/SwipeScreen';
 import SavedRestaurantsScreen from './src/screens/SavedRestaurantsScreen';
 import UserProfileScreen from './src/screens/UserProfileScreen';
 
-import { AppColors } from './src/theme';
+import { AppColors, Shadows } from './src/theme';
 
 export type RootStackParamList = {
     Splash: undefined;
@@ -66,10 +66,10 @@ function MainTabs() {
                 tabBarStyle: {
                     backgroundColor: AppColors.primary,
                     borderTopWidth: 0,
-                    elevation: 0,
                     height: 80,
                     paddingBottom: 18,
                     paddingTop: 8,
+                    ...Shadows.soft,
                 },
                 tabBarLabelStyle: {
                     fontSize: 11,
@@ -139,7 +139,7 @@ export default function App() {
                     <Stack.Navigator
                         screenOptions={{
                             headerShown: false,
-                            animation: 'fade',
+                            animation: 'fade_from_bottom',
                         }}
                     >
                         <Stack.Screen

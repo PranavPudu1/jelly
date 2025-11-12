@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { View, Image, StyleSheet, Animated, Dimensions } from 'react-native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../App';
-import { AppColors } from '../theme';
+import { AppColors, SpringConfig, AnimationDuration, AnimationEasing, AnimationOpacity } from '../theme';
 
 type SplashScreenProps = {
     navigation: NativeStackNavigationProp<RootStackParamList, 'Splash'>;
@@ -17,25 +17,25 @@ const SplashScreen: React.FC<SplashScreenProps> = ({ navigation }) => {
     useEffect(() => {
         // Delay before starting animation
         const startDelay = setTimeout(() => {
-            // Start animations
+            // Start animations with dreamy easing and spring physics
             Animated.parallel([
-                Animated.timing(slideAnim, {
+                Animated.spring(slideAnim, {
                     toValue: 0,
-                    duration: 750,
-                    useNativeDriver: true,
+                    ...SpringConfig.soft,
                 }),
                 Animated.timing(fadeAnim, {
-                    toValue: 1,
-                    duration: 750,
+                    toValue: AnimationOpacity.visible,
+                    duration: AnimationDuration.dreamy,
+                    easing: AnimationEasing.easeOutQuart,
                     useNativeDriver: true,
                 }),
             ]).start(() => {
                 // Navigate to Questionnaire after animation completes
                 setTimeout(() => {
                     navigation.replace('Questionnaire');
-                }, 500);
+                }, AnimationDuration.normal);
             });
-        }, 500);
+        }, AnimationDuration.normal);
 
         return () => clearTimeout(startDelay);
     }, [navigation, slideAnim, fadeAnim]);

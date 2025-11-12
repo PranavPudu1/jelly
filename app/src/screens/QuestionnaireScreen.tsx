@@ -14,11 +14,24 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { RootStackParamList } from '../../App';
 
-import { AppColors, Typography, Spacing, BorderRadius } from '../theme';
+import {
+    AppColors,
+    Typography,
+    Spacing,
+    BorderRadius,
+    AnimationPresets,
+    AnimationDuration,
+    SpringConfig,
+    Shadows,
+    Gradients,
+    Microcopy,
+    getRandomMicrocopy,
+} from '../theme';
 import { QuestionnaireAnswers } from '../types';
 import { QUESTIONS } from '../data/questions';
 import { UserContext } from '../contexts/userContext';
 import WelcomeCarousel from '../components/WelcomeCarousel';
+import { LinearGradient } from 'expo-linear-gradient';
 
 type QuestionnaireScreenProps = {
     navigation: NativeStackNavigationProp<RootStackParamList, 'Questionnaire'>;
@@ -37,6 +50,10 @@ export default function QuestionnaireScreen({
     const [slideAnim] = useState(new Animated.Value(0));
     const [buttonOpacity] = useState(new Animated.Value(0));
     const [buttonTranslateY] = useState(new Animated.Value(20));
+    const [buttonScale] = useState(new Animated.Value(1));
+    const [optionScales] = useState(
+        QUESTIONS[0]?.options.map(() => new Animated.Value(1)) || []
+    );
 
     const swipePosition = useRef(new Animated.Value(0)).current;
 
@@ -87,26 +104,30 @@ export default function QuestionnaireScreen({
     // Animate the "Start Discovering" button when it appears
     useEffect(() => {
         if (isLastQuestion && currentAnswer) {
-            // Reset and animate in
+            // Reset and animate in with dreamy animation
             buttonOpacity.setValue(0);
             buttonTranslateY.setValue(20);
+            buttonScale.setValue(0.95);
             Animated.parallel([
-                Animated.timing(buttonOpacity, {
-                    toValue: 1,
-                    duration: 500,
-                    useNativeDriver: true,
-                }),
+                AnimationPresets.dreamyFadeIn(buttonOpacity),
                 Animated.spring(buttonTranslateY, {
                     toValue: 0,
-                    tension: 50,
-                    friction: 7,
-                    useNativeDriver: true,
+                    ...SpringConfig.gentle,
+                }),
+                Animated.spring(buttonScale, {
+                    toValue: 1,
+                    ...SpringConfig.playful,
                 }),
             ]).start();
         }
-    }, [isLastQuestion, currentAnswer, buttonOpacity, buttonTranslateY]);
+    }, [isLastQuestion, currentAnswer, buttonOpacity, buttonTranslateY, buttonScale]);
 
-    function handleAnswerSelect(questionId: string, option: string) {
+    function handleAnswerSelect(questionId: string, option: string, optionIndex: number) {
+        // Animate the selected option with playful squish
+        if (optionScales[optionIndex]) {
+            AnimationPresets.buttonPress(optionScales[optionIndex]).start();
+        }
+
         setAnswers((prev) => ({
             ...prev,
             [questionId]: option,
@@ -117,7 +138,7 @@ export default function QuestionnaireScreen({
             if (!isLastQuestion) {
                 handleNext();
             }
-        }, 100);
+        }, 300);
     }
 
     function animateTransition(callback: () => void) {
@@ -167,8 +188,11 @@ export default function QuestionnaireScreen({
     }
 
     function handleStartDiscovering() {
-        // TODO: Save preferences for restaurant filtering
-        navigation.replace('MainTabs');
+        // Animate button press with playful squish
+        AnimationPresets.buttonPress(buttonScale).start(() => {
+            // TODO: Save preferences for restaurant filtering
+            navigation.replace('MainTabs');
+        });
     }
 
     return (
@@ -176,7 +200,10 @@ export default function QuestionnaireScreen({
             {/* Progress Bar */}
             {!isWelcomeScreen && (
                 <View style={styles.progressBarContainer}>
-                    <Animated.View
+                    <LinearGradient
+                        colors={Gradients.button.colors}
+                        start={Gradients.button.start}
+                        end={Gradients.button.end}
                         style={[
                             styles.progressBarFill,
                             { width: `${progress * 100}%` },
@@ -208,7 +235,12 @@ export default function QuestionnaireScreen({
                     <View style={styles.questionContainer}>
                         <Text style={styles.questionNumber}>
                             Question {currentQuestionIndex + 1} of{' '}
-                            {QUESTIONS.length}
+                            {QUESTIONS.length} {currentQuestionIndex > 0 && '✨'}
+                        </Text>
+                        <Text style={styles.encouragementText}>
+                            {currentQuestionIndex === 0
+                                ? getRandomMicrocopy([...Microcopy.onboarding.steps])
+                                : getRandomMicrocopy([...Microcopy.encouragement.general])}
                         </Text>
                         <Text style={styles.questionText}>
                             {currentQuestion.question}
@@ -240,52 +272,59 @@ export default function QuestionnaireScreen({
                     </View>
 
                     <View style={styles.optionsContainer}>
-                        {currentQuestion.options.map((option) => {
+                        {currentQuestion.options.map((option, index) => {
                             const isSelected = currentAnswer === option;
                             return (
-                                <TouchableOpacity
+                                <Animated.View
                                     key={option}
-                                    style={[
-                                        styles.optionButton,
-                                        isSelected &&
-                                            styles.optionButtonSelected,
-                                    ]}
-                                    onPress={() =>
-                                        handleAnswerSelect(
-                                            currentQuestion.id,
-                                            option,
-                                        )
-                                    }
-                                    activeOpacity={0.7}
+                                    style={{
+                                        transform: [{ scale: optionScales[index] || 1 }],
+                                    }}
                                 >
-                                    <View style={styles.optionContent}>
-                                        <View
-                                            style={[
-                                                styles.optionRadio,
-                                                isSelected &&
-                                                    styles.optionRadioSelected,
-                                            ]}
-                                        >
-                                            {isSelected && (
-                                                <View
-                                                    style={
-                                                        styles.optionRadioInner
-                                                    }
-                                                />
-                                            )}
-                                        </View>
+                                    <TouchableOpacity
+                                        style={[
+                                            styles.optionButton,
+                                            isSelected &&
+                                                styles.optionButtonSelected,
+                                        ]}
+                                        onPress={() =>
+                                            handleAnswerSelect(
+                                                currentQuestion.id,
+                                                option,
+                                                index,
+                                            )
+                                        }
+                                        activeOpacity={0.7}
+                                    >
+                                        <View style={styles.optionContent}>
+                                            <View
+                                                style={[
+                                                    styles.optionRadio,
+                                                    isSelected &&
+                                                        styles.optionRadioSelected,
+                                                ]}
+                                            >
+                                                {isSelected && (
+                                                    <View
+                                                        style={
+                                                            styles.optionRadioInner
+                                                        }
+                                                    />
+                                                )}
+                                            </View>
 
-                                        <Text
-                                            style={[
-                                                styles.optionText,
-                                                isSelected &&
-                                                    styles.optionTextSelected,
-                                            ]}
-                                        >
-                                            {option}
-                                        </Text>
-                                    </View>
-                                </TouchableOpacity>
+                                            <Text
+                                                style={[
+                                                    styles.optionText,
+                                                    isSelected &&
+                                                        styles.optionTextSelected,
+                                                ]}
+                                            >
+                                                {option}
+                                            </Text>
+                                        </View>
+                                    </TouchableOpacity>
+                                </Animated.View>
                             );
                         })}
                     </View>
@@ -295,17 +334,26 @@ export default function QuestionnaireScreen({
                         <Animated.View
                             style={{
                                 opacity: buttonOpacity,
-                                transform: [{ translateY: buttonTranslateY }],
+                                transform: [
+                                    { translateY: buttonTranslateY },
+                                    { scale: buttonScale },
+                                ],
                             }}
                         >
                             <TouchableOpacity
-                                style={styles.startButton}
                                 onPress={handleStartDiscovering}
                                 activeOpacity={0.8}
                             >
-                                <Text style={styles.startButtonText}>
-                                    Start Discovering
-                                </Text>
+                                <LinearGradient
+                                    colors={Gradients.button.colors}
+                                    start={Gradients.button.start}
+                                    end={Gradients.button.end}
+                                    style={styles.startButton}
+                                >
+                                    <Text style={styles.startButtonText}>
+                                        {getRandomMicrocopy([...Microcopy.success.completed])} 🎉
+                                    </Text>
+                                </LinearGradient>
                             </TouchableOpacity>
                         </Animated.View>
                     )}
@@ -318,22 +366,22 @@ export default function QuestionnaireScreen({
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: AppColors.white, // TODO
+        backgroundColor: '#FFF9F8',
     },
     progressBarContainer: {
-        height: 4,
+        height: 6,
         backgroundColor: AppColors.background,
         width: '100%',
+        overflow: 'hidden',
     },
     progressBarFill: {
         height: '100%',
-        backgroundColor: AppColors.primary,
-        borderRadius: 2,
+        borderRadius: 3,
     },
     content: {
         flex: 1,
         paddingHorizontal: Spacing.xl,
-        paddingTop: 80,
+        paddingTop: 60,
         justifyContent: 'space-between',
         paddingBottom: Spacing.xxl,
     },
@@ -342,18 +390,26 @@ const styles = StyleSheet.create({
     },
     questionNumber: {
         ...Typography.bodySmall,
-        color: AppColors.secondary,
+        color: AppColors.accent,
         fontWeight: '600',
-        marginBottom: Spacing.sm,
+        marginBottom: Spacing.xs,
         textTransform: 'uppercase',
-        letterSpacing: 0.5,
+        letterSpacing: 1,
+    },
+    encouragementText: {
+        ...Typography.bodyMedium,
+        color: AppColors.primary,
+        fontWeight: '600',
+        marginBottom: Spacing.md,
+        fontSize: 16,
     },
     questionText: {
         ...Typography.displaySmall,
         color: AppColors.textDark,
-        fontSize: 28,
-        lineHeight: 36,
+        fontSize: 32,
+        lineHeight: 40,
         fontWeight: '700',
+        marginBottom: Spacing.sm,
     },
     squigglyLineContainer: {
         marginTop: Spacing.md,
@@ -365,11 +421,12 @@ const styles = StyleSheet.create({
         height: 8,
     },
     squiggleDot: {
-        width: 12,
-        height: 2,
+        width: 14,
+        height: 3,
         backgroundColor: AppColors.primary,
         marginHorizontal: 1,
-        borderRadius: 1,
+        borderRadius: 2,
+        opacity: 0.7,
     },
     optionsContainer: {
         flex: 1,
@@ -380,64 +437,65 @@ const styles = StyleSheet.create({
         backgroundColor: AppColors.white,
         paddingVertical: Spacing.lg,
         paddingHorizontal: Spacing.lg,
-        borderRadius: BorderRadius.md,
-        borderWidth: 2,
-        borderColor: '#E5E5E5',
+        borderRadius: BorderRadius.lg,
+        borderWidth: 2.5,
+        borderColor: '#F0E8EC',
         marginBottom: Spacing.sm,
+        ...Shadows.subtle,
     },
     optionButtonSelected: {
         borderColor: AppColors.primary,
         backgroundColor: '#FFF9F8',
+        ...Shadows.warm,
     },
     optionContent: {
         flexDirection: 'row',
         alignItems: 'center',
     },
     optionRadio: {
-        width: 24,
-        height: 24,
-        borderRadius: 12,
-        borderWidth: 2,
-        borderColor: '#D0D0D0',
+        width: 26,
+        height: 26,
+        borderRadius: 13,
+        borderWidth: 2.5,
+        borderColor: '#D8C4CC',
         marginRight: Spacing.md,
         alignItems: 'center',
         justifyContent: 'center',
+        backgroundColor: AppColors.white,
     },
     optionRadioSelected: {
         borderColor: AppColors.primary,
+        borderWidth: 3,
     },
     optionRadioInner: {
-        width: 12,
-        height: 12,
-        borderRadius: 6,
+        width: 14,
+        height: 14,
+        borderRadius: 7,
         backgroundColor: AppColors.primary,
     },
     optionText: {
         ...Typography.bodyLarge,
         color: AppColors.textDark,
         flex: 1,
+        fontSize: 17,
     },
     optionTextSelected: {
         color: AppColors.textDark,
-        fontWeight: '600',
+        fontWeight: '700',
     },
     startButton: {
-        backgroundColor: AppColors.primary,
-        paddingVertical: Spacing.lg,
+        paddingVertical: Spacing.lg + 2,
         paddingHorizontal: Spacing.xxl,
         borderRadius: BorderRadius.pill,
         alignItems: 'center',
         marginTop: Spacing.xl,
-        shadowColor: AppColors.cardShadow,
-        shadowOffset: { width: 0, height: 4 },
-        shadowOpacity: 0.3,
-        shadowRadius: 8,
-        elevation: 4,
+        ...Shadows.warm,
     },
     startButtonText: {
         ...Typography.button,
         color: AppColors.textDark,
-        fontSize: 18,
-        fontWeight: '700',
+        fontSize: 19,
+        fontWeight: '800',
+        letterSpacing: 0.5,
     },
 });
