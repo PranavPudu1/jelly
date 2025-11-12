@@ -488,14 +488,26 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
 
 const styles = StyleSheet.create({
     card: {
-        width: width,
+        width: width - 16,
         height: CARD_HEIGHT,
         backgroundColor: AppColors.white,
-        borderRadius: 0,
+        borderRadius: 12,
         overflow: 'hidden',
-        marginHorizontal: 0,
+        marginHorizontal: 8,
         paddingTop: Spacing.sm,
         paddingHorizontal: Spacing.sm,
+        borderWidth: 1,
+        borderColor: 'rgba(0, 0, 0, 0.05)',
+        shadowColor: '#000',
+        shadowOffset: {
+            width: 0,
+            height: 1,
+        },
+        shadowOpacity: 0.05,
+        shadowRadius: 8,
+        elevation: 4,
+        zIndex: 9999,
+        marginTop: 8
     },
     stickyHeader: {
         backgroundColor: AppColors.white,

@@ -236,36 +236,43 @@ export default function SwipeScreen() {
                         isActive={filters.price.includes('$')}
                         onPress={() => togglePriceFilter('$')}
                     />
+
                     <FilterChip
                         label="$$"
                         isActive={filters.price.includes('$$')}
                         onPress={() => togglePriceFilter('$$')}
                     />
+
                     <FilterChip
                         label="$$$"
                         isActive={filters.price.includes('$$$')}
                         onPress={() => togglePriceFilter('$$$')}
                     />
+
                     <FilterChip
                         label="< 1 mi"
                         isActive={filters.distance === '< 1 mi'}
                         onPress={() => toggleDistanceFilter('< 1 mi')}
                     />
+
                     <FilterChip
                         label="< 3 mi"
                         isActive={filters.distance === '< 3 mi'}
                         onPress={() => toggleDistanceFilter('< 3 mi')}
                     />
+
                     <FilterChip
                         label="< 5 mi"
                         isActive={filters.distance === '< 5 mi'}
                         onPress={() => toggleDistanceFilter('< 5 mi')}
                     />
+
                     <FilterChip
                         label="4.0+ ⭐"
                         isActive={filters.rating === '4.0+'}
                         onPress={() => toggleRatingFilter('4.0+')}
                     />
+                    
                     <FilterChip
                         label="4.5+ ⭐"
                         isActive={filters.rating === '4.5+'}
@@ -317,7 +324,7 @@ const styles = StyleSheet.create({
     },
     filterScrollContent: {
         paddingHorizontal: Spacing.md,
-        gap: Spacing.sm,
+        gap: Spacing.sm
     },
     filterChip: {
         paddingHorizontal: 16,
