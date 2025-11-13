@@ -5,73 +5,25 @@
 
 import { Router } from 'express';
 import { RestaurantController } from '../controllers/restaurant';
-import {
-    getRestaurantsValidator,
-    createRestaurantValidator,
-    updateRestaurantValidator,
-    saveSwipeValidator,
-    restaurantIdValidator,
-    userIdValidator,
-} from '../middleware/validators';
 
 const router = Router();
-const restaurantController = new RestaurantController();
 
-/**
- * @route   GET /api/restaurants
- * @desc    Get paginated list of restaurants (excludes user's swiped restaurants)
- * @query   userId, page, limit, cuisine, priceRange, location
- * @access  Public
- */
-router.get('/', getRestaurantsValidator, restaurantController.getRestaurants);
+// GET /api/restaurants - Get all restaurants with pagination and filters
+router.get('/', RestaurantController.getAll);
 
-/**
- * @route   GET /api/restaurants/:id
- * @desc    Get a single restaurant by ID
- * @param   id - Restaurant ID
- * @access  Public
- */
-router.get('/:id', restaurantIdValidator, restaurantController.getRestaurantById);
+// GET /api/restaurants/nearby - Get restaurants near a location
+router.get('/nearby', RestaurantController.getNearby);
 
-/**
- * @route   POST /api/restaurants
- * @desc    Create a new restaurant
- * @body    Restaurant data
- * @access  Admin (add auth middleware later)
- */
-router.post('/', createRestaurantValidator, restaurantController.createRestaurant);
+// GET /api/restaurants/:id - Get a single restaurant by ID
+router.get('/:id', RestaurantController.getById);
 
-/**
- * @route   PUT /api/restaurants/:id
- * @desc    Update a restaurant
- * @param   id - Restaurant ID
- * @body    Partial restaurant data
- * @access  Admin (add auth middleware later)
- */
-router.put('/:id', updateRestaurantValidator, restaurantController.updateRestaurant);
+// POST /api/restaurants - Create a new restaurant
+router.post('/', RestaurantController.create);
 
-/**
- * @route   DELETE /api/restaurants/:id
- * @desc    Delete a restaurant
- * @param   id - Restaurant ID
- * @access  Admin (add auth middleware later)
- */
-router.delete('/:id', restaurantIdValidator, restaurantController.deleteRestaurant);
+// PUT /api/restaurants/:id - Update a restaurant
+router.put('/:id', RestaurantController.update);
 
-/**
- * @route   POST /api/restaurants/swipe
- * @desc    Save user swipe action (like or dislike)
- * @body    { userId, restaurantId, action }
- * @access  Public
- */
-router.post('/swipe', saveSwipeValidator, restaurantController.saveSwipe);
-
-/**
- * @route   GET /api/restaurants/saved/:userId
- * @desc    Get user's saved (liked) restaurants
- * @param   userId - User ID
- * @access  Public
- */
-router.get('/saved/:userId', userIdValidator, restaurantController.getUserSavedRestaurants);
+// DELETE /api/restaurants/:id - Delete a restaurant
+router.delete('/:id', RestaurantController.delete);
 
 export default router;

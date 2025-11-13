@@ -1,66 +1,119 @@
 /**
  * Restaurant Controller
- * Handles HTTP requests and responses for restaurant endpoints
+ * Handles HTTP requests for restaurant operations
  */
 
-import { Request, Response, NextFunction } from 'express';
-import { RestaurantService } from '../services/restaurant';
-import type { GetRestaurantsQuery, SaveSwipeRequest } from '../types';
-import { validationResult } from 'express-validator';
+import { Request, Response } from 'express';
+import { prisma } from '../config/database';
 
 export class RestaurantController {
-    private restaurantService: RestaurantService;
-
-    constructor() {
-        this.restaurantService = new RestaurantService();
-    }
-
     /**
-   * GET /api/restaurants
-   * Get paginated list of restaurants, excluding ones user has swiped on
-   */
-    async getRestaurants(req: Request, res: Response, next: NextFunction): Promise<void> {
+     * Get all restaurants with pagination and filtering
+     */
+    static async getAll(req: Request, res: Response): Promise<void> {
         try {
-            const errors = validationResult(req);
-            if (!errors.isEmpty()) {
-                res.status(400).json({ errors: errors.array() });
-                return;
+            const page = parseInt(req.query.page as string) || 1;
+            const limit = parseInt(req.query.limit as string) || 10;
+            const skip = (page - 1) * limit;
+
+            const where: any = {};
+
+            // Filter by rating
+            if (req.query.minRating) {
+                where.rating = { gte: parseFloat(req.query.minRating as string) };
             }
 
-            const query: GetRestaurantsQuery = {
-                userId: req.query.userId as string,
-                page: req.query.page ? parseInt(req.query.page as string, 10) : undefined,
-                limit: req.query.limit ? parseInt(req.query.limit as string, 10) : undefined,
-                location: req.query.location as string,
-            };
+            // Filter by price
+            if (req.query.price) {
+                where.price = req.query.price;
+            }
 
-            const result = await this.restaurantService.getRestaurants(query);
+            // Search by name
+            if (req.query.search) {
+                where.name = { contains: req.query.search as string, mode: 'insensitive' };
+            }
+
+            const [restaurants, total] = await Promise.all([
+                prisma.restaurant.findMany({
+                    where,
+                    skip,
+                    take: limit,
+                    include: {
+                        tags: {
+                            include: {
+                                tagType: true,
+                            },
+                        },
+                        images: true,
+                        reviews: true,
+                        menu: true,
+                        socialMedia: true,
+                    },
+                    orderBy: { dateAdded: 'desc' },
+                }),
+                prisma.restaurant.count({ where }),
+            ]);
 
             res.status(200).json({
                 success: true,
-                data: result.data,
+                data: restaurants,
                 pagination: {
-                    page: result.page,
-                    limit: result.limit,
-                    total: result.total,
-                    hasMore: result.hasMore,
+                    page,
+                    limit,
+                    total,
+                    totalPages: Math.ceil(total / limit),
+                    hasMore: page * limit < total,
                 },
             });
-        }
-        catch (error) {
-            next(error);
+        } catch (error) {
+            console.error('Error fetching restaurants:', error);
+            res.status(500).json({
+                success: false,
+                message: 'Failed to fetch restaurants',
+                error: error instanceof Error ? error.message : 'Unknown error',
+            });
         }
     }
 
     /**
-   * GET /api/restaurants/:id
-   * Get a single restaurant by ID
-   */
-    async getRestaurantById(req: Request, res: Response, next: NextFunction): Promise<void> {
+     * Get a single restaurant by ID
+     */
+    static async getById(req: Request, res: Response): Promise<void> {
         try {
             const { id } = req.params;
 
-            const restaurant = await this.restaurantService.getRestaurantById(id);
+            const restaurant = await prisma.restaurant.findUnique({
+                where: { id },
+                include: {
+                    tags: {
+                        include: {
+                            tagType: true,
+                        },
+                    },
+                    images: {
+                        include: {
+                            tags: true,
+                        },
+                    },
+                    reviews: {
+                        include: {
+                            tags: true,
+                            images: true,
+                        },
+                    },
+                    menu: {
+                        include: {
+                            tags: true,
+                            images: true,
+                        },
+                    },
+                    socialMedia: {
+                        include: {
+                            tags: true,
+                        },
+                    },
+                },
+            });
 
             if (!restaurant) {
                 res.status(404).json({
@@ -74,81 +127,141 @@ export class RestaurantController {
                 success: true,
                 data: restaurant,
             });
-        }
-        catch (error) {
-            next(error);
+        } catch (error) {
+            console.error('Error fetching restaurant:', error);
+            res.status(500).json({
+                success: false,
+                message: 'Failed to fetch restaurant',
+                error: error instanceof Error ? error.message : 'Unknown error',
+            });
         }
     }
 
     /**
-   * POST /api/restaurants
-   * Create a new restaurant (admin endpoint)
-   */
-    async createRestaurant(req: Request, res: Response, next: NextFunction): Promise<void> {
+     * Create a new restaurant
+     */
+    static async create(req: Request, res: Response): Promise<void> {
         try {
-            const errors = validationResult(req);
-            if (!errors.isEmpty()) {
-                res.status(400).json({ errors: errors.array() });
+            const {
+                name,
+                rating,
+                lat,
+                long,
+                address,
+                mapLink,
+                price,
+                phoneNumber,
+                sourceId,
+                source,
+            } = req.body;
+
+            // Validate required fields
+            if (!name || rating === undefined || !lat || !long || !address || !price || !phoneNumber) {
+                res.status(400).json({
+                    success: false,
+                    message: 'Missing required fields',
+                });
                 return;
             }
 
-            const restaurant = await this.restaurantService.createRestaurant(req.body);
+            const restaurant = await prisma.restaurant.create({
+                data: {
+                    name,
+                    rating,
+                    lat,
+                    long,
+                    address,
+                    mapLink,
+                    price,
+                    phoneNumber,
+                    sourceId,
+                    source,
+                },
+                include: {
+                    tags: true,
+                    images: true,
+                    reviews: true,
+                    menu: true,
+                    socialMedia: true,
+                },
+            });
 
             res.status(201).json({
                 success: true,
                 data: restaurant,
                 message: 'Restaurant created successfully',
             });
-        }
-        catch (error) {
-            next(error);
+        } catch (error) {
+            console.error('Error creating restaurant:', error);
+            res.status(500).json({
+                success: false,
+                message: 'Failed to create restaurant',
+                error: error instanceof Error ? error.message : 'Unknown error',
+            });
         }
     }
 
     /**
-   * PUT /api/restaurants/:id
-   * Update a restaurant (admin endpoint)
-   */
-    async updateRestaurant(req: Request, res: Response, next: NextFunction): Promise<void> {
+     * Update a restaurant
+     */
+    static async update(req: Request, res: Response): Promise<void> {
         try {
-            const errors = validationResult(req);
-            if (!errors.isEmpty()) {
-                res.status(400).json({ errors: errors.array() });
-                return;
-            }
-
             const { id } = req.params;
-            const restaurant = await this.restaurantService.updateRestaurant(id, req.body);
+            const updateData = req.body;
 
-            if (!restaurant) {
+            // Check if restaurant exists
+            const existingRestaurant = await prisma.restaurant.findUnique({
+                where: { id },
+            });
+
+            if (!existingRestaurant) {
                 res.status(404).json({
                     success: false,
                     message: 'Restaurant not found',
                 });
                 return;
             }
+
+            const restaurant = await prisma.restaurant.update({
+                where: { id },
+                data: updateData,
+                include: {
+                    tags: true,
+                    images: true,
+                    reviews: true,
+                    menu: true,
+                    socialMedia: true,
+                },
+            });
 
             res.status(200).json({
                 success: true,
                 data: restaurant,
                 message: 'Restaurant updated successfully',
             });
-        }
-        catch (error) {
-            next(error);
+        } catch (error) {
+            console.error('Error updating restaurant:', error);
+            res.status(500).json({
+                success: false,
+                message: 'Failed to update restaurant',
+                error: error instanceof Error ? error.message : 'Unknown error',
+            });
         }
     }
 
     /**
-   * DELETE /api/restaurants/:id
-   * Delete a restaurant (admin endpoint)
-   */
-    async deleteRestaurant(req: Request, res: Response, next: NextFunction): Promise<void> {
+     * Delete a restaurant
+     */
+    static async delete(req: Request, res: Response): Promise<void> {
         try {
             const { id } = req.params;
-            const deleted = await this.restaurantService.deleteRestaurant(id);
 
-            if (!deleted) {
+            // Check if restaurant exists
+            const existingRestaurant = await prisma.restaurant.findUnique({
+                where: { id },
+            });
+
+            if (!existingRestaurant) {
                 res.status(404).json({
                     success: false,
                     message: 'Restaurant not found',
@@ -156,64 +269,69 @@ export class RestaurantController {
                 return;
             }
 
+            await prisma.restaurant.delete({
+                where: { id },
+            });
+
             res.status(200).json({
                 success: true,
                 message: 'Restaurant deleted successfully',
             });
-        }
-        catch (error) {
-            next(error);
+        } catch (error) {
+            console.error('Error deleting restaurant:', error);
+            res.status(500).json({
+                success: false,
+                message: 'Failed to delete restaurant',
+                error: error instanceof Error ? error.message : 'Unknown error',
+            });
         }
     }
 
     /**
-   * POST /api/restaurants/swipe
-   * Save user swipe action (like or dislike)
-   */
-    async saveSwipe(req: Request, res: Response, next: NextFunction): Promise<void> {
+     * Get restaurants near a location
+     */
+    static async getNearby(req: Request, res: Response): Promise<void> {
         try {
-            const errors = validationResult(req);
-            if (!errors.isEmpty()) {
-                res.status(400).json({ errors: errors.array() });
+            const { lat, long, radius = 5000 } = req.query;
+
+            if (!lat || !long) {
+                res.status(400).json({
+                    success: false,
+                    message: 'Latitude and longitude are required',
+                });
                 return;
             }
 
-            const swipeData: SaveSwipeRequest = req.body;
-            const swipe = await this.restaurantService.saveSwipe(swipeData);
+            const latitude = parseFloat(lat as string);
+            const longitude = parseFloat(long as string);
+            const radiusMeters = parseFloat(radius as string);
 
-            res.status(201).json({
-                success: true,
-                data: swipe,
-                message: 'Swipe saved successfully',
-            });
-        }
-        catch (error) {
-            next(error);
-        }
-    }
-
-    /**
-   * GET /api/restaurants/saved/:userId
-   * Get user's saved (liked) restaurants
-   */
-    async getUserSavedRestaurants(
-        req: Request,
-        res: Response,
-        next: NextFunction
-    ): Promise<void> {
-        try {
-            const { userId } = req.params;
-
-            const restaurants = await this.restaurantService.getUserSavedRestaurants(userId);
+            // Simple distance calculation (for precise geo queries, consider using PostGIS)
+            const restaurants = await prisma.$queryRaw`
+                SELECT *,
+                (6371000 * acos(
+                    cos(radians(${latitude})) *
+                    cos(radians(lat)) *
+                    cos(radians(long) - radians(${longitude})) +
+                    sin(radians(${latitude})) *
+                    sin(radians(lat))
+                )) AS distance
+                FROM restaurants
+                HAVING distance < ${radiusMeters}
+                ORDER BY distance
+            `;
 
             res.status(200).json({
                 success: true,
                 data: restaurants,
-                count: restaurants.length,
             });
-        }
-        catch (error) {
-            next(error);
+        } catch (error) {
+            console.error('Error fetching nearby restaurants:', error);
+            res.status(500).json({
+                success: false,
+                message: 'Failed to fetch nearby restaurants',
+                error: error instanceof Error ? error.message : 'Unknown error',
+            });
         }
     }
 }

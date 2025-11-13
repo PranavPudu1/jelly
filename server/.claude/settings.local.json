@@ -6,7 +6,8 @@
       "Bash(cat src/types/index.ts)",
       "Read(//c/Users/hjkar/OneDrive/Desktop/Master/Coding/jelly/**)",
       "Bash(npx tsc --noEmit)",
-      "Bash(npx tsc --traceResolution --noEmit)"
+      "Bash(npx tsc --traceResolution --noEmit)",
+      "Bash(npx prisma generate)"
     ],
     "deny": [],
     "ask": []

@@ -1,11 +1,11 @@
 /**
  * Server Entry Point
- * Initializes Supabase and starts Express server
+ * Starts Express server
  */
 
 import { createApp } from './app';
-import { initializeSupabase } from './config/supabase';
 import { config, validateEnv } from './config/env';
+import { connectDatabase, disconnectDatabase } from './config/database';
 
 /**
  * Start the server
@@ -15,8 +15,8 @@ async function startServer(): Promise<void> {
         // Validate environment variables
         validateEnv();
 
-        // Initialize Supabase
-        initializeSupabase();
+        // Connect to database
+        await connectDatabase();
 
         // Create Express app
         const app = createApp();
@@ -25,7 +25,7 @@ async function startServer(): Promise<void> {
         const PORT = config.PORT;
         app.listen(PORT, () => {
             console.log('='.repeat(50));
-            console.log(`🚀 Jelly API Server (Supabase)`);
+            console.log(`🚀 Jelly API Server`);
             console.log(`📍 Environment: ${config.NODE_ENV}`);
             console.log(`🌐 Server running on: http://localhost:${PORT}`);
             console.log(`📊 API endpoints: http://localhost:${PORT}/api`);
@@ -39,15 +39,30 @@ async function startServer(): Promise<void> {
     }
 }
 
+// Handle graceful shutdown
+process.on('SIGTERM', async () => {
+    console.log('SIGTERM signal received: closing HTTP server');
+    await disconnectDatabase();
+    process.exit(0);
+});
+
+process.on('SIGINT', async () => {
+    console.log('SIGINT signal received: closing HTTP server');
+    await disconnectDatabase();
+    process.exit(0);
+});
+
 // Handle unhandled promise rejections
-process.on('unhandledRejection', (reason, promise) => {
+process.on('unhandledRejection', async (reason, promise) => {
     console.error('Unhandled Rejection at:', promise, 'reason:', reason);
+    await disconnectDatabase();
     process.exit(1);
 });
 
 // Handle uncaught exceptions
-process.on('uncaughtException', (error) => {
+process.on('uncaughtException', async (error) => {
     console.error('Uncaught Exception:', error);
+    await disconnectDatabase();
     process.exit(1);
 });
 

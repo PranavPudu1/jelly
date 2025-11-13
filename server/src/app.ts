@@ -25,7 +25,7 @@ function logRequest(req: Request, _res: Response, next: NextFunction): void {
 function handleRoot(_req: Request, res: Response): void {
     res.status(200).json({
         success: true,
-        message: 'Welcome to Jelly API - Supabase Edition',
+        message: 'Welcome to Jelly API',
         version: '2.0.0',
         documentation: '/api/health',
     });

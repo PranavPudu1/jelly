@@ -1,0 +1,129 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+model Restaurant {
+    id          String            @id @default(uuid()) @db.Uuid
+    name        String
+    rating      Float
+    lat         Float
+    long        Float
+    address     String
+    mapLink     String?
+    price       String
+    phoneNumber String
+    dateAdded   DateTime          @default(now())
+    sourceId    String?
+    source      String?
+    images      RestaurantImage[]
+    reviews     Review[]
+    menu        MenuItem[]
+    socialMedia SocialPost[]
+    tags        Tag[]
+
+    @@map("restaurants")
+}
+
+model Tag {
+    id        String   @id @default(uuid()) @db.Uuid
+    tagTypeId String   @db.Uuid
+    tagType   TagType  @relation(fields: [tagTypeId], references: [id])
+    value     String
+    source    String?
+    dateAdded DateTime @default(now())
+
+    restaurants      Restaurant[]
+    restaurantImages RestaurantImage[]
+    reviews          Review[]
+    menuItems        MenuItem[]
+    socialPosts      SocialPost[]
+
+    @@map("tags")
+}
+
+model RestaurantImage {
+    id        String   @id @default(uuid()) @db.Uuid
+    url       String
+    sourceId  String?
+    source    String?
+    dateAdded DateTime @default(now())
+
+    restaurantId String?     @db.Uuid
+    restaurant   Restaurant? @relation(fields: [restaurantId], references: [id], onDelete: Cascade)
+
+    reviewId String? @db.Uuid
+    review   Review? @relation(fields: [reviewId], references: [id], onDelete: Cascade)
+
+    menuItemId String?   @db.Uuid
+    menuItem   MenuItem? @relation(fields: [menuItemId], references: [id], onDelete: Cascade)
+
+    tags Tag[]
+
+    @@map("restaurant_images")
+}
+
+model Review {
+    id        String   @id @default(uuid()) @db.Uuid
+    review    String   @db.Text
+    rating    Float
+    sourceId  String?
+    source    String?
+    postedBy  String?
+    dateAdded DateTime @default(now())
+
+    restaurantId String     @db.Uuid
+    restaurant   Restaurant @relation(fields: [restaurantId], references: [id], onDelete: Cascade)
+
+    images RestaurantImage[]
+    tags   Tag[]
+
+    @@map("reviews")
+}
+
+model TagType {
+    id        String   @id @default(uuid()) @db.Uuid
+    value     String   @unique
+    dateAdded DateTime @default(now())
+
+    tags Tag[]
+
+    @@map("tag_types")
+}
+
+model MenuItem {
+    id        String   @id @default(uuid()) @db.Uuid
+    source    String?
+    sourceId  String?
+    dateAdded DateTime @default(now())
+
+    restaurantId String     @db.Uuid
+    restaurant   Restaurant @relation(fields: [restaurantId], references: [id], onDelete: Cascade)
+
+    images RestaurantImage[]
+    tags   Tag[]
+
+    @@map("menu_items")
+}
+
+model SocialPost {
+    id        String   @id @default(uuid()) @db.Uuid
+    source    String
+    url       String
+    dateAdded DateTime @default(now())
+    valid     Boolean  @default(true)
+
+    restaurantId String     @db.Uuid
+    restaurant   Restaurant @relation(fields: [restaurantId], references: [id], onDelete: Cascade)
+
+    tags Tag[]
+
+    @@map("social_posts")
+}

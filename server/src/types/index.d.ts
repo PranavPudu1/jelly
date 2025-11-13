@@ -47,14 +47,3 @@ export type {
     YelpBusiness,
     YelpSearchResponse,
 } from './dto';
-
-// Export Supabase types
-export type {
-    Database,
-    Tables,
-    TablesInsert,
-    TablesUpdate,
-    Enums,
-    Functions,
-    Views,
-} from './supabase';

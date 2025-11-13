@@ -131,9 +131,7 @@ export interface ApiError extends Error {
 export interface EnvConfig {
     NODE_ENV: string;
     PORT: number;
-    SUPABASE_URL: string;
-    SUPABASE_SERVICE_ROLE_KEY: string;
-    SUPABASE_ANON_KEY?: string;
+    DATABASE_URL: string;
     CORS_ORIGIN: string;
     DEFAULT_PAGE_SIZE: number;
     MAX_PAGE_SIZE: number;
