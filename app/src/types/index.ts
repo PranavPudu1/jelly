@@ -1,7 +1,11 @@
 export interface Question {
     id: string;
     question: string;
-    options: string[];
+    type: 'single_choice' | 'ranking' | 'checkboxes_text';
+    options?: string[];
+    hasOtherOption?: boolean;
+    items?: string[];
+    checkboxOptions?: string[];
 }
 
 export interface Review {
@@ -48,5 +52,5 @@ export interface Restaurant {
 }
 
 export interface QuestionnaireAnswers {
-    [key: string]: string | null;
+    [key: string]: string | string[] | { checkboxes: string[]; text: string } | null;
 }

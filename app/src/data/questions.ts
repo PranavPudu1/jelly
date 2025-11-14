@@ -2,35 +2,36 @@ import { Question } from '../types';
 
 export const QUESTIONS: Question[] = [
     {
-        id: 'food_vibe',
-        question: 'Food vibe?',
+        id: 'looking_for',
+        question: 'What are you looking for?',
+        type: 'single_choice',
         options: [
-            'Something fancy',
-            'Sushi & sake night',
-            'Tacos & margs',
-            'Burgers & fries',
-            'I\'ll try anything new',
+            'Restaurant',
+            'Sweet Treat',
+            'Coffee Shop',
+        ],
+        hasOtherOption: true,
+    },
+    {
+        id: 'preferences',
+        question: 'Rank your preferences',
+        type: 'ranking',
+        items: [
+            'Food Variety',
+            'Ambiance',
+            'Proximity',
+            'Nearby Vibe',
+            'Price',
+            'Reviews',
         ],
     },
     {
-        id: 'ambiance',
-        question: 'What\'s tonight\'s vibe?',
-        options: [
-            'Romantic',
-            'Cozy & candlelit',
-            'Lively & social',
-            'Chill & quiet',
-            'Trendy & photogenic',
-        ],
-    },
-    {
-        id: 'budget',
-        question: 'How\'s your wallet feeling today?',
-        options: [
-            'Keeping it low-key',
-            'Mid-range sounds right',
-            'Treat-yourself kinda night',
-            'Sky\'s the limit',
+        id: 'additional_info',
+        question: 'Anything else you want to let us know?',
+        type: 'checkboxes_text',
+        checkboxOptions: [
+            'Vegetarian',
+            'Gluten Free',
         ],
     },
 ];

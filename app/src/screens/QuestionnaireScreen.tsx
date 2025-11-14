@@ -7,6 +7,11 @@ import {
     TouchableOpacity,
     Animated,
     PanResponder,
+    TextInput,
+    ScrollView,
+    KeyboardAvoidingView,
+    Platform,
+    Keyboard,
 } from 'react-native';
 
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
@@ -32,6 +37,10 @@ import { QUESTIONS } from '../data/questions';
 import { UserContext } from '../contexts/userContext';
 import WelcomeCarousel from '../components/WelcomeCarousel';
 import { LinearGradient } from 'expo-linear-gradient';
+import DraggableFlatList, {
+    RenderItemParams,
+    ScaleDecorator,
+} from 'react-native-draggable-flatlist';
 
 type QuestionnaireScreenProps = {
     navigation: NativeStackNavigationProp<RootStackParamList, 'Questionnaire'>;
@@ -42,9 +51,15 @@ export default function QuestionnaireScreen({
 }: QuestionnaireScreenProps) {
     const { user } = useContext(UserContext);
 
-    const [currentQuestionIndex, setCurrentQuestionIndex] = useState(user === null ? -1 : 0); // -1 = welcome screen
+    const [currentQuestionIndex, setCurrentQuestionIndex] = useState(user === null ? -1 : 0);
 
     const [answers, setAnswers] = useState<QuestionnaireAnswers>({});
+
+    // State for different question types
+    const [otherText, setOtherText] = useState('');
+    const [rankedItems, setRankedItems] = useState<string[]>([]);
+    const [selectedCheckboxes, setSelectedCheckboxes] = useState<string[]>([]);
+    const [additionalText, setAdditionalText] = useState('');
 
     const [fadeAnim] = useState(new Animated.Value(1));
     const [slideAnim] = useState(new Animated.Value(0));
@@ -52,31 +67,27 @@ export default function QuestionnaireScreen({
     const [buttonTranslateY] = useState(new Animated.Value(20));
     const [buttonScale] = useState(new Animated.Value(1));
     const [optionScales] = useState(
-        QUESTIONS[0]?.options.map(() => new Animated.Value(1)) || []
+        Array.from({ length: 10 }, () => new Animated.Value(1))
     );
 
     const swipePosition = useRef(new Animated.Value(0)).current;
+    const scrollViewRef = useRef<ScrollView>(null);
 
-    // PanResponder for swipe gestures
     const panResponder = useRef(
         PanResponder.create({
             onStartShouldSetPanResponder: () => !isWelcomeScreen,
             onMoveShouldSetPanResponder: (_, gestureState) => {
-                // Only respond to horizontal swipes when not on welcome screen
                 return !isWelcomeScreen && Math.abs(gestureState.dx) > 10;
             },
             onPanResponderMove: (_, gestureState) => {
-                // Only allow left swipe to go back (positive dx)
                 if (gestureState.dx > 0 && currentQuestionIndex > 0) {
                     swipePosition.setValue(gestureState.dx);
                 }
             },
             onPanResponderRelease: (_, gestureState) => {
-                // If swiped left more than 100px, go back
                 if (gestureState.dx > 100 && currentQuestionIndex > 0) {
                     handleBack();
                 }
-                // Reset swipe position
                 Animated.spring(swipePosition, {
                     toValue: 0,
                     useNativeDriver: true,
@@ -101,10 +112,17 @@ export default function QuestionnaireScreen({
     const isLastQuestion = currentQuestionIndex === QUESTIONS.length - 1;
     const currentAnswer = currentQuestion ? answers[currentQuestion.id] : null;
 
+    // Initialize ranked items when reaching ranking question
+    useEffect(() => {
+        if (currentQuestion?.type === 'ranking' && currentQuestion.items && rankedItems.length === 0) {
+            setRankedItems(currentQuestion.items);
+        }
+    }, [currentQuestion, rankedItems.length]);
+
     // Animate the "Start Discovering" button when it appears
     useEffect(() => {
-        if (isLastQuestion && currentAnswer) {
-            // Reset and animate in with dreamy animation
+        const hasAnswer = isLastQuestion && (selectedCheckboxes.length > 0 || additionalText.trim().length > 0);
+        if (hasAnswer) {
             buttonOpacity.setValue(0);
             buttonTranslateY.setValue(20);
             buttonScale.setValue(0.95);
@@ -120,25 +138,104 @@ export default function QuestionnaireScreen({
                 }),
             ]).start();
         }
-    }, [isLastQuestion, currentAnswer, buttonOpacity, buttonTranslateY, buttonScale]);
+    }, [isLastQuestion, selectedCheckboxes, additionalText, buttonOpacity, buttonTranslateY, buttonScale]);
 
     function handleAnswerSelect(questionId: string, option: string, optionIndex: number) {
-        // Animate the selected option with playful squish
         if (optionScales[optionIndex]) {
             AnimationPresets.buttonPress(optionScales[optionIndex]).start();
         }
 
+        if (option === 'Other') {
+            setAnswers((prev) => ({
+                ...prev,
+                [questionId]: otherText || option,
+            }));
+            setTimeout(() => {
+                scrollViewRef.current?.scrollToEnd({ animated: true });
+            }, 100);
+        } else {
+            setAnswers((prev) => ({
+                ...prev,
+                [questionId]: option,
+            }));
+        }
+
+        if (option !== 'Other') {
+            setTimeout(() => {
+                if (!isLastQuestion) {
+                    handleNext();
+                }
+            }, 300);
+        }
+    }
+
+    function handleDragEnd(data: string[]) {
+        setRankedItems(data);
         setAnswers((prev) => ({
             ...prev,
-            [questionId]: option,
+            [currentQuestion!.id]: data,
         }));
+    }
 
-        // Auto-advance to next question after a short delay
-        setTimeout(() => {
-            if (!isLastQuestion) {
-                handleNext();
-            }
-        }, 300);
+    function renderRankingItem({ item, drag, isActive, getIndex }: RenderItemParams<string>) {
+        const index = getIndex();
+        return (
+            <ScaleDecorator>
+                <View
+                    style={[
+                        styles.rankingItem,
+                        isActive && styles.rankingItemActive,
+                    ]}
+                >
+                    <View style={styles.rankingNumber}>
+                        <Text style={styles.rankingNumberText}>{(index ?? 0) + 1}</Text>
+                    </View>
+                    <Text style={styles.rankingItemText}>{item}</Text>
+                    <TouchableOpacity
+                        style={styles.dragHandle}
+                        onPressIn={drag}
+                        disabled={isActive}
+                        activeOpacity={0.7}
+                    >
+                        <Text style={styles.dragHandleText}>≡</Text>
+                    </TouchableOpacity>
+                </View>
+            </ScaleDecorator>
+        );
+    }
+
+    function handleToggleCheckbox(option: string) {
+        const newCheckboxes = selectedCheckboxes.includes(option)
+            ? selectedCheckboxes.filter(item => item !== option)
+            : [...selectedCheckboxes, option];
+
+        setSelectedCheckboxes(newCheckboxes);
+        setAnswers((prev) => ({
+            ...prev,
+            [currentQuestion!.id]: {
+                checkboxes: newCheckboxes,
+                text: additionalText,
+            },
+        }));
+    }
+
+    function handleAdditionalTextChange(text: string) {
+        setAdditionalText(text);
+        setAnswers((prev) => ({
+            ...prev,
+            [currentQuestion!.id]: {
+                checkboxes: selectedCheckboxes,
+                text: text,
+            },
+        }));
+    }
+
+    function handleNextFromRanking() {
+        setAnswers((prev) => ({
+            ...prev,
+            [currentQuestion!.id]: rankedItems,
+        }));
+        handleNext();
     }
 
     function animateTransition(callback: () => void) {
@@ -188,16 +285,13 @@ export default function QuestionnaireScreen({
     }
 
     function handleStartDiscovering() {
-        // Animate button press with playful squish
         AnimationPresets.buttonPress(buttonScale).start(() => {
-            // TODO: Save preferences for restaurant filtering
             navigation.replace('MainTabs');
         });
     }
 
     return (
         <SafeAreaView style={styles.container}>
-            {/* Progress Bar */}
             {!isWelcomeScreen && (
                 <View style={styles.progressBarContainer}>
                     <LinearGradient
@@ -212,152 +306,302 @@ export default function QuestionnaireScreen({
                 </View>
             )}
 
-            {/* Welcome Screen */}
             {isWelcomeScreen && (
                 <WelcomeCarousel onAutoAdvance={handleWelcomeAutoAdvance} />
             )}
 
-            {/* Question Content */}
             {!isWelcomeScreen && currentQuestion && (
-                <Animated.View
-                    style={[
-                        styles.content,
-                        {
-                            opacity: fadeAnim,
-                            transform: [
-                                { translateY: slideAnim },
-                                { translateX: swipePosition },
-                            ],
-                        },
-                    ]}
-                    {...panResponder.panHandlers}
+                <KeyboardAvoidingView
+                    style={{ flex: 1 }}
+                    behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+                    keyboardVerticalOffset={Platform.OS === 'ios' ? 10 : 0}
                 >
-                    <View style={styles.questionContainer}>
-                        <Text style={styles.questionNumber}>
-                            Question {currentQuestionIndex + 1} of{' '}
-                            {QUESTIONS.length} {currentQuestionIndex > 0 && '✨'}
-                        </Text>
-                        <Text style={styles.encouragementText}>
-                            {currentQuestionIndex === 0
-                                ? getRandomMicrocopy([...Microcopy.onboarding.steps])
-                                : getRandomMicrocopy([...Microcopy.encouragement.general])}
-                        </Text>
-                        <Text style={styles.questionText}>
-                            {currentQuestion.question}
-                        </Text>
-                        {/* Decorative squiggly line */}
-                        <View style={styles.squigglyLineContainer}>
-                            <View style={styles.squigglyLine}>
-                                {[...Array(8)].map((_, i) => (
-                                    <View
-                                        key={i}
-                                        style={[
-                                            styles.squiggleDot,
-                                            {
-                                                transform: [
-                                                    {
-                                                        translateY:
-                                                            Math.sin(
-                                                                (i * Math.PI) /
-                                                                    2,
-                                                            ) * 3,
-                                                    },
-                                                ],
-                                            },
-                                        ]}
-                                    />
-                                ))}
+                    <Animated.View
+                        style={[
+                            styles.content,
+                            {
+                                opacity: fadeAnim,
+                                transform: [
+                                    { translateY: slideAnim },
+                                    { translateX: swipePosition },
+                                ],
+                            },
+                        ]}
+                        {...panResponder.panHandlers}
+                    >
+                        <View style={styles.questionContainer}>
+                            <Text style={styles.questionNumber}>
+                                Question {currentQuestionIndex + 1} of{' '}
+                                {QUESTIONS.length} {currentQuestionIndex > 0 && '✨'}
+                            </Text>
+                            <Text style={styles.encouragementText}>
+                                {currentQuestionIndex === 0
+                                    ? getRandomMicrocopy([...Microcopy.onboarding.steps])
+                                    : getRandomMicrocopy([...Microcopy.encouragement.general])}
+                            </Text>
+                            <Text style={styles.questionText}>
+                                {currentQuestion.question}
+                            </Text>
+                            <View style={styles.squigglyLineContainer}>
+                                <View style={styles.squigglyLine}>
+                                    {[...Array(8)].map((_, i) => (
+                                        <View
+                                            key={i}
+                                            style={[
+                                                styles.squiggleDot,
+                                                {
+                                                    transform: [
+                                                        {
+                                                            translateY:
+                                                                Math.sin(
+                                                                    (i * Math.PI) / 2,
+                                                                ) * 3,
+                                                        },
+                                                    ],
+                                                },
+                                            ]}
+                                        />
+                                    ))}
+                                </View>
                             </View>
                         </View>
-                    </View>
 
-                    <View style={styles.optionsContainer}>
-                        {currentQuestion.options.map((option, index) => {
-                            const isSelected = currentAnswer === option;
-                            return (
-                                <Animated.View
-                                    key={option}
-                                    style={{
-                                        transform: [{ scale: optionScales[index] || 1 }],
-                                    }}
-                                >
-                                    <TouchableOpacity
-                                        style={[
-                                            styles.optionButton,
-                                            isSelected &&
-                                                styles.optionButtonSelected,
-                                        ]}
-                                        onPress={() =>
-                                            handleAnswerSelect(
-                                                currentQuestion.id,
-                                                option,
-                                                index,
-                                            )
-                                        }
-                                        activeOpacity={0.7}
-                                    >
-                                        <View style={styles.optionContent}>
-                                            <View
-                                                style={[
-                                                    styles.optionRadio,
-                                                    isSelected &&
-                                                        styles.optionRadioSelected,
-                                                ]}
-                                            >
-                                                {isSelected && (
-                                                    <View
-                                                        style={
-                                                            styles.optionRadioInner
-                                                        }
-                                                    />
-                                                )}
-                                            </View>
-
-                                            <Text
-                                                style={[
-                                                    styles.optionText,
-                                                    isSelected &&
-                                                        styles.optionTextSelected,
-                                                ]}
-                                            >
-                                                {option}
-                                            </Text>
-                                        </View>
-                                    </TouchableOpacity>
-                                </Animated.View>
-                            );
-                        })}
-                    </View>
-
-                    {/* Start Discovering Button (only on last question) */}
-                    {isLastQuestion && currentAnswer && (
-                        <Animated.View
-                            style={{
-                                opacity: buttonOpacity,
-                                transform: [
-                                    { translateY: buttonTranslateY },
-                                    { scale: buttonScale },
-                                ],
-                            }}
+                        <ScrollView
+                            ref={scrollViewRef}
+                            style={styles.scrollView}
+                            contentContainerStyle={[
+                                styles.optionsContainer,
+                                currentQuestion.type === 'ranking' && styles.rankingScrollContent,
+                            ]}
+                            showsVerticalScrollIndicator={false}
+                            keyboardShouldPersistTaps="handled"
                         >
-                            <TouchableOpacity
-                                onPress={handleStartDiscovering}
-                                activeOpacity={0.8}
-                            >
-                                <LinearGradient
-                                    colors={Gradients.button.colors}
-                                    start={Gradients.button.start}
-                                    end={Gradients.button.end}
-                                    style={styles.startButton}
-                                >
-                                    <Text style={styles.startButtonText}>
-                                        {getRandomMicrocopy([...Microcopy.success.completed])} 🎉
+                            {/* Single Choice Question */}
+                            {currentQuestion.type === 'single_choice' && currentQuestion.options && (
+                                <>
+                                    {currentQuestion.options.map((option, index) => {
+                                        const isSelected = currentAnswer === option;
+                                        return (
+                                            <Animated.View
+                                                key={option}
+                                                style={{
+                                                    transform: [{ scale: optionScales[index] || 1 }],
+                                                }}
+                                            >
+                                                <TouchableOpacity
+                                                    style={[
+                                                        styles.optionButton,
+                                                        isSelected && styles.optionButtonSelected,
+                                                    ]}
+                                                    onPress={() =>
+                                                        handleAnswerSelect(
+                                                            currentQuestion.id,
+                                                            option,
+                                                            index,
+                                                        )
+                                                    }
+                                                    activeOpacity={0.7}
+                                                >
+                                                    <View style={styles.optionContent}>
+                                                        <View
+                                                            style={[
+                                                                styles.optionRadio,
+                                                                isSelected && styles.optionRadioSelected,
+                                                            ]}
+                                                        >
+                                                            {isSelected && (
+                                                                <View style={styles.optionRadioInner} />
+                                                            )}
+                                                        </View>
+                                                        <Text
+                                                            style={[
+                                                                styles.optionText,
+                                                                isSelected && styles.optionTextSelected,
+                                                            ]}
+                                                        >
+                                                            {option}
+                                                        </Text>
+                                                    </View>
+                                                </TouchableOpacity>
+                                            </Animated.View>
+                                        );
+                                    })}
+
+                                    {currentQuestion.hasOtherOption && (
+                                        <View>
+                                            <Animated.View
+                                                style={{
+                                                    transform: [{ scale: optionScales[currentQuestion.options.length] || 1 }],
+                                                }}
+                                            >
+                                                <TouchableOpacity
+                                                    style={[
+                                                        styles.optionButton,
+                                                        currentAnswer === 'Other' && styles.optionButtonSelected,
+                                                    ]}
+                                                    onPress={() => {
+                                                        handleAnswerSelect(
+                                                            currentQuestion.id,
+                                                            'Other',
+                                                            currentQuestion.options!.length,
+                                                        );
+                                                    }}
+                                                    activeOpacity={0.7}
+                                                >
+                                                    <View style={styles.optionContent}>
+                                                        <View
+                                                            style={[
+                                                                styles.optionRadio,
+                                                                currentAnswer === 'Other' && styles.optionRadioSelected,
+                                                            ]}
+                                                        >
+                                                            {currentAnswer === 'Other' && (
+                                                                <View style={styles.optionRadioInner} />
+                                                            )}
+                                                        </View>
+                                                        <Text
+                                                            style={[
+                                                                styles.optionText,
+                                                                currentAnswer === 'Other' && styles.optionTextSelected,
+                                                            ]}
+                                                        >
+                                                            Other
+                                                        </Text>
+                                                    </View>
+                                                </TouchableOpacity>
+                                            </Animated.View>
+
+                                            {currentAnswer === 'Other' && (
+                                                <View style={styles.otherInputContainer}>
+                                                    <TextInput
+                                                        style={styles.textInput}
+                                                        placeholder="Please specify..."
+                                                        placeholderTextColor={AppColors.textLight}
+                                                        value={otherText}
+                                                        onChangeText={setOtherText}
+                                                        autoFocus
+                                                        returnKeyType="done"
+                                                        onSubmitEditing={() => {
+                                                            if (otherText.trim()) {
+                                                                setAnswers((prev) => ({
+                                                                    ...prev,
+                                                                    [currentQuestion.id]: otherText,
+                                                                }));
+                                                                Keyboard.dismiss();
+                                                                setTimeout(() => handleNext(), 300);
+                                                            }
+                                                        }}
+                                                    />
+                                                </View>
+                                            )}
+                                        </View>
+                                    )}
+                                </>
+                            )}
+
+                            {/* Ranking Question */}
+                            {currentQuestion.type === 'ranking' && (
+                                <View style={styles.rankingContainer}>
+                                    <Text style={styles.rankingHint}>
+                                        Drag ≡ to reorder
                                     </Text>
-                                </LinearGradient>
-                            </TouchableOpacity>
-                        </Animated.View>
-                    )}
-                </Animated.View>
+                                    <DraggableFlatList
+                                        data={rankedItems}
+                                        onDragEnd={({ data }) => handleDragEnd(data)}
+                                        keyExtractor={(item) => item}
+                                        renderItem={renderRankingItem}
+                                        containerStyle={styles.draggableList}
+                                    />
+                                    <TouchableOpacity
+                                        style={styles.continueButton}
+                                        onPress={handleNextFromRanking}
+                                    >
+                                        <Text style={styles.continueButtonText}>Continue →</Text>
+                                    </TouchableOpacity>
+                                </View>
+                            )}
+
+                            {/* Checkboxes + Text Question */}
+                            {currentQuestion.type === 'checkboxes_text' && currentQuestion.checkboxOptions && (
+                                <View style={styles.checkboxContainer}>
+                                    <Text style={styles.checkboxHint}>
+                                        Select any dietary restrictions
+                                    </Text>
+                                    {currentQuestion.checkboxOptions.map((option) => {
+                                        const isChecked = selectedCheckboxes.includes(option);
+                                        return (
+                                            <TouchableOpacity
+                                                key={option}
+                                                style={[
+                                                    styles.checkboxItem,
+                                                    isChecked && styles.checkboxItemSelected,
+                                                ]}
+                                                onPress={() => handleToggleCheckbox(option)}
+                                                activeOpacity={0.7}
+                                            >
+                                                <View
+                                                    style={[
+                                                        styles.checkbox,
+                                                        isChecked && styles.checkboxChecked,
+                                                    ]}
+                                                >
+                                                    {isChecked && <Text style={styles.checkmark}>✓</Text>}
+                                                </View>
+                                                <Text
+                                                    style={[
+                                                        styles.checkboxText,
+                                                        isChecked && styles.checkboxTextSelected,
+                                                    ]}
+                                                >
+                                                    {option}
+                                                </Text>
+                                            </TouchableOpacity>
+                                        );
+                                    })}
+
+                                    <TextInput
+                                        style={[styles.textInput, styles.multilineInput]}
+                                        placeholder="Anything else? (e.g., nut allergy, lactose intolerant)"
+                                        placeholderTextColor={AppColors.textLight}
+                                        value={additionalText}
+                                        onChangeText={handleAdditionalTextChange}
+                                        multiline
+                                        numberOfLines={3}
+                                        textAlignVertical="top"
+                                    />
+                                </View>
+                            )}
+                        </ScrollView>
+
+                        {isLastQuestion && (selectedCheckboxes.length > 0 || additionalText.trim().length > 0) && (
+                            <Animated.View
+                                style={{
+                                    opacity: buttonOpacity,
+                                    transform: [
+                                        { translateY: buttonTranslateY },
+                                        { scale: buttonScale },
+                                    ],
+                                }}
+                            >
+                                <TouchableOpacity
+                                    onPress={handleStartDiscovering}
+                                    activeOpacity={0.8}
+                                >
+                                    <LinearGradient
+                                        colors={Gradients.button.colors}
+                                        start={Gradients.button.start}
+                                        end={Gradients.button.end}
+                                        style={styles.startButton}
+                                    >
+                                        <Text style={styles.startButtonText}>
+                                            {getRandomMicrocopy([...Microcopy.success.completed])} 🎉
+                                        </Text>
+                                    </LinearGradient>
+                                </TouchableOpacity>
+                            </Animated.View>
+                        )}
+                    </Animated.View>
+                </KeyboardAvoidingView>
             )}
         </SafeAreaView>
     );
@@ -428,10 +672,18 @@ const styles = StyleSheet.create({
         borderRadius: 2,
         opacity: 0.7,
     },
-    optionsContainer: {
+    scrollView: {
         flex: 1,
+    },
+    optionsContainer: {
+        flexGrow: 1,
         justifyContent: 'center',
-        gap: Spacing.md,
+        paddingBottom: Spacing.xl,
+    },
+    rankingScrollContent: {
+        justifyContent: 'flex-start',
+        paddingTop: Spacing.sm,
+        paddingBottom: Spacing.md,
     },
     optionButton: {
         backgroundColor: AppColors.white,
@@ -481,6 +733,161 @@ const styles = StyleSheet.create({
     },
     optionTextSelected: {
         color: AppColors.textDark,
+        fontWeight: '700',
+    },
+    otherInputContainer: {
+        paddingBottom: Spacing.xxl,
+    },
+    textInput: {
+        backgroundColor: AppColors.white,
+        borderRadius: BorderRadius.md,
+        borderWidth: 2,
+        borderColor: '#F0E8EC',
+        paddingVertical: Spacing.md,
+        paddingHorizontal: Spacing.lg,
+        marginTop: Spacing.md,
+        fontSize: 16,
+        color: AppColors.textDark,
+        ...Shadows.subtle,
+    },
+    multilineInput: {
+        minHeight: 80,
+        marginTop: Spacing.lg,
+    },
+    rankingContainer: {
+        paddingTop: 0,
+        paddingBottom: Spacing.md,
+    },
+    rankingHint: {
+        ...Typography.bodySmall,
+        color: AppColors.textLight,
+        textAlign: 'center',
+        marginBottom: Spacing.sm,
+        fontSize: 13,
+    },
+    draggableList: {
+        flex: 0,
+    },
+    rankingItem: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        backgroundColor: AppColors.white,
+        paddingVertical: Spacing.sm + 2,
+        paddingHorizontal: Spacing.md,
+        borderRadius: BorderRadius.md,
+        borderWidth: 2,
+        borderColor: '#F0E8EC',
+        marginBottom: Spacing.xs,
+        ...Shadows.subtle,
+    },
+    rankingItemActive: {
+        borderColor: AppColors.primary,
+        backgroundColor: '#FFF9F8',
+        ...Shadows.warm,
+        elevation: 8,
+    },
+    rankingNumber: {
+        width: 28,
+        height: 28,
+        borderRadius: 14,
+        backgroundColor: AppColors.primary,
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginRight: Spacing.sm,
+    },
+    rankingNumberText: {
+        color: AppColors.white,
+        fontSize: 14,
+        fontWeight: '700',
+    },
+    rankingItemText: {
+        flex: 1,
+        fontSize: 15,
+        color: AppColors.textDark,
+        fontWeight: '600',
+    },
+    dragHandle: {
+        width: 40,
+        height: 40,
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginLeft: Spacing.xs,
+        backgroundColor: '#FFF9F8',
+        borderRadius: BorderRadius.sm,
+    },
+    dragHandleText: {
+        fontSize: 28,
+        color: AppColors.primary,
+        fontWeight: '700',
+        opacity: 0.8,
+    },
+    continueButton: {
+        backgroundColor: AppColors.primary,
+        paddingVertical: Spacing.sm + 2,
+        paddingHorizontal: Spacing.xl,
+        borderRadius: BorderRadius.pill,
+        alignItems: 'center',
+        marginTop: Spacing.md,
+        ...Shadows.warm,
+    },
+    continueButtonText: {
+        color: AppColors.white,
+        fontSize: 16,
+        fontWeight: '700',
+    },
+    checkboxContainer: {
+        gap: Spacing.sm,
+        paddingBottom: Spacing.xl,
+    },
+    checkboxHint: {
+        ...Typography.bodySmall,
+        color: AppColors.textLight,
+        marginBottom: Spacing.sm,
+        fontStyle: 'italic',
+    },
+    checkboxItem: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        backgroundColor: AppColors.white,
+        paddingVertical: Spacing.md,
+        paddingHorizontal: Spacing.lg,
+        borderRadius: BorderRadius.lg,
+        borderWidth: 2,
+        borderColor: '#F0E8EC',
+        marginBottom: Spacing.sm,
+        ...Shadows.subtle,
+    },
+    checkboxItemSelected: {
+        borderColor: AppColors.primary,
+        backgroundColor: '#FFF9F8',
+    },
+    checkbox: {
+        width: 26,
+        height: 26,
+        borderRadius: 6,
+        borderWidth: 2.5,
+        borderColor: '#D8C4CC',
+        marginRight: Spacing.md,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: AppColors.white,
+    },
+    checkboxChecked: {
+        borderColor: AppColors.primary,
+        backgroundColor: AppColors.primary,
+    },
+    checkmark: {
+        color: AppColors.white,
+        fontSize: 16,
+        fontWeight: '700',
+    },
+    checkboxText: {
+        ...Typography.bodyLarge,
+        color: AppColors.textDark,
+        flex: 1,
+        fontSize: 17,
+    },
+    checkboxTextSelected: {
         fontWeight: '700',
     },
     startButton: {
