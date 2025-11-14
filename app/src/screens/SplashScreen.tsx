@@ -1,6 +1,7 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { View, Image, StyleSheet, Animated, Dimensions } from 'react-native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+
 import { RootStackParamList } from '../../App';
 import { AppColors, SpringConfig, AnimationDuration, AnimationEasing, AnimationOpacity } from '../theme';
 
@@ -10,7 +11,7 @@ type SplashScreenProps = {
 
 const { height } = Dimensions.get('window');
 
-const SplashScreen: React.FC<SplashScreenProps> = ({ navigation }) => {
+export default function SplashScreen({ navigation }: SplashScreenProps) {
     const slideAnim = useRef(new Animated.Value(height * 0.3)).current;
     const fadeAnim = useRef(new Animated.Value(0)).current;
 
@@ -41,25 +42,25 @@ const SplashScreen: React.FC<SplashScreenProps> = ({ navigation }) => {
     }, [navigation, slideAnim, fadeAnim]);
 
     return (
-        <View style={styles.container}>
+        <View style={ styles.container }>
             <Animated.View
-                style={[
+                style={ [
                     styles.logoContainer,
                     {
                         transform: [{ translateY: slideAnim }],
                         opacity: fadeAnim,
                     },
-                ]}
+                ] }
             >
                 <Image
-                    source={require('../../assets/Logo.png')}
-                    style={styles.logo}
+                    source={ require('../../assets/Logo.png') }
+                    style={ styles.logo }
                     resizeMode="contain"
                 />
             </Animated.View>
         </View>
     );
-};
+}
 
 const styles = StyleSheet.create({
     container: {
@@ -77,5 +78,3 @@ const styles = StyleSheet.create({
         height: 200,
     },
 });
-
-export default SplashScreen;

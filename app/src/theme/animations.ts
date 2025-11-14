@@ -1,10 +1,3 @@
-/**
- * 💫 Animation & Motion Design System
- *
- * Gentle, responsive motion with easeOutBack and spring damping to mimic softness.
- * All animations follow dreamy, delightful principles.
- */
-
 import { Animated, Easing } from 'react-native';
 
 /**
@@ -210,7 +203,7 @@ export const AnimationPresets = {
                     easing: AnimationEasing.easeInOutSine,
                     useNativeDriver: true,
                 }),
-            ])
+            ]),
         );
     },
 
@@ -322,7 +315,10 @@ export const StateTransitions = {
     viewEnter: {
         duration: AnimationDuration.moderate,
         easing: AnimationEasing.easeOutQuart,
-        opacity: { from: AnimationOpacity.hidden, to: AnimationOpacity.visible },
+        opacity: {
+            from: AnimationOpacity.hidden,
+            to: AnimationOpacity.visible,
+        },
         scale: { from: 0.95, to: 1 },
         blur: { from: AnimationBlur.medium, to: AnimationBlur.none },
     },
@@ -333,7 +329,10 @@ export const StateTransitions = {
     viewExit: {
         duration: AnimationDuration.normal,
         easing: AnimationEasing.smooth,
-        opacity: { from: AnimationOpacity.visible, to: AnimationOpacity.hidden },
+        opacity: {
+            from: AnimationOpacity.visible,
+            to: AnimationOpacity.hidden,
+        },
         scale: { from: 1, to: 0.95 },
         blur: { from: AnimationBlur.none, to: AnimationBlur.medium },
     },
@@ -344,6 +343,9 @@ export const StateTransitions = {
     loading: {
         duration: AnimationDuration.dreamy,
         easing: AnimationEasing.easeInOutSine,
-        opacity: { from: AnimationOpacity.translucent, to: AnimationOpacity.visible },
+        opacity: {
+            from: AnimationOpacity.translucent,
+            to: AnimationOpacity.visible,
+        },
     },
 } as const;

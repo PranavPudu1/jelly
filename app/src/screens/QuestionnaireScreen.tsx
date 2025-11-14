@@ -17,7 +17,17 @@ import {
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+import DraggableFlatList, {
+    RenderItemParams,
+    ScaleDecorator,
+} from 'react-native-draggable-flatlist';
+
+import { LinearGradient } from 'expo-linear-gradient';
+
 import { RootStackParamList } from '../../App';
+import WelcomeCarousel from '../components/WelcomeCarousel';
+
+import { UserContext } from '../contexts/userContext';
 
 import {
     AppColors,
@@ -25,22 +35,16 @@ import {
     Spacing,
     BorderRadius,
     AnimationPresets,
-    AnimationDuration,
     SpringConfig,
     Shadows,
     Gradients,
     Microcopy,
     getRandomMicrocopy,
 } from '../theme';
-import { QuestionnaireAnswers } from '../types';
+
 import { QUESTIONS } from '../data/questions';
-import { UserContext } from '../contexts/userContext';
-import WelcomeCarousel from '../components/WelcomeCarousel';
-import { LinearGradient } from 'expo-linear-gradient';
-import DraggableFlatList, {
-    RenderItemParams,
-    ScaleDecorator,
-} from 'react-native-draggable-flatlist';
+
+import { QuestionnaireAnswers } from '../types';
 
 type QuestionnaireScreenProps = {
     navigation: NativeStackNavigationProp<RootStackParamList, 'Questionnaire'>;
@@ -51,7 +55,9 @@ export default function QuestionnaireScreen({
 }: QuestionnaireScreenProps) {
     const { user } = useContext(UserContext);
 
-    const [currentQuestionIndex, setCurrentQuestionIndex] = useState(user === null ? -1 : 0);
+    const [currentQuestionIndex, setCurrentQuestionIndex] = useState(
+        user === null ? -1 : 0,
+    );
 
     const [answers, setAnswers] = useState<QuestionnaireAnswers>({});
 
@@ -67,7 +73,7 @@ export default function QuestionnaireScreen({
     const [buttonTranslateY] = useState(new Animated.Value(20));
     const [buttonScale] = useState(new Animated.Value(1));
     const [optionScales] = useState(
-        Array.from({ length: 10 }, () => new Animated.Value(1))
+        Array.from({ length: 10 }, () => new Animated.Value(1)),
     );
 
     const swipePosition = useRef(new Animated.Value(0)).current;
@@ -114,14 +120,21 @@ export default function QuestionnaireScreen({
 
     // Initialize ranked items when reaching ranking question
     useEffect(() => {
-        if (currentQuestion?.type === 'ranking' && currentQuestion.items && rankedItems.length === 0) {
+        if (
+            currentQuestion?.type === 'ranking' &&
+            currentQuestion.items &&
+            rankedItems.length === 0
+        ) {
             setRankedItems(currentQuestion.items);
         }
     }, [currentQuestion, rankedItems.length]);
 
     // Animate the "Start Discovering" button when it appears
     useEffect(() => {
-        const hasAnswer = isLastQuestion && (selectedCheckboxes.length > 0 || additionalText.trim().length > 0);
+        const hasAnswer =
+            isLastQuestion &&
+            (selectedCheckboxes.length > 0 || additionalText.trim().length > 0);
+
         if (hasAnswer) {
             buttonOpacity.setValue(0);
             buttonTranslateY.setValue(20);
@@ -138,9 +151,20 @@ export default function QuestionnaireScreen({
                 }),
             ]).start();
         }
-    }, [isLastQuestion, selectedCheckboxes, additionalText, buttonOpacity, buttonTranslateY, buttonScale]);
+    }, [
+        isLastQuestion,
+        selectedCheckboxes,
+        additionalText,
+        buttonOpacity,
+        buttonTranslateY,
+        buttonScale,
+    ]);
 
-    function handleAnswerSelect(questionId: string, option: string, optionIndex: number) {
+    function handleAnswerSelect(
+        questionId: string,
+        option: string,
+        optionIndex: number,
+    ) {
         if (optionScales[optionIndex]) {
             AnimationPresets.buttonPress(optionScales[optionIndex]).start();
         }
@@ -153,7 +177,8 @@ export default function QuestionnaireScreen({
             setTimeout(() => {
                 scrollViewRef.current?.scrollToEnd({ animated: true });
             }, 100);
-        } else {
+        }
+        else {
             setAnswers((prev) => ({
                 ...prev,
                 [questionId]: option,
@@ -177,27 +202,36 @@ export default function QuestionnaireScreen({
         }));
     }
 
-    function renderRankingItem({ item, drag, isActive, getIndex }: RenderItemParams<string>) {
+    function renderRankingItem({
+        item,
+        drag,
+        isActive,
+        getIndex,
+    }: RenderItemParams<string>) {
         const index = getIndex();
+
         return (
             <ScaleDecorator>
                 <View
-                    style={[
+                    style={ [
                         styles.rankingItem,
                         isActive && styles.rankingItemActive,
-                    ]}
+                    ] }
                 >
-                    <View style={styles.rankingNumber}>
-                        <Text style={styles.rankingNumberText}>{(index ?? 0) + 1}</Text>
+                    <View style={ styles.rankingNumber }>
+                        <Text style={ styles.rankingNumberText }>
+                            { (index ?? 0) + 1 }
+                        </Text>
                     </View>
-                    <Text style={styles.rankingItemText}>{item}</Text>
+
+                    <Text style={ styles.rankingItemText }>{ item }</Text>
                     <TouchableOpacity
-                        style={styles.dragHandle}
-                        onPressIn={drag}
-                        disabled={isActive}
-                        activeOpacity={0.7}
+                        style={ styles.dragHandle }
+                        onPressIn={ drag }
+                        disabled={ isActive }
+                        activeOpacity={ 0.7 }
                     >
-                        <Text style={styles.dragHandleText}>≡</Text>
+                        <Text style={ styles.dragHandleText }>≡</Text>
                     </TouchableOpacity>
                 </View>
             </ScaleDecorator>
@@ -206,7 +240,7 @@ export default function QuestionnaireScreen({
 
     function handleToggleCheckbox(option: string) {
         const newCheckboxes = selectedCheckboxes.includes(option)
-            ? selectedCheckboxes.filter(item => item !== option)
+            ? selectedCheckboxes.filter((item) => item !== option)
             : [...selectedCheckboxes, option];
 
         setSelectedCheckboxes(newCheckboxes);
@@ -291,33 +325,33 @@ export default function QuestionnaireScreen({
     }
 
     return (
-        <SafeAreaView style={styles.container}>
-            {!isWelcomeScreen && (
-                <View style={styles.progressBarContainer}>
+        <SafeAreaView style={ styles.container }>
+            { !isWelcomeScreen && (
+                <View style={ styles.progressBarContainer }>
                     <LinearGradient
-                        colors={Gradients.button.colors}
-                        start={Gradients.button.start}
-                        end={Gradients.button.end}
-                        style={[
+                        colors={ Gradients.button.colors }
+                        start={ Gradients.button.start }
+                        end={ Gradients.button.end }
+                        style={ [
                             styles.progressBarFill,
                             { width: `${progress * 100}%` },
-                        ]}
+                        ] }
                     />
                 </View>
-            )}
+            ) }
 
-            {isWelcomeScreen && (
-                <WelcomeCarousel onAutoAdvance={handleWelcomeAutoAdvance} />
-            )}
+            { isWelcomeScreen && (
+                <WelcomeCarousel onAutoAdvance={ handleWelcomeAutoAdvance } />
+            ) }
 
-            {!isWelcomeScreen && currentQuestion && (
+            { !isWelcomeScreen && currentQuestion && (
                 <KeyboardAvoidingView
-                    style={{ flex: 1 }}
-                    behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-                    keyboardVerticalOffset={Platform.OS === 'ios' ? 10 : 0}
+                    style={ { flex: 1 } }
+                    behavior={ Platform.OS === 'ios' ? 'padding' : 'height' }
+                    keyboardVerticalOffset={ Platform.OS === 'ios' ? 10 : 0 }
                 >
                     <Animated.View
-                        style={[
+                        style={ [
                             styles.content,
                             {
                                 opacity: fadeAnim,
@@ -326,283 +360,408 @@ export default function QuestionnaireScreen({
                                     { translateX: swipePosition },
                                 ],
                             },
-                        ]}
-                        {...panResponder.panHandlers}
+                        ] }
+                        { ...panResponder.panHandlers }
                     >
-                        <View style={styles.questionContainer}>
-                            <Text style={styles.questionNumber}>
-                                Question {currentQuestionIndex + 1} of{' '}
-                                {QUESTIONS.length} {currentQuestionIndex > 0 && '✨'}
+                        <View style={ styles.questionContainer }>
+                            <Text style={ styles.questionNumber }>
+                                Question { currentQuestionIndex + 1 } of{ ' ' }
+                                { QUESTIONS.length }{ ' ' }
+                                { currentQuestionIndex > 0 && '✨' }
                             </Text>
-                            <Text style={styles.encouragementText}>
-                                {currentQuestionIndex === 0
-                                    ? getRandomMicrocopy([...Microcopy.onboarding.steps])
-                                    : getRandomMicrocopy([...Microcopy.encouragement.general])}
+
+                            <Text style={ styles.encouragementText }>
+                                { currentQuestionIndex === 0
+                                    ? getRandomMicrocopy([
+                                        ...Microcopy.onboarding.steps,
+                                    ])
+                                    : getRandomMicrocopy([
+                                        ...Microcopy.encouragement.general,
+                                    ]) }
                             </Text>
-                            <Text style={styles.questionText}>
-                                {currentQuestion.question}
+
+                            <Text style={ styles.questionText }>
+                                { currentQuestion.question }
                             </Text>
-                            <View style={styles.squigglyLineContainer}>
-                                <View style={styles.squigglyLine}>
-                                    {[...Array(8)].map((_, i) => (
+
+                            <View style={ styles.squigglyLineContainer }>
+                                <View style={ styles.squigglyLine }>
+                                    { [...Array(8)].map((_, i) => (
                                         <View
-                                            key={i}
-                                            style={[
+                                            key={ i }
+                                            style={ [
                                                 styles.squiggleDot,
                                                 {
                                                     transform: [
                                                         {
                                                             translateY:
                                                                 Math.sin(
-                                                                    (i * Math.PI) / 2,
+                                                                    (i *
+                                                                        Math.PI) /
+                                                                        2,
                                                                 ) * 3,
                                                         },
                                                     ],
                                                 },
-                                            ]}
+                                            ] }
                                         />
-                                    ))}
+                                    )) }
                                 </View>
                             </View>
                         </View>
 
                         <ScrollView
-                            ref={scrollViewRef}
-                            style={styles.scrollView}
-                            contentContainerStyle={[
+                            ref={ scrollViewRef }
+                            style={ styles.scrollView }
+                            contentContainerStyle={ [
                                 styles.optionsContainer,
-                                currentQuestion.type === 'ranking' && styles.rankingScrollContent,
-                            ]}
-                            showsVerticalScrollIndicator={false}
+                                currentQuestion.type === 'ranking' &&
+                                    styles.rankingScrollContent,
+                            ] }
+                            showsVerticalScrollIndicator={ false }
                             keyboardShouldPersistTaps="handled"
                         >
-                            {/* Single Choice Question */}
-                            {currentQuestion.type === 'single_choice' && currentQuestion.options && (
+                            { /* Single Choice Question */ }
+                            { currentQuestion.type === 'single_choice' &&
+                                currentQuestion.options && (
                                 <>
-                                    {currentQuestion.options.map((option, index) => {
-                                        const isSelected = currentAnswer === option;
-                                        return (
-                                            <Animated.View
-                                                key={option}
-                                                style={{
-                                                    transform: [{ scale: optionScales[index] || 1 }],
-                                                }}
-                                            >
-                                                <TouchableOpacity
-                                                    style={[
-                                                        styles.optionButton,
-                                                        isSelected && styles.optionButtonSelected,
-                                                    ]}
-                                                    onPress={() =>
-                                                        handleAnswerSelect(
-                                                            currentQuestion.id,
-                                                            option,
-                                                            index,
-                                                        )
-                                                    }
-                                                    activeOpacity={0.7}
+                                    { currentQuestion.options.map(
+                                        (option, index) => {
+                                            const isSelected =
+                                                    currentAnswer === option;
+                                            return (
+                                                <Animated.View
+                                                    key={ option }
+                                                    style={ {
+                                                        transform: [
+                                                            {
+                                                                scale:
+                                                                        optionScales[
+                                                                            index
+                                                                        ] || 1,
+                                                            },
+                                                        ],
+                                                    } }
                                                 >
-                                                    <View style={styles.optionContent}>
+                                                    <TouchableOpacity
+                                                        style={ [
+                                                            styles.optionButton,
+                                                            isSelected &&
+                                                                    styles.optionButtonSelected,
+                                                        ] }
+                                                        onPress={ () =>
+                                                            handleAnswerSelect(
+                                                                currentQuestion.id,
+                                                                option,
+                                                                index,
+                                                            )
+                                                        }
+                                                        activeOpacity={ 0.7 }
+                                                    >
                                                         <View
-                                                            style={[
-                                                                styles.optionRadio,
-                                                                isSelected && styles.optionRadioSelected,
-                                                            ]}
+                                                            style={
+                                                                styles.optionContent
+                                                            }
                                                         >
-                                                            {isSelected && (
-                                                                <View style={styles.optionRadioInner} />
-                                                            )}
-                                                        </View>
-                                                        <Text
-                                                            style={[
-                                                                styles.optionText,
-                                                                isSelected && styles.optionTextSelected,
-                                                            ]}
-                                                        >
-                                                            {option}
-                                                        </Text>
-                                                    </View>
-                                                </TouchableOpacity>
-                                            </Animated.View>
-                                        );
-                                    })}
+                                                            <View
+                                                                style={ [
+                                                                    styles.optionRadio,
+                                                                    isSelected &&
+                                                                            styles.optionRadioSelected,
+                                                                ] }
+                                                            >
+                                                                { isSelected && (
+                                                                    <View
+                                                                        style={
+                                                                            styles.optionRadioInner
+                                                                        }
+                                                                    />
+                                                                ) }
+                                                            </View>
 
-                                    {currentQuestion.hasOtherOption && (
+                                                            <Text
+                                                                style={ [
+                                                                    styles.optionText,
+                                                                    isSelected &&
+                                                                            styles.optionTextSelected,
+                                                                ] }
+                                                            >
+                                                                { option }
+                                                            </Text>
+                                                        </View>
+                                                    </TouchableOpacity>
+                                                </Animated.View>
+                                            );
+                                        },
+                                    ) }
+
+                                    { currentQuestion.hasOtherOption && (
                                         <View>
                                             <Animated.View
-                                                style={{
-                                                    transform: [{ scale: optionScales[currentQuestion.options.length] || 1 }],
-                                                }}
+                                                style={ {
+                                                    transform: [
+                                                        {
+                                                            scale:
+                                                                    optionScales[
+                                                                        currentQuestion
+                                                                            .options
+                                                                            .length
+                                                                    ] || 1,
+                                                        },
+                                                    ],
+                                                } }
                                             >
                                                 <TouchableOpacity
-                                                    style={[
+                                                    style={ [
                                                         styles.optionButton,
-                                                        currentAnswer === 'Other' && styles.optionButtonSelected,
-                                                    ]}
-                                                    onPress={() => {
+                                                        currentAnswer ===
+                                                                'Other' &&
+                                                                styles.optionButtonSelected,
+                                                    ] }
+                                                    onPress={ () => {
                                                         handleAnswerSelect(
                                                             currentQuestion.id,
                                                             'Other',
-                                                            currentQuestion.options!.length,
+                                                                currentQuestion
+                                                                    .options!
+                                                                    .length,
                                                         );
-                                                    }}
-                                                    activeOpacity={0.7}
+                                                    } }
+                                                    activeOpacity={ 0.7 }
                                                 >
-                                                    <View style={styles.optionContent}>
+                                                    <View
+                                                        style={
+                                                            styles.optionContent
+                                                        }
+                                                    >
                                                         <View
-                                                            style={[
+                                                            style={ [
                                                                 styles.optionRadio,
-                                                                currentAnswer === 'Other' && styles.optionRadioSelected,
-                                                            ]}
+                                                                currentAnswer ===
+                                                                        'Other' &&
+                                                                        styles.optionRadioSelected,
+                                                            ] }
                                                         >
-                                                            {currentAnswer === 'Other' && (
-                                                                <View style={styles.optionRadioInner} />
-                                                            )}
+                                                            { currentAnswer ===
+                                                                    'Other' && (
+                                                                <View
+                                                                    style={
+                                                                        styles.optionRadioInner
+                                                                    }
+                                                                />
+                                                            ) }
                                                         </View>
+
                                                         <Text
-                                                            style={[
+                                                            style={ [
                                                                 styles.optionText,
-                                                                currentAnswer === 'Other' && styles.optionTextSelected,
-                                                            ]}
+                                                                currentAnswer ===
+                                                                        'Other' &&
+                                                                        styles.optionTextSelected,
+                                                            ] }
                                                         >
-                                                            Other
+                                                                Other
                                                         </Text>
                                                     </View>
                                                 </TouchableOpacity>
                                             </Animated.View>
 
-                                            {currentAnswer === 'Other' && (
-                                                <View style={styles.otherInputContainer}>
+                                            { currentAnswer === 'Other' && (
+                                                <View
+                                                    style={
+                                                        styles.otherInputContainer
+                                                    }
+                                                >
                                                     <TextInput
-                                                        style={styles.textInput}
+                                                        style={
+                                                            styles.textInput
+                                                        }
                                                         placeholder="Please specify..."
-                                                        placeholderTextColor={AppColors.textLight}
-                                                        value={otherText}
-                                                        onChangeText={setOtherText}
+                                                        placeholderTextColor={
+                                                            AppColors.textLight
+                                                        }
+                                                        value={ otherText }
+                                                        onChangeText={
+                                                            setOtherText
+                                                        }
                                                         autoFocus
                                                         returnKeyType="done"
-                                                        onSubmitEditing={() => {
-                                                            if (otherText.trim()) {
-                                                                setAnswers((prev) => ({
-                                                                    ...prev,
-                                                                    [currentQuestion.id]: otherText,
-                                                                }));
+                                                        onSubmitEditing={ () => {
+                                                            if (
+                                                                otherText.trim()
+                                                            ) {
+                                                                setAnswers(
+                                                                    (
+                                                                        prev,
+                                                                    ) => ({
+                                                                        ...prev,
+                                                                        [currentQuestion.id]:
+                                                                                otherText,
+                                                                    }),
+                                                                );
                                                                 Keyboard.dismiss();
-                                                                setTimeout(() => handleNext(), 300);
+                                                                setTimeout(
+                                                                    () =>
+                                                                        handleNext(),
+                                                                    300,
+                                                                );
                                                             }
-                                                        }}
+                                                        } }
                                                     />
                                                 </View>
-                                            )}
+                                            ) }
                                         </View>
-                                    )}
+                                    ) }
                                 </>
-                            )}
+                            ) }
 
-                            {/* Ranking Question */}
-                            {currentQuestion.type === 'ranking' && (
-                                <View style={styles.rankingContainer}>
-                                    <Text style={styles.rankingHint}>
+                            { /* Ranking Question */ }
+                            { currentQuestion.type === 'ranking' && (
+                                <View style={ styles.rankingContainer }>
+                                    <Text style={ styles.rankingHint }>
                                         Drag ≡ to reorder
                                     </Text>
+
                                     <DraggableFlatList
-                                        data={rankedItems}
-                                        onDragEnd={({ data }) => handleDragEnd(data)}
-                                        keyExtractor={(item) => item}
-                                        renderItem={renderRankingItem}
-                                        containerStyle={styles.draggableList}
+                                        data={ rankedItems }
+                                        onDragEnd={ ({ data }) =>
+                                            handleDragEnd(data)
+                                        }
+                                        keyExtractor={ (item) => item }
+                                        renderItem={ renderRankingItem }
+                                        containerStyle={ styles.draggableList }
                                     />
+
                                     <TouchableOpacity
-                                        style={styles.continueButton}
-                                        onPress={handleNextFromRanking}
+                                        style={ styles.continueButton }
+                                        onPress={ handleNextFromRanking }
                                     >
-                                        <Text style={styles.continueButtonText}>Continue →</Text>
+                                        <Text style={ styles.continueButtonText }>
+                                            Continue →
+                                        </Text>
                                     </TouchableOpacity>
                                 </View>
-                            )}
+                            ) }
 
-                            {/* Checkboxes + Text Question */}
-                            {currentQuestion.type === 'checkboxes_text' && currentQuestion.checkboxOptions && (
-                                <View style={styles.checkboxContainer}>
-                                    <Text style={styles.checkboxHint}>
-                                        Select any dietary restrictions
+                            { /* Checkboxes + Text Question */ }
+                            { currentQuestion.type === 'checkboxes_text' &&
+                                currentQuestion.checkboxOptions && (
+                                <View style={ styles.checkboxContainer }>
+                                    <Text style={ styles.checkboxHint }>
+                                            Select any dietary restrictions
                                     </Text>
-                                    {currentQuestion.checkboxOptions.map((option) => {
-                                        const isChecked = selectedCheckboxes.includes(option);
-                                        return (
-                                            <TouchableOpacity
-                                                key={option}
-                                                style={[
-                                                    styles.checkboxItem,
-                                                    isChecked && styles.checkboxItemSelected,
-                                                ]}
-                                                onPress={() => handleToggleCheckbox(option)}
-                                                activeOpacity={0.7}
-                                            >
-                                                <View
-                                                    style={[
-                                                        styles.checkbox,
-                                                        isChecked && styles.checkboxChecked,
-                                                    ]}
+                                    { currentQuestion.checkboxOptions.map(
+                                        (option) => {
+                                            const isChecked =
+                                                    selectedCheckboxes.includes(
+                                                        option,
+                                                    );
+                                            return (
+                                                <TouchableOpacity
+                                                    key={ option }
+                                                    style={ [
+                                                        styles.checkboxItem,
+                                                        isChecked &&
+                                                                styles.checkboxItemSelected,
+                                                    ] }
+                                                    onPress={ () =>
+                                                        handleToggleCheckbox(
+                                                            option,
+                                                        )
+                                                    }
+                                                    activeOpacity={ 0.7 }
                                                 >
-                                                    {isChecked && <Text style={styles.checkmark}>✓</Text>}
-                                                </View>
-                                                <Text
-                                                    style={[
-                                                        styles.checkboxText,
-                                                        isChecked && styles.checkboxTextSelected,
-                                                    ]}
-                                                >
-                                                    {option}
-                                                </Text>
-                                            </TouchableOpacity>
-                                        );
-                                    })}
+                                                    <View
+                                                        style={ [
+                                                            styles.checkbox,
+                                                            isChecked &&
+                                                                    styles.checkboxChecked,
+                                                        ] }
+                                                    >
+                                                        { isChecked && (
+                                                            <Text
+                                                                style={
+                                                                    styles.checkmark
+                                                                }
+                                                            >
+                                                                    ✓
+                                                            </Text>
+                                                        ) }
+                                                    </View>
+
+                                                    <Text
+                                                        style={ [
+                                                            styles.checkboxText,
+                                                            isChecked &&
+                                                                    styles.checkboxTextSelected,
+                                                        ] }
+                                                    >
+                                                        { option }
+                                                    </Text>
+                                                </TouchableOpacity>
+                                            );
+                                        },
+                                    ) }
 
                                     <TextInput
-                                        style={[styles.textInput, styles.multilineInput]}
+                                        style={ [
+                                            styles.textInput,
+                                            styles.multilineInput,
+                                        ] }
                                         placeholder="Anything else? (e.g., nut allergy, lactose intolerant)"
-                                        placeholderTextColor={AppColors.textLight}
-                                        value={additionalText}
-                                        onChangeText={handleAdditionalTextChange}
+                                        placeholderTextColor={
+                                            AppColors.textLight
+                                        }
+                                        value={ additionalText }
+                                        onChangeText={
+                                            handleAdditionalTextChange
+                                        }
                                         multiline
-                                        numberOfLines={3}
+                                        numberOfLines={ 3 }
                                         textAlignVertical="top"
                                     />
                                 </View>
-                            )}
+                            ) }
                         </ScrollView>
 
-                        {isLastQuestion && (selectedCheckboxes.length > 0 || additionalText.trim().length > 0) && (
+                        { isLastQuestion &&
+                            (selectedCheckboxes.length > 0 ||
+                                additionalText.trim().length > 0) && (
                             <Animated.View
-                                style={{
+                                style={ {
                                     opacity: buttonOpacity,
                                     transform: [
                                         { translateY: buttonTranslateY },
                                         { scale: buttonScale },
                                     ],
-                                }}
+                                } }
                             >
                                 <TouchableOpacity
-                                    onPress={handleStartDiscovering}
-                                    activeOpacity={0.8}
+                                    onPress={ handleStartDiscovering }
+                                    activeOpacity={ 0.8 }
                                 >
                                     <LinearGradient
-                                        colors={Gradients.button.colors}
-                                        start={Gradients.button.start}
-                                        end={Gradients.button.end}
-                                        style={styles.startButton}
+                                        colors={ Gradients.button.colors }
+                                        start={ Gradients.button.start }
+                                        end={ Gradients.button.end }
+                                        style={ styles.startButton }
                                     >
-                                        <Text style={styles.startButtonText}>
-                                            {getRandomMicrocopy([...Microcopy.success.completed])} 🎉
+                                        <Text
+                                            style={ styles.startButtonText }
+                                        >
+                                            { getRandomMicrocopy([
+                                                ...Microcopy.success
+                                                    .completed,
+                                            ]) }{ ' ' }
+                                                🎉
                                         </Text>
                                     </LinearGradient>
                                 </TouchableOpacity>
                             </Animated.View>
-                        )}
+                        ) }
                     </Animated.View>
                 </KeyboardAvoidingView>
-            )}
+            ) }
         </SafeAreaView>
     );
 }

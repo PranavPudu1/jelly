@@ -40,7 +40,7 @@ SplashScreen.preventAutoHideAsync();
 function MainTabs() {
     return (
         <Tab.Navigator
-            screenOptions={({ route }) => ({
+            screenOptions={ ({ route }) => ({
                 headerShown: false,
                 tabBarIcon: ({ focused, color, size }) => {
                     let iconName: keyof typeof Ionicons.glyphMap;
@@ -49,16 +49,19 @@ function MainTabs() {
                         iconName = focused
                             ? 'restaurant'
                             : 'restaurant-outline';
-                    } else if (route.name === 'Saved') {
+                    }
+                    else if (route.name === 'Saved') {
                         iconName = focused ? 'bookmark' : 'bookmark-outline';
-                    } else if (route.name === 'Profile') {
+                    }
+                    else if (route.name === 'Profile') {
                         iconName = focused ? 'person' : 'person-outline';
-                    } else {
+                    }
+                    else {
                         iconName = 'help-outline';
                     }
 
                     return (
-                        <Ionicons name={iconName} size={size} color={color} />
+                        <Ionicons name={ iconName } size={ size } color={ color } />
                     );
                 },
                 tabBarActiveTintColor: AppColors.textDark,
@@ -75,24 +78,24 @@ function MainTabs() {
                     fontSize: 11,
                     fontWeight: '600',
                 },
-            })}
+            }) }
         >
             <Tab.Screen
                 name="Swipe"
-                component={SwipeScreen}
-                options={{ tabBarLabel: 'Discover' }}
+                component={ SwipeScreen }
+                options={ { tabBarLabel: 'Discover' } }
             />
 
             <Tab.Screen
                 name="Saved"
-                component={SavedRestaurantsScreen}
-                options={{ tabBarLabel: 'Saved' }}
+                component={ SavedRestaurantsScreen }
+                options={ { tabBarLabel: 'Saved' } }
             />
 
             <Tab.Screen
                 name="Profile"
-                component={UserProfileScreen}
-                options={{ tabBarLabel: 'Profile' }}
+                component={ UserProfileScreen }
+                options={ { tabBarLabel: 'Profile' } }
             />
         </Tab.Navigator>
     );
@@ -114,9 +117,11 @@ export default function App() {
                     'Inter-SemiBold': require('./assets/fonts/Inter-SemiBold.ttf'),
                     'Inter-Bold': require('./assets/fonts/Inter-Bold.ttf'),
                 });
-            } catch (e) {
+            }
+            catch (e) {
                 console.warn(e);
-            } finally {
+            }
+            finally {
                 setAppIsReady(true);
             }
         }
@@ -135,24 +140,24 @@ export default function App() {
     return (
         <GestureHandlerRootView>
             <UserContextWrapper>
-                <NavigationContainer onReady={onLayoutRootView}>
+                <NavigationContainer onReady={ onLayoutRootView }>
                     <Stack.Navigator
-                        screenOptions={{
+                        screenOptions={ {
                             headerShown: false,
                             animation: 'fade_from_bottom',
-                        }}
+                        } }
                     >
                         <Stack.Screen
                             name="Splash"
-                            component={SplashScreenComponent}
+                            component={ SplashScreenComponent }
                         />
 
                         <Stack.Screen
                             name="Questionnaire"
-                            component={QuestionnaireScreen}
+                            component={ QuestionnaireScreen }
                         />
 
-                        <Stack.Screen name="MainTabs" component={MainTabs} />
+                        <Stack.Screen name="MainTabs" component={ MainTabs } />
                     </Stack.Navigator>
                 </NavigationContainer>
             </UserContextWrapper>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import {
     View,
     Text,
@@ -7,13 +7,12 @@ import {
     TouchableOpacity,
     ScrollView,
     Image,
-    Dimensions,
 } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
-import { FoodItem, Review } from '../types';
-import { AppColors, Typography, Spacing, BorderRadius } from '../theme';
 
-const { width } = Dimensions.get('window');
+import { Ionicons } from '@expo/vector-icons';
+
+import { AppColors, Typography, Spacing, BorderRadius } from '../theme';
+import { FoodItem } from '../types';
 
 interface MenuModalProps {
     visible: boolean;
@@ -32,98 +31,99 @@ export default function MenuModal({
 }: MenuModalProps) {
     const [activeTab, setActiveTab] = useState<'items' | 'menu'>('items');
 
-    const getAvatarColor = (index: number) => {
+    function getAvatarColor(index: number) {
         const colors = ['#FF6B6B', '#4ECDC4', '#45B7D1', '#FFA07A', '#98D8C8'];
         return colors[index % colors.length];
-    };
+    }
 
-    const getInitial = (name: string) => {
+    function getInitial(name: string) {
         return name.charAt(0).toUpperCase();
-    };
+    }
 
     return (
         <Modal
-            visible={visible}
+            visible={ visible }
             animationType="slide"
-            onRequestClose={onClose}
+            onRequestClose={ onClose }
             presentationStyle="pageSheet"
         >
-            <View style={styles.container}>
-                {/* Header */}
-                <View style={styles.header}>
-                    <Text style={styles.headerTitle}>Menu & Items</Text>
+            <View style={ styles.container }>
+                { /* Header */ }
+                <View style={ styles.header }>
+                    <Text style={ styles.headerTitle }>Menu & Items</Text>
                     <TouchableOpacity
-                        style={styles.closeButton}
-                        onPress={onClose}
+                        style={ styles.closeButton }
+                        onPress={ onClose }
                     >
                         <Ionicons
                             name="close"
-                            size={28}
-                            color={AppColors.textDark}
+                            size={ 28 }
+                            color={ AppColors.textDark }
                         />
                     </TouchableOpacity>
                 </View>
 
-                {/* Tabs */}
-                <View style={styles.tabs}>
+                { /* Tabs */ }
+                <View style={ styles.tabs }>
                     <TouchableOpacity
-                        style={[
+                        style={ [
                             styles.tab,
                             activeTab === 'items' && styles.activeTab,
-                        ]}
-                        onPress={() => setActiveTab('items')}
+                        ] }
+                        onPress={ () => setActiveTab('items') }
                     >
                         <Text
-                            style={[
+                            style={ [
                                 styles.tabText,
                                 activeTab === 'items' && styles.activeTabText,
-                            ]}
+                            ] }
                         >
                             All Items
                         </Text>
                     </TouchableOpacity>
+
                     <TouchableOpacity
-                        style={[
+                        style={ [
                             styles.tab,
                             activeTab === 'menu' && styles.activeTab,
-                        ]}
-                        onPress={() => setActiveTab('menu')}
+                        ] }
+                        onPress={ () => setActiveTab('menu') }
                     >
                         <Text
-                            style={[
+                            style={ [
                                 styles.tabText,
                                 activeTab === 'menu' && styles.activeTabText,
-                            ]}
+                            ] }
                         >
                             Menu
                         </Text>
                     </TouchableOpacity>
                 </View>
 
-                {/* Content */}
+                { /* Content */ }
                 <ScrollView
-                    style={styles.content}
-                    showsVerticalScrollIndicator={false}
+                    style={ styles.content }
+                    showsVerticalScrollIndicator={ false }
                 >
-                    {activeTab === 'items' ? (
+                    { activeTab === 'items' ? (
                         // All Items Tab
-                        <View style={styles.itemsList}>
-                            {foodItems.map((foodItem, index) => {
+                        <View style={ styles.itemsList }>
+                            { foodItems.map((foodItem, index) => {
                                 const isEven = index % 2 === 0;
                                 return (
                                     <View
-                                        key={index}
-                                        style={[
+                                        key={ index }
+                                        style={ [
                                             styles.foodItemRow,
                                             isEven
                                                 ? styles.foodItemRowEven
                                                 : styles.foodItemRowOdd,
-                                        ]}
+                                        ] }
                                     >
-                                        {isEven && (
+                                        { isEven && (
                                             <TouchableOpacity
-                                                activeOpacity={0.9}
-                                                onPress={() =>
+                                                activeOpacity={ 0.9 }
+                                                onPress={ () =>
                                                     onPhotoPress(
                                                         foodItem.images,
                                                         0,
@@ -131,19 +131,21 @@ export default function MenuModal({
                                                 }
                                             >
                                                 <Image
-                                                    source={{
+                                                    source={ {
                                                         uri: foodItem.images[0],
-                                                    }}
-                                                    style={styles.foodImage}
+                                                    } }
+                                                    style={ styles.foodImage }
                                                     resizeMode="cover"
                                                 />
                                             </TouchableOpacity>
-                                        )}
-                                        <View style={styles.foodReview}>
-                                            <Text style={styles.foodName}>
-                                                {foodItem.name}
+                                        ) }
+
+                                        <View style={ styles.foodReview }>
+                                            <Text style={ styles.foodName }>
+                                                { foodItem.name }
                                             </Text>
-                                            {foodItem.reviews[0] && (
+
+                                            { foodItem.reviews[0] && (
                                                 <>
                                                     <View
                                                         style={
@@ -151,7 +153,7 @@ export default function MenuModal({
                                                         }
                                                     >
                                                         <View
-                                                            style={[
+                                                            style={ [
                                                                 styles.avatar,
                                                                 {
                                                                     backgroundColor:
@@ -159,20 +161,21 @@ export default function MenuModal({
                                                                             index,
                                                                         ),
                                                                 },
-                                                            ]}
+                                                            ] }
                                                         >
                                                             <Text
                                                                 style={
                                                                     styles.avatarText
                                                                 }
                                                             >
-                                                                {getInitial(
+                                                                { getInitial(
                                                                     foodItem
                                                                         .reviews[0]
                                                                         .author,
-                                                                )}
+                                                                ) }
                                                             </Text>
                                                         </View>
+
                                                         <View
                                                             style={
                                                                 styles.reviewInfo
@@ -189,12 +192,13 @@ export default function MenuModal({
                                                                         .author
                                                                 }
                                                             </Text>
+
                                                             <View
                                                                 style={
                                                                     styles.reviewStars
                                                                 }
                                                             >
-                                                                {[
+                                                                { [
                                                                     ...Array(
                                                                         Math.floor(
                                                                             foodItem
@@ -217,15 +221,16 @@ export default function MenuModal({
                                                                             }
                                                                         />
                                                                     ),
-                                                                )}
+                                                                ) }
                                                             </View>
                                                         </View>
                                                     </View>
+
                                                     <Text
                                                         style={
                                                             styles.reviewQuote
                                                         }
-                                                        numberOfLines={4}
+                                                        numberOfLines={ 4 }
                                                     >
                                                         "
                                                         {
@@ -235,12 +240,13 @@ export default function MenuModal({
                                                         "
                                                     </Text>
                                                 </>
-                                            )}
+                                            ) }
                                         </View>
-                                        {!isEven && (
+
+                                        { !isEven && (
                                             <TouchableOpacity
-                                                activeOpacity={0.9}
-                                                onPress={() =>
+                                                activeOpacity={ 0.9 }
+                                                onPress={ () =>
                                                     onPhotoPress(
                                                         foodItem.images,
                                                         0,
@@ -248,37 +254,39 @@ export default function MenuModal({
                                                 }
                                             >
                                                 <Image
-                                                    source={{
+                                                    source={ {
                                                         uri: foodItem.images[0],
-                                                    }}
-                                                    style={styles.foodImage}
+                                                    } }
+                                                    style={ styles.foodImage }
                                                     resizeMode="cover"
                                                 />
                                             </TouchableOpacity>
-                                        )}
+                                        ) }
                                     </View>
                                 );
-                            })}
+                            }) }
                         </View>
                     ) : (
                         // Menu Tab
-                        <View style={styles.menuList}>
-                            {menuImages.map((image, index) => (
+                        <View style={ styles.menuList }>
+                            { menuImages.map((image, index) => (
                                 <TouchableOpacity
-                                    key={index}
-                                    activeOpacity={0.9}
-                                    onPress={() => onPhotoPress(menuImages, index)}
-                                    style={styles.menuImageContainer}
+                                    key={ index }
+                                    activeOpacity={ 0.9 }
+                                    onPress={ () =>
+                                        onPhotoPress(menuImages, index)
+                                    }
+                                    style={ styles.menuImageContainer }
                                 >
                                     <Image
-                                        source={{ uri: image }}
-                                        style={styles.menuImage}
+                                        source={ { uri: image } }
+                                        style={ styles.menuImage }
                                         resizeMode="cover"
                                     />
                                 </TouchableOpacity>
-                            ))}
+                            )) }
                         </View>
-                    )}
+                    ) }
                 </ScrollView>
             </View>
         </Modal>

@@ -40,10 +40,12 @@ export function useRestaurants(options?: UseRestaurantsOptions): UseRestaurantsR
             });
 
             setRestaurants(data);
-        } catch (err) {
+        }
+        catch (err) {
             console.error('Error fetching restaurants:', err);
             setError(err as Error);
-        } finally {
+        }
+        finally {
             setLoading(false);
         }
     };

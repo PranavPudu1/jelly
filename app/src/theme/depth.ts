@@ -1,10 +1,3 @@
-/**
- * 🍰 Texture & Depth System
- *
- * Soft, diffused shadows and layering for warmth and dimensionality.
- * Gradient overlays for dreamy anime-like depth.
- */
-
 import { ViewStyle } from 'react-native';
 import { AppColors } from './colors';
 
@@ -183,7 +176,11 @@ export const Gradients = {
      * Gentle radial gradient (center to edge)
      */
     gentleRadial: {
-        colors: ['rgba(254, 224, 222, 0.8)', 'rgba(254, 224, 222, 0.2)', 'rgba(254, 224, 222, 0)'],
+        colors: [
+            'rgba(254, 224, 222, 0.8)',
+            'rgba(254, 224, 222, 0.2)',
+            'rgba(254, 224, 222, 0)',
+        ],
         start: { x: 0.5, y: 0.5 },
         end: { x: 1, y: 1 },
     },
@@ -223,7 +220,11 @@ export const Gradients = {
      * Morning mist gradient (soft and ethereal)
      */
     morningMist: {
-        colors: ['rgba(254, 240, 238, 0.6)', 'rgba(254, 240, 238, 0.2)', 'rgba(254, 240, 238, 0)'],
+        colors: [
+            'rgba(254, 240, 238, 0.6)',
+            'rgba(254, 240, 238, 0.2)',
+            'rgba(254, 240, 238, 0)',
+        ],
         start: { x: 0, y: 0 },
         end: { x: 0, y: 1 },
     },

@@ -75,14 +75,14 @@ export default function SwipeScreen() {
         }));
     }
 
-    function toggleCuisineFilter(cuisine: string) {
-        setFilters((prev) => ({
-            ...prev,
-            cuisine: prev.cuisine.includes(cuisine)
-                ? prev.cuisine.filter((c) => c !== cuisine)
-                : [...prev.cuisine, cuisine],
-        }));
-    }
+    // function toggleCuisineFilter(cuisine: string) {
+    //     setFilters((prev) => ({
+    //         ...prev,
+    //         cuisine: prev.cuisine.includes(cuisine)
+    //             ? prev.cuisine.filter((c) => c !== cuisine)
+    //             : [...prev.cuisine, cuisine],
+    //     }));
+    // }
 
     function toggleRatingFilter(rating: string) {
         setFilters((prev) => ({
@@ -92,7 +92,7 @@ export default function SwipeScreen() {
     }
 
     function renderCard(restaurant: Restaurant) {
-        return <RestaurantCard restaurant={restaurant} />;
+        return <RestaurantCard restaurant={ restaurant } />;
     }
 
     function FilterChip({
@@ -106,20 +106,20 @@ export default function SwipeScreen() {
     }) {
         return (
             <TouchableOpacity
-                style={[
+                style={ [
                     styles.filterChip,
                     isActive && styles.filterChipActive,
-                ]}
-                onPress={onPress}
-                activeOpacity={0.7}
+                ] }
+                onPress={ onPress }
+                activeOpacity={ 0.7 }
             >
                 <Text
-                    style={[
+                    style={ [
                         styles.filterChipText,
                         isActive && styles.filterChipTextActive,
-                    ]}
+                    ] }
                 >
-                    {label}
+                    { label }
                 </Text>
             </TouchableOpacity>
         );
@@ -127,28 +127,28 @@ export default function SwipeScreen() {
 
     if (currentIndex >= MOCK_RESTAURANTS.length) {
         return (
-            <SafeAreaView style={styles.container} edges={['top']}>
-                <View style={styles.endScreenContainer}>
-                    <View style={styles.endIconContainer}>
+            <SafeAreaView style={ styles.container } edges={ ['top'] }>
+                <View style={ styles.endScreenContainer }>
+                    <View style={ styles.endIconContainer }>
                         <Ionicons
                             name="restaurant"
-                            size={64}
-                            color={AppColors.textDark}
+                            size={ 64 }
+                            color={ AppColors.textDark }
                         />
                     </View>
 
-                    <Text style={styles.endTitle}>All done for now!</Text>
+                    <Text style={ styles.endTitle }>All done for now!</Text>
 
-                    <Text style={styles.endSubtitle}>
+                    <Text style={ styles.endSubtitle }>
                         You've seen all available restaurants
                     </Text>
 
                     <TouchableOpacity
-                        style={styles.startOverButton}
-                        onPress={handleStartOver}
-                        activeOpacity={0.8}
+                        style={ styles.startOverButton }
+                        onPress={ handleStartOver }
+                        activeOpacity={ 0.8 }
                     >
-                        <Text style={styles.startOverButtonText}>
+                        <Text style={ styles.startOverButtonText }>
                             Start Over
                         </Text>
                     </TouchableOpacity>
@@ -160,28 +160,28 @@ export default function SwipeScreen() {
     function OverlayLabelRight() {
         return (
             <View
-                style={{
+                style={ {
                     position: 'absolute',
                     right: 20,
                     top: 20,
-                }}
+                } }
             >
                 <View
-                    style={{
+                    style={ {
                         backgroundColor: AppColors.background,
                         borderRadius: 12,
                         paddingVertical: 12,
                         paddingHorizontal: 16,
                         borderWidth: 2,
                         borderColor: AppColors.background,
-                    }}
+                    } }
                 >
                     <Text
-                        style={{
+                        style={ {
                             color: AppColors.white,
                             fontSize: 26,
                             fontWeight: 'bold',
-                        }}
+                        } }
                     >
                         PASS
                     </Text>
@@ -193,28 +193,28 @@ export default function SwipeScreen() {
     function OverlayLabelLeft() {
         return (
             <View
-                style={{
+                style={ {
                     position: 'absolute',
                     left: 20,
                     top: 20,
-                }}
+                } }
             >
                 <View
-                    style={{
+                    style={ {
                         backgroundColor: AppColors.primary,
                         borderRadius: 12,
                         paddingVertical: 12,
                         paddingHorizontal: 16,
                         borderWidth: 2,
                         borderColor: AppColors.primary,
-                    }}
+                    } }
                 >
                     <Text
-                        style={{
+                        style={ {
                             color: AppColors.textDark,
                             fontSize: 26,
                             fontWeight: 'bold',
-                        }}
+                        } }
                     >
                         LIKE
                     </Text>
@@ -224,87 +224,88 @@ export default function SwipeScreen() {
     }
 
     return (
-        <SafeAreaView style={styles.container} edges={['top']}>
-            <View style={styles.filterContainer}>
+        <SafeAreaView style={ styles.container } edges={ ['top'] }>
+            <View style={ styles.filterContainer }>
                 <ScrollView
                     horizontal
-                    showsHorizontalScrollIndicator={false}
-                    contentContainerStyle={styles.filterScrollContent}
+                    showsHorizontalScrollIndicator={ false }
+                    contentContainerStyle={ styles.filterScrollContent }
                 >
                     <FilterChip
                         label="$"
-                        isActive={filters.price.includes('$')}
-                        onPress={() => togglePriceFilter('$')}
+                        isActive={ filters.price.includes('$') }
+                        onPress={ () => togglePriceFilter('$') }
                     />
 
                     <FilterChip
                         label="$$"
-                        isActive={filters.price.includes('$$')}
-                        onPress={() => togglePriceFilter('$$')}
+                        isActive={ filters.price.includes('$$') }
+                        onPress={ () => togglePriceFilter('$$') }
                     />
 
                     <FilterChip
                         label="$$$"
-                        isActive={filters.price.includes('$$$')}
-                        onPress={() => togglePriceFilter('$$$')}
+                        isActive={ filters.price.includes('$$$') }
+                        onPress={ () => togglePriceFilter('$$$') }
                     />
 
                     <FilterChip
                         label="< 1 mi"
-                        isActive={filters.distance === '< 1 mi'}
-                        onPress={() => toggleDistanceFilter('< 1 mi')}
+                        isActive={ filters.distance === '< 1 mi' }
+                        onPress={ () => toggleDistanceFilter('< 1 mi') }
                     />
 
                     <FilterChip
                         label="< 3 mi"
-                        isActive={filters.distance === '< 3 mi'}
-                        onPress={() => toggleDistanceFilter('< 3 mi')}
+                        isActive={ filters.distance === '< 3 mi' }
+                        onPress={ () => toggleDistanceFilter('< 3 mi') }
                     />
 
                     <FilterChip
                         label="< 5 mi"
-                        isActive={filters.distance === '< 5 mi'}
-                        onPress={() => toggleDistanceFilter('< 5 mi')}
+                        isActive={ filters.distance === '< 5 mi' }
+                        onPress={ () => toggleDistanceFilter('< 5 mi') }
                     />
 
                     <FilterChip
                         label="4.0+ ⭐"
-                        isActive={filters.rating === '4.0+'}
-                        onPress={() => toggleRatingFilter('4.0+')}
+                        isActive={ filters.rating === '4.0+' }
+                        onPress={ () => toggleRatingFilter('4.0+') }
                     />
                     
                     <FilterChip
                         label="4.5+ ⭐"
-                        isActive={filters.rating === '4.5+'}
-                        onPress={() => toggleRatingFilter('4.5+')}
+                        isActive={ filters.rating === '4.5+' }
+                        onPress={ () => toggleRatingFilter('4.5+') }
                     />
                 </ScrollView>
             </View>
-            <View style={styles.cardContainer}>
+            
+            <View style={ styles.cardContainer }>
                 <Swiper
-                    ref={swiperRef}
-                    data={MOCK_RESTAURANTS}
-                    renderCard={renderCard}
-                    onSwipeRight={handleSwipedRight}
-                    onSwipeLeft={handleSwipedLeft}
-                    onSwipedAll={handleSwipedAll}
-                    onIndexChange={handleIndexChange}
-                    cardStyle={{
+                    ref={ swiperRef }
+                    data={ MOCK_RESTAURANTS }
+                    renderCard={ renderCard }
+                    onSwipeRight={ handleSwipedRight }
+                    onSwipeLeft={ handleSwipedLeft }
+                    onSwipedAll={ handleSwipedAll }
+                    onIndexChange={ handleIndexChange }
+                    cardStyle={ {
                         width: width - 40,
                         height: height * 0.65,
-                    }}
+                    } }
                     disableTopSwipe
                     disableBottomSwipe
-                    translateXRange={[-width / 3, 0, width / 3]}
-                    inputOverlayLabelRightOpacityRange={[0, width / 5, width / 3]}
-                    outputOverlayLabelRightOpacityRange={[0, 0.5, 1]}
-                    inputOverlayLabelLeftOpacityRange={[-width / 3, -width / 5, 0]}
-                    outputOverlayLabelLeftOpacityRange={[1, 0.5, 0]}
+                    translateXRange={ [-width / 3, 0, width / 3] }
+                    inputOverlayLabelRightOpacityRange={ [0, width / 5, width / 3] }
+                    outputOverlayLabelRightOpacityRange={ [0, 0.5, 1] }
+                    inputOverlayLabelLeftOpacityRange={ [-width / 3, -width / 5, 0] }
+                    outputOverlayLabelLeftOpacityRange={ [1, 0.5, 0] }
                     // For some reason these are flipped
-                    OverlayLabelLeft={OverlayLabelRight}
-                    OverlayLabelRight={OverlayLabelLeft}
+                    OverlayLabelLeft={ OverlayLabelRight }
+                    OverlayLabelRight={ OverlayLabelLeft }
 
-                    swipeVelocityThreshold={800}
+                    swipeVelocityThreshold={ 800 }
                 />
             </View>
         </SafeAreaView>

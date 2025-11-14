@@ -1,4 +1,10 @@
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
+import {
+    View,
+    Text,
+    StyleSheet,
+    TouchableOpacity,
+    ScrollView,
+} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 
@@ -29,100 +35,104 @@ export default function UserProfileScreen() {
     }
 
     return (
-        <SafeAreaView style={styles.container} edges={['top']}>
+        <SafeAreaView style={ styles.container } edges={ ['top'] }>
             <ScrollView>
-                <View style={styles.header}>
-                    <View style={styles.avatarContainer}>
+                <View style={ styles.header }>
+                    <View style={ styles.avatarContainer }>
                         <Ionicons
                             name="person"
-                            size={48}
-                            color={AppColors.textDark}
+                            size={ 48 }
+                            color={ AppColors.textDark }
                         />
                     </View>
-                    <Text style={styles.userName}>{userName}</Text>
+                    <Text style={ styles.userName }>{ userName }</Text>
                 </View>
 
-                <View style={styles.section}>
-                    <Text style={styles.sectionTitle}>Account</Text>
+                <View style={ styles.section }>
+                    <Text style={ styles.sectionTitle }>Account</Text>
 
                     <TouchableOpacity
-                        style={styles.menuItem}
-                        onPress={handleEditProfile}
-                        activeOpacity={0.7}
+                        style={ styles.menuItem }
+                        onPress={ handleEditProfile }
+                        activeOpacity={ 0.7 }
                     >
-                        <View style={styles.menuItemLeft}>
+                        <View style={ styles.menuItemLeft }>
                             <Ionicons
                                 name="person-outline"
-                                size={24}
-                                color={AppColors.textDark}
+                                size={ 24 }
+                                color={ AppColors.textDark }
                             />
-                            <Text style={styles.menuItemText}>Edit Profile</Text>
+                            <Text style={ styles.menuItemText }>
+                                Edit Profile
+                            </Text>
                         </View>
                         <Ionicons
                             name="chevron-forward"
-                            size={20}
-                            color={AppColors.textLight}
+                            size={ 20 }
+                            color={ AppColors.textLight }
                         />
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                        style={styles.menuItem}
-                        onPress={handlePreferences}
-                        activeOpacity={0.7}
+                        style={ styles.menuItem }
+                        onPress={ handlePreferences }
+                        activeOpacity={ 0.7 }
                     >
-                        <View style={styles.menuItemLeft}>
+                        <View style={ styles.menuItemLeft }>
                             <Ionicons
                                 name="settings-outline"
-                                size={24}
-                                color={AppColors.textDark}
+                                size={ 24 }
+                                color={ AppColors.textDark }
                             />
-                            <Text style={styles.menuItemText}>Preferences</Text>
+                            <Text style={ styles.menuItemText }>Preferences</Text>
                         </View>
                         <Ionicons
                             name="chevron-forward"
-                            size={20}
-                            color={AppColors.textLight}
+                            size={ 20 }
+                            color={ AppColors.textLight }
                         />
                     </TouchableOpacity>
                 </View>
 
-                <View style={styles.section}>
-                    <Text style={styles.sectionTitle}>Support</Text>
+                <View style={ styles.section }>
+                    <Text style={ styles.sectionTitle }>Support</Text>
 
                     <TouchableOpacity
-                        style={styles.menuItem}
-                        onPress={handleAbout}
-                        activeOpacity={0.7}
+                        style={ styles.menuItem }
+                        onPress={ handleAbout }
+                        activeOpacity={ 0.7 }
                     >
-                        <View style={styles.menuItemLeft}>
+                        <View style={ styles.menuItemLeft }>
                             <Ionicons
                                 name="information-circle-outline"
-                                size={24}
-                                color={AppColors.textDark}
+                                size={ 24 }
+                                color={ AppColors.textDark }
                             />
-                            <Text style={styles.menuItemText}>About</Text>
+                            <Text style={ styles.menuItemText }>About</Text>
                         </View>
                         <Ionicons
                             name="chevron-forward"
-                            size={20}
-                            color={AppColors.textLight}
+                            size={ 20 }
+                            color={ AppColors.textLight }
                         />
                     </TouchableOpacity>
                 </View>
 
-                <View style={styles.section}>
+                <View style={ styles.section }>
                     <TouchableOpacity
-                        style={[styles.menuItem, styles.logoutButton]}
-                        onPress={handleLogout}
-                        activeOpacity={0.7}
+                        style={ [styles.menuItem, styles.logoutButton] }
+                        onPress={ handleLogout }
+                        activeOpacity={ 0.7 }
                     >
-                        <View style={styles.menuItemLeft}>
+                        <View style={ styles.menuItemLeft }>
                             <Ionicons
                                 name="log-out-outline"
-                                size={24}
-                                color={AppColors.secondary}
+                                size={ 24 }
+                                color={ AppColors.secondary }
                             />
-                            <Text style={[styles.menuItemText, styles.logoutText]}>
+                            <Text
+                                style={ [styles.menuItemText, styles.logoutText] }
+                            >
                                 Log Out
                             </Text>
                         </View>
@@ -162,7 +172,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: Spacing.lg,
     },
     sectionTitle: {
-        ...Typography.labelLarge,
+        ...Typography.titleMedium, // TODO: see if functionally the same
         color: AppColors.textLight,
         marginBottom: Spacing.sm,
         marginLeft: Spacing.sm,

@@ -17,9 +17,7 @@ export default function WelcomeCarousel({
         const interval = setInterval(() => {
             setCarouselIndex((prev) => {
                 // Stop at the last item, don't wrap around
-                if (prev >= carouselWords.length - 1) {
-                    return prev;
-                }
+                if (prev >= carouselWords.length - 1) return prev;
 
                 Animated.sequence([
                     Animated.timing(carouselFadeAnim, {
@@ -50,22 +48,22 @@ export default function WelcomeCarousel({
     }, [carouselFadeAnim, onAutoAdvance, carouselWords.length]);
 
     return (
-        <View style={styles.welcomeContainer}>
-            <View style={styles.welcomeContent}>
-                <Text style={styles.welcomeText}>Welcome to Jelly!</Text>
+        <View style={ styles.welcomeContainer }>
+            <View style={ styles.welcomeContent }>
+                <Text style={ styles.welcomeText }>Welcome to Jelly!</Text>
 
-                <View style={styles.carouselContainer}>
-                    <Text style={styles.carouselText}>
-                        Let's find your next{' '}
+                <View style={ styles.carouselContainer }>
+                    <Text style={ styles.carouselText }>
+                        Let's find your next{ ' ' }
                     </Text>
 
                     <Animated.Text
-                        style={[
+                        style={ [
                             styles.carouselWord,
                             { opacity: carouselFadeAnim },
-                        ]}
+                        ] }
                     >
-                        {carouselWords[carouselIndex]}
+                        { carouselWords[carouselIndex] }
                     </Animated.Text>
                 </View>
             </View>

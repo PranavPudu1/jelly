@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import {
     View,
     Text,
@@ -12,10 +12,12 @@ import {
     NativeScrollEvent,
     NativeSyntheticEvent,
 } from 'react-native';
+
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
-import { Review } from '../types';
+
 import { AppColors, Typography, Spacing } from '../theme';
+import { Review } from '../types';
 
 const { width, height } = Dimensions.get('window');
 
@@ -41,9 +43,9 @@ export default function ReelModal({
     initialPhotoIndex = 0,
     tooltipText = 'Scroll for more pictures',
 }: ReelModalProps) {
-    const [currentPhotoIndex, setCurrentPhotoIndex] = useState(
-        initialPhotoIndex,
-    );
+    const [currentPhotoIndex, setCurrentPhotoIndex] =
+        useState(initialPhotoIndex);
+
     const [showTooltip, setShowTooltip] = useState(true);
     const [reviewsExpanded, setReviewsExpanded] = useState(false);
 
@@ -55,7 +57,7 @@ export default function ReelModal({
     const swipeStartX = useRef(0);
 
     const currentPhoto = photos[currentPhotoIndex];
-    const currentReview = currentPhoto?.review || allReviews[0];
+    // const currentReview = currentPhoto?.review || allReviews[0];
 
     // Hide tooltip after 3 seconds on first open
     useEffect(() => {
@@ -92,7 +94,7 @@ export default function ReelModal({
         }
     }, [visible, initialPhotoIndex, tooltipOpacity, reviewsPanelHeight]);
 
-    const handleMoreReviews = () => {
+    function handleMoreReviews() {
         setReviewsExpanded(true);
         Animated.spring(reviewsPanelHeight, {
             toValue: height * 0.6,
@@ -100,11 +102,9 @@ export default function ReelModal({
             tension: 50,
             friction: 8,
         }).start();
-    };
+    }
 
-    const handleMainScroll = (
-        event: NativeSyntheticEvent<NativeScrollEvent>,
-    ) => {
+    function handleMainScroll(event: NativeSyntheticEvent<NativeScrollEvent>) {
         const scrollY = event.nativeEvent.contentOffset.y;
         const index = Math.round(scrollY / height);
 
@@ -115,7 +115,11 @@ export default function ReelModal({
             return;
         }
 
-        if (index !== currentPhotoIndex && index >= 0 && index < photos.length) {
+        if (
+            index !== currentPhotoIndex &&
+            index >= 0 &&
+            index < photos.length
+        ) {
             setCurrentPhotoIndex(index);
             // Collapse reviews when changing photos
             if (reviewsExpanded) {
@@ -129,22 +133,22 @@ export default function ReelModal({
         }
 
         lastScrollY.current = scrollY;
-    };
+    }
 
-    const getAvatarColor = (index: number) => {
+    function getAvatarColor(index: number) {
         const colors = ['#FF6B6B', '#4ECDC4', '#45B7D1', '#FFA07A', '#98D8C8'];
         return colors[index % colors.length];
-    };
+    }
 
-    const getInitial = (name: string) => {
+    function getInitial(name: string) {
         return name.charAt(0).toUpperCase();
-    };
+    }
 
-    const handleTouchStart = (event: any) => {
+    function handleTouchStart(event: any) {
         swipeStartX.current = event.nativeEvent.pageX;
-    };
+    }
 
-    const handleTouchEnd = (event: any) => {
+    function handleTouchEnd(event: any) {
         const swipeEndX = event.nativeEvent.pageX;
         const deltaX = Math.abs(swipeEndX - swipeStartX.current);
 
@@ -154,195 +158,212 @@ export default function ReelModal({
             event.stopPropagation();
             onClose();
         }
-    };
+    }
 
-    const handleTouchMove = (event: any) => {
+    function handleTouchMove(event: any) {
         // Prevent touch events from propagating to swiper underneath
         event.stopPropagation();
-    };
+    }
 
     return (
         <Modal
-            visible={visible}
+            visible={ visible }
             animationType="fade"
-            onRequestClose={onClose}
+            onRequestClose={ onClose }
             statusBarTranslucent
         >
             <View
-                style={styles.container}
-                onTouchStart={handleTouchStart}
-                onTouchMove={handleTouchMove}
-                onTouchEnd={handleTouchEnd}
+                style={ styles.container }
+                onTouchStart={ handleTouchStart }
+                onTouchMove={ handleTouchMove }
+                onTouchEnd={ handleTouchEnd }
             >
-                {/* Close Button */}
-                <TouchableOpacity style={styles.closeButton} onPress={onClose}>
-                    <Ionicons name="close" size={32} color={AppColors.white} />
+                { /* Close Button */ }
+                <TouchableOpacity style={ styles.closeButton } onPress={ onClose }>
+                    <Ionicons name="close" size={ 32 } color={ AppColors.white } />
                 </TouchableOpacity>
 
-                {/* Tooltip */}
-                {showTooltip && (
+                { /* Tooltip */ }
+                { showTooltip && (
                     <Animated.View
-                        style={[
-                            styles.tooltip,
-                            { opacity: tooltipOpacity },
-                        ]}
+                        style={ [styles.tooltip, { opacity: tooltipOpacity }] }
                     >
-                        <Text style={styles.tooltipText}>
-                            {tooltipText}
-                        </Text>
+                        <Text style={ styles.tooltipText }>{ tooltipText }</Text>
                     </Animated.View>
-                )}
+                ) }
 
-                {/* Vertical Photo Navigation Indicators */}
-                <View style={styles.photoIndicators}>
-                    {photos.map((_, index) => (
+                { /* Vertical Photo Navigation Indicators */ }
+                <View style={ styles.photoIndicators }>
+                    { photos.map((_, index) => (
                         <View
-                            key={index}
-                            style={[
+                            key={ index }
+                            style={ [
                                 styles.indicator,
                                 index === currentPhotoIndex &&
                                     styles.activeIndicator,
-                            ]}
+                            ] }
                         />
-                    ))}
+                    )) }
                 </View>
 
-                {/* Main Vertical ScrollView with all photos */}
+                { /* Main Vertical ScrollView with all photos */ }
                 <ScrollView
-                    ref={mainScrollViewRef}
+                    ref={ mainScrollViewRef }
                     pagingEnabled
-                    showsVerticalScrollIndicator={false}
-                    onScroll={handleMainScroll}
-                    scrollEventThrottle={16}
-                    snapToInterval={height}
+                    showsVerticalScrollIndicator={ false }
+                    onScroll={ handleMainScroll }
+                    scrollEventThrottle={ 16 }
+                    snapToInterval={ height }
                     decelerationRate="fast"
-                    bounces={true}
+                    bounces={ true }
                 >
-                    {photos.map((photo, index) => {
+                    { photos.map((photo, index) => {
                         const review = photo.review || allReviews[0];
                         return (
-                            <View key={index} style={styles.photoContainer}>
+                            <View key={ index } style={ styles.photoContainer }>
                                 <Image
-                                    source={{ uri: photo.imageUrl }}
-                                    style={styles.image}
+                                    source={ { uri: photo.imageUrl } }
+                                    style={ styles.image }
                                     resizeMode="cover"
                                 />
 
-                                {/* Bottom Review Overlay - only show for current photo */}
-                                {index === currentPhotoIndex && review && (
+                                { /* Bottom Review Overlay - only show for current photo */ }
+                                { index === currentPhotoIndex && review && (
                                     <LinearGradient
-                                        colors={['transparent', 'rgba(0,0,0,0.85)']}
-                                        style={styles.reviewOverlay}
+                                        colors={ [
+                                            'transparent',
+                                            'rgba(0,0,0,0.85)',
+                                        ] }
+                                        style={ styles.reviewOverlay }
                                     >
-                                        <View style={styles.reviewContent}>
-                                            <Text style={styles.reviewQuote}>
-                                                "{review.quote}"
+                                        <View style={ styles.reviewContent }>
+                                            <Text style={ styles.reviewQuote }>
+                                                "{ review.quote }"
                                             </Text>
-                                            <Text style={styles.reviewAuthor}>
-                                                - {review.author}
+                                            <Text style={ styles.reviewAuthor }>
+                                                - { review.author }
                                             </Text>
 
-                                            {/* More Reviews Button */}
-                                            {!reviewsExpanded && allReviews.length > 1 && (
+                                            { /* More Reviews Button */ }
+                                            { !reviewsExpanded &&
+                                                allReviews.length > 1 && (
                                                 <TouchableOpacity
-                                                    onPress={handleMoreReviews}
-                                                    style={styles.moreReviewsButton}
+                                                    onPress={
+                                                        handleMoreReviews
+                                                    }
+                                                    style={
+                                                        styles.moreReviewsButton
+                                                    }
                                                 >
-                                                    <Text style={styles.moreReviewsText}>
-                                                        More reviews
+                                                    <Text
+                                                        style={
+                                                            styles.moreReviewsText
+                                                        }
+                                                    >
+                                                            More reviews
                                                     </Text>
                                                 </TouchableOpacity>
-                                            )}
+                                            ) }
                                         </View>
                                     </LinearGradient>
-                                )}
+                                ) }
                             </View>
                         );
-                    })}
+                    }) }
                 </ScrollView>
 
-                {/* Expanded Reviews Panel */}
-                {allReviews.length > 1 && (
+                { /* Expanded Reviews Panel */ }
+                { allReviews.length > 1 && (
                     <Animated.View
-                        style={[
+                        style={ [
                             styles.reviewsPanel,
                             { height: reviewsPanelHeight },
-                        ]}
-                        pointerEvents={reviewsExpanded ? 'auto' : 'none'}
+                        ] }
+                        pointerEvents={ reviewsExpanded ? 'auto' : 'none' }
                     >
                         <ScrollView
-                            ref={reviewsScrollViewRef}
-                            style={styles.reviewsScroll}
-                            showsVerticalScrollIndicator={false}
-                            scrollEventThrottle={16}
-                            bounces={true}
-                            scrollEnabled={reviewsExpanded}
+                            ref={ reviewsScrollViewRef }
+                            style={ styles.reviewsScroll }
+                            showsVerticalScrollIndicator={ false }
+                            scrollEventThrottle={ 16 }
+                            bounces={ true }
+                            scrollEnabled={ reviewsExpanded }
                         >
-                            <View style={styles.reviewsPanelHeader}>
-                                <Text style={styles.reviewsPanelTitle}>
+                            <View style={ styles.reviewsPanelHeader }>
+                                <Text style={ styles.reviewsPanelTitle }>
                                     All Reviews
                                 </Text>
+
                                 <TouchableOpacity
-                                    onPress={() => {
+                                    onPress={ () => {
                                         setReviewsExpanded(false);
                                         Animated.spring(reviewsPanelHeight, {
                                             toValue: 0,
                                             useNativeDriver: false,
                                         }).start();
-                                    }}
+                                    } }
                                 >
                                     <Ionicons
                                         name="chevron-down"
-                                        size={24}
-                                        color={AppColors.textDark}
+                                        size={ 24 }
+                                        color={ AppColors.textDark }
                                     />
                                 </TouchableOpacity>
                             </View>
 
-                            {allReviews.map((review, index) => (
-                                <View key={index} style={styles.reviewItem}>
-                                    <View style={styles.reviewHeader}>
+                            { allReviews.map((review, index) => (
+                                <View key={ index } style={ styles.reviewItem }>
+                                    <View style={ styles.reviewHeader }>
                                         <View
-                                            style={[
+                                            style={ [
                                                 styles.avatar,
                                                 {
                                                     backgroundColor:
                                                         getAvatarColor(index),
                                                 },
-                                            ]}
+                                            ] }
                                         >
-                                            <Text style={styles.avatarText}>
-                                                {getInitial(review.author)}
+                                            <Text style={ styles.avatarText }>
+                                                { getInitial(review.author) }
                                             </Text>
                                         </View>
-                                        <View style={styles.reviewInfo}>
-                                            <Text style={styles.reviewAuthorName}>
-                                                {review.author}
+
+                                        <View style={ styles.reviewInfo }>
+                                            <Text
+                                                style={ styles.reviewAuthorName }
+                                            >
+                                                { review.author }
                                             </Text>
-                                            <View style={styles.reviewStars}>
-                                                {[
+
+                                            <View style={ styles.reviewStars }>
+                                                { [
                                                     ...Array(
-                                                        Math.floor(review.rating),
+                                                        Math.floor(
+                                                            review.rating,
+                                                        ),
                                                     ),
                                                 ].map((_, i) => (
                                                     <Ionicons
-                                                        key={i}
+                                                        key={ i }
                                                         name="star"
-                                                        size={12}
-                                                        color={AppColors.starOrange}
+                                                        size={ 12 }
+                                                        color={
+                                                            AppColors.starOrange
+                                                        }
                                                     />
-                                                ))}
+                                                )) }
                                             </View>
                                         </View>
                                     </View>
-                                    <Text style={styles.reviewItemQuote}>
-                                        "{review.quote}"
+
+                                    <Text style={ styles.reviewItemQuote }>
+                                        "{ review.quote }"
                                     </Text>
                                 </View>
-                            ))}
+                            )) }
                         </ScrollView>
                     </Animated.View>
-                )}
+                ) }
             </View>
         </Modal>
     );

@@ -10,16 +10,18 @@ export default function SavedRestaurantsScreen() {
 
     function renderEmptyState() {
         return (
-            <View style={styles.emptyContainer}>
-                <View style={styles.emptyIconContainer}>
+            <View style={ styles.emptyContainer }>
+                <View style={ styles.emptyIconContainer }>
                     <Ionicons
                         name="bookmark-outline"
-                        size={64}
-                        color={AppColors.textLight}
+                        size={ 64 }
+                        color={ AppColors.textLight }
                     />
                 </View>
-                <Text style={styles.emptyTitle}>No Saved Restaurants</Text>
-                <Text style={styles.emptySubtitle}>
+
+                <Text style={ styles.emptyTitle }>No Saved Restaurants</Text>
+                
+                <Text style={ styles.emptySubtitle }>
                     Restaurants you like will appear here
                 </Text>
             </View>
@@ -27,16 +29,16 @@ export default function SavedRestaurantsScreen() {
     }
 
     return (
-        <SafeAreaView style={styles.container} edges={['top']}>
-            <View style={styles.header}>
-                <Text style={styles.headerTitle}>Saved Restaurants</Text>
+        <SafeAreaView style={ styles.container } edges={ ['top'] }>
+            <View style={ styles.header }>
+                <Text style={ styles.headerTitle }>Saved Restaurants</Text>
             </View>
 
             <FlatList
-                data={savedRestaurants}
-                renderItem={() => null}
-                keyExtractor={(item, index) => index.toString()}
-                ListEmptyComponent={renderEmptyState}
+                data={ savedRestaurants }
+                renderItem={ () => null }
+                keyExtractor={ (item, index) => index.toString() }
+                ListEmptyComponent={ renderEmptyState }
                 contentContainerStyle={
                     savedRestaurants.length === 0
                         ? styles.emptyListContainer

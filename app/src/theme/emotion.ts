@@ -1,22 +1,20 @@
-/**
- * 💖 Emotion & Personality System
- *
- * Friendly, conversational tone with delightful microcopy.
- * Mascot system and sound design for emotional feedback.
- * Seasonal theming to make the world feel alive.
- */
-
-/**
- * Microcopy library - friendly, conversational text snippets
- */
 export const Microcopy = {
     /**
      * Success messages
      */
     success: {
         general: ['Yay!', 'You did it!', 'Amazing!', 'Perfect!', 'Woohoo!'],
-        saved: ['Saved to your favorites!', 'Added to your list!', 'We\'ll remember this one!'],
-        completed: ['All done!', 'Task complete!', 'Nailed it!', 'You\'re awesome!'],
+        saved: [
+            'Saved to your favorites!',
+            'Added to your list!',
+            'We\'ll remember this one!',
+        ],
+        completed: [
+            'All done!',
+            'Task complete!',
+            'Nailed it!',
+            'You\'re awesome!',
+        ],
         match: ['It\'s a match!', 'Great choice!', 'We love this one too!'],
     },
 
@@ -24,17 +22,36 @@ export const Microcopy = {
      * Encouragement messages
      */
     encouragement: {
-        general: ['Let\'s go!', 'You\'ve got this!', 'Keep going!', 'Almost there!'],
+        general: [
+            'Let\'s go!',
+            'You\'ve got this!',
+            'Keep going!',
+            'Almost there!',
+        ],
         exploring: ['Nice exploring!', 'Looking good!', 'Great taste!'],
-        loading: ['Just a moment...', 'Getting things ready...', 'Almost there...', 'Loading your favorites...'],
+        loading: [
+            'Just a moment...',
+            'Getting things ready...',
+            'Almost there...',
+            'Loading your favorites...',
+        ],
     },
 
     /**
      * Welcome messages
      */
     welcome: {
-        firstTime: ['Welcome! Let\'s find your perfect spot!', 'Hi there! Ready to explore?', 'Hello! Let\'s discover together!'],
-        returning: ['Welcome back!', 'Good to see you!', 'Hey there!', 'Ready for more?'],
+        firstTime: [
+            'Welcome! Let\'s find your perfect spot!',
+            'Hi there! Ready to explore?',
+            'Hello! Let\'s discover together!',
+        ],
+        returning: [
+            'Welcome back!',
+            'Good to see you!',
+            'Hey there!',
+            'Ready for more?',
+        ],
         timeOfDay: {
             morning: ['Good morning!', 'Rise and shine!', 'Morning!'],
             afternoon: ['Good afternoon!', 'Hey there!', 'Afternoon!'],
@@ -47,18 +64,42 @@ export const Microcopy = {
      * Empty state messages
      */
     emptyState: {
-        noSaved: ['No favorites yet!', 'Start exploring to save your spots!', 'Your list is waiting for you!'],
-        noResults: ['Hmm, nothing here...', 'Let\'s try something else!', 'No matches found.'],
-        noMatches: ['All caught up!', 'You\'ve seen everything!', 'Time to explore new areas?'],
+        noSaved: [
+            'No favorites yet!',
+            'Start exploring to save your spots!',
+            'Your list is waiting for you!',
+        ],
+        noResults: [
+            'Hmm, nothing here...',
+            'Let\'s try something else!',
+            'No matches found.',
+        ],
+        noMatches: [
+            'All caught up!',
+            'You\'ve seen everything!',
+            'Time to explore new areas?',
+        ],
     },
 
     /**
      * Error messages (still friendly!)
      */
     error: {
-        general: ['Oops! Something went wrong.', 'Uh oh, we hit a snag.', 'Hmm, that didn\'t work.'],
-        retry: ['Let\'s try that again!', 'Want to give it another shot?', 'Retry?'],
-        network: ['Connection trouble...', 'Check your internet?', 'Can\'t reach the server.'],
+        general: [
+            'Oops! Something went wrong.',
+            'Uh oh, we hit a snag.',
+            'Hmm, that didn\'t work.',
+        ],
+        retry: [
+            'Let\'s try that again!',
+            'Want to give it another shot?',
+            'Retry?',
+        ],
+        network: [
+            'Connection trouble...',
+            'Check your internet?',
+            'Can\'t reach the server.',
+        ],
     },
 
     /**
@@ -93,12 +134,16 @@ export const Microcopy = {
      * Seasonal variations
      */
     seasonal: {
-        spring: ['Spring vibes!', 'Cherry blossoms are blooming!', 'Fresh start!'],
+        spring: [
+            'Spring vibes!',
+            'Cherry blossoms are blooming!',
+            'Fresh start!',
+        ],
         summer: ['Summer fun!', 'Sunny days ahead!', 'Beach time!'],
         autumn: ['Cozy autumn!', 'Fall favorites!', 'Pumpkin spice season!'],
         winter: ['Winter wonderland!', 'Cozy up!', 'Holiday vibes!'],
     },
-} as const;
+};
 
 /**
  * Mascot system configuration
@@ -153,16 +198,8 @@ export const MascotSystem = {
             'Finding the perfect match...',
             'Looking for something special...',
         ],
-        celebration: [
-            'You found a gem!',
-            'Perfect match!',
-            'This is it!',
-        ],
-        goodbye: [
-            'See you soon!',
-            'Happy eating!',
-            'Catch you later!',
-        ],
+        celebration: ['You found a gem!', 'Perfect match!', 'This is it!'],
+        goodbye: ['See you soon!', 'Happy eating!', 'Catch you later!'],
     },
 
     /**
@@ -356,7 +393,11 @@ export const SeasonalThemes = {
         newYear: {
             name: 'New Year',
             colors: { accent: '#FFD700', particle: '#FFFF00' },
-            particles: { type: 'confetti', density: 'very-high', speed: 'fast' },
+            particles: {
+                type: 'confetti',
+                density: 'very-high',
+                speed: 'fast',
+            },
             duration: { start: '12-31', end: '01-02' },
         },
     },
@@ -365,35 +406,38 @@ export const SeasonalThemes = {
 /**
  * Helper function to get current season
  */
-export const getCurrentSeason = (): keyof typeof SeasonalThemes => {
+export function getCurrentSeason(): keyof typeof SeasonalThemes {
     const month = new Date().getMonth() + 1; // 1-12
 
     if (month >= 3 && month <= 5) return 'spring';
     if (month >= 6 && month <= 8) return 'summer';
     if (month >= 9 && month <= 11) return 'autumn';
     return 'winter';
-};
+}
 
 /**
  * Helper function to get random microcopy from a category
  */
-export const getRandomMicrocopy = (category: string[]): string => {
+export function getRandomMicrocopy(category: string[]): string {
     return category[Math.floor(Math.random() * category.length)];
-};
+}
 
 /**
  * Helper function to get time-of-day greeting
  */
-export const getTimeOfDayGreeting = (): string => {
+export function getTimeOfDayGreeting(): string {
     const hour = new Date().getHours();
 
     if (hour >= 5 && hour < 12) {
         return getRandomMicrocopy(Microcopy.welcome.timeOfDay.morning);
-    } else if (hour >= 12 && hour < 17) {
+    }
+    else if (hour >= 12 && hour < 17) {
         return getRandomMicrocopy(Microcopy.welcome.timeOfDay.afternoon);
-    } else if (hour >= 17 && hour < 21) {
+    }
+    else if (hour >= 17 && hour < 21) {
         return getRandomMicrocopy(Microcopy.welcome.timeOfDay.evening);
-    } else {
+    }
+    else {
         return getRandomMicrocopy(Microcopy.welcome.timeOfDay.night);
     }
-};
+}

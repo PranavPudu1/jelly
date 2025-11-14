@@ -52,5 +52,9 @@ export interface Restaurant {
 }
 
 export interface QuestionnaireAnswers {
-    [key: string]: string | string[] | { checkboxes: string[]; text: string } | null;
+    [key: string]:
+        | string
+        | string[]
+        | { checkboxes: string[]; text: string }
+        | null;
 }

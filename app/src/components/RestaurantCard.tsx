@@ -1,15 +1,4 @@
-/**
- * RestaurantCard Component
- *
- * Enhanced with delightful design system:
- * - 💫 Gentle spring animations on all interactive elements
- * - 🍰 Soft shadows and depth using new Shadow presets
- * - 💖 Friendly, conversational microcopy
- * - ✨ Dreamy gradients for visual depth
- * - 🎨 Consistent border radius from design system
- */
-
-import React, { useState, useRef } from 'react';
+import { useState, useRef } from 'react';
 import {
     View,
     Text,
@@ -19,10 +8,16 @@ import {
     Dimensions,
     Animated,
 } from 'react-native';
+
 import { ScrollView } from 'react-native-gesture-handler';
+
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
-import { Restaurant } from '../types';
+
+import ReelModal from './ReelModal';
+import MenuModal from './MenuModal';
+import DelightfulButton from './DelightfulButton';
+
 import {
     AppColors,
     Typography,
@@ -32,14 +27,12 @@ import {
     Gradients,
     SpringConfig,
     AnimationScale,
-    Microcopy,
-    getRandomMicrocopy,
 } from '../theme';
-import ReelModal from './ReelModal';
-import MenuModal from './MenuModal';
-import DelightfulButton from './DelightfulButton';
+
+import { Restaurant } from '../types';
 
 const { width, height } = Dimensions.get('window');
+
 const NAVIGATION_BAR_HEIGHT = 80; // Approximate height of navigation bar
 const CARD_HEIGHT = height - NAVIGATION_BAR_HEIGHT;
 
@@ -53,29 +46,31 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
     const [ambianceModalVisible, setAmbianceModalVisible] = useState(false);
     const [menuModalVisible, setMenuModalVisible] = useState(false);
     const [initialPhotoIndex, setInitialPhotoIndex] = useState(0);
+
     const [currentReelPhotos, setCurrentReelPhotos] = useState<
         Array<{ imageUrl: string; review?: any }>
     >([]);
-    const scrollViewRef = React.useRef<ScrollView>(null);
+
+    const scrollViewRef = useRef<ScrollView>(null);
 
     // Animation values for image interactions (DelightfulButton handles button animations)
     const heroImageScale = useRef(new Animated.Value(1)).current;
     const ambianceScale = useRef(new Animated.Value(1)).current;
 
     // Delightful animation helpers for images
-    const animatePressIn = (scale: Animated.Value) => {
+    function animatePressIn(scale: Animated.Value) {
         Animated.spring(scale, {
             toValue: AnimationScale.press,
             ...SpringConfig.gentle,
         }).start();
-    };
+    }
 
-    const animatePressOut = (scale: Animated.Value) => {
+    function animatePressOut(scale: Animated.Value) {
         Animated.spring(scale, {
             toValue: 1,
             ...SpringConfig.playful,
         }).start();
-    };
+    }
 
     function renderStars(rating: number) {
         const stars = [];
@@ -87,31 +82,31 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
         for (let i = 0; i < fullStars; i++) {
             stars.push(
                 <Ionicons
-                    key={i}
+                    key={ i }
                     name="star"
-                    size={starSize}
-                    color={AppColors.secondary}
-                />,
-            );
-        }
-        if (hasHalfStar) {
-            stars.push(
-                <Ionicons
-                    key="half"
-                    name="star-half"
-                    size={starSize}
-                    color={AppColors.secondary}
+                    size={ starSize }
+                    color={ AppColors.secondary }
                 />,
             );
         }
 
+        if (hasHalfStar)
+            stars.push(
+                <Ionicons
+                    key="half"
+                    name="star-half"
+                    size={ starSize }
+                    color={ AppColors.secondary }
+                />,
+            );
+
         for (let i = stars.length; i < 5; i++) {
             stars.push(
                 <Ionicons
-                    key={`empty-${i}`}
+                    key={ `empty-${i}` }
                     name="star-outline"
-                    size={starSize}
-                    color={AppColors.secondary}
+                    size={ starSize }
+                    color={ AppColors.secondary }
                 />,
             );
         }
@@ -126,6 +121,7 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
             'musical-notes': 'musical-notes',
             happy: 'happy',
         };
+
         return iconMap[iconLabel] || 'information-circle';
     }
 
@@ -139,203 +135,209 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
     }
 
     return (
-        <View style={styles.card}>
-            {/* Sticky Header */}
-            <View style={styles.stickyHeader}>
-                <View style={styles.nameRow}>
-                    <View style={styles.nameContainer}>
-                        <Text style={styles.restaurantName} numberOfLines={1}>
-                            {restaurant.name}
+        <View style={ styles.card }>
+            { /* Sticky Header */ }
+            <View style={ styles.stickyHeader }>
+                <View style={ styles.nameRow }>
+                    <View style={ styles.nameContainer }>
+                        <Text style={ styles.restaurantName } numberOfLines={ 1 }>
+                            { restaurant.name }
                         </Text>
 
-                        <View style={styles.dotSeparator}>
-                            <Text style={styles.separatorDot}>•</Text>
+                        <View style={ styles.dotSeparator }>
+                            <Text style={ styles.separatorDot }>•</Text>
                         </View>
 
-                        <Text style={styles.priceLevel}>
-                            {restaurant.priceLevel}
+                        <Text style={ styles.priceLevel }>
+                            { restaurant.priceLevel }
                         </Text>
                     </View>
 
-                    <View style={styles.ratingRow}>
-                        {renderStars(restaurant.rating)}
+                    <View style={ styles.ratingRow }>
+                        { renderStars(restaurant.rating) }
                     </View>
                 </View>
 
-                <Text style={styles.cuisine}>{restaurant.cuisine}</Text>
+                <Text style={ styles.cuisine }>{ restaurant.cuisine }</Text>
             </View>
 
             <ScrollView
-                ref={scrollViewRef}
-                style={styles.scrollView}
-                showsVerticalScrollIndicator={false}
-                bounces={true}
-                scrollEventThrottle={16}
-                waitFor={undefined}
+                ref={ scrollViewRef }
+                style={ styles.scrollView }
+                showsVerticalScrollIndicator={ false }
+                bounces={ true }
+                scrollEventThrottle={ 16 }
+                waitFor={ undefined }
             >
-                {/* Hero Section */}
-                <View style={styles.heroSection}>
-                    {/* Hero Image Reel Modal */}
+                { /* Hero Section */ }
+                <View style={ styles.heroSection }>
+                    { /* Hero Image Reel Modal */ }
                     <ReelModal
-                        visible={heroReelVisible}
-                        onClose={() => setHeroReelVisible(false)}
-                        photos={[{ imageUrl: restaurant.heroImageUrl }]}
-                        allReviews={restaurant.reviews}
-                        initialPhotoIndex={0}
+                        visible={ heroReelVisible }
+                        onClose={ () => setHeroReelVisible(false) }
+                        photos={ [{ imageUrl: restaurant.heroImageUrl }] }
+                        allReviews={ restaurant.reviews }
+                        initialPhotoIndex={ 0 }
                         tooltipText="Hero image"
                     />
 
                     <Animated.View
-                        style={{ transform: [{ scale: heroImageScale }] }}
+                        style={ { transform: [{ scale: heroImageScale }] } }
                     >
                         <TouchableOpacity
-                            activeOpacity={0.9}
-                            onPressIn={() => animatePressIn(heroImageScale)}
-                            onPressOut={() => animatePressOut(heroImageScale)}
-                            onPress={() => {
+                            activeOpacity={ 0.9 }
+                            onPressIn={ () => animatePressIn(heroImageScale) }
+                            onPressOut={ () => animatePressOut(heroImageScale) }
+                            onPress={ () => {
                                 setHeroReelVisible(true);
-                            }}
+                            } }
                         >
                             <Image
-                                source={{ uri: restaurant.heroImageUrl }}
-                                style={styles.heroImage}
+                                source={ { uri: restaurant.heroImageUrl } }
+                                style={ styles.heroImage }
                                 resizeMode="cover"
                             />
                         </TouchableOpacity>
                     </Animated.View>
 
-                    {/* Info Table */}
-                    <View style={styles.infoTable}>
-                        {restaurant.infoList.map((info, index) => (
+                    { /* Info Table */ }
+                    <View style={ styles.infoTable }>
+                        { restaurant.infoList.map((info, index) => (
                             <View
-                                key={index}
-                                style={[
+                                key={ index }
+                                style={ [
                                     styles.infoCell,
                                     index >= 2 && styles.infoCellBottomRow,
-                                ]}
+                                ] }
                             >
                                 <Ionicons
-                                    name={getIconName(info.icon || '')}
-                                    size={16}
-                                    color={AppColors.textDark}
+                                    name={ getIconName(info.icon || '') }
+                                    size={ 16 }
+                                    color={ AppColors.textDark }
                                 />
-                                <Text style={styles.infoValue}>
-                                    {info.value}
+
+                                <Text style={ styles.infoValue }>
+                                    { info.value }
                                 </Text>
                             </View>
-                        ))}
+                        )) }
                     </View>
                 </View>
 
-                {/* Ambiance Section */}
-                <View style={styles.ambianceContainer}>
-                    <Text style={styles.ambianceLabel}>Ambiance</Text>
+                { /* Ambiance Section */ }
+                <View style={ styles.ambianceContainer }>
+                    <Text style={ styles.ambianceLabel }>Ambiance</Text>
 
                     <Animated.View
-                        style={{ transform: [{ scale: ambianceScale }] }}
+                        style={ { transform: [{ scale: ambianceScale }] } }
                     >
                         <TouchableOpacity
-                            style={styles.ambienceSection}
-                            onPressIn={() => animatePressIn(ambianceScale)}
-                            onPressOut={() => animatePressOut(ambianceScale)}
-                            onPress={() => {
+                            style={ styles.ambienceSection }
+                            onPressIn={ () => animatePressIn(ambianceScale) }
+                            onPressOut={ () => animatePressOut(ambianceScale) }
+                            onPress={ () => {
                                 setAmbianceModalVisible(true);
-                            }}
-                            activeOpacity={0.9}
+                            } }
+                            activeOpacity={ 0.9 }
                         >
                             <Image
-                                source={{ uri: restaurant.ambientImageUrl }}
-                                style={styles.ambienceImage}
+                                source={ { uri: restaurant.ambientImageUrl } }
+                                style={ styles.ambienceImage }
                                 resizeMode="cover"
                             />
+
                             <LinearGradient
-                                colors={Gradients.translucentOverlay.colors}
-                                start={Gradients.translucentOverlay.start}
-                                end={Gradients.translucentOverlay.end}
-                                style={styles.gradient}
+                                colors={ Gradients.translucentOverlay.colors }
+                                start={ Gradients.translucentOverlay.start }
+                                end={ Gradients.translucentOverlay.end }
+                                style={ styles.gradient }
                             >
-                                <Text style={styles.quoteText}>
-                                    "{restaurant.reviewQuote}"
+                                <Text style={ styles.quoteText }>
+                                    "{ restaurant.reviewQuote }"
                                 </Text>
-                                <Text style={styles.quoteAuthor}>
-                                    - {restaurant.reviewAuthor}
+
+                                <Text style={ styles.quoteAuthor }>
+                                    - { restaurant.reviewAuthor }
                                 </Text>
                             </LinearGradient>
                         </TouchableOpacity>
                     </Animated.View>
                 </View>
 
-                {/* Ambiance Reel Modal */}
+                { /* Ambiance Reel Modal */ }
                 <ReelModal
-                    visible={ambianceModalVisible}
-                    onClose={() => setAmbianceModalVisible(false)}
-                    photos={restaurant.ambiencePhotos}
-                    allReviews={restaurant.reviews}
-                    initialPhotoIndex={0}
+                    visible={ ambianceModalVisible }
+                    onClose={ () => setAmbianceModalVisible(false) }
+                    photos={ restaurant.ambiencePhotos }
+                    allReviews={ restaurant.reviews }
+                    initialPhotoIndex={ 0 }
                     tooltipText="Scroll for more ambiance pictures"
                 />
 
-                {/* Food Reviews Section */}
-                <View style={styles.reviewsSection}>
-                    <Text style={styles.sectionTitle}>
+                { /* Food Reviews Section */ }
+                <View style={ styles.reviewsSection }>
+                    <Text style={ styles.sectionTitle }>
                         What people are loving!
                     </Text>
 
-                    {/* Social Handles */}
-                    <View style={styles.socialHandles}>
-                        {restaurant.instagramHandle && (
-                            <TouchableOpacity style={styles.socialButton}>
+                    { /* Social Handles */ }
+                    <View style={ styles.socialHandles }>
+                        { restaurant.instagramHandle && (
+                            <TouchableOpacity style={ styles.socialButton }>
                                 <Ionicons
                                     name="logo-instagram"
-                                    size={16}
-                                    color={AppColors.instagram}
+                                    size={ 16 }
+                                    color={ AppColors.instagram }
                                 />
+
                                 <Text
-                                    style={[
+                                    style={ [
                                         styles.socialText,
                                         { color: AppColors.instagram },
-                                    ]}
+                                    ] }
                                 >
-                                    {restaurant.instagramHandle}
+                                    { restaurant.instagramHandle }
                                 </Text>
                             </TouchableOpacity>
-                        )}
-                        {restaurant.tiktokHandle && (
+                        ) }
+                        { restaurant.tiktokHandle && (
                             <TouchableOpacity
-                                style={[
+                                style={ [
                                     styles.socialButton,
                                     styles.tiktokButton,
-                                ]}
+                                ] }
                             >
                                 <Ionicons
                                     name="logo-tiktok"
-                                    size={16}
-                                    color={AppColors.textDark}
+                                    size={ 16 }
+                                    color={ AppColors.textDark }
                                 />
-                                <Text style={styles.socialText}>
-                                    {restaurant.tiktokHandle}
+
+                                <Text style={ styles.socialText }>
+                                    { restaurant.tiktokHandle }
                                 </Text>
                             </TouchableOpacity>
-                        )}
+                        ) }
                     </View>
 
-                    {/* Food Items - Show first 3 */}
-                    {restaurant.foodItems.slice(0, 3).map((foodItem, index) => {
+                    { /* Food Items - Show first 3 */ }
+                    { restaurant.foodItems.slice(0, 3).map((foodItem, index) => {
                         const isEven = index % 2 === 0;
+
                         return (
                             <View
-                                key={index}
-                                style={[
+                                key={ index }
+                                style={ [
                                     styles.foodItemRow,
                                     isEven
                                         ? styles.foodItemRowEven
                                         : styles.foodItemRowOdd,
-                                ]}
+                                ] }
                             >
-                                {isEven && (
+                                { isEven && (
                                     <TouchableOpacity
-                                        activeOpacity={0.9}
-                                        onPress={() => {
+                                        activeOpacity={ 0.9 }
+                                        onPress={ () => {
                                             setCurrentReelPhotos(
                                                 foodItem.images.map(
                                                     (img, imgIndex) => ({
@@ -350,21 +352,21 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
                                             );
                                             setInitialPhotoIndex(0);
                                             setFoodReelVisible(true);
-                                        }}
+                                        } }
                                     >
                                         <Image
-                                            source={{ uri: foodItem.images[0] }}
-                                            style={styles.foodImage}
+                                            source={ { uri: foodItem.images[0] } }
+                                            style={ styles.foodImage }
                                             resizeMode="cover"
                                         />
                                     </TouchableOpacity>
-                                )}
-                                <View style={styles.foodReview}>
-                                    {foodItem.reviews[0] && (
+                                ) }
+                                <View style={ styles.foodReview }>
+                                    { foodItem.reviews[0] && (
                                         <>
-                                            <View style={styles.reviewHeader}>
+                                            <View style={ styles.reviewHeader }>
                                                 <View
-                                                    style={[
+                                                    style={ [
                                                         styles.avatar,
                                                         {
                                                             backgroundColor:
@@ -372,20 +374,21 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
                                                                     index,
                                                                 ),
                                                         },
-                                                    ]}
+                                                    ] }
                                                 >
                                                     <Text
                                                         style={
                                                             styles.avatarText
                                                         }
                                                     >
-                                                        {getInitial(
+                                                        { getInitial(
                                                             foodItem.reviews[0]
                                                                 .author,
-                                                        )}
+                                                        ) }
                                                     </Text>
                                                 </View>
-                                                <View style={styles.reviewInfo}>
+
+                                                <View style={ styles.reviewInfo }>
                                                     <Text
                                                         style={
                                                             styles.reviewAuthor
@@ -402,7 +405,7 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
                                                             styles.reviewStars
                                                         }
                                                     >
-                                                        {[
+                                                        { [
                                                             ...Array(
                                                                 Math.floor(
                                                                     foodItem
@@ -412,31 +415,32 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
                                                             ),
                                                         ].map((_, i) => (
                                                             <Ionicons
-                                                                key={i}
+                                                                key={ i }
                                                                 name="star"
-                                                                size={11}
+                                                                size={ 11 }
                                                                 color={
                                                                     AppColors.starOrange
                                                                 }
                                                             />
-                                                        ))}
+                                                        )) }
                                                     </View>
                                                 </View>
                                             </View>
 
                                             <Text
-                                                style={styles.reviewQuote}
-                                                numberOfLines={4}
+                                                style={ styles.reviewQuote }
+                                                numberOfLines={ 4 }
                                             >
-                                                "{foodItem.reviews[0].quote}"
+                                                "{ foodItem.reviews[0].quote }"
                                             </Text>
                                         </>
-                                    )}
+                                    ) }
                                 </View>
-                                {!isEven && (
+
+                                { !isEven && (
                                     <TouchableOpacity
-                                        activeOpacity={0.9}
-                                        onPress={() => {
+                                        activeOpacity={ 0.9 }
+                                        onPress={ () => {
                                             setCurrentReelPhotos(
                                                 foodItem.images.map(
                                                     (img, imgIndex) => ({
@@ -451,65 +455,68 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
                                             );
                                             setInitialPhotoIndex(0);
                                             setFoodReelVisible(true);
-                                        }}
+                                        } }
                                     >
                                         <Image
-                                            source={{ uri: foodItem.images[0] }}
-                                            style={styles.foodImage}
+                                            source={ { uri: foodItem.images[0] } }
+                                            style={ styles.foodImage }
                                             resizeMode="cover"
                                         />
                                     </TouchableOpacity>
-                                )}
+                                ) }
                             </View>
                         );
-                    })}
+                    }) }
 
-                    {/* View All Items and Menu Button */}
-                    <View style={styles.viewAllButtonContainer}>
+                    { /* View All Items and Menu Button */ }
+                    <View style={ styles.viewAllButtonContainer }>
                         <DelightfulButton
                             title="View Full Menu & More ›"
-                            onPress={() => setMenuModalVisible(true)}
+                            onPress={ () => setMenuModalVisible(true) }
                             variant="primary"
                             size="large"
                         />
                     </View>
                 </View>
 
-                {/* Reservation Section */}
-                <View style={styles.reservationSection}>
-                    <Text style={styles.reservationTitle}>
+                { /* Reservation Section */ }
+                <View style={ styles.reservationSection }>
+                    <Text style={ styles.reservationTitle }>
                         Ready to go? Book your table!
                     </Text>
-                    <View style={styles.reservationButtons}>
-                        <View style={styles.reservationButtonWrapper}>
+
+                    <View style={ styles.reservationButtons }>
+                        <View style={ styles.reservationButtonWrapper }>
                             <Ionicons
                                 name="restaurant"
-                                size={32}
+                                size={ 32 }
                                 color="#DA3743"
-                                style={styles.reservationIcon}
+                                style={ styles.reservationIcon }
                             />
+
                             <DelightfulButton
                                 title="OpenTable"
-                                onPress={() => {
+                                onPress={ () => {
                                     // TODO: Open OpenTable reservation
-                                }}
+                                } }
                                 variant="primary"
                                 size="medium"
                             />
                         </View>
 
-                        <View style={styles.reservationButtonWrapper}>
+                        <View style={ styles.reservationButtonWrapper }>
                             <Ionicons
                                 name="star"
-                                size={32}
+                                size={ 32 }
                                 color="#D32323"
-                                style={styles.reservationIcon}
+                                style={ styles.reservationIcon }
                             />
+
                             <DelightfulButton
                                 title="Yelp"
-                                onPress={() => {
+                                onPress={ () => {
                                     // TODO: Open Yelp reservation
-                                }}
+                                } }
                                 variant="primary"
                                 size="medium"
                             />
@@ -517,29 +524,29 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
                     </View>
                 </View>
 
-                {/* Food Reel Modal */}
+                { /* Food Reel Modal */ }
                 <ReelModal
-                    visible={foodReelVisible}
-                    onClose={() => setFoodReelVisible(false)}
-                    photos={currentReelPhotos}
-                    allReviews={restaurant.reviews}
-                    initialPhotoIndex={initialPhotoIndex}
+                    visible={ foodReelVisible }
+                    onClose={ () => setFoodReelVisible(false) }
+                    photos={ currentReelPhotos }
+                    allReviews={ restaurant.reviews }
+                    initialPhotoIndex={ initialPhotoIndex }
                     tooltipText="Scroll for more food pictures"
                 />
 
-                {/* Menu Modal */}
+                { /* Menu Modal */ }
                 <MenuModal
-                    visible={menuModalVisible}
-                    onClose={() => setMenuModalVisible(false)}
-                    foodItems={restaurant.foodItems}
-                    menuImages={restaurant.menuImages}
-                    onPhotoPress={(photos, index) => {
+                    visible={ menuModalVisible }
+                    onClose={ () => setMenuModalVisible(false) }
+                    foodItems={ restaurant.foodItems }
+                    menuImages={ restaurant.menuImages }
+                    onPhotoPress={ (photos, index) => {
                         setCurrentReelPhotos(
                             photos.map((img) => ({ imageUrl: img })),
                         );
                         setInitialPhotoIndex(index);
                         setFoodReelVisible(true);
-                    }}
+                    } }
                 />
             </ScrollView>
         </View>

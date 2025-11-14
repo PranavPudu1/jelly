@@ -17,7 +17,7 @@ const eslintConfig = [
                 sourceType: 'module',
                 ecmaFeatures: {
                     jsx: true,
-                },
+                }
             },
         },
         plugins: {
@@ -58,6 +58,8 @@ const eslintConfig = [
                     caughtErrorsIgnorePattern: '^_',
                 },
             ],
+            'no-undef': 'off', // TODO
+            'no-unused-vars': 'off',
             camelcase: [
                 'warn',
                 {
@@ -65,7 +67,6 @@ const eslintConfig = [
                 },
             ],
             eqeqeq: 'error',
-            'no-console': 'warn',
             'prefer-const': 'error',
             'no-with': 'error',
             'no-void': 'error',
