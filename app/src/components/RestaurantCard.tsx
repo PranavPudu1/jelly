@@ -545,7 +545,11 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
                             photos.map((img) => ({ imageUrl: img })),
                         );
                         setInitialPhotoIndex(index);
-                        setFoodReelVisible(true);
+                        setMenuModalVisible(false); // Close menu modal first
+                        // Small delay to ensure smooth transition
+                        setTimeout(() => {
+                            setFoodReelVisible(true);
+                        }, 300);
                     } }
                 />
             </ScrollView>

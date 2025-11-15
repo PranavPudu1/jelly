@@ -347,8 +347,8 @@ export default function QuestionnaireScreen({
             { !isWelcomeScreen && currentQuestion && (
                 <KeyboardAvoidingView
                     style={ { flex: 1 } }
-                    behavior={ Platform.OS === 'ios' ? 'padding' : 'height' }
-                    keyboardVerticalOffset={ Platform.OS === 'ios' ? 10 : 0 }
+                    behavior={ Platform.OS === 'ios' ? 'padding' : undefined }
+                    keyboardVerticalOffset={ Platform.OS === 'ios' ? 100 : 0 }
                 >
                     <Animated.View
                         style={ [
@@ -410,20 +410,51 @@ export default function QuestionnaireScreen({
                             </View>
                         </View>
 
-                        <ScrollView
-                            ref={ scrollViewRef }
-                            style={ styles.scrollView }
-                            contentContainerStyle={ [
-                                styles.optionsContainer,
-                                currentQuestion.type === 'ranking' &&
-                                    styles.rankingScrollContent,
-                            ] }
-                            showsVerticalScrollIndicator={ false }
-                            keyboardShouldPersistTaps="handled"
-                        >
-                            { /* Single Choice Question */ }
-                            { currentQuestion.type === 'single_choice' &&
-                                currentQuestion.options && (
+                        { /* Ranking questions use DraggableFlatList (VirtualizedList) directly */ }
+                        { currentQuestion.type === 'ranking' ? (
+                            <View style={ styles.rankingContainer }>
+                                <Text style={ styles.rankingHint }>
+                                    Drag ≡ to reorder
+                                </Text>
+
+                                <DraggableFlatList
+                                    data={ rankedItems }
+                                    onDragEnd={ ({ data }) => handleDragEnd(data) }
+                                    keyExtractor={ (item) => item }
+                                    renderItem={ renderRankingItem }
+                                    containerStyle={ styles.draggableList }
+                                    activationDistance={ 0 }
+                                    scrollEnabled={ false }
+                                    animationConfig={ {
+                                        damping: 80,
+                                        mass: 0.05,
+                                        stiffness: 400,
+                                        overshootClamping: false,
+                                        restSpeedThreshold: 0.01,
+                                        restDisplacementThreshold: 0.01,
+                                    } }
+                                />
+
+                                <TouchableOpacity
+                                    style={ styles.continueButton }
+                                    onPress={ handleNextFromRanking }
+                                >
+                                    <Text style={ styles.continueButtonText }>
+                                        Continue →
+                                    </Text>
+                                </TouchableOpacity>
+                            </View>
+                        ) : (
+                            <ScrollView
+                                ref={ scrollViewRef }
+                                style={ styles.scrollView }
+                                contentContainerStyle={ styles.optionsContainer }
+                                showsVerticalScrollIndicator={ false }
+                                keyboardShouldPersistTaps="handled"
+                            >
+                                { /* Single Choice Question */ }
+                                { currentQuestion.type === 'single_choice' &&
+                                    currentQuestion.options && (
                                 <>
                                     { currentQuestion.options.map(
                                         (option, index) => {
@@ -615,34 +646,6 @@ export default function QuestionnaireScreen({
                                 </>
                             ) }
 
-                            { /* Ranking Question */ }
-                            { currentQuestion.type === 'ranking' && (
-                                <View style={ styles.rankingContainer }>
-                                    <Text style={ styles.rankingHint }>
-                                        Drag ≡ to reorder
-                                    </Text>
-
-                                    <DraggableFlatList
-                                        data={ rankedItems }
-                                        onDragEnd={ ({ data }) =>
-                                            handleDragEnd(data)
-                                        }
-                                        keyExtractor={ (item) => item }
-                                        renderItem={ renderRankingItem }
-                                        containerStyle={ styles.draggableList }
-                                    />
-
-                                    <TouchableOpacity
-                                        style={ styles.continueButton }
-                                        onPress={ handleNextFromRanking }
-                                    >
-                                        <Text style={ styles.continueButtonText }>
-                                            Continue →
-                                        </Text>
-                                    </TouchableOpacity>
-                                </View>
-                            ) }
-
                             { /* Checkboxes + Text Question */ }
                             { currentQuestion.type === 'checkboxes_text' &&
                                 currentQuestion.checkboxOptions && (
@@ -708,7 +711,7 @@ export default function QuestionnaireScreen({
                                             styles.textInput,
                                             styles.multilineInput,
                                         ] }
-                                        placeholder="Anything else? (e.g., nut allergy, lactose intolerant)"
+                                        placeholder="Anything else? (e.g., nut allergy)"
                                         placeholderTextColor={
                                             AppColors.textLight
                                         }
@@ -717,12 +720,13 @@ export default function QuestionnaireScreen({
                                             handleAdditionalTextChange
                                         }
                                         multiline
-                                        numberOfLines={ 3 }
+                                        numberOfLines={ 2 }
                                         textAlignVertical="top"
                                     />
                                 </View>
                             ) }
-                        </ScrollView>
+                            </ScrollView>
+                        ) }
 
                         { isLastQuestion &&
                             (selectedCheckboxes.length > 0 ||
@@ -910,8 +914,8 @@ const styles = StyleSheet.create({
         ...Shadows.subtle,
     },
     multilineInput: {
-        minHeight: 80,
-        marginTop: Spacing.lg,
+        minHeight: 60,
+        marginTop: Spacing.sm,
     },
     rankingContainer: {
         paddingTop: 0,
@@ -995,25 +999,26 @@ const styles = StyleSheet.create({
         fontWeight: '700',
     },
     checkboxContainer: {
-        gap: Spacing.sm,
-        paddingBottom: Spacing.xl,
+        gap: Spacing.xs,
+        paddingBottom: Spacing.md,
     },
     checkboxHint: {
         ...Typography.bodySmall,
         color: AppColors.textLight,
-        marginBottom: Spacing.sm,
+        marginBottom: Spacing.xs,
         fontStyle: 'italic',
+        fontSize: 12,
     },
     checkboxItem: {
         flexDirection: 'row',
         alignItems: 'center',
         backgroundColor: AppColors.white,
-        paddingVertical: Spacing.md,
-        paddingHorizontal: Spacing.lg,
-        borderRadius: BorderRadius.lg,
+        paddingVertical: Spacing.sm,
+        paddingHorizontal: Spacing.md,
+        borderRadius: BorderRadius.md,
         borderWidth: 2,
         borderColor: '#F0E8EC',
-        marginBottom: Spacing.sm,
+        marginBottom: Spacing.xs,
         ...Shadows.subtle,
     },
     checkboxItemSelected: {
