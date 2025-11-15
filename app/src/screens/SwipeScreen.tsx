@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import {
     View,
     Text,
@@ -6,6 +6,7 @@ import {
     TouchableOpacity,
     Dimensions,
     ScrollView,
+    ActivityIndicator,
 } from 'react-native';
 
 import { Ionicons } from '@expo/vector-icons';
@@ -16,7 +17,7 @@ import { Swiper, SwiperCardRefType } from 'rn-swiper-list';
 import RestaurantCard from '../components/RestaurantCard';
 
 import { AppColors, Typography, Spacing } from '../theme';
-import { MOCK_RESTAURANTS } from '../data/mockRestaurants';
+import { useRestaurantsFlat, RestaurantFilters } from '../hooks/useRestaurants';
 import type { Restaurant } from '../types';
 
 const { width, height } = Dimensions.get('window');
@@ -38,17 +39,53 @@ export default function SwipeScreen() {
         rating: null,
     });
 
+    // Convert UI filters to API filters
+    const apiFilters: RestaurantFilters = {
+        price: filters.price.length > 0 ? filters.price.join(',') : undefined,
+        minRating: filters.rating ? parseFloat(filters.rating.replace('+', '')) : undefined,
+    };
+
+    // Fetch restaurants with pagination
+    const {
+        restaurants,
+        isLoading,
+        isError,
+        error,
+        fetchNextPage,
+        hasNextPage,
+        isFetchingNextPage,
+        totalFetched,
+        hasMore,
+    } = useRestaurantsFlat(apiFilters, 10);
+
+    // Fetch more restaurants when user is approaching the end
+    useEffect(() => {
+        // When user has swiped through 70% of loaded restaurants, fetch more
+        const threshold = Math.floor(restaurants.length * 0.7);
+        if (currentIndex >= threshold && hasNextPage && !isFetchingNextPage) {
+            fetchNextPage();
+        }
+    }, [currentIndex, restaurants.length, hasNextPage, isFetchingNextPage, fetchNextPage]);
+
     function handleSwipedRight(index: number) {
-        console.log('Liked:', MOCK_RESTAURANTS[index].name);
-        // TODO: Save liked restaurant
+        if (restaurants[index]) {
+            console.log('Liked:', restaurants[index].name);
+            // TODO: Save liked restaurant to backend
+        }
     }
 
     function handleSwipedLeft(index: number) {
-        console.log('Passed:', MOCK_RESTAURANTS[index].name);
+        if (restaurants[index]) {
+            console.log('Passed:', restaurants[index].name);
+        }
     }
 
     function handleSwipedAll() {
         console.log('All cards swiped');
+        // Optionally fetch more if available
+        if (hasNextPage && !isFetchingNextPage) {
+            fetchNextPage();
+        }
     }
 
     function handleStartOver() {
@@ -125,7 +162,66 @@ export default function SwipeScreen() {
         );
     }
 
-    if (currentIndex >= MOCK_RESTAURANTS.length) {
+    // Loading state
+    if (isLoading) {
+        return (
+            <SafeAreaView style={ styles.container } edges={ ['top'] }>
+                <View style={ styles.loadingContainer }>
+                    <ActivityIndicator size="large" color={ AppColors.secondary } />
+                    <Text style={ styles.loadingText }>
+                        Loading restaurants...
+                    </Text>
+                </View>
+            </SafeAreaView>
+        );
+    }
+
+    // Error state
+    if (isError) {
+        return (
+            <SafeAreaView style={ styles.container } edges={ ['top'] }>
+                <View style={ styles.errorContainer }>
+                    <Ionicons
+                        name="alert-circle"
+                        size={ 64 }
+                        color={ AppColors.textLight }
+                    />
+                    <Text style={ styles.errorTitle }>
+                        Oops! Something went wrong
+                    </Text>
+                    <Text style={ styles.errorMessage }>
+                        { error?.message || 'Failed to load restaurants' }
+                    </Text>
+                    <Text style={ styles.errorHint }>
+                        Make sure your backend server is running at localhost:3000
+                    </Text>
+                </View>
+            </SafeAreaView>
+        );
+    }
+
+    // No restaurants found
+    if (!isLoading && restaurants.length === 0) {
+        return (
+            <SafeAreaView style={ styles.container } edges={ ['top'] }>
+                <View style={ styles.endScreenContainer }>
+                    <View style={ styles.endIconContainer }>
+                        <Ionicons
+                            name="restaurant"
+                            size={ 64 }
+                            color={ AppColors.textDark }
+                        />
+                    </View>
+                    <Text style={ styles.endTitle }>No restaurants found</Text>
+                    <Text style={ styles.endSubtitle }>
+                        Try adjusting your filters or check back later
+                    </Text>
+                </View>
+            </SafeAreaView>
+        );
+    }
+
+    if (currentIndex >= restaurants.length && !hasMore) {
         return (
             <SafeAreaView style={ styles.container } edges={ ['top'] }>
                 <View style={ styles.endScreenContainer }>
@@ -284,7 +380,7 @@ export default function SwipeScreen() {
             <View style={ styles.cardContainer }>
                 <Swiper
                     ref={ swiperRef }
-                    data={ MOCK_RESTAURANTS }
+                    data={ restaurants }
                     renderCard={ renderCard }
                     onSwipeRight={ handleSwipedRight }
                     onSwipeLeft={ handleSwipedLeft }
@@ -307,6 +403,14 @@ export default function SwipeScreen() {
 
                     swipeVelocityThreshold={ 800 }
                 />
+
+                { /* Loading indicator for next page */ }
+                { isFetchingNextPage && (
+                    <View style={ styles.fetchingNextContainer }>
+                        <ActivityIndicator size="small" color={ AppColors.secondary } />
+                        <Text style={ styles.fetchingNextText }>Loading more...</Text>
+                    </View>
+                ) }
             </View>
         </SafeAreaView>
     );
@@ -388,5 +492,62 @@ const styles = StyleSheet.create({
     startOverButtonText: {
         ...Typography.button,
         color: AppColors.textDark,
+    },
+    loadingContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingHorizontal: Spacing.xxl,
+    },
+    loadingText: {
+        ...Typography.bodyLarge,
+        color: AppColors.textLight,
+        marginTop: Spacing.lg,
+        textAlign: 'center',
+    },
+    errorContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingHorizontal: Spacing.xxl,
+    },
+    errorTitle: {
+        ...Typography.displayMedium,
+        fontSize: 24,
+        marginTop: Spacing.lg,
+        marginBottom: Spacing.sm,
+        textAlign: 'center',
+    },
+    errorMessage: {
+        ...Typography.bodyLarge,
+        color: AppColors.textLight,
+        marginBottom: Spacing.md,
+        textAlign: 'center',
+    },
+    errorHint: {
+        ...Typography.bodySmall,
+        color: AppColors.textLight,
+        fontStyle: 'italic',
+        textAlign: 'center',
+    },
+    fetchingNextContainer: {
+        position: 'absolute',
+        bottom: 20,
+        left: 0,
+        right: 0,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        gap: Spacing.sm,
+        paddingVertical: Spacing.sm,
+        paddingHorizontal: Spacing.lg,
+        backgroundColor: 'rgba(255, 255, 255, 0.9)',
+        borderRadius: 20,
+        alignSelf: 'center',
+    },
+    fetchingNextText: {
+        ...Typography.bodySmall,
+        color: AppColors.textDark,
+        fontWeight: '600',
     },
 });

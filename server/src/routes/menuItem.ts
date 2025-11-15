@@ -1,8 +1,3 @@
-/**
- * MenuItem Routes
- * Defines API endpoints for menu item operations
- */
-
 import { Router } from 'express';
 import { MenuItemController } from '../controllers/menuItem';
 

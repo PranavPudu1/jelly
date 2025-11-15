@@ -1,8 +1,3 @@
-/**
- * Restaurant Routes
- * Defines API endpoints for restaurant operations
- */
-
 import { Router } from 'express';
 import { RestaurantController } from '../controllers/restaurant';
 

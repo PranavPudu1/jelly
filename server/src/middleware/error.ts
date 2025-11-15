@@ -1,10 +1,5 @@
-/**
- * Global Error Handler Middleware
- * Catches and formats errors for consistent API responses
- */
-
 import { Request, Response, NextFunction } from 'express';
-import type { ApiError } from '../types';
+import type { ApiError } from '../types.d';
 
 /**
  * Global error handling middleware

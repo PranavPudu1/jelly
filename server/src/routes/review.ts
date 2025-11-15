@@ -1,8 +1,3 @@
-/**
- * Review Routes
- * Defines API endpoints for review operations
- */
-
 import { Router } from 'express';
 import { ReviewController } from '../controllers/review';
 

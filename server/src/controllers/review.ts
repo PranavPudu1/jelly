@@ -1,8 +1,3 @@
-/**
- * Review Controller
- * Handles HTTP requests for review operations
- */
-
 import { Request, Response } from 'express';
 import { prisma } from '../config/database';
 

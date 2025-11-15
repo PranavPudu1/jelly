@@ -1,10 +1,5 @@
-/**
- * Environment Configuration
- * Validates and exports environment variables
- */
-
 import * as dotenv from 'dotenv';
-import type { EnvConfig } from '../types';
+import type { EnvConfig } from '../types.d';
 
 dotenv.config();
 

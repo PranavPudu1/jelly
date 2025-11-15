@@ -1,8 +1,3 @@
-/**
- * SocialPost Controller
- * Handles HTTP requests for social post operations
- */
-
 import { Request, Response } from 'express';
 import { prisma } from '../config/database';
 

@@ -1,8 +1,3 @@
-/**
- * TagType Controller
- * Handles HTTP requests for tag type operations
- */
-
 import { Request, Response } from 'express';
 import { prisma } from '../config/database';
 

@@ -1,8 +1,3 @@
-/**
- * Server Entry Point
- * Starts Express server
- */
-
 import { createApp } from './app';
 import { config, validateEnv } from './config/env';
 import { connectDatabase, disconnectDatabase } from './config/database';
@@ -32,8 +27,7 @@ async function startServer(): Promise<void> {
             console.log(`❤️  Health check: http://localhost:${PORT}/api/health`);
             console.log('='.repeat(50));
         });
-    }
-    catch (error) {
+    } catch (error) {
         console.error('❌ Failed to start server:', error);
         process.exit(1);
     }

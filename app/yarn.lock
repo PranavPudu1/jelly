@@ -786,9 +786,9 @@
     "@types/hammerjs" "^2.0.36"
 
 "@emnapi/runtime@^1.7.0":
-  version "1.7.0"
-  resolved "https://registry.yarnpkg.com/@emnapi/runtime/-/runtime-1.7.0.tgz#d7ef3832df8564fe5903bf0567aedbd19538ecbe"
-  integrity sha512-oAYoQnCYaQZKVS53Fq23ceWMRxq5EhQsE0x0RdQ55jT7wagMu5k+fS39v1fiSLrtrLQlXwVINenqhLMtTrV/1Q==
+  version "1.7.1"
+  resolved "https://registry.yarnpkg.com/@emnapi/runtime/-/runtime-1.7.1.tgz#a73784e23f5d57287369c808197288b52276b791"
+  integrity sha512-PVtJr5CmLwYAU9PZDMITZoR5iAOShYREoR45EyyLrbntV50mdePTgUn4AmOw90Ifcj+x2kRjdzr1HP3RrNiHGA==
   dependencies:
     tslib "^2.4.0"
 
@@ -1791,6 +1791,18 @@
     "@supabase/postgrest-js" "2.81.0"
     "@supabase/realtime-js" "2.81.0"
     "@supabase/storage-js" "2.81.0"
+
+"@tanstack/query-core@5.90.9":
+  version "5.90.9"
+  resolved "https://registry.npmjs.org/@tanstack/query-core/-/query-core-5.90.9.tgz"
+  integrity sha512-UFOCQzi6pRGeVTVlPNwNdnAvT35zugcIydqjvFUzG62dvz2iVjElmNp/hJkUoM5eqbUPfSU/GJIr/wbvD8bTUw==
+
+"@tanstack/react-query@^5.90.9":
+  version "5.90.9"
+  resolved "https://registry.npmjs.org/@tanstack/react-query/-/react-query-5.90.9.tgz"
+  integrity sha512-Zke2AaXiaSfnG8jqPZR52m8SsclKT2d9//AgE/QIzyNvbpj/Q2ln+FsZjb1j69bJZUouBvX2tg9PHirkTm8arw==
+  dependencies:
+    "@tanstack/query-core" "5.90.9"
 
 "@types/babel__core@^7.1.14":
   version "7.20.5"
@@ -5631,7 +5643,7 @@ react-is@^18.0.0:
 
 react-native-draggable-flatlist@^4.0.3:
   version "4.0.3"
-  resolved "https://registry.yarnpkg.com/react-native-draggable-flatlist/-/react-native-draggable-flatlist-4.0.3.tgz#eb0bb3149059f48855b53aeb9728ab2eb361e4db"
+  resolved "https://registry.npmjs.org/react-native-draggable-flatlist/-/react-native-draggable-flatlist-4.0.3.tgz"
   integrity sha512-2F4x5BFieWdGq9SetD2nSAR7s7oQCSgNllYgERRXXtNfSOuAGAVbDb/3H3lP0y5f7rEyNwabKorZAD/SyyNbDw==
   dependencies:
     "@babel/preset-typescript" "^7.17.12"

@@ -1,8 +1,3 @@
-/**
- * Restaurant Controller
- * Handles HTTP requests for restaurant operations
- */
-
 import { Request, Response } from 'express';
 import { prisma } from '../config/database';
 
@@ -44,9 +39,25 @@ export class RestaurantController {
                                 tagType: true,
                             },
                         },
-                        images: true,
-                        reviews: true,
-                        menu: true,
+                        images: {
+                            include: {
+                                tags: {
+                                    include: {
+                                        tagType: true,
+                                    },
+                                },
+                            },
+                        },
+                        reviews: {
+                            include: {
+                                images: true,
+                            },
+                        },
+                        menu: {
+                            include: {
+                                images: true,
+                            },
+                        },
                         socialMedia: true,
                     },
                     orderBy: { dateAdded: 'desc' },
@@ -54,9 +65,37 @@ export class RestaurantController {
                 prisma.restaurant.count({ where }),
             ]);
 
+            // Transform images to include classification from tags
+            const transformedRestaurants = restaurants.map(restaurant => ({
+                ...restaurant,
+                images: restaurant.images.map(image => {
+                    // Extract classification from tags
+                    const classificationTag = image.tags.find(
+                        tag => tag.tagType.value === 'image_classification'
+                    );
+                    return {
+                        id: image.id,
+                        imageUrl: image.url,
+                        classification: classificationTag?.value || 'general',
+                    };
+                }),
+                reviews: restaurant.reviews.map(review => ({
+                    ...review,
+                    images: review.images.map(image => ({
+                        imageUrl: image.url,
+                    })),
+                })),
+                menu: restaurant.menu.map(menuItem => ({
+                    ...menuItem,
+                    images: menuItem.images.map(image => ({
+                        imageUrl: image.url,
+                    })),
+                })),
+            }));
+
             res.status(200).json({
                 success: true,
-                data: restaurants,
+                data: transformedRestaurants,
                 pagination: {
                     page,
                     limit,
@@ -92,7 +131,11 @@ export class RestaurantController {
                     },
                     images: {
                         include: {
-                            tags: true,
+                            tags: {
+                                include: {
+                                    tagType: true,
+                                },
+                            },
                         },
                     },
                     reviews: {
@@ -123,9 +166,37 @@ export class RestaurantController {
                 return;
             }
 
+            // Transform images to include classification from tags
+            const transformedRestaurant = {
+                ...restaurant,
+                images: restaurant.images.map(image => {
+                    // Extract classification from tags
+                    const classificationTag = image.tags.find(
+                        tag => tag.tagType.value === 'image_classification'
+                    );
+                    return {
+                        id: image.id,
+                        imageUrl: image.url,
+                        classification: classificationTag?.value || 'general',
+                    };
+                }),
+                reviews: restaurant.reviews.map(review => ({
+                    ...review,
+                    images: review.images.map(image => ({
+                        imageUrl: image.url,
+                    })),
+                })),
+                menu: restaurant.menu.map(menuItem => ({
+                    ...menuItem,
+                    images: menuItem.images.map(image => ({
+                        imageUrl: image.url,
+                    })),
+                })),
+            };
+
             res.status(200).json({
                 success: true,
-                data: restaurant,
+                data: transformedRestaurant,
             });
         } catch (error) {
             console.error('Error fetching restaurant:', error);

@@ -1,8 +1,3 @@
-/**
- * Main Routes Index
- * Aggregates all route modules
- */
-
 import { Router, Request, Response } from 'express';
 import restaurantRoutes from './restaurant';
 import tagRoutes from './tag';

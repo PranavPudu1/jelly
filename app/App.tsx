@@ -5,6 +5,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { Ionicons } from '@expo/vector-icons';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 import * as SplashScreen from 'expo-splash-screen';
 import * as Font from 'expo-font';
@@ -36,6 +37,17 @@ const Tab = createBottomTabNavigator<MainTabParamList>();
 
 // Keep the splash screen visible while we fetch resources
 SplashScreen.preventAutoHideAsync();
+
+// Create a query client for React Query
+const queryClient = new QueryClient({
+    defaultOptions: {
+        queries: {
+            retry: 2,
+            staleTime: 5 * 60 * 1000, // 5 minutes
+            gcTime: 10 * 60 * 1000, // 10 minutes
+        },
+    },
+});
 
 function MainTabs() {
     return (
@@ -139,28 +151,30 @@ export default function App() {
 
     return (
         <GestureHandlerRootView>
-            <UserContextWrapper>
-                <NavigationContainer onReady={ onLayoutRootView }>
-                    <Stack.Navigator
-                        screenOptions={ {
-                            headerShown: false,
-                            animation: 'fade_from_bottom',
-                        } }
-                    >
-                        <Stack.Screen
-                            name="Splash"
-                            component={ SplashScreenComponent }
-                        />
+            <QueryClientProvider client={ queryClient }>
+                <UserContextWrapper>
+                    <NavigationContainer onReady={ onLayoutRootView }>
+                        <Stack.Navigator
+                            screenOptions={ {
+                                headerShown: false,
+                                animation: 'fade_from_bottom',
+                            } }
+                        >
+                            <Stack.Screen
+                                name="Splash"
+                                component={ SplashScreenComponent }
+                            />
 
-                        <Stack.Screen
-                            name="Questionnaire"
-                            component={ QuestionnaireScreen }
-                        />
+                            <Stack.Screen
+                                name="Questionnaire"
+                                component={ QuestionnaireScreen }
+                            />
 
-                        <Stack.Screen name="MainTabs" component={ MainTabs } />
-                    </Stack.Navigator>
-                </NavigationContainer>
-            </UserContextWrapper>
+                            <Stack.Screen name="MainTabs" component={ MainTabs } />
+                        </Stack.Navigator>
+                    </NavigationContainer>
+                </UserContextWrapper>
+            </QueryClientProvider>
         </GestureHandlerRootView>
     );
 }

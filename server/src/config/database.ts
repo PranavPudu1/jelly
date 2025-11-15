@@ -1,8 +1,3 @@
-/**
- * Prisma Client Singleton
- * Ensures a single instance of Prisma Client is used throughout the application
- */
-
 import { PrismaClient } from '@prisma/client';
 
 const globalForPrisma = globalThis as unknown as {

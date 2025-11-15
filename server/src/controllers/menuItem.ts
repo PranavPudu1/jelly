@@ -1,8 +1,3 @@
-/**
- * MenuItem Controller
- * Handles HTTP requests for menu item operations
- */
-
 import { Request, Response } from 'express';
 import { prisma } from '../config/database';
 

@@ -1,8 +1,3 @@
-/**
- * TagType Routes
- * Defines API endpoints for tag type operations
- */
-
 import { Router } from 'express';
 import { TagTypeController } from '../controllers/tagType';
 

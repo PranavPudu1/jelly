@@ -1,8 +1,3 @@
-/**
- * Request Validation Middleware
- * Uses express-validator for request validation
- */
-
 import { body, query, param } from 'express-validator';
 
 /**
@@ -34,7 +29,9 @@ export const createRestaurantValidator = [
     body('review_count').optional().isInt({ min: 0 }),
     body('rating').isFloat({ min: 0, max: 5 }).withMessage('Rating must be between 0 and 5'),
     body('lat').isFloat({ min: -90, max: 90 }).withMessage('Latitude must be between -90 and 90'),
-    body('long').isFloat({ min: -180, max: 180 }).withMessage('Longitude must be between -180 and 180'),
+    body('long')
+        .isFloat({ min: -180, max: 180 })
+        .withMessage('Longitude must be between -180 and 180'),
     body('transactions').optional().isArray(),
     body('transactions.*').isString(),
     body('price').optional().isString().trim(),
@@ -83,7 +80,9 @@ export const updateRestaurantValidator = [
 export const saveSwipeValidator = [
     body('user_id').isString().trim().notEmpty().withMessage('User ID is required'),
     body('restaurant_id').isString().trim().notEmpty().withMessage('Restaurant ID is required'),
-    body('decided').isBoolean().withMessage('Decided must be a boolean (true for like, false for pass)'),
+    body('decided')
+        .isBoolean()
+        .withMessage('Decided must be a boolean (true for like, false for pass)'),
     body('session_id').optional().isString().trim(),
 ];
 

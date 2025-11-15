@@ -1,8 +1,3 @@
-/**
- * Tag Routes
- * Defines API endpoints for tag operations
- */
-
 import { Router } from 'express';
 import { TagController } from '../controllers/tag';
 

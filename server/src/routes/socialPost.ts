@@ -1,8 +1,3 @@
-/**
- * SocialPost Routes
- * Defines API endpoints for social post operations
- */
-
 import { Router } from 'express';
 import { SocialPostController } from '../controllers/socialPost';
 
