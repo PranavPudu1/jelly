@@ -1,5 +1,4 @@
 import { API_CONFIG, API_ENDPOINTS } from '../config/api';
-import { transformRestaurantsArray } from './dataTransformer';
 import type { Restaurant } from '../types';
 
 /**
@@ -116,7 +115,7 @@ export async function fetchRestaurants(
     }
 
     return {
-        restaurants: transformRestaurantsArray(response.data),
+        restaurants: response.data, // Backend already returns transformed data
         pagination: response.pagination,
     };
 }
@@ -133,8 +132,7 @@ export async function fetchRestaurantById(id: string): Promise<Restaurant> {
         throw new Error('Restaurant not found');
     }
 
-    const transformedRestaurants = transformRestaurantsArray([response.data]);
-    return transformedRestaurants[0];
+    return response.data; // Backend already returns transformed data
 }
 
 /**
@@ -159,7 +157,7 @@ export async function fetchNearbyRestaurants(
         throw new Error('Failed to fetch nearby restaurants');
     }
 
-    return transformRestaurantsArray(response.data);
+    return response.data; // Backend already returns transformed data
 }
 
 export const restaurantApi = {

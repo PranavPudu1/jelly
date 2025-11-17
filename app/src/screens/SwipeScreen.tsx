@@ -18,6 +18,7 @@ import RestaurantCard from '../components/RestaurantCard';
 
 import { AppColors, Typography, Spacing } from '../theme';
 import { useRestaurantsFlat, RestaurantFilters } from '../hooks/useRestaurants';
+import { useSavedRestaurants } from '../contexts/SavedRestaurantsContext';
 import type { Restaurant } from '../types';
 
 const { width, height } = Dimensions.get('window');
@@ -32,6 +33,7 @@ type FilterType = {
 export default function SwipeScreen() {
     const [currentIndex, setCurrentIndex] = useState(0);
     const swiperRef = useRef<SwiperCardRefType>(null);
+    const { saveRestaurant } = useSavedRestaurants();
     const [filters, setFilters] = useState<FilterType>({
         price: [],
         distance: null,
@@ -70,7 +72,7 @@ export default function SwipeScreen() {
     function handleSwipedRight(index: number) {
         if (restaurants[index]) {
             console.log('Liked:', restaurants[index].name);
-            // TODO: Save liked restaurant to backend
+            saveRestaurant(restaurants[index]);
         }
     }
 

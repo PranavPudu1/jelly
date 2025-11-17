@@ -49,6 +49,9 @@ export interface Restaurant {
     reviews: Review[];
     menuImages: string[];
     popularDishPhotos: string[];
+    lat?: number;
+    long?: number;
+    address?: string;
 }
 
 export interface QuestionnaireAnswers {

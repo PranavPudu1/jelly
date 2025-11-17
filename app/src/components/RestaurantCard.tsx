@@ -30,6 +30,8 @@ import {
 } from '../theme';
 
 import { Restaurant } from '../types';
+import { useLocation } from '../contexts/LocationContext';
+import { calculateDistance, formatDistance, openInMaps } from '../utils/location';
 
 const { width, height } = Dimensions.get('window');
 
@@ -52,6 +54,24 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
     >([]);
 
     const scrollViewRef = useRef<ScrollView>(null);
+    const { userLocation } = useLocation();
+
+    // Calculate distance if both user location and restaurant location are available
+    const distance =
+        userLocation && restaurant.lat && restaurant.long
+            ? calculateDistance(
+                  userLocation.latitude,
+                  userLocation.longitude,
+                  restaurant.lat,
+                  restaurant.long,
+              )
+            : null;
+
+    function handleLocationPress() {
+        if (restaurant.lat && restaurant.long) {
+            openInMaps(restaurant.lat, restaurant.long, restaurant.name);
+        }
+    }
 
     // Animation values for image interactions (DelightfulButton handles button animations)
     const heroImageScale = useRef(new Animated.Value(1)).current;
@@ -202,25 +222,46 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
 
                     { /* Info Table */ }
                     <View style={ styles.infoTable }>
-                        { restaurant.infoList.map((info, index) => (
-                            <View
-                                key={ index }
-                                style={ [
-                                    styles.infoCell,
-                                    index >= 2 && styles.infoCellBottomRow,
-                                ] }
-                            >
-                                <Ionicons
-                                    name={ getIconName(info.icon || '') }
-                                    size={ 16 }
-                                    color={ AppColors.textDark }
-                                />
+                        { restaurant.infoList.map((info, index) => {
+                            const isLocation = info.icon === 'location';
+                            const displayValue = isLocation && distance
+                                ? formatDistance(distance)
+                                : info.value;
 
-                                <Text style={ styles.infoValue }>
-                                    { info.value }
-                                </Text>
-                            </View>
-                        )) }
+                            const InfoContent = (
+                                <View
+                                    style={ [
+                                        styles.infoCell,
+                                        index >= 2 && styles.infoCellBottomRow,
+                                    ] }
+                                >
+                                    <Ionicons
+                                        name={ getIconName(info.icon || '') }
+                                        size={ 16 }
+                                        color={ isLocation ? AppColors.primary : AppColors.textDark }
+                                    />
+
+                                    <Text style={ [
+                                        styles.infoValue,
+                                        isLocation && styles.locationText,
+                                    ] }>
+                                        { displayValue }
+                                    </Text>
+                                </View>
+                            );
+
+                            return isLocation ? (
+                                <TouchableOpacity
+                                    key={ index }
+                                    onPress={ handleLocationPress }
+                                    activeOpacity={ 0.7 }
+                                >
+                                    { InfoContent }
+                                </TouchableOpacity>
+                            ) : (
+                                <View key={ index }>{ InfoContent }</View>
+                            );
+                        }) }
                     </View>
                 </View>
 
@@ -665,6 +706,10 @@ const styles = StyleSheet.create({
         color: AppColors.textDark,
         fontWeight: '500',
         fontSize: 12,
+    },
+    locationText: {
+        color: AppColors.primary,
+        fontWeight: '600',
     },
 
     // Ambiance Section
