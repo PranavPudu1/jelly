@@ -65,33 +65,94 @@ export class RestaurantController {
                 prisma.restaurant.count({ where }),
             ]);
 
-            // Transform images to include classification from tags
-            const transformedRestaurants = restaurants.map(restaurant => ({
-                ...restaurant,
-                images: restaurant.images.map(image => {
-                    // Extract classification from tags
+            // Transform to match frontend expectations
+            const transformedRestaurants = restaurants.map(restaurant => {
+                // Extract classified images
+                const allImages = restaurant.images.map(image => {
                     const classificationTag = image.tags.find(
                         tag => tag.tagType.value === 'image_classification'
                     );
                     return {
                         id: image.id,
-                        imageUrl: image.url,
+                        url: image.url,
                         classification: classificationTag?.value || 'general',
                     };
-                }),
-                reviews: restaurant.reviews.map(review => ({
-                    ...review,
-                    images: review.images.map(image => ({
-                        imageUrl: image.url,
+                });
+
+                const heroImage = allImages.find(img => img.classification === 'hero')?.url
+                    || allImages[0]?.url || '';
+
+                const ambientImage = allImages.find(img => img.classification === 'ambience')?.url
+                    || allImages[1]?.url || '';
+
+                const ambiencePhotos = allImages
+                    .filter(img => img.classification === 'ambience')
+                    .map(img => ({ imageUrl: img.url }));
+
+                // Extract menu images
+                const menuImages = restaurant.menu
+                    .flatMap(menuItem => menuItem.images.map(img => img.url));
+
+                // Create food items from menu items (if any exist)
+                const foodItems = restaurant.menu.length > 0
+                    ? restaurant.menu.map((menuItem, idx) => {
+                        const itemImages = menuItem.images.map(img => img.url);
+                        const defaultReview = restaurant.reviews[0];
+
+                        return {
+                            name: `Featured Dish ${idx + 1}`,
+                            images: itemImages,
+                            reviews: defaultReview ? [{
+                                author: defaultReview.postedBy || 'Anonymous',
+                                quote: defaultReview.review,
+                                rating: defaultReview.rating,
+                            }] : [],
+                        };
+                    })
+                    : [];
+
+                // Extract top review
+                const topReview = restaurant.reviews[0];
+
+                // Extract cuisine
+                const cuisineTag = restaurant.tags.find((t: any) => t.tagType?.value === 'cuisine');
+
+                // Build info list
+                const infoList = [
+                    { icon: 'location', text: restaurant.address },
+                    { icon: 'call', text: restaurant.phoneNumber },
+                ];
+
+                return {
+                    id: restaurant.id,
+                    name: restaurant.name,
+                    rating: restaurant.rating,
+                    priceLevel: restaurant.price,
+                    cuisine: cuisineTag?.value || 'Restaurant',
+                    heroImageUrl: heroImage,
+                    ambientImageUrl: ambientImage,
+                    reviewQuote: topReview?.review || '',
+                    reviewAuthor: topReview?.postedBy || '',
+                    infoList,
+                    instagramHandle: restaurant.socialMedia.find(s => s.source === 'instagram')?.url,
+                    tiktokHandle: restaurant.socialMedia.find(s => s.source === 'tiktok')?.url,
+                    foodItems,
+                    ambiencePhotos,
+                    menuImages,
+                    reviews: restaurant.reviews.map(r => ({
+                        author: r.postedBy || 'Anonymous',
+                        quote: r.review,
+                        rating: r.rating,
                     })),
-                })),
-                menu: restaurant.menu.map(menuItem => ({
-                    ...menuItem,
-                    images: menuItem.images.map(image => ({
-                        imageUrl: image.url,
-                    })),
-                })),
-            }));
+                    lat: restaurant.lat,
+                    long: restaurant.long,
+                    address: restaurant.address,
+                    popularDishPhotos: allImages
+                        .filter(img => img.classification === 'food')
+                        .slice(0, 5)
+                        .map(img => img.url),
+                };
+            });
 
             res.status(200).json({
                 success: true,
@@ -166,32 +227,84 @@ export class RestaurantController {
                 return;
             }
 
-            // Transform images to include classification from tags
-            const transformedRestaurant = {
-                ...restaurant,
-                images: restaurant.images.map(image => {
-                    // Extract classification from tags
-                    const classificationTag = image.tags.find(
-                        tag => tag.tagType.value === 'image_classification'
-                    );
+            // Transform to match frontend expectations
+            const allImages = restaurant.images.map(image => {
+                const classificationTag = image.tags.find(
+                    tag => tag.tagType.value === 'image_classification'
+                );
+                return {
+                    id: image.id,
+                    url: image.url,
+                    classification: classificationTag?.value || 'general',
+                };
+            });
+
+            const heroImage = allImages.find(img => img.classification === 'hero')?.url
+                || allImages[0]?.url || '';
+
+            const ambientImage = allImages.find(img => img.classification === 'ambience')?.url
+                || allImages[1]?.url || '';
+
+            const ambiencePhotos = allImages
+                .filter(img => img.classification === 'ambience')
+                .map(img => ({ imageUrl: img.url }));
+
+            const menuImages = restaurant.menu
+                .flatMap(menuItem => menuItem.images.map(img => img.url));
+
+            const foodItems = restaurant.menu.length > 0
+                ? restaurant.menu.map((menuItem, idx) => {
+                    const itemImages = menuItem.images.map(img => img.url);
+                    const defaultReview = restaurant.reviews[0];
+
                     return {
-                        id: image.id,
-                        imageUrl: image.url,
-                        classification: classificationTag?.value || 'general',
+                        name: `Featured Dish ${idx + 1}`,
+                        images: itemImages,
+                        reviews: defaultReview ? [{
+                            author: defaultReview.postedBy || 'Anonymous',
+                            quote: defaultReview.review,
+                            rating: defaultReview.rating,
+                        }] : [],
                     };
-                }),
-                reviews: restaurant.reviews.map(review => ({
-                    ...review,
-                    images: review.images.map(image => ({
-                        imageUrl: image.url,
-                    })),
+                })
+                : [];
+
+            const topReview = restaurant.reviews[0];
+            const cuisineTag = restaurant.tags.find((t: any) => t.tagType?.value === 'cuisine');
+
+            const infoList = [
+                { icon: 'location', text: restaurant.address },
+                { icon: 'call', text: restaurant.phoneNumber },
+            ];
+
+            const transformedRestaurant = {
+                id: restaurant.id,
+                name: restaurant.name,
+                rating: restaurant.rating,
+                priceLevel: restaurant.price,
+                cuisine: cuisineTag?.value || 'Restaurant',
+                heroImageUrl: heroImage,
+                ambientImageUrl: ambientImage,
+                reviewQuote: topReview?.review || '',
+                reviewAuthor: topReview?.postedBy || '',
+                infoList,
+                instagramHandle: restaurant.socialMedia.find(s => s.source === 'instagram')?.url,
+                tiktokHandle: restaurant.socialMedia.find(s => s.source === 'tiktok')?.url,
+                foodItems,
+                ambiencePhotos,
+                menuImages,
+                reviews: restaurant.reviews.map(r => ({
+                    author: r.postedBy || 'Anonymous',
+                    quote: r.review,
+                    rating: r.rating,
                 })),
-                menu: restaurant.menu.map(menuItem => ({
-                    ...menuItem,
-                    images: menuItem.images.map(image => ({
-                        imageUrl: image.url,
-                    })),
-                })),
+                lat: restaurant.lat,
+                long: restaurant.long,
+                address: restaurant.address,
+                popularDishPhotos: allImages
+                    .filter(img => img.classification === 'food')
+                    .slice(0, 5)
+                    .map(img => img.url),
             };
 
             res.status(200).json({
