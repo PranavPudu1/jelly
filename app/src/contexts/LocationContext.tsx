@@ -44,9 +44,11 @@ export default function LocationProvider({ children }: PropsWithChildren) {
             if (status === Location.PermissionStatus.GRANTED) {
                 await getCurrentLocation();
             }
-        } catch (error) {
+        }
+        catch (error) {
             console.error('Error checking location permission:', error);
-        } finally {
+        }
+        finally {
             setIsLoading(false);
         }
     }
@@ -61,7 +63,8 @@ export default function LocationProvider({ children }: PropsWithChildren) {
                 latitude: location.coords.latitude,
                 longitude: location.coords.longitude,
             });
-        } catch (error) {
+        }
+        catch (error) {
             console.error('Error getting location:', error);
         }
     }
@@ -74,7 +77,8 @@ export default function LocationProvider({ children }: PropsWithChildren) {
             if (status === Location.PermissionStatus.GRANTED) {
                 await getCurrentLocation();
             }
-        } catch (error) {
+        }
+        catch (error) {
             console.error('Error requesting location permission:', error);
         }
     }

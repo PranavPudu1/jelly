@@ -62,7 +62,8 @@ export class SocialPostController {
                     hasMore: page * limit < total,
                 },
             });
-        } catch (error) {
+        }
+        catch (error) {
             console.error('Error fetching social posts:', error);
             res.status(500).json({
                 success: false,
@@ -103,7 +104,8 @@ export class SocialPostController {
                 success: true,
                 data: socialPost,
             });
-        } catch (error) {
+        }
+        catch (error) {
             console.error('Error fetching social post:', error);
             res.status(500).json({
                 success: false,
@@ -165,7 +167,8 @@ export class SocialPostController {
                 data: socialPost,
                 message: 'Social post created successfully',
             });
-        } catch (error) {
+        }
+        catch (error) {
             console.error('Error creating social post:', error);
             res.status(500).json({
                 success: false,
@@ -215,7 +218,8 @@ export class SocialPostController {
                 data: socialPost,
                 message: 'Social post updated successfully',
             });
-        } catch (error) {
+        }
+        catch (error) {
             console.error('Error updating social post:', error);
             res.status(500).json({
                 success: false,
@@ -253,7 +257,8 @@ export class SocialPostController {
                 success: true,
                 message: 'Social post deleted successfully',
             });
-        } catch (error) {
+        }
+        catch (error) {
             console.error('Error deleting social post:', error);
             res.status(500).json({
                 success: false,
@@ -293,7 +298,8 @@ export class SocialPostController {
                 data: socialPosts,
                 total: socialPosts.length,
             });
-        } catch (error) {
+        }
+        catch (error) {
             console.error('Error fetching social posts by restaurant:', error);
             res.status(500).json({
                 success: false,
@@ -341,7 +347,8 @@ export class SocialPostController {
                 data: socialPost,
                 message: 'Social post marked as invalid',
             });
-        } catch (error) {
+        }
+        catch (error) {
             console.error('Error marking social post as invalid:', error);
             res.status(500).json({
                 success: false,

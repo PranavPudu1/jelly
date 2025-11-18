@@ -69,7 +69,8 @@ export class ReviewController {
                     hasMore: page * limit < total,
                 },
             });
-        } catch (error) {
+        }
+        catch (error) {
             console.error('Error fetching reviews:', error);
             res.status(500).json({
                 success: false,
@@ -111,7 +112,8 @@ export class ReviewController {
                 success: true,
                 data: review,
             });
-        } catch (error) {
+        }
+        catch (error) {
             console.error('Error fetching review:', error);
             res.status(500).json({
                 success: false,
@@ -185,7 +187,8 @@ export class ReviewController {
                 data: newReview,
                 message: 'Review created successfully',
             });
-        } catch (error) {
+        }
+        catch (error) {
             console.error('Error creating review:', error);
             res.status(500).json({
                 success: false,
@@ -247,7 +250,8 @@ export class ReviewController {
                 data: updatedReview,
                 message: 'Review updated successfully',
             });
-        } catch (error) {
+        }
+        catch (error) {
             console.error('Error updating review:', error);
             res.status(500).json({
                 success: false,
@@ -285,7 +289,8 @@ export class ReviewController {
                 success: true,
                 message: 'Review deleted successfully',
             });
-        } catch (error) {
+        }
+        catch (error) {
             console.error('Error deleting review:', error);
             res.status(500).json({
                 success: false,
@@ -342,7 +347,8 @@ export class ReviewController {
                     averageRating: avgRating._avg.rating,
                 },
             });
-        } catch (error) {
+        }
+        catch (error) {
             console.error('Error fetching reviews by restaurant:', error);
             res.status(500).json({
                 success: false,

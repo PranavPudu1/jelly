@@ -58,7 +58,8 @@ export class MenuItemController {
                     hasMore: page * limit < total,
                 },
             });
-        } catch (error) {
+        }
+        catch (error) {
             console.error('Error fetching menu items:', error);
             res.status(500).json({
                 success: false,
@@ -100,7 +101,8 @@ export class MenuItemController {
                 success: true,
                 data: menuItem,
             });
-        } catch (error) {
+        }
+        catch (error) {
             console.error('Error fetching menu item:', error);
             res.status(500).json({
                 success: false,
@@ -162,7 +164,8 @@ export class MenuItemController {
                 data: menuItem,
                 message: 'Menu item created successfully',
             });
-        } catch (error) {
+        }
+        catch (error) {
             console.error('Error creating menu item:', error);
             res.status(500).json({
                 success: false,
@@ -213,7 +216,8 @@ export class MenuItemController {
                 data: menuItem,
                 message: 'Menu item updated successfully',
             });
-        } catch (error) {
+        }
+        catch (error) {
             console.error('Error updating menu item:', error);
             res.status(500).json({
                 success: false,
@@ -251,7 +255,8 @@ export class MenuItemController {
                 success: true,
                 message: 'Menu item deleted successfully',
             });
-        } catch (error) {
+        }
+        catch (error) {
             console.error('Error deleting menu item:', error);
             res.status(500).json({
                 success: false,
@@ -286,7 +291,8 @@ export class MenuItemController {
                 data: menuItems,
                 total: menuItems.length,
             });
-        } catch (error) {
+        }
+        catch (error) {
             console.error('Error fetching menu items by restaurant:', error);
             res.status(500).json({
                 success: false,

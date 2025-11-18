@@ -37,9 +37,11 @@ function toRad(degrees: number): number {
 export function formatDistance(miles: number): string {
     if (miles < 0.1) {
         return 'Nearby';
-    } else if (miles < 1) {
+    }
+    else if (miles < 1) {
         return `${(miles * 5280).toFixed(0)} ft`;
-    } else {
+    }
+    else {
         return `${miles.toFixed(1)} mi`;
     }
 }
@@ -67,12 +69,14 @@ export async function openInMaps(
         const supported = await Linking.canOpenURL(url!);
         if (supported) {
             await Linking.openURL(url!);
-        } else {
+        }
+        else {
             // Fallback to Google Maps web
             const webUrl = `https://www.google.com/maps/search/?api=1&query=${latLng}`;
             await Linking.openURL(webUrl);
         }
-    } catch (error) {
+    }
+    catch (error) {
         console.error('Error opening maps:', error);
     }
 }

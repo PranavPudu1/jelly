@@ -78,7 +78,8 @@ async function fetchWithErrorHandling<T>(
         }
 
         return await response.json();
-    } catch (error) {
+    }
+    catch (error) {
         clearTimeout(timeoutId);
 
         if (error instanceof Error) {

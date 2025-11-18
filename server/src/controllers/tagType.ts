@@ -20,7 +20,8 @@ export class TagTypeController {
                 success: true,
                 data: tagTypes,
             });
-        } catch (error) {
+        }
+        catch (error) {
             console.error('Error fetching tag types:', error);
             res.status(500).json({
                 success: false,
@@ -62,7 +63,8 @@ export class TagTypeController {
                 success: true,
                 data: tagType,
             });
-        } catch (error) {
+        }
+        catch (error) {
             console.error('Error fetching tag type:', error);
             res.status(500).json({
                 success: false,
@@ -110,7 +112,8 @@ export class TagTypeController {
                 data: tagType,
                 message: 'Tag type created successfully',
             });
-        } catch (error) {
+        }
+        catch (error) {
             console.error('Error creating tag type:', error);
             res.status(500).json({
                 success: false,
@@ -169,7 +172,8 @@ export class TagTypeController {
                 data: tagType,
                 message: 'Tag type updated successfully',
             });
-        } catch (error) {
+        }
+        catch (error) {
             console.error('Error updating tag type:', error);
             res.status(500).json({
                 success: false,
@@ -221,7 +225,8 @@ export class TagTypeController {
                 success: true,
                 message: 'Tag type deleted successfully',
             });
-        } catch (error) {
+        }
+        catch (error) {
             console.error('Error deleting tag type:', error);
             res.status(500).json({
                 success: false,

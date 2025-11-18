@@ -1,5 +1,5 @@
-interface UUID {};
-interface Restaurant {};
+interface UUID {}
+interface Restaurant {}
 
 interface User {
     id: UUID;

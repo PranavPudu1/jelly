@@ -60,11 +60,11 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
     const distance =
         userLocation && restaurant.lat && restaurant.long
             ? calculateDistance(
-                  userLocation.latitude,
-                  userLocation.longitude,
-                  restaurant.lat,
-                  restaurant.long,
-              )
+                userLocation.latitude,
+                userLocation.longitude,
+                restaurant.lat,
+                restaurant.long,
+            )
             : null;
 
     function handleLocationPress() {

@@ -165,7 +165,8 @@ export class RestaurantController {
                     hasMore: page * limit < total,
                 },
             });
-        } catch (error) {
+        }
+        catch (error) {
             console.error('Error fetching restaurants:', error);
             res.status(500).json({
                 success: false,
@@ -311,7 +312,8 @@ export class RestaurantController {
                 success: true,
                 data: transformedRestaurant,
             });
-        } catch (error) {
+        }
+        catch (error) {
             console.error('Error fetching restaurant:', error);
             res.status(500).json({
                 success: false,
@@ -375,7 +377,8 @@ export class RestaurantController {
                 data: restaurant,
                 message: 'Restaurant created successfully',
             });
-        } catch (error) {
+        }
+        catch (error) {
             console.error('Error creating restaurant:', error);
             res.status(500).json({
                 success: false,
@@ -423,7 +426,8 @@ export class RestaurantController {
                 data: restaurant,
                 message: 'Restaurant updated successfully',
             });
-        } catch (error) {
+        }
+        catch (error) {
             console.error('Error updating restaurant:', error);
             res.status(500).json({
                 success: false,
@@ -461,7 +465,8 @@ export class RestaurantController {
                 success: true,
                 message: 'Restaurant deleted successfully',
             });
-        } catch (error) {
+        }
+        catch (error) {
             console.error('Error deleting restaurant:', error);
             res.status(500).json({
                 success: false,
@@ -509,7 +514,8 @@ export class RestaurantController {
                 success: true,
                 data: restaurants,
             });
-        } catch (error) {
+        }
+        catch (error) {
             console.error('Error fetching nearby restaurants:', error);
             res.status(500).json({
                 success: false,

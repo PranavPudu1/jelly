@@ -44,7 +44,8 @@ export default function SavedRestaurantsScreen() {
 
         if (translationY > 150 || velocityY > 500) {
             handleCloseModal();
-        } else {
+        }
+        else {
             Animated.spring(translateY, {
                 toValue: 0,
                 useNativeDriver: true,

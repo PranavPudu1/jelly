@@ -52,7 +52,8 @@ export class TagController {
                     hasMore: page * limit < total,
                 },
             });
-        } catch (error) {
+        }
+        catch (error) {
             console.error('Error fetching tags:', error);
             res.status(500).json({
                 success: false,
@@ -93,7 +94,8 @@ export class TagController {
                 success: true,
                 data: tag,
             });
-        } catch (error) {
+        }
+        catch (error) {
             console.error('Error fetching tag:', error);
             res.status(500).json({
                 success: false,
@@ -148,7 +150,8 @@ export class TagController {
                 data: tag,
                 message: 'Tag created successfully',
             });
-        } catch (error) {
+        }
+        catch (error) {
             console.error('Error creating tag:', error);
             res.status(500).json({
                 success: false,
@@ -207,7 +210,8 @@ export class TagController {
                 data: tag,
                 message: 'Tag updated successfully',
             });
-        } catch (error) {
+        }
+        catch (error) {
             console.error('Error updating tag:', error);
             res.status(500).json({
                 success: false,
@@ -245,7 +249,8 @@ export class TagController {
                 success: true,
                 message: 'Tag deleted successfully',
             });
-        } catch (error) {
+        }
+        catch (error) {
             console.error('Error deleting tag:', error);
             res.status(500).json({
                 success: false,

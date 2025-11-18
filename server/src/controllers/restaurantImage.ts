@@ -57,7 +57,8 @@ export class RestaurantImageController {
                     hasMore: page * limit < total,
                 },
             });
-        } catch (error) {
+        }
+        catch (error) {
             console.error('Error fetching restaurant images:', error);
             res.status(500).json({
                 success: false,
@@ -111,7 +112,8 @@ export class RestaurantImageController {
                     hasMore: page * limit < total,
                 },
             });
-        } catch (error) {
+        }
+        catch (error) {
             console.error('Error fetching restaurant images:', error);
             res.status(500).json({
                 success: false,
@@ -154,7 +156,8 @@ export class RestaurantImageController {
                 success: true,
                 data: image,
             });
-        } catch (error) {
+        }
+        catch (error) {
             console.error('Error fetching restaurant image:', error);
             res.status(500).json({
                 success: false,
@@ -214,7 +217,8 @@ export class RestaurantImageController {
                 data: image,
                 message: 'Restaurant image created successfully',
             });
-        } catch (error) {
+        }
+        catch (error) {
             console.error('Error creating restaurant image:', error);
             res.status(500).json({
                 success: false,
@@ -264,7 +268,8 @@ export class RestaurantImageController {
                 data: image,
                 message: 'Restaurant image updated successfully',
             });
-        } catch (error) {
+        }
+        catch (error) {
             console.error('Error updating restaurant image:', error);
             res.status(500).json({
                 success: false,
@@ -302,7 +307,8 @@ export class RestaurantImageController {
                 success: true,
                 message: 'Restaurant image deleted successfully',
             });
-        } catch (error) {
+        }
+        catch (error) {
             console.error('Error deleting restaurant image:', error);
             res.status(500).json({
                 success: false,

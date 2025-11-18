@@ -43,9 +43,11 @@ export default function SavedRestaurantsProvider({ children }: PropsWithChildren
             if (saved) {
                 setSavedRestaurants(JSON.parse(saved));
             }
-        } catch (error) {
+        }
+        catch (error) {
             console.error('Error loading saved restaurants:', error);
-        } finally {
+        }
+        finally {
             setIsLoading(false);
         }
     }
@@ -62,7 +64,8 @@ export default function SavedRestaurantsProvider({ children }: PropsWithChildren
             const updated = [restaurant, ...savedRestaurants];
             setSavedRestaurants(updated);
             await AsyncStorage.setItem(SAVED_RESTAURANTS_KEY, JSON.stringify(updated));
-        } catch (error) {
+        }
+        catch (error) {
             console.error('Error saving restaurant:', error);
         }
     }
@@ -72,7 +75,8 @@ export default function SavedRestaurantsProvider({ children }: PropsWithChildren
             const updated = savedRestaurants.filter((r) => r.id !== restaurantId);
             setSavedRestaurants(updated);
             await AsyncStorage.setItem(SAVED_RESTAURANTS_KEY, JSON.stringify(updated));
-        } catch (error) {
+        }
+        catch (error) {
             console.error('Error unsaving restaurant:', error);
         }
     }

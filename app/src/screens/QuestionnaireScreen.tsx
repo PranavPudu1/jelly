@@ -455,21 +455,89 @@ export default function QuestionnaireScreen({
                                 { /* Single Choice Question */ }
                                 { currentQuestion.type === 'single_choice' &&
                                     currentQuestion.options && (
-                                <>
-                                    { currentQuestion.options.map(
-                                        (option, index) => {
-                                            const isSelected =
+                                    <>
+                                        { currentQuestion.options.map(
+                                            (option, index) => {
+                                                const isSelected =
                                                     currentAnswer === option;
-                                            return (
+                                                return (
+                                                    <Animated.View
+                                                        key={ option }
+                                                        style={ {
+                                                            transform: [
+                                                                {
+                                                                    scale:
+                                                                        optionScales[
+                                                                            index
+                                                                        ] || 1,
+                                                                },
+                                                            ],
+                                                        } }
+                                                    >
+                                                        <TouchableOpacity
+                                                            style={ [
+                                                                styles.optionButton,
+                                                                isSelected &&
+                                                                    styles.optionButtonSelected,
+                                                            ] }
+                                                            onPress={ () =>
+                                                                handleAnswerSelect(
+                                                                    currentQuestion.id,
+                                                                    option,
+                                                                    index,
+                                                                )
+                                                            }
+                                                            activeOpacity={ 0.7 }
+                                                        >
+                                                            <View
+                                                                style={
+                                                                    styles.optionContent
+                                                                }
+                                                            >
+                                                                <View
+                                                                    style={ [
+                                                                        styles.optionRadio,
+                                                                        isSelected &&
+                                                                            styles.optionRadioSelected,
+                                                                    ] }
+                                                                >
+                                                                    { isSelected && (
+                                                                        <View
+                                                                            style={
+                                                                                styles.optionRadioInner
+                                                                            }
+                                                                        />
+                                                                    ) }
+                                                                </View>
+
+                                                                <Text
+                                                                    style={ [
+                                                                        styles.optionText,
+                                                                        isSelected &&
+                                                                            styles.optionTextSelected,
+                                                                    ] }
+                                                                >
+                                                                    { option }
+                                                                </Text>
+                                                            </View>
+                                                        </TouchableOpacity>
+                                                    </Animated.View>
+                                                );
+                                            },
+                                        ) }
+
+                                        { currentQuestion.hasOtherOption && (
+                                            <View>
                                                 <Animated.View
-                                                    key={ option }
                                                     style={ {
                                                         transform: [
                                                             {
                                                                 scale:
-                                                                        optionScales[
-                                                                            index
-                                                                        ] || 1,
+                                                                    optionScales[
+                                                                        currentQuestion
+                                                                            .options
+                                                                            .length
+                                                                    ] || 1,
                                                             },
                                                         ],
                                                     } }
@@ -477,16 +545,19 @@ export default function QuestionnaireScreen({
                                                     <TouchableOpacity
                                                         style={ [
                                                             styles.optionButton,
-                                                            isSelected &&
-                                                                    styles.optionButtonSelected,
+                                                            currentAnswer ===
+                                                                'Other' &&
+                                                                styles.optionButtonSelected,
                                                         ] }
-                                                        onPress={ () =>
+                                                        onPress={ () => {
                                                             handleAnswerSelect(
                                                                 currentQuestion.id,
-                                                                option,
-                                                                index,
-                                                            )
-                                                        }
+                                                                'Other',
+                                                                currentQuestion
+                                                                    .options!
+                                                                    .length,
+                                                            );
+                                                        } }
                                                         activeOpacity={ 0.7 }
                                                     >
                                                         <View
@@ -497,11 +568,13 @@ export default function QuestionnaireScreen({
                                                             <View
                                                                 style={ [
                                                                     styles.optionRadio,
-                                                                    isSelected &&
-                                                                            styles.optionRadioSelected,
+                                                                    currentAnswer ===
+                                                                        'Other' &&
+                                                                        styles.optionRadioSelected,
                                                                 ] }
                                                             >
-                                                                { isSelected && (
+                                                                { currentAnswer ===
+                                                                    'Other' && (
                                                                     <View
                                                                         style={
                                                                             styles.optionRadioInner
@@ -513,218 +586,145 @@ export default function QuestionnaireScreen({
                                                             <Text
                                                                 style={ [
                                                                     styles.optionText,
-                                                                    isSelected &&
-                                                                            styles.optionTextSelected,
+                                                                    currentAnswer ===
+                                                                        'Other' &&
+                                                                        styles.optionTextSelected,
                                                                 ] }
                                                             >
-                                                                { option }
+                                                                Other
                                                             </Text>
                                                         </View>
                                                     </TouchableOpacity>
                                                 </Animated.View>
-                                            );
-                                        },
-                                    ) }
 
-                                    { currentQuestion.hasOtherOption && (
-                                        <View>
-                                            <Animated.View
-                                                style={ {
-                                                    transform: [
-                                                        {
-                                                            scale:
-                                                                    optionScales[
-                                                                        currentQuestion
-                                                                            .options
-                                                                            .length
-                                                                    ] || 1,
-                                                        },
-                                                    ],
-                                                } }
-                                            >
-                                                <TouchableOpacity
-                                                    style={ [
-                                                        styles.optionButton,
-                                                        currentAnswer ===
-                                                                'Other' &&
-                                                                styles.optionButtonSelected,
-                                                    ] }
-                                                    onPress={ () => {
-                                                        handleAnswerSelect(
-                                                            currentQuestion.id,
-                                                            'Other',
-                                                                currentQuestion
-                                                                    .options!
-                                                                    .length,
-                                                        );
-                                                    } }
-                                                    activeOpacity={ 0.7 }
-                                                >
+                                                { currentAnswer === 'Other' && (
                                                     <View
                                                         style={
-                                                            styles.optionContent
+                                                            styles.otherInputContainer
                                                         }
+                                                    >
+                                                        <TextInput
+                                                            style={
+                                                                styles.textInput
+                                                            }
+                                                            placeholder="Please specify..."
+                                                            placeholderTextColor={
+                                                                AppColors.textLight
+                                                            }
+                                                            value={ otherText }
+                                                            onChangeText={
+                                                                setOtherText
+                                                            }
+                                                            autoFocus
+                                                            returnKeyType="done"
+                                                            onSubmitEditing={ () => {
+                                                                if (
+                                                                    otherText.trim()
+                                                                ) {
+                                                                    setAnswers(
+                                                                        (
+                                                                            prev,
+                                                                        ) => ({
+                                                                            ...prev,
+                                                                            [currentQuestion.id]:
+                                                                                otherText,
+                                                                        }),
+                                                                    );
+                                                                    Keyboard.dismiss();
+                                                                    setTimeout(
+                                                                        () =>
+                                                                            handleNext(),
+                                                                        300,
+                                                                    );
+                                                                }
+                                                            } }
+                                                        />
+                                                    </View>
+                                                ) }
+                                            </View>
+                                        ) }
+                                    </>
+                                ) }
+
+                                { /* Checkboxes + Text Question */ }
+                                { currentQuestion.type === 'checkboxes_text' &&
+                                currentQuestion.checkboxOptions && (
+                                    <View style={ styles.checkboxContainer }>
+                                        <Text style={ styles.checkboxHint }>
+                                            Select any dietary restrictions
+                                        </Text>
+                                        { currentQuestion.checkboxOptions.map(
+                                            (option) => {
+                                                const isChecked =
+                                                    selectedCheckboxes.includes(
+                                                        option,
+                                                    );
+                                                return (
+                                                    <TouchableOpacity
+                                                        key={ option }
+                                                        style={ [
+                                                            styles.checkboxItem,
+                                                            isChecked &&
+                                                                styles.checkboxItemSelected,
+                                                        ] }
+                                                        onPress={ () =>
+                                                            handleToggleCheckbox(
+                                                                option,
+                                                            )
+                                                        }
+                                                        activeOpacity={ 0.7 }
                                                     >
                                                         <View
                                                             style={ [
-                                                                styles.optionRadio,
-                                                                currentAnswer ===
-                                                                        'Other' &&
-                                                                        styles.optionRadioSelected,
+                                                                styles.checkbox,
+                                                                isChecked &&
+                                                                    styles.checkboxChecked,
                                                             ] }
                                                         >
-                                                            { currentAnswer ===
-                                                                    'Other' && (
-                                                                <View
+                                                            { isChecked && (
+                                                                <Text
                                                                     style={
-                                                                        styles.optionRadioInner
+                                                                        styles.checkmark
                                                                     }
-                                                                />
+                                                                >
+                                                                    ✓
+                                                                </Text>
                                                             ) }
                                                         </View>
 
                                                         <Text
                                                             style={ [
-                                                                styles.optionText,
-                                                                currentAnswer ===
-                                                                        'Other' &&
-                                                                        styles.optionTextSelected,
+                                                                styles.checkboxText,
+                                                                isChecked &&
+                                                                    styles.checkboxTextSelected,
                                                             ] }
                                                         >
-                                                                Other
+                                                            { option }
                                                         </Text>
-                                                    </View>
-                                                </TouchableOpacity>
-                                            </Animated.View>
+                                                    </TouchableOpacity>
+                                                );
+                                            },
+                                        ) }
 
-                                            { currentAnswer === 'Other' && (
-                                                <View
-                                                    style={
-                                                        styles.otherInputContainer
-                                                    }
-                                                >
-                                                    <TextInput
-                                                        style={
-                                                            styles.textInput
-                                                        }
-                                                        placeholder="Please specify..."
-                                                        placeholderTextColor={
-                                                            AppColors.textLight
-                                                        }
-                                                        value={ otherText }
-                                                        onChangeText={
-                                                            setOtherText
-                                                        }
-                                                        autoFocus
-                                                        returnKeyType="done"
-                                                        onSubmitEditing={ () => {
-                                                            if (
-                                                                otherText.trim()
-                                                            ) {
-                                                                setAnswers(
-                                                                    (
-                                                                        prev,
-                                                                    ) => ({
-                                                                        ...prev,
-                                                                        [currentQuestion.id]:
-                                                                                otherText,
-                                                                    }),
-                                                                );
-                                                                Keyboard.dismiss();
-                                                                setTimeout(
-                                                                    () =>
-                                                                        handleNext(),
-                                                                    300,
-                                                                );
-                                                            }
-                                                        } }
-                                                    />
-                                                </View>
-                                            ) }
-                                        </View>
-                                    ) }
-                                </>
-                            ) }
-
-                            { /* Checkboxes + Text Question */ }
-                            { currentQuestion.type === 'checkboxes_text' &&
-                                currentQuestion.checkboxOptions && (
-                                <View style={ styles.checkboxContainer }>
-                                    <Text style={ styles.checkboxHint }>
-                                            Select any dietary restrictions
-                                    </Text>
-                                    { currentQuestion.checkboxOptions.map(
-                                        (option) => {
-                                            const isChecked =
-                                                    selectedCheckboxes.includes(
-                                                        option,
-                                                    );
-                                            return (
-                                                <TouchableOpacity
-                                                    key={ option }
-                                                    style={ [
-                                                        styles.checkboxItem,
-                                                        isChecked &&
-                                                                styles.checkboxItemSelected,
-                                                    ] }
-                                                    onPress={ () =>
-                                                        handleToggleCheckbox(
-                                                            option,
-                                                        )
-                                                    }
-                                                    activeOpacity={ 0.7 }
-                                                >
-                                                    <View
-                                                        style={ [
-                                                            styles.checkbox,
-                                                            isChecked &&
-                                                                    styles.checkboxChecked,
-                                                        ] }
-                                                    >
-                                                        { isChecked && (
-                                                            <Text
-                                                                style={
-                                                                    styles.checkmark
-                                                                }
-                                                            >
-                                                                    ✓
-                                                            </Text>
-                                                        ) }
-                                                    </View>
-
-                                                    <Text
-                                                        style={ [
-                                                            styles.checkboxText,
-                                                            isChecked &&
-                                                                    styles.checkboxTextSelected,
-                                                        ] }
-                                                    >
-                                                        { option }
-                                                    </Text>
-                                                </TouchableOpacity>
-                                            );
-                                        },
-                                    ) }
-
-                                    <TextInput
-                                        style={ [
-                                            styles.textInput,
-                                            styles.multilineInput,
-                                        ] }
-                                        placeholder="Anything else? (e.g., nut allergy)"
-                                        placeholderTextColor={
-                                            AppColors.textLight
-                                        }
-                                        value={ additionalText }
-                                        onChangeText={
-                                            handleAdditionalTextChange
-                                        }
-                                        multiline
-                                        numberOfLines={ 2 }
-                                        textAlignVertical="top"
-                                    />
-                                </View>
-                            ) }
+                                        <TextInput
+                                            style={ [
+                                                styles.textInput,
+                                                styles.multilineInput,
+                                            ] }
+                                            placeholder="Anything else? (e.g., nut allergy)"
+                                            placeholderTextColor={
+                                                AppColors.textLight
+                                            }
+                                            value={ additionalText }
+                                            onChangeText={
+                                                handleAdditionalTextChange
+                                            }
+                                            multiline
+                                            numberOfLines={ 2 }
+                                            textAlignVertical="top"
+                                        />
+                                    </View>
+                                ) }
                             </ScrollView>
                         ) }
 
