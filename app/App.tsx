@@ -21,6 +21,7 @@ import SavedRestaurantsScreen from './src/screens/SavedRestaurantsScreen';
 import UserProfileScreen from './src/screens/UserProfileScreen';
 
 import { AppColors, Shadows } from './src/theme';
+import { prefetchAppData } from './src/utils/prefetchData';
 
 export type RootStackParamList = {
     Splash: undefined;
@@ -130,6 +131,12 @@ export default function App() {
                     'Inter-Medium': require('./assets/fonts/Inter-Medium.ttf'),
                     'Inter-SemiBold': require('./assets/fonts/Inter-SemiBold.ttf'),
                     'Inter-Bold': require('./assets/fonts/Inter-Bold.ttf'),
+                });
+
+                // Prefetch app data in the background
+                // This runs async and doesn't block app initialization
+                prefetchAppData(queryClient).catch((error) => {
+                    console.warn('[App] Background data prefetch failed:', error);
                 });
             }
             catch (e) {
