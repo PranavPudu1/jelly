@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { ReviewController } from '../controllers/review';
+import * as ReviewController from '../controllers/review';
 
 const router = Router();
 

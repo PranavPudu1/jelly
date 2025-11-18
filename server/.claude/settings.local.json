@@ -7,7 +7,8 @@
       "Read(//c/Users/hjkar/OneDrive/Desktop/Master/Coding/jelly/**)",
       "Bash(npx tsc --noEmit)",
       "Bash(npx tsc --traceResolution --noEmit)",
-      "Bash(npx prisma generate)"
+      "Bash(npx prisma generate)",
+      "Bash(dir \"C:\\Users\\hjkar\\OneDrive\\Desktop\\Master\\Coding\\jelly\\server\\src\\controllers\" /b)"
     ],
     "deny": [],
     "ask": []

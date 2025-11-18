@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { MenuItemController } from '../controllers/menuItem';
+import * as MenuItemController from '../controllers/menuItem';
 
 const router = Router();
 

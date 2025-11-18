@@ -723,6 +723,16 @@ export default function QuestionnaireScreen({
                                             numberOfLines={ 2 }
                                             textAlignVertical="top"
                                         />
+
+                                        <TouchableOpacity
+                                            style={ styles.skipButton }
+                                            onPress={ handleStartDiscovering }
+                                            activeOpacity={ 0.7 }
+                                        >
+                                            <Text style={ styles.skipButtonText }>
+                                                Skip this question →
+                                            </Text>
+                                        </TouchableOpacity>
                                     </View>
                                 ) }
                             </ScrollView>
@@ -1068,5 +1078,20 @@ const styles = StyleSheet.create({
         fontSize: 19,
         fontWeight: '800',
         letterSpacing: 0.5,
+    },
+    skipButton: {
+        paddingVertical: Spacing.md,
+        paddingHorizontal: Spacing.lg,
+        borderRadius: BorderRadius.md,
+        alignItems: 'center',
+        marginTop: Spacing.lg,
+        backgroundColor: 'transparent',
+        borderWidth: 2,
+        borderColor: AppColors.textLight,
+    },
+    skipButtonText: {
+        color: AppColors.textLight,
+        fontSize: 16,
+        fontWeight: '600',
     },
 });

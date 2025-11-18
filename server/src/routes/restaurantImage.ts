@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { RestaurantImageController } from '../controllers/restaurantImage';
+import * as RestaurantImageController from '../controllers/restaurantImage';
 
 const router = Router();
 

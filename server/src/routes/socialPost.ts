@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { SocialPostController } from '../controllers/socialPost';
+import * as SocialPostController from '../controllers/socialPost';
 
 const router = Router();
 
