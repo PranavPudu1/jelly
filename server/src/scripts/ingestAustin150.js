@@ -97,30 +97,27 @@ async function searchRestaurantsInLocation(location) {
     await rateLimiter.throttle();
 
     try {
-        const response = await fetch(
-            `${CONFIG.GOOGLE_API_BASE_URL}/places:searchText`,
-            {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-Goog-Api-Key': CONFIG.GOOGLE_API_KEY,
-                    'X-Goog-FieldMask': 'places.id,places.displayName',
-                },
-                body: JSON.stringify({
-                    textQuery: `restaurants in ${location.name}, Austin, TX`,
-                    locationBias: {
-                        circle: {
-                            center: {
-                                latitude: location.lat,
-                                longitude: location.lng,
-                            },
-                            radius: location.radius,
+        const response = await fetch(`${CONFIG.GOOGLE_API_BASE_URL}/places:searchText`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-Goog-Api-Key': CONFIG.GOOGLE_API_KEY,
+                'X-Goog-FieldMask': 'places.id,places.displayName',
+            },
+            body: JSON.stringify({
+                textQuery: `restaurants in ${location.name}, Austin, TX`,
+                locationBias: {
+                    circle: {
+                        center: {
+                            latitude: location.lat,
+                            longitude: location.lng,
                         },
+                        radius: location.radius,
                     },
-                    maxResultCount: CONFIG.MAX_RESULTS_PER_SEARCH,
-                }),
-            }
-        );
+                },
+                maxResultCount: CONFIG.MAX_RESULTS_PER_SEARCH,
+            }),
+        });
 
         console.log(response);
 
@@ -179,10 +176,7 @@ async function getPlaceDetails(placeId) {
 
         return await response.json();
     } catch (error) {
-        console.error(
-            `  ❌ Error fetching details for ${placeId}:`,
-            error.message
-        );
+        console.error(`  ❌ Error fetching details for ${placeId}:`, error.message);
         throw error;
     }
 }
@@ -517,7 +511,9 @@ async function main() {
 
             // Stop if we have enough
             if (allPlaces.size >= CONFIG.TARGET_RESTAURANTS) {
-                console.log(`\n✅ Reached target of ${CONFIG.TARGET_RESTAURANTS} unique restaurants!\n`);
+                console.log(
+                    `\n✅ Reached target of ${CONFIG.TARGET_RESTAURANTS} unique restaurants!\n`
+                );
                 break;
             }
         }
