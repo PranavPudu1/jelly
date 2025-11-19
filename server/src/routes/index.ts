@@ -6,6 +6,7 @@ import reviewRoutes from './review';
 import restaurantImageRoutes from './restaurantImage';
 import menuItemRoutes from './menuItem';
 import socialPostRoutes from './socialPost';
+import userRoutes from './user';
 
 const router = Router();
 
@@ -21,6 +22,7 @@ function handleHealthCheck(_req: Request, res: Response): void {
 router.get('/health', handleHealthCheck);
 
 // API routes
+router.use('/users', userRoutes);
 router.use('/restaurants', restaurantRoutes);
 router.use('/tags', tagRoutes);
 router.use('/tag-types', tagTypeRoutes);

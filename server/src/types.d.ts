@@ -2,6 +2,8 @@
  * Type definitions for the server
  */
 
+import { Request } from 'express';
+
 /**
  * Environment configuration
  */
@@ -20,4 +22,29 @@ export interface EnvConfig {
 export interface ApiError extends Error {
     statusCode?: number;
     errors?: unknown[];
+}
+
+/**
+ * User roles for RBAC
+ */
+export enum UserRole {
+    ADMIN = 'admin',
+    OWNER = 'owner',
+    USER = 'user'
+}
+
+/**
+ * JWT Payload
+ */
+export interface JWTPayload {
+    userId: string;
+    email: string;
+    role: UserRole;
+}
+
+/**
+ * Authenticated Request
+ */
+export interface AuthRequest extends Request {
+    user?: JWTPayload;
 }

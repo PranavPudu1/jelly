@@ -1,0 +1,9 @@
+export { register } from './register';
+export { login } from './login';
+export { getProfile } from './getProfile';
+export { updateProfile } from './updateProfile';
+export { changePassword } from './changePassword';
+export { getAllUsers } from './getAllUsers';
+export { getUserById } from './getUserById';
+export { updateUser } from './updateUser';
+export { deleteUser } from './deleteUser';
