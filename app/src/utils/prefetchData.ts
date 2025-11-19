@@ -5,20 +5,45 @@ import { restaurantKeys } from '../hooks/useRestaurants';
 /**
  * Prefetch all relevant app data in the background
  * This is called during app initialization to improve user experience
+ *
+ * @param queryClient - The React Query client instance
+ * @param userLocation - The user's current location (optional, will skip prefetch if not provided)
  */
-export async function prefetchAppData(queryClient: QueryClient): Promise<void> {
+export async function prefetchAppData(
+    queryClient: QueryClient,
+    userLocation?: { latitude: number; longitude: number } | null
+): Promise<void> {
     try {
-        // Prefetch initial restaurant data (first page)
+        // Skip prefetch if no location available - data will be fetched on-demand
+        if (!userLocation) {
+            console.log('[Prefetch] Skipping restaurant data prefetch - no location available');
+            return;
+        }
+
+        // Prefetch initial restaurant data (first page) using getNearby
         await queryClient.prefetchInfiniteQuery({
-            queryKey: restaurantKeys.list({ limit: 10 } as any),
+            queryKey: restaurantKeys.nearby({
+                lat: userLocation.latitude,
+                long: userLocation.longitude,
+                radius: 5000,
+                filters: {},
+            }),
             queryFn: async ({ pageParam = 1 }) => {
-                return await restaurantApi.fetchRestaurants({
+                return await restaurantApi.fetchNearbyPaginated({
+                    lat: userLocation.latitude,
+                    long: userLocation.longitude,
+                    radius: 5000,
                     page: pageParam,
                     limit: 10,
                 });
             },
             initialPageParam: 1,
-            pages: 1, // Only prefetch first page to keep initial load fast
+            getNextPageParam: (lastPage: Awaited<ReturnType<typeof restaurantApi.fetchNearbyPaginated>>) => {
+                if (lastPage.pagination.hasMore) {
+                    return lastPage.pagination.page + 1;
+                }
+                return undefined;
+            },
         });
 
         console.log('[Prefetch] Restaurant data loaded successfully');

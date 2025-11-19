@@ -1,4 +1,10 @@
-import type { Restaurant, Review, FoodItem, AmbiencePhoto, Info } from '../types';
+import type {
+    Restaurant,
+    Review,
+    FoodItem,
+    AmbiencePhoto,
+    Info,
+} from '../types';
 
 /**
  * Backend Restaurant Interface (from Prisma schema)
@@ -55,25 +61,41 @@ interface BackendRestaurant {
 /**
  * Transform backend restaurant data to frontend Restaurant type
  */
-export function transformRestaurantData(backendData: BackendRestaurant): Restaurant {
+export function transformRestaurantData(
+    backendData: BackendRestaurant,
+): Restaurant {
     // Extract images by classification
-    const heroImages = backendData.images.filter(img => img.classification === 'hero');
-    const ambientImages = backendData.images.filter(img => img.classification === 'ambiance');
-    const foodImages = backendData.images.filter(img => img.classification === 'food');
-    const menuImagesList = backendData.images.filter(img => img.classification === 'menu');
+    const heroImages = backendData.images.filter(
+        (img) => img.classification === 'hero',
+    );
+    const ambientImages = backendData.images.filter(
+        (img) => img.classification === 'ambiance',
+    );
+    const foodImages = backendData.images.filter(
+        (img) => img.classification === 'food',
+    );
+    const menuImagesList = backendData.images.filter(
+        (img) => img.classification === 'menu',
+    );
 
     // Extract cuisine from tags
-    const cuisineTag = backendData.tags.find(tag => tag.tagType.value === 'cuisine');
+    const cuisineTag = backendData.tags.find(
+        (tag) => tag.tagType.value === 'cuisine',
+    );
     const cuisine = cuisineTag?.value || 'Restaurant';
 
     // Extract social media handles
-    const instagramHandle = backendData.socialMedia.find(sm => sm.platform === 'instagram')?.handle;
-    const tiktokHandle = backendData.socialMedia.find(sm => sm.platform === 'tiktok')?.handle;
+    const instagramHandle = backendData.socialMedia.find(
+        (sm) => sm.platform === 'instagram',
+    )?.handle;
+    const tiktokHandle = backendData.socialMedia.find(
+        (sm) => sm.platform === 'tiktok',
+    )?.handle;
 
     // Transform reviews
     const reviews: Review[] = backendData.reviews
-        .filter(review => review.author && review.text)
-        .map(review => ({
+        .filter((review) => review.author && review.text)
+        .map((review) => ({
             author: review.author || 'Anonymous',
             quote: review.text || '',
             rating: review.rating || 5,
@@ -97,7 +119,9 @@ export function transformRestaurantData(backendData: BackendRestaurant): Restaur
     });
 
     // Add info from tags
-    const barTag = backendData.tags.find(tag => tag.tagType.value === 'bar_type');
+    const barTag = backendData.tags.find(
+        (tag) => tag.tagType.value === 'bar_type',
+    );
     if (barTag) {
         infoList.push({
             label: 'Bar',
@@ -106,7 +130,9 @@ export function transformRestaurantData(backendData: BackendRestaurant): Restaur
         });
     }
 
-    const musicTag = backendData.tags.find(tag => tag.tagType.value === 'music');
+    const musicTag = backendData.tags.find(
+        (tag) => tag.tagType.value === 'music',
+    );
     if (musicTag) {
         infoList.push({
             label: 'Live Music',
@@ -115,7 +141,9 @@ export function transformRestaurantData(backendData: BackendRestaurant): Restaur
         });
     }
 
-    const kidFriendlyTag = backendData.tags.find(tag => tag.tagType.value === 'kid_friendly');
+    const kidFriendlyTag = backendData.tags.find(
+        (tag) => tag.tagType.value === 'kid_friendly',
+    );
     if (kidFriendlyTag) {
         infoList.push({
             label: 'Kid-Friendly',
@@ -125,26 +153,42 @@ export function transformRestaurantData(backendData: BackendRestaurant): Restaur
     }
 
     // Transform menu items into food items
-    const foodItems: FoodItem[] = backendData.menu.slice(0, 6).map((menuItem, index) => {
-        const itemImages = menuItem.images?.map(img => img.imageUrl) || [];
-        // If menu item has no images, try to use food images
-        const images = itemImages.length > 0
-            ? itemImages
-            : foodImages.slice(index, index + 1).map(img => img.imageUrl);
+    const foodItems: FoodItem[] = backendData.menu
+        .slice(0, 6)
+        .map((menuItem, index) => {
+            const itemImages =
+                menuItem.images?.map((img) => img.imageUrl) || [];
+            // If menu item has no images, try to use food images
+            const images =
+                itemImages.length > 0
+                    ? itemImages
+                    : foodImages
+                          .slice(index, index + 1)
+                          .map((img) => img.imageUrl);
 
-        // Find reviews that might be related to this item (simplified approach)
-        const itemReviews = reviews.slice(index, index + 1);
+            // Find reviews that might be related to this item (simplified approach)
+            const itemReviews = reviews.slice(index, index + 1);
 
-        return {
-            name: menuItem.name || 'Special Dish',
-            images: images.length > 0 ? images : ['https://via.placeholder.com/400x400?text=Food+Image'],
-            reviews: itemReviews.length > 0 ? itemReviews : [{
-                author: 'Customer',
-                quote: 'Delicious!',
-                rating: 5,
-            }],
-        };
-    });
+            return {
+                name: menuItem.name || 'Special Dish',
+                images:
+                    images.length > 0
+                        ? images
+                        : [
+                              'https://via.placeholder.com/400x400?text=Food+Image',
+                          ],
+                reviews:
+                    itemReviews.length > 0
+                        ? itemReviews
+                        : [
+                              {
+                                  author: 'Customer',
+                                  quote: 'Delicious!',
+                                  rating: 5,
+                              },
+                          ],
+            };
+        });
 
     // If no menu items, create food items from food images
     if (foodItems.length === 0 && foodImages.length > 0) {
@@ -152,13 +196,16 @@ export function transformRestaurantData(backendData: BackendRestaurant): Restaur
             foodItems.push({
                 name: `Signature Dish ${index + 1}`,
                 images: [img.imageUrl],
-                reviews: reviews.slice(index, index + 1).length > 0
-                    ? reviews.slice(index, index + 1)
-                    : [{
-                        author: 'Customer',
-                        quote: 'Amazing dish!',
-                        rating: 5,
-                    }],
+                reviews:
+                    reviews.slice(index, index + 1).length > 0
+                        ? reviews.slice(index, index + 1)
+                        : [
+                              {
+                                  author: 'Customer',
+                                  quote: 'Amazing dish!',
+                                  rating: 5,
+                              },
+                          ],
             });
         });
     }
@@ -182,8 +229,13 @@ export function transformRestaurantData(backendData: BackendRestaurant): Restaur
         rating: backendData.rating,
         priceLevel: backendData.price,
         cuisine,
-        heroImageUrl: heroImages[0]?.imageUrl || 'https://via.placeholder.com/800x600?text=Restaurant+Image',
-        ambientImageUrl: ambientImages[0]?.imageUrl || heroImages[0]?.imageUrl || 'https://via.placeholder.com/800x600?text=Ambiance',
+        heroImageUrl:
+            heroImages[0]?.imageUrl ||
+            'https://via.placeholder.com/800x600?text=Restaurant+Image',
+        ambientImageUrl:
+            ambientImages[0]?.imageUrl ||
+            heroImages[0]?.imageUrl ||
+            'https://via.placeholder.com/800x600?text=Ambiance',
         reviewQuote: firstReview.quote,
         reviewAuthor: firstReview.author,
         infoList,
@@ -192,8 +244,8 @@ export function transformRestaurantData(backendData: BackendRestaurant): Restaur
         foodItems,
         ambiencePhotos,
         reviews,
-        menuImages: menuImagesList.map(img => img.imageUrl),
-        popularDishPhotos: foodImages.slice(0, 5).map(img => img.imageUrl),
+        menuImages: menuImagesList.map((img) => img.imageUrl),
+        popularDishPhotos: foodImages.slice(0, 5).map((img) => img.imageUrl),
     };
 }
 
@@ -213,6 +265,8 @@ function extractLocationFromAddress(address: string): string {
 /**
  * Transform an array of backend restaurants
  */
-export function transformRestaurantsArray(backendRestaurants: BackendRestaurant[]): Restaurant[] {
+export function transformRestaurantsArray(
+    backendRestaurants: BackendRestaurant[],
+): Restaurant[] {
     return backendRestaurants.map(transformRestaurantData);
 }

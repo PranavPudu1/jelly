@@ -21,7 +21,6 @@ import SavedRestaurantsScreen from './src/screens/SavedRestaurantsScreen';
 import UserProfileScreen from './src/screens/UserProfileScreen';
 
 import { AppColors, Shadows } from './src/theme';
-import { prefetchAppData } from './src/utils/prefetchData';
 
 export type RootStackParamList = {
     Splash: undefined;
@@ -133,11 +132,10 @@ export default function App() {
                     'Inter-Bold': require('./assets/fonts/Inter-Bold.ttf'),
                 });
 
-                // Prefetch app data in the background
-                // This runs async and doesn't block app initialization
-                prefetchAppData(queryClient).catch((error) => {
-                    console.warn('[App] Background data prefetch failed:', error);
-                });
+                // Note: Restaurant data prefetch requires user location
+                // Since location permission is requested later in the flow,
+                // restaurant data will be fetched on-demand when SwipeScreen loads
+                // This is intentional and provides a better user experience
             }
             catch (e) {
                 console.warn(e);

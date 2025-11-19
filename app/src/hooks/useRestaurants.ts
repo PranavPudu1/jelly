@@ -1,4 +1,4 @@
-import { useQuery, useInfiniteQuery, UseQueryResult, UseInfiniteQueryResult } from '@tanstack/react-query';
+import { useQuery, useInfiniteQuery, UseQueryResult } from '@tanstack/react-query';
 import { restaurantApi } from '../services/restaurantApi';
 import type { Restaurant } from '../types';
 
@@ -11,12 +11,32 @@ export const restaurantKeys = {
     list: (filters: RestaurantFilters) => [...restaurantKeys.lists(), filters] as const,
     details: () => [...restaurantKeys.all, 'detail'] as const,
     detail: (id: string) => [...restaurantKeys.details(), id] as const,
-    nearby: (lat: number, long: number, radius: number) =>
-        [...restaurantKeys.all, 'nearby', lat, long, radius] as const,
+    nearby: (params: NearbyRestaurantParams) =>
+        [...restaurantKeys.all, 'nearby', params] as const,
 };
 
 /**
- * Restaurant filter parameters
+ * Restaurant filter parameters for getNearby route
+ */
+export interface NearbyRestaurantFilters {
+    price?: string;
+    rating?: number;
+    cuisine?: string;
+}
+
+/**
+ * Parameters for nearby restaurant queries
+ */
+export interface NearbyRestaurantParams {
+    lat: number;
+    long: number;
+    radius?: number;
+    filters?: NearbyRestaurantFilters;
+}
+
+/**
+ * Legacy restaurant filter parameters (for backward compatibility)
+ * @deprecated Use NearbyRestaurantFilters instead
  */
 export interface RestaurantFilters {
     minRating?: number;
@@ -25,51 +45,52 @@ export interface RestaurantFilters {
 }
 
 /**
- * Hook to fetch paginated restaurants
+ * General hook to fetch paginated restaurants using getNearby route
+ * Fetches restaurants based on location and filters, then transforms each using getById
  */
-export function useRestaurants(
-    filters: RestaurantFilters = {},
-    page: number = 1,
-    limit: number = 10
-) {
+export function useRestaurants(params: NearbyRestaurantParams & {
+    page?: number;
+    limit?: number;
+}) {
+    const { lat, long, radius = 5000, filters = {}, page = 1, limit = 10 } = params;
+
     return useQuery({
-        queryKey: restaurantKeys.list({ ...filters, page, limit } as any),
+        queryKey: restaurantKeys.nearby({ lat, long, radius, filters }),
         queryFn: async () => {
-            return await restaurantApi.fetchRestaurants({
-                ...filters,
+            return await restaurantApi.fetchNearbyPaginated({
+                lat,
+                long,
+                radius,
                 page,
                 limit,
+                ...filters,
             });
         },
-        staleTime: 5 * 60 * 1000, // 5 minutes
-        gcTime: 10 * 60 * 1000, // 10 minutes (formerly cacheTime)
+        enabled: !!lat && !!long,
+        staleTime: 2 * 60 * 1000, // 2 minutes (location data changes more frequently)
+        gcTime: 10 * 60 * 1000, // 10 minutes
     });
 }
 
 /**
- * Hook to fetch restaurants with infinite scroll
+ * Hook to fetch restaurants with infinite scroll using getNearby route
  * This is perfect for the swipe interface - it automatically loads more as needed
  */
-export function useInfiniteRestaurants(
-    filters: RestaurantFilters = {},
-    limit: number = 10
-): UseInfiniteQueryResult<{
-    restaurants: Restaurant[];
-    pagination: {
-        page: number;
-        limit: number;
-        total: number;
-        totalPages: number;
-        hasMore: boolean;
-    };
-}, Error> {
+export function useInfiniteRestaurants(params: NearbyRestaurantParams & {
+    limit?: number;
+}) {
+    const { lat, long, radius = 5000, filters = {}, limit = 10 } = params;
+
     return useInfiniteQuery({
-        queryKey: restaurantKeys.list({ ...filters, limit } as any),
+        queryKey: restaurantKeys.nearby({ lat, long, radius, filters }),
         queryFn: async ({ pageParam = 1 }) => {
-            return await restaurantApi.fetchRestaurants({
-                ...filters,
+            return await restaurantApi.fetchNearbyPaginated({
+                lat,
+                long,
+                radius,
                 page: pageParam,
                 limit,
+                ...filters,
             });
         },
         getNextPageParam: (lastPage) => {
@@ -79,7 +100,8 @@ export function useInfiniteRestaurants(
             return undefined;
         },
         initialPageParam: 1,
-        staleTime: 5 * 60 * 1000, // 5 minutes
+        enabled: !!lat && !!long,
+        staleTime: 2 * 60 * 1000, // 2 minutes
         gcTime: 10 * 60 * 1000, // 10 minutes
     });
 }
@@ -87,7 +109,7 @@ export function useInfiniteRestaurants(
 /**
  * Hook to fetch a single restaurant by ID
  */
-export function useRestaurant(id: string): UseQueryResult<Restaurant, Error> {
+export function useRestaurantById(id: string): UseQueryResult<Restaurant, Error> {
     return useQuery({
         queryKey: restaurantKeys.detail(id),
         queryFn: async () => await restaurantApi.fetchRestaurantById(id),
@@ -98,33 +120,18 @@ export function useRestaurant(id: string): UseQueryResult<Restaurant, Error> {
 }
 
 /**
- * Hook to fetch nearby restaurants
- */
-export function useNearbyRestaurants(
-    lat: number,
-    long: number,
-    radius: number = 5000,
-    enabled: boolean = true
-): UseQueryResult<Restaurant[], Error> {
-    return useQuery({
-        queryKey: restaurantKeys.nearby(lat, long, radius),
-        queryFn: async () => await restaurantApi.fetchNearbyRestaurants(lat, long, radius),
-        enabled: enabled && !!lat && !!long,
-        staleTime: 2 * 60 * 1000, // 2 minutes (location data changes more frequently)
-        gcTime: 10 * 60 * 1000, // 10 minutes
-    });
-}
-
-/**
  * Helper hook to get all restaurants from infinite query as a flat array
  */
-export function useRestaurantsFlat(filters: RestaurantFilters = {}, limit: number = 10) {
-    const query = useInfiniteRestaurants(filters, limit);
+export function useRestaurantsFlat(params: NearbyRestaurantParams & {
+    limit?: number;
+}) {
+    const query = useInfiniteRestaurants(params);
 
-    const restaurants = query.data?.pages.flatMap(page => page.restaurants) || [];
+    const pages = query.data?.pages || [];
+    const restaurants = pages.flatMap((page) => page.restaurants);
     const totalFetched = restaurants.length;
-    const total = query.data?.pages[0]?.pagination?.total || 0;
-    const hasMore = query.data?.pages[query.data.pages.length - 1]?.pagination?.hasMore || false;
+    const total = pages[0]?.pagination?.total || 0;
+    const hasMore = pages[pages.length - 1]?.pagination?.hasMore || false;
 
     return {
         ...query,

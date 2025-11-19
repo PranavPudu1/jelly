@@ -17,8 +17,9 @@ import { Swiper, SwiperCardRefType } from 'rn-swiper-list';
 import RestaurantCard from '../components/RestaurantCard';
 
 import { AppColors, Typography, Spacing } from '../theme';
-import { useRestaurantsFlat, RestaurantFilters } from '../hooks/useRestaurants';
+import { useRestaurantsFlat, NearbyRestaurantFilters } from '../hooks/useRestaurants';
 import { useSavedRestaurants } from '../contexts/SavedRestaurantsContext';
+import { useLocation } from '../contexts/LocationContext';
 import type { Restaurant } from '../types';
 
 const { width, height } = Dimensions.get('window');
@@ -34,6 +35,7 @@ export default function SwipeScreen() {
     const [currentIndex, setCurrentIndex] = useState(0);
     const swiperRef = useRef<SwiperCardRefType>(null);
     const { saveRestaurant } = useSavedRestaurants();
+    const { userLocation, isLoading: isLoadingLocation } = useLocation();
     const [filters, setFilters] = useState<FilterType>({
         price: [],
         distance: null,
@@ -42,10 +44,17 @@ export default function SwipeScreen() {
     });
 
     // Convert UI filters to API filters
-    const apiFilters: RestaurantFilters = {
+    const apiFilters: NearbyRestaurantFilters = {
         price: filters.price.length > 0 ? filters.price.join(',') : undefined,
-        minRating: filters.rating ? parseFloat(filters.rating.replace('+', '')) : undefined,
+        rating: filters.rating ? parseFloat(filters.rating.replace('+', '')) : undefined,
+        cuisine: filters.cuisine.length > 0 ? filters.cuisine.join(',') : undefined,
     };
+
+    // Convert distance filter to radius in meters
+    const radius = filters.distance === '< 1 mi' ? 1609
+        : filters.distance === '< 3 mi' ? 4828
+        : filters.distance === '< 5 mi' ? 8047
+        : 5000; // Default 5km
 
     // Fetch restaurants with pagination
     const {
@@ -58,7 +67,13 @@ export default function SwipeScreen() {
         isFetchingNextPage,
         totalFetched,
         hasMore,
-    } = useRestaurantsFlat(apiFilters, 10);
+    } = useRestaurantsFlat({
+        lat: userLocation?.latitude || 0,
+        long: userLocation?.longitude || 0,
+        radius,
+        filters: apiFilters,
+        limit: 10,
+    });
 
     // Fetch more restaurants when user is approaching the end
     useEffect(() => {
@@ -165,13 +180,34 @@ export default function SwipeScreen() {
     }
 
     // Loading state
-    if (isLoading) {
+    if (isLoading || isLoadingLocation) {
         return (
             <SafeAreaView style={ styles.container } edges={ ['top'] }>
                 <View style={ styles.loadingContainer }>
                     <ActivityIndicator size="large" color={ AppColors.secondary } />
                     <Text style={ styles.loadingText }>
-                        Loading restaurants...
+                        {isLoadingLocation ? 'Getting your location...' : 'Loading restaurants...'}
+                    </Text>
+                </View>
+            </SafeAreaView>
+        );
+    }
+
+    // No location available
+    if (!userLocation) {
+        return (
+            <SafeAreaView style={ styles.container } edges={ ['top'] }>
+                <View style={ styles.errorContainer }>
+                    <Ionicons
+                        name="location-outline"
+                        size={ 64 }
+                        color={ AppColors.textLight }
+                    />
+                    <Text style={ styles.errorTitle }>
+                        Location Required
+                    </Text>
+                    <Text style={ styles.errorMessage }>
+                        Please enable location services to find nearby restaurants
                     </Text>
                 </View>
             </SafeAreaView>

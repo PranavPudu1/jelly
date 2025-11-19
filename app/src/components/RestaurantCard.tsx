@@ -238,7 +238,7 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
                                     <Ionicons
                                         name={ getIconName(info.icon || '') }
                                         size={ 16 }
-                                        color={ isLocation ? AppColors.primary : AppColors.textDark }
+                                        color={ AppColors.textDark }
                                     />
 
                                     <Text style={ [
@@ -708,7 +708,7 @@ const styles = StyleSheet.create({
         fontSize: 12,
     },
     locationText: {
-        color: AppColors.primary,
+        color: AppColors.textDark,
         fontWeight: '600',
     },
 

@@ -58,11 +58,19 @@ export function authenticate(req: AuthRequest, res: Response, next: NextFunction
  * Generate JWT token for a user
  */
 export function generateToken(payload: JWTPayload): string {
-    const jwtSecret = process.env.JWT_SECRET || 'your-secret-key';
-    const jwtExpiration = process.env.JWT_EXPIRATION || '7d';
+    const jwtSecret = process.env.JWT_SECRET;
+    const jwtExpiration = process.env.JWT_EXPIRATION;
+
+    if (!jwtSecret) {
+        throw new Error('JWT_SECRET is not defined in environment variables');
+    }
+
+    if (!jwtExpiration) {
+        throw new Error('JWT_EXPIRATION is not defined in environment variables');
+    }
 
     return jwt.sign(payload, jwtSecret, {
-        expiresIn: jwtExpiration,
+        expiresIn: jwtExpiration as any, // TODO: refine type
     });
 }
 
