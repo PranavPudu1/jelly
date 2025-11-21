@@ -97,7 +97,8 @@ async function fetchWithErrorHandling<T>(
         }
 
         return await response.json();
-    } catch (error) {
+    }
+    catch (error) {
         clearTimeout(timeoutId);
 
         if (error instanceof Error) {
@@ -227,7 +228,8 @@ export async function fetchNearbyPaginated(
         paginatedRestaurants.map(async (restaurant) => {
             try {
                 return await fetchRestaurantById(restaurant.id);
-            } catch (error) {
+            }
+            catch (error) {
                 // If transformation fails, return the original restaurant data
                 console.warn(`Failed to transform restaurant ${restaurant.id}:`, error);
                 return restaurant;

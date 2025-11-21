@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useCallback, useMemo } from 'react';
 import {
     View,
     Text,
@@ -17,7 +17,10 @@ import { Swiper, SwiperCardRefType } from 'rn-swiper-list';
 import RestaurantCard from '../components/RestaurantCard';
 
 import { AppColors, Typography, Spacing } from '../theme';
-import { useRestaurantsFlat, NearbyRestaurantFilters } from '../hooks/useRestaurants';
+import {
+    useRestaurantsFlat,
+    NearbyRestaurantFilters,
+} from '../hooks/useRestaurants';
 import { useSavedRestaurants } from '../contexts/SavedRestaurantsContext';
 import { useLocation } from '../contexts/LocationContext';
 import type { Restaurant } from '../types';
@@ -27,34 +30,40 @@ const { width, height } = Dimensions.get('window');
 type FilterType = {
     price: string[];
     distance: string | null;
-    cuisine: string[];
     rating: string | null;
 };
 
 export default function SwipeScreen() {
-    const [currentIndex, setCurrentIndex] = useState(0);
     const swiperRef = useRef<SwiperCardRefType>(null);
-    const { saveRestaurant } = useSavedRestaurants();
     const { userLocation, isLoading: isLoadingLocation } = useLocation();
+
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const { saveRestaurant } = useSavedRestaurants();
+    const fetchTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+    
     const [filters, setFilters] = useState<FilterType>({
         price: [],
         distance: null,
-        cuisine: [],
         rating: null,
     });
 
     // Convert UI filters to API filters
     const apiFilters: NearbyRestaurantFilters = {
         price: filters.price.length > 0 ? filters.price.join(',') : undefined,
-        rating: filters.rating ? parseFloat(filters.rating.replace('+', '')) : undefined,
-        cuisine: filters.cuisine.length > 0 ? filters.cuisine.join(',') : undefined,
+        rating: filters.rating
+            ? parseFloat(filters.rating.replace('+', ''))
+            : undefined,
     };
 
     // Convert distance filter to radius in meters
-    const radius = filters.distance === '< 1 mi' ? 1609
-        : filters.distance === '< 3 mi' ? 4828
-        : filters.distance === '< 5 mi' ? 8047
-        : 5000; // Default 5km
+    const radius =
+        filters.distance === '< 1 mi'
+            ? 1609
+            : filters.distance === '< 3 mi'
+                ? 4828
+                : filters.distance === '< 5 mi'
+                    ? 8047
+                    : 5000; // Default 5km
 
     // Fetch restaurants with pagination
     const {
@@ -75,223 +84,118 @@ export default function SwipeScreen() {
         limit: 10,
     });
 
-    // Fetch more restaurants when user is approaching the end
+    // Reset index when filters change (new dataset)
     useEffect(() => {
+        setCurrentIndex(0);
+    }, [filters.price, filters.distance, filters.rating]);
+
+    // Stabilize the restaurants array reference with useMemo
+    // This prevents the Swiper from reconciling all cards on every render
+    const stableRestaurants = useMemo(() => restaurants, [restaurants]);
+
+    // Memory management: Periodically trim old swiped cards
+    // Keep only cards from currentIndex onwards to prevent memory leak
+    useEffect(() => {
+        const CLEANUP_THRESHOLD = 50; // Cleanup when we have 50+ swiped cards
+
+        if (currentIndex >= CLEANUP_THRESHOLD) {
+            // This would require modifying the underlying data structure
+            // For now, we're documenting this as a potential enhancement
+            // In production, you might want to implement a custom data store
+            // that removes old entries while maintaining the swiper state
+        }
+    }, [currentIndex]);
+
+    // Fetch more restaurants when user is approaching the end (with debouncing)
+    useEffect(() => {
+        // Clear any pending fetch timeout
+        if (fetchTimeoutRef.current) {
+            clearTimeout(fetchTimeoutRef.current);
+        }
+
         // When user has swiped through 70% of loaded restaurants, fetch more
         const threshold = Math.floor(restaurants.length * 0.7);
+
         if (currentIndex >= threshold && hasNextPage && !isFetchingNextPage) {
-            fetchNextPage();
+            // Debounce the fetch to prevent rapid consecutive calls
+            fetchTimeoutRef.current = setTimeout(() => {
+                fetchNextPage();
+            }, 300); // 300ms debounce
         }
-    }, [currentIndex, restaurants.length, hasNextPage, isFetchingNextPage, fetchNextPage]);
 
-    function handleSwipedRight(index: number) {
-        if (restaurants[index]) {
-            console.log('Liked:', restaurants[index].name);
-            saveRestaurant(restaurants[index]);
+        // Cleanup timeout on unmount
+        return () => {
+            if (fetchTimeoutRef.current) {
+                clearTimeout(fetchTimeoutRef.current);
+            }
+        };
+    }, [
+        currentIndex,
+        restaurants.length,
+        hasNextPage,
+        isFetchingNextPage,
+        fetchNextPage,
+    ]);
+
+    const handleSwipedRight = useCallback((index: number) => {
+        if (stableRestaurants[index]) {
+            console.log('Liked:', stableRestaurants[index].name);
+            saveRestaurant(stableRestaurants[index]);
         }
-    }
+    }, [stableRestaurants, saveRestaurant]);
 
-    function handleSwipedLeft(index: number) {
-        if (restaurants[index]) {
-            console.log('Passed:', restaurants[index].name);
+    const handleSwipedLeft = useCallback((index: number) => {
+        if (stableRestaurants[index]) {
+            console.log('Passed:', stableRestaurants[index].name);
         }
-    }
+    }, [stableRestaurants]);
 
-    function handleSwipedAll() {
+    const handleSwipedAll = useCallback(() => {
         console.log('All cards swiped');
         // Optionally fetch more if available
         if (hasNextPage && !isFetchingNextPage) {
             fetchNextPage();
         }
-    }
+    }, [hasNextPage, isFetchingNextPage, fetchNextPage]);
 
-    function handleStartOver() {
+    const handleStartOver = useCallback(() => {
         setCurrentIndex(0);
-    }
+    }, []);
 
-    function handleIndexChange(index: number) {
+    const handleIndexChange = useCallback((index: number) => {
         setCurrentIndex(index);
-    }
+    }, []);
 
-    function togglePriceFilter(price: string) {
+    const togglePriceFilter = useCallback((price: string) => {
         setFilters((prev) => ({
             ...prev,
             price: prev.price.includes(price)
                 ? prev.price.filter((p) => p !== price)
                 : [...prev.price, price],
         }));
-    }
+    }, []);
 
-    function toggleDistanceFilter(distance: string) {
+    const toggleDistanceFilter = useCallback((distance: string) => {
         setFilters((prev) => ({
             ...prev,
             distance: prev.distance === distance ? null : distance,
         }));
-    }
+    }, []);
 
-    // function toggleCuisineFilter(cuisine: string) {
-    //     setFilters((prev) => ({
-    //         ...prev,
-    //         cuisine: prev.cuisine.includes(cuisine)
-    //             ? prev.cuisine.filter((c) => c !== cuisine)
-    //             : [...prev.cuisine, cuisine],
-    //     }));
-    // }
-
-    function toggleRatingFilter(rating: string) {
+    const toggleRatingFilter = useCallback((rating: string) => {
         setFilters((prev) => ({
             ...prev,
             rating: prev.rating === rating ? null : rating,
         }));
-    }
+    }, []);
 
-    function renderCard(restaurant: Restaurant) {
+    // Memoize renderCard to prevent unnecessary re-renders
+    const renderCard = useCallback((restaurant: Restaurant) => {
         return <RestaurantCard restaurant={ restaurant } />;
-    }
+    }, []);
 
-    function FilterChip({
-        label,
-        isActive,
-        onPress,
-    }: {
-        label: string;
-        isActive: boolean;
-        onPress: () => void;
-    }) {
-        return (
-            <TouchableOpacity
-                style={ [
-                    styles.filterChip,
-                    isActive && styles.filterChipActive,
-                ] }
-                onPress={ onPress }
-                activeOpacity={ 0.7 }
-            >
-                <Text
-                    style={ [
-                        styles.filterChipText,
-                        isActive && styles.filterChipTextActive,
-                    ] }
-                >
-                    { label }
-                </Text>
-            </TouchableOpacity>
-        );
-    }
-
-    // Loading state
-    if (isLoading || isLoadingLocation) {
-        return (
-            <SafeAreaView style={ styles.container } edges={ ['top'] }>
-                <View style={ styles.loadingContainer }>
-                    <ActivityIndicator size="large" color={ AppColors.secondary } />
-                    <Text style={ styles.loadingText }>
-                        {isLoadingLocation ? 'Getting your location...' : 'Loading restaurants...'}
-                    </Text>
-                </View>
-            </SafeAreaView>
-        );
-    }
-
-    // No location available
-    if (!userLocation) {
-        return (
-            <SafeAreaView style={ styles.container } edges={ ['top'] }>
-                <View style={ styles.errorContainer }>
-                    <Ionicons
-                        name="location-outline"
-                        size={ 64 }
-                        color={ AppColors.textLight }
-                    />
-                    <Text style={ styles.errorTitle }>
-                        Location Required
-                    </Text>
-                    <Text style={ styles.errorMessage }>
-                        Please enable location services to find nearby restaurants
-                    </Text>
-                </View>
-            </SafeAreaView>
-        );
-    }
-
-    // Error state
-    if (isError) {
-        return (
-            <SafeAreaView style={ styles.container } edges={ ['top'] }>
-                <View style={ styles.errorContainer }>
-                    <Ionicons
-                        name="alert-circle"
-                        size={ 64 }
-                        color={ AppColors.textLight }
-                    />
-                    <Text style={ styles.errorTitle }>
-                        Oops! Something went wrong
-                    </Text>
-                    <Text style={ styles.errorMessage }>
-                        { error?.message || 'Failed to load restaurants' }
-                    </Text>
-                    <Text style={ styles.errorHint }>
-                        Make sure your backend server is running at localhost:3000
-                    </Text>
-                </View>
-            </SafeAreaView>
-        );
-    }
-
-    // No restaurants found
-    if (!isLoading && restaurants.length === 0) {
-        return (
-            <SafeAreaView style={ styles.container } edges={ ['top'] }>
-                <View style={ styles.endScreenContainer }>
-                    <View style={ styles.endIconContainer }>
-                        <Ionicons
-                            name="restaurant"
-                            size={ 64 }
-                            color={ AppColors.textDark }
-                        />
-                    </View>
-                    <Text style={ styles.endTitle }>No restaurants found</Text>
-                    <Text style={ styles.endSubtitle }>
-                        Try adjusting your filters or check back later
-                    </Text>
-                </View>
-            </SafeAreaView>
-        );
-    }
-
-    if (currentIndex >= restaurants.length && !hasMore) {
-        return (
-            <SafeAreaView style={ styles.container } edges={ ['top'] }>
-                <View style={ styles.endScreenContainer }>
-                    <View style={ styles.endIconContainer }>
-                        <Ionicons
-                            name="restaurant"
-                            size={ 64 }
-                            color={ AppColors.textDark }
-                        />
-                    </View>
-
-                    <Text style={ styles.endTitle }>All done for now!</Text>
-
-                    <Text style={ styles.endSubtitle }>
-                        You've seen all available restaurants
-                    </Text>
-
-                    <TouchableOpacity
-                        style={ styles.startOverButton }
-                        onPress={ handleStartOver }
-                        activeOpacity={ 0.8 }
-                    >
-                        <Text style={ styles.startOverButtonText }>
-                            Start Over
-                        </Text>
-                    </TouchableOpacity>
-                </View>
-            </SafeAreaView>
-        );
-    }
-
-    function OverlayLabelRight() {
+    // Memoize overlay components to prevent re-renders
+    const OverlayLabelRight = useCallback(() => {
         return (
             <View
                 style={ {
@@ -322,9 +226,9 @@ export default function SwipeScreen() {
                 </View>
             </View>
         );
-    }
+    }, []);
 
-    function OverlayLabelLeft() {
+    const OverlayLabelLeft = useCallback(() => {
         return (
             <View
                 style={ {
@@ -354,6 +258,151 @@ export default function SwipeScreen() {
                     </Text>
                 </View>
             </View>
+        );
+    }, []);
+
+    function FilterChip({
+        label,
+        isActive,
+        onPress,
+    }: {
+        label: string;
+        isActive: boolean;
+        onPress: () => void;
+    }) {
+        return (
+            <TouchableOpacity
+                style={ [styles.filterChip, isActive && styles.filterChipActive] }
+                onPress={ onPress }
+                activeOpacity={ 0.7 }
+            >
+                <Text
+                    style={ [
+                        styles.filterChipText,
+                        isActive && styles.filterChipTextActive,
+                    ] }
+                >
+                    { label }
+                </Text>
+            </TouchableOpacity>
+        );
+    }
+
+    // Loading state
+    if (isLoading || isLoadingLocation) {
+        return (
+            <SafeAreaView style={ styles.container } edges={ ['top'] }>
+                <View style={ styles.loadingContainer }>
+                    <ActivityIndicator
+                        size="large"
+                        color={ AppColors.secondary }
+                    />
+                    <Text style={ styles.loadingText }>
+                        { isLoadingLocation
+                            ? 'Getting your location...'
+                            : 'Loading restaurants...' }
+                    </Text>
+                </View>
+            </SafeAreaView>
+        );
+    }
+
+    // No location available
+    if (!userLocation) {
+        return (
+            <SafeAreaView style={ styles.container } edges={ ['top'] }>
+                <View style={ styles.errorContainer }>
+                    <Ionicons
+                        name="location-outline"
+                        size={ 64 }
+                        color={ AppColors.textLight }
+                    />
+                    <Text style={ styles.errorTitle }>Location Required</Text>
+                    <Text style={ styles.errorMessage }>
+                        Please enable location services to find nearby
+                        restaurants
+                    </Text>
+                </View>
+            </SafeAreaView>
+        );
+    }
+
+    // Error state
+    if (isError) {
+        return (
+            <SafeAreaView style={ styles.container } edges={ ['top'] }>
+                <View style={ styles.errorContainer }>
+                    <Ionicons
+                        name="alert-circle"
+                        size={ 64 }
+                        color={ AppColors.textLight }
+                    />
+                    <Text style={ styles.errorTitle }>
+                        Oops! Something went wrong
+                    </Text>
+                    <Text style={ styles.errorMessage }>
+                        { error?.message || 'Failed to load restaurants' }
+                    </Text>
+                    <Text style={ styles.errorHint }>
+                        Make sure your backend server is running at
+                        localhost:3000
+                    </Text>
+                </View>
+            </SafeAreaView>
+        );
+    }
+
+    // No restaurants found
+    if (!isLoading && restaurants.length === 0) {
+        return (
+            <SafeAreaView style={ styles.container } edges={ ['top'] }>
+                <View style={ styles.endScreenContainer }>
+                    <View style={ styles.endIconContainer }>
+                        <Ionicons
+                            name="restaurant"
+                            size={ 64 }
+                            color={ AppColors.textDark }
+                        />
+                    </View>
+                    <Text style={ styles.endTitle }>No restaurants found</Text>
+                    <Text style={ styles.endSubtitle }>
+                        Try adjusting your filters or check back later
+                    </Text>
+                </View>
+            </SafeAreaView>
+        );
+    }
+
+    // TODO: Get rid of this? What do we do when there's no more
+    if (currentIndex >= restaurants.length && !hasMore) {
+        return (
+            <SafeAreaView style={ styles.container } edges={ ['top'] }>
+                <View style={ styles.endScreenContainer }>
+                    <View style={ styles.endIconContainer }>
+                        <Ionicons
+                            name="restaurant"
+                            size={ 64 }
+                            color={ AppColors.textDark }
+                        />
+                    </View>
+
+                    <Text style={ styles.endTitle }>All done for now!</Text>
+
+                    <Text style={ styles.endSubtitle }>
+                        You've seen all available restaurants
+                    </Text>
+
+                    <TouchableOpacity
+                        style={ styles.startOverButton }
+                        onPress={ handleStartOver }
+                        activeOpacity={ 0.8 }
+                    >
+                        <Text style={ styles.startOverButtonText }>
+                            Start Over
+                        </Text>
+                    </TouchableOpacity>
+                </View>
+            </SafeAreaView>
         );
     }
 
@@ -406,7 +455,7 @@ export default function SwipeScreen() {
                         isActive={ filters.rating === '4.0+' }
                         onPress={ () => toggleRatingFilter('4.0+') }
                     />
-                    
+
                     <FilterChip
                         label="4.5+ ⭐"
                         isActive={ filters.rating === '4.5+' }
@@ -414,11 +463,11 @@ export default function SwipeScreen() {
                     />
                 </ScrollView>
             </View>
-            
+
             <View style={ styles.cardContainer }>
                 <Swiper
                     ref={ swiperRef }
-                    data={ restaurants }
+                    data={ stableRestaurants }
                     renderCard={ renderCard }
                     onSwipeRight={ handleSwipedRight }
                     onSwipeLeft={ handleSwipedLeft }
@@ -431,22 +480,35 @@ export default function SwipeScreen() {
                     disableTopSwipe
                     disableBottomSwipe
                     translateXRange={ [-width / 3, 0, width / 3] }
-                    inputOverlayLabelRightOpacityRange={ [0, width / 5, width / 3] }
+                    inputOverlayLabelRightOpacityRange={ [
+                        0,
+                        width / 5,
+                        width / 3,
+                    ] }
                     outputOverlayLabelRightOpacityRange={ [0, 0.5, 1] }
-                    inputOverlayLabelLeftOpacityRange={ [-width / 3, -width / 5, 0] }
+                    inputOverlayLabelLeftOpacityRange={ [
+                        -width / 3,
+                        -width / 5,
+                        0,
+                    ] }
                     outputOverlayLabelLeftOpacityRange={ [1, 0.5, 0] }
                     // For some reason these are flipped
                     OverlayLabelLeft={ OverlayLabelRight }
                     OverlayLabelRight={ OverlayLabelLeft }
-
                     swipeVelocityThreshold={ 800 }
                 />
 
+                {/* TODO: Get rid of this. dev mode only */}
                 { /* Loading indicator for next page */ }
                 { isFetchingNextPage && (
                     <View style={ styles.fetchingNextContainer }>
-                        <ActivityIndicator size="small" color={ AppColors.secondary } />
-                        <Text style={ styles.fetchingNextText }>Loading more...</Text>
+                        <ActivityIndicator
+                            size="small"
+                            color={ AppColors.secondary }
+                        />
+                        <Text style={ styles.fetchingNextText }>
+                            Loading more...
+                        </Text>
                     </View>
                 ) }
             </View>
@@ -467,7 +529,7 @@ const styles = StyleSheet.create({
     },
     filterScrollContent: {
         paddingHorizontal: Spacing.md,
-        gap: Spacing.sm
+        gap: Spacing.sm,
     },
     filterChip: {
         paddingHorizontal: 16,

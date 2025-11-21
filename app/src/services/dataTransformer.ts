@@ -163,8 +163,8 @@ export function transformRestaurantData(
                 itemImages.length > 0
                     ? itemImages
                     : foodImages
-                          .slice(index, index + 1)
-                          .map((img) => img.imageUrl);
+                        .slice(index, index + 1)
+                        .map((img) => img.imageUrl);
 
             // Find reviews that might be related to this item (simplified approach)
             const itemReviews = reviews.slice(index, index + 1);
@@ -175,18 +175,18 @@ export function transformRestaurantData(
                     images.length > 0
                         ? images
                         : [
-                              'https://via.placeholder.com/400x400?text=Food+Image',
-                          ],
+                            'https://via.placeholder.com/400x400?text=Food+Image',
+                        ],
                 reviews:
                     itemReviews.length > 0
                         ? itemReviews
                         : [
-                              {
-                                  author: 'Customer',
-                                  quote: 'Delicious!',
-                                  rating: 5,
-                              },
-                          ],
+                            {
+                                author: 'Customer',
+                                quote: 'Delicious!',
+                                rating: 5,
+                            },
+                        ],
             };
         });
 
@@ -200,12 +200,12 @@ export function transformRestaurantData(
                     reviews.slice(index, index + 1).length > 0
                         ? reviews.slice(index, index + 1)
                         : [
-                              {
-                                  author: 'Customer',
-                                  quote: 'Amazing dish!',
-                                  rating: 5,
-                              },
-                          ],
+                            {
+                                author: 'Customer',
+                                quote: 'Amazing dish!',
+                                rating: 5,
+                            },
+                        ],
             });
         });
     }

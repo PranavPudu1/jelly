@@ -53,12 +53,12 @@ export default function WelcomeCarousel({
                 <Text style={ styles.welcomeText }>Welcome to Jelly!</Text>
 
                 <View style={ styles.carouselContainer }>
-                    <Text style={ styles.carouselText } numberOfLines={1}>
+                    <Text style={ styles.carouselText } numberOfLines={ 1 }>
                         Let's find your next{ ' ' }
                     </Text>
 
                     <Animated.Text
-                        numberOfLines={1}
+                        numberOfLines={ 1 }
                         style={ [
                             styles.carouselWord,
                             { opacity: carouselFadeAnim },
