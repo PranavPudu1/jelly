@@ -16,15 +16,7 @@ export async function getById(req: Request, res: Response): Promise<void> {
                         tagType: true,
                     },
                 },
-                images: {
-                    include: {
-                        tags: {
-                            include: {
-                                tagType: true,
-                            },
-                        },
-                    },
-                },
+                images: true,
                 reviews: {
                     include: {
                         tags: true,
@@ -54,25 +46,16 @@ export async function getById(req: Request, res: Response): Promise<void> {
         }
 
         // Transform to match frontend expectations
-        const allImages = restaurant.images.map(image => {
-            const classificationTag = image.tags.find(
-                tag => tag.tagType.value === 'image_classification'
-            );
-            return {
-                id: image.id,
-                url: image.url,
-                classification: classificationTag?.value || 'general',
-            };
-        });
+        const allImages = restaurant.images.map(image => ({
+            id: image.id,
+            url: image.url,
+        }));
 
-        const heroImage = allImages.find(img => img.classification === 'hero')?.url
-            || allImages[0]?.url || '';
-
-        const ambientImage = allImages.find(img => img.classification === 'ambience')?.url
-            || allImages[1]?.url || '';
+        const heroImage = allImages[0]?.url || '';
+        const ambientImage = allImages[1]?.url || '';
 
         const ambiencePhotos = allImages
-            .filter(img => img.classification === 'ambience')
+            .slice(2, 7)
             .map(img => ({ imageUrl: img.url }));
 
         const menuImages = restaurant.menu
@@ -128,7 +111,6 @@ export async function getById(req: Request, res: Response): Promise<void> {
             long: restaurant.long,
             address: restaurant.address,
             popularDishPhotos: allImages
-                .filter(img => img.classification === 'food')
                 .slice(0, 5)
                 .map(img => img.url),
         };

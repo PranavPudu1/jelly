@@ -5,12 +5,17 @@ import { adminOnly } from '../middleware/rbac';
 
 const router = Router();
 
+// TODO: Update the following routes as needed for user management
 // Public routes (no authentication required)
+
 // POST /api/users/register - Register a new user
 router.post('/register', UserController.register);
 
 // POST /api/users/login - User login
 router.post('/login', UserController.login);
+
+// POST /api/users/temporary - Create a temporary user
+router.post('/temporary', UserController.createTemporaryUser);
 
 // Protected routes (authentication required)
 // GET /api/users/profile - Get current user profile

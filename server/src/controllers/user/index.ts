@@ -7,3 +7,4 @@ export { getAllUsers } from './getAllUsers';
 export { getUserById } from './getUserById';
 export { updateUser } from './updateUser';
 export { deleteUser } from './deleteUser';
+export { createTemporaryUser } from './createTemporaryUser';
