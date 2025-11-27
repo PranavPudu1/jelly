@@ -22,7 +22,8 @@ export async function updateProfile(req: AuthRequest, res: Response): Promise<vo
                 user: null,
             },
         });
-    } catch (error) {
+    }
+    catch (error) {
         console.error('Error updating user profile:', error);
         res.status(500).json({
             success: false,

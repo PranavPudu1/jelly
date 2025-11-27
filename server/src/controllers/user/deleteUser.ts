@@ -24,7 +24,8 @@ export async function deleteUser(req: AuthRequest, res: Response): Promise<void>
                 id,
             },
         });
-    } catch (error) {
+    }
+    catch (error) {
         console.error('Error deleting user:', error);
         res.status(500).json({
             success: false,

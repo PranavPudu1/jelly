@@ -21,7 +21,8 @@ export async function getProfile(req: AuthRequest, res: Response): Promise<void>
                 user: req.user || null,
             },
         });
-    } catch (error) {
+    }
+    catch (error) {
         console.error('Error fetching user profile:', error);
         res.status(500).json({
             success: false,

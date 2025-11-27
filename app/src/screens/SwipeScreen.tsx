@@ -498,7 +498,7 @@ export default function SwipeScreen() {
                     swipeVelocityThreshold={ 800 }
                 />
 
-                {/* TODO: Get rid of this. dev mode only */}
+                { /* TODO: Get rid of this. dev mode only */ }
                 { /* Loading indicator for next page */ }
                 { isFetchingNextPage && (
                     <View style={ styles.fetchingNextContainer }>

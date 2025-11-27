@@ -30,8 +30,7 @@ import {
 } from '../theme';
 
 import { Restaurant } from '../types';
-import { useLocation } from '../contexts/LocationContext';
-import { calculateDistance, formatDistance, openInMaps } from '../utils/location';
+import { formatDistance, openInMaps } from '../utils/location';
 
 const { width, height } = Dimensions.get('window');
 
@@ -54,18 +53,6 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
     >([]);
 
     const scrollViewRef = useRef<ScrollView>(null);
-    const { userLocation } = useLocation();
-
-    // Calculate distance if both user location and restaurant location are available
-    const distance =
-        userLocation && restaurant.lat && restaurant.long
-            ? calculateDistance(
-                userLocation.latitude,
-                userLocation.longitude,
-                restaurant.lat,
-                restaurant.long,
-            )
-            : null;
 
     function handleLocationPress() {
         if (restaurant.lat && restaurant.long) {
@@ -134,17 +121,6 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
         return stars;
     }
 
-    function getIconName(iconLabel: string): any {
-        const iconMap: { [key: string]: any } = {
-            location: 'location',
-            glass: 'wine',
-            'musical-notes': 'musical-notes',
-            happy: 'happy',
-        };
-
-        return iconMap[iconLabel] || 'information-circle';
-    }
-
     function getInitial(name: string) {
         return name.charAt(0).toUpperCase();
     }
@@ -169,7 +145,7 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
                         </View>
 
                         <Text style={ styles.priceLevel }>
-                            { restaurant.priceLevel }
+                            { restaurant.price }
                         </Text>
                     </View>
 
@@ -178,7 +154,7 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
                     </View>
                 </View>
 
-                <Text style={ styles.cuisine }>{ restaurant.cuisine }</Text>
+                <Text style={ styles.cuisine }>{ restaurant.cuisine.join(', ') }</Text>
             </View>
 
             <ScrollView
@@ -195,8 +171,8 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
                     <ReelModal
                         visible={ heroReelVisible }
                         onClose={ () => setHeroReelVisible(false) }
-                        photos={ [{ imageUrl: restaurant.heroImageUrl }] }
-                        allReviews={ restaurant.reviews }
+                        photos={ [{ imageUrl: restaurant.heroImage }] }
+                        allReviews={ restaurant.topReview ? [restaurant.topReview] : [] }
                         initialPhotoIndex={ 0 }
                         tooltipText="Hero image"
                     />
@@ -213,7 +189,7 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
                             } }
                         >
                             <Image
-                                source={ { uri: restaurant.heroImageUrl } }
+                                source={ { uri: restaurant.heroImage } }
                                 style={ styles.heroImage }
                                 resizeMode="cover"
                             />
@@ -222,46 +198,34 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
 
                     { /* Info Table */ }
                     <View style={ styles.infoTable }>
-                        { restaurant.infoList.map((info, index) => {
-                            const isLocation = info.icon === 'location';
-                            const displayValue = isLocation && distance
-                                ? formatDistance(distance)
-                                : info.value;
+                        <TouchableOpacity
+                            onPress={ handleLocationPress }
+                            activeOpacity={ 0.7 }
+                        >
+                            <View style={ styles.infoCell }>
+                                <Ionicons
+                                    name="location"
+                                    size={ 16 }
+                                    color={ AppColors.textDark }
+                                />
+                                <Text style={ [styles.infoValue, styles.locationText] }>
+                                    { formatDistance(restaurant.distance) }
+                                </Text>
+                            </View>
+                        </TouchableOpacity>
 
-                            const InfoContent = (
-                                <View
-                                    style={ [
-                                        styles.infoCell,
-                                        index >= 2 && styles.infoCellBottomRow,
-                                    ] }
-                                >
-                                    <Ionicons
-                                        name={ getIconName(info.icon || '') }
-                                        size={ 16 }
-                                        color={ AppColors.textDark }
-                                    />
-
-                                    <Text style={ [
-                                        styles.infoValue,
-                                        isLocation && styles.locationText,
-                                    ] }>
-                                        { displayValue }
-                                    </Text>
-                                </View>
-                            );
-
-                            return isLocation ? (
-                                <TouchableOpacity
-                                    key={ index }
-                                    onPress={ handleLocationPress }
-                                    activeOpacity={ 0.7 }
-                                >
-                                    { InfoContent }
-                                </TouchableOpacity>
-                            ) : (
-                                <View key={ index }>{ InfoContent }</View>
-                            );
-                        }) }
+                        <View>
+                            <View style={ styles.infoCell }>
+                                <Ionicons
+                                    name="call"
+                                    size={ 16 }
+                                    color={ AppColors.textDark }
+                                />
+                                <Text style={ styles.infoValue }>
+                                    { restaurant.phoneNumber }
+                                </Text>
+                            </View>
+                        </View>
                     </View>
                 </View>
 
@@ -282,7 +246,7 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
                             activeOpacity={ 0.9 }
                         >
                             <Image
-                                source={ { uri: restaurant.ambientImageUrl } }
+                                source={ { uri: restaurant.ambientImages[0] } }
                                 style={ styles.ambienceImage }
                                 resizeMode="cover"
                             />
@@ -294,11 +258,11 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
                                 style={ styles.gradient }
                             >
                                 <Text style={ styles.quoteText }>
-                                    "{ restaurant.reviewQuote }"
+                                    "{ restaurant.topReview.quote }"
                                 </Text>
 
                                 <Text style={ styles.quoteAuthor }>
-                                    - { restaurant.reviewAuthor }
+                                    - { restaurant.topReview.author }
                                 </Text>
                             </LinearGradient>
                         </TouchableOpacity>
@@ -309,8 +273,8 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
                 <ReelModal
                     visible={ ambianceModalVisible }
                     onClose={ () => setAmbianceModalVisible(false) }
-                    photos={ restaurant.ambiencePhotos }
-                    allReviews={ restaurant.reviews }
+                    photos={ restaurant.ambientImages.map((img) => ({ imageUrl: img })) }
+                    allReviews={ restaurant.topReview ? [restaurant.topReview] : [] }
                     initialPhotoIndex={ 0 }
                     tooltipText="Scroll for more ambiance pictures"
                 />
@@ -323,7 +287,7 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
 
                     { /* Social Handles */ }
                     <View style={ styles.socialHandles }>
-                        { restaurant.instagramHandle && (
+                        { restaurant.socialMedia.instagram && (
                             <TouchableOpacity style={ styles.socialButton }>
                                 <Ionicons
                                     name="logo-instagram"
@@ -337,11 +301,11 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
                                         { color: AppColors.instagram },
                                     ] }
                                 >
-                                    { restaurant.instagramHandle }
+                                    { restaurant.socialMedia.instagram }
                                 </Text>
                             </TouchableOpacity>
                         ) }
-                        { restaurant.tiktokHandle && (
+                        { restaurant.socialMedia.tiktok && (
                             <TouchableOpacity
                                 style={ [
                                     styles.socialButton,
@@ -355,14 +319,14 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
                                 />
 
                                 <Text style={ styles.socialText }>
-                                    { restaurant.tiktokHandle }
+                                    { restaurant.socialMedia.tiktok }
                                 </Text>
                             </TouchableOpacity>
                         ) }
                     </View>
 
-                    { /* Food Items - Show first 3 */ }
-                    { restaurant.foodItems.slice(0, 3).map((foodItem, index) => {
+                    { /* Popular Dish Photos - Show first 3 */ }
+                    { restaurant.popularDishPhotos.slice(0, 3).map((photoUrl, index) => {
                         const isEven = index % 2 === 0;
 
                         return (
@@ -380,30 +344,26 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
                                         activeOpacity={ 0.9 }
                                         onPress={ () => {
                                             setCurrentReelPhotos(
-                                                foodItem.images.map(
-                                                    (img, imgIndex) => ({
+                                                restaurant.popularDishPhotos.map(
+                                                    (img) => ({
                                                         imageUrl: img,
-                                                        review:
-                                                            foodItem.reviews[
-                                                                imgIndex
-                                                            ] ||
-                                                            foodItem.reviews[0],
+                                                        review: restaurant.topReview,
                                                     }),
                                                 ),
                                             );
-                                            setInitialPhotoIndex(0);
+                                            setInitialPhotoIndex(index);
                                             setFoodReelVisible(true);
                                         } }
                                     >
                                         <Image
-                                            source={ { uri: foodItem.images[0] } }
+                                            source={ { uri: photoUrl } }
                                             style={ styles.foodImage }
                                             resizeMode="cover"
                                         />
                                     </TouchableOpacity>
                                 ) }
                                 <View style={ styles.foodReview }>
-                                    { foodItem.reviews[0] && (
+                                    { restaurant.topReview && (
                                         <>
                                             <View style={ styles.reviewHeader }>
                                                 <View
@@ -423,8 +383,7 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
                                                         }
                                                     >
                                                         { getInitial(
-                                                            foodItem.reviews[0]
-                                                                .author,
+                                                            restaurant.topReview.author,
                                                         ) }
                                                     </Text>
                                                 </View>
@@ -435,10 +394,7 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
                                                             styles.reviewAuthor
                                                         }
                                                     >
-                                                        {
-                                                            foodItem.reviews[0]
-                                                                .author
-                                                        }
+                                                        { restaurant.topReview.author }
                                                     </Text>
 
                                                     <View
@@ -449,9 +405,7 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
                                                         { [
                                                             ...Array(
                                                                 Math.floor(
-                                                                    foodItem
-                                                                        .reviews[0]
-                                                                        .rating,
+                                                                    restaurant.topReview.rating,
                                                                 ),
                                                             ),
                                                         ].map((_, i) => (
@@ -472,7 +426,7 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
                                                 style={ styles.reviewQuote }
                                                 numberOfLines={ 4 }
                                             >
-                                                "{ foodItem.reviews[0].quote }"
+                                                "{ restaurant.topReview.quote }"
                                             </Text>
                                         </>
                                     ) }
@@ -483,23 +437,19 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
                                         activeOpacity={ 0.9 }
                                         onPress={ () => {
                                             setCurrentReelPhotos(
-                                                foodItem.images.map(
-                                                    (img, imgIndex) => ({
+                                                restaurant.popularDishPhotos.map(
+                                                    (img) => ({
                                                         imageUrl: img,
-                                                        review:
-                                                            foodItem.reviews[
-                                                                imgIndex
-                                                            ] ||
-                                                            foodItem.reviews[0],
+                                                        review: restaurant.topReview,
                                                     }),
                                                 ),
                                             );
-                                            setInitialPhotoIndex(0);
+                                            setInitialPhotoIndex(index);
                                             setFoodReelVisible(true);
                                         } }
                                     >
                                         <Image
-                                            source={ { uri: foodItem.images[0] } }
+                                            source={ { uri: photoUrl } }
                                             style={ styles.foodImage }
                                             resizeMode="cover"
                                         />
@@ -570,7 +520,7 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
                     visible={ foodReelVisible }
                     onClose={ () => setFoodReelVisible(false) }
                     photos={ currentReelPhotos }
-                    allReviews={ restaurant.reviews }
+                    allReviews={ restaurant.topReview ? [restaurant.topReview] : [] }
                     initialPhotoIndex={ initialPhotoIndex }
                     tooltipText="Scroll for more food pictures"
                 />
@@ -579,8 +529,8 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
                 <MenuModal
                     visible={ menuModalVisible }
                     onClose={ () => setMenuModalVisible(false) }
-                    foodItems={ restaurant.foodItems }
-                    menuImages={ restaurant.menuImages }
+                    foodItems={ restaurant.menu }
+                    menuImages={ restaurant.popularDishPhotos }
                     onPhotoPress={ (photos, index) => {
                         setCurrentReelPhotos(
                             photos.map((img) => ({ imageUrl: img })),

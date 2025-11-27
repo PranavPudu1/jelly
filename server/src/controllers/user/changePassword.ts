@@ -19,7 +19,8 @@ export async function changePassword(req: AuthRequest, res: Response): Promise<v
             success: true,
             message: 'Change password endpoint - to be implemented',
         });
-    } catch (error) {
+    }
+    catch (error) {
         console.error('Error changing password:', error);
         res.status(500).json({
             success: false,

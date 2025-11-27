@@ -34,24 +34,24 @@ export interface AmbiencePhoto {
 export interface Restaurant {
     id: string;
     name: string;
+    distance: number;
+    price: string;
     rating: number;
-    priceLevel: string;
-    cuisine: string;
-    heroImageUrl: string;
-    ambientImageUrl: string;
-    reviewQuote: string;
-    reviewAuthor: string;
-    infoList: Info[];
-    instagramHandle?: string;
-    tiktokHandle?: string;
-    foodItems: FoodItem[];
-    ambiencePhotos: AmbiencePhoto[];
-    reviews: Review[];
-    menuImages: string[];
+    heroImage: string;
+    ambientImages: string[];
     popularDishPhotos: string[];
-    lat?: number;
-    long?: number;
-    address?: string;
+    menu: any[];
+    topReview: Review;
+    cuisine: string[];
+    socialMedia: {
+        instagram: string | null;
+        tiktok: string | null;
+    };
+    address: string;
+    phoneNumber: string;
+    lat: number;
+    long: number;
+    mapLink: string;
 }
 
 export interface QuestionnaireAnswers {

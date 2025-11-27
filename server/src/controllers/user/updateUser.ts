@@ -25,7 +25,8 @@ export async function updateUser(req: AuthRequest, res: Response): Promise<void>
                 id,
             },
         });
-    } catch (error) {
+    }
+    catch (error) {
         console.error('Error updating user:', error);
         res.status(500).json({
             success: false,

@@ -5,8 +5,8 @@ import { ownerOrAdmin } from '../middleware/rbac';
 
 const router = Router();
 
-// GET /api/restaurants/nearby - Get restaurants near a location
-router.get('/nearby', RestaurantController.getNearby);
+// GET /api/restaurants - Get restaurants with comprehensive filtering and pagination
+router.get('/', RestaurantController.getRestaurants);
 
 // GET /api/restaurants/:id - Get a single restaurant by ID
 router.get('/:id', RestaurantController.getById);

@@ -22,7 +22,8 @@ export async function register(req: Request, res: Response): Promise<void> {
                 token: null,
             },
         });
-    } catch (error) {
+    }
+    catch (error) {
         console.error('Error registering user:', error);
         res.status(500).json({
             success: false,

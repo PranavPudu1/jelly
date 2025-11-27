@@ -30,7 +30,8 @@ export async function createTemporaryUser(req: Request, res: Response): Promise<
                 user: tempUser,
             },
         });
-    } catch (error) {
+    }
+    catch (error) {
         console.error('Error creating temporary user:', error);
         res.status(500).json({
             success: false,

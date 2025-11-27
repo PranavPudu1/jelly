@@ -30,7 +30,8 @@ export function authenticate(req: AuthRequest, res: Response, next: NextFunction
         req.user = decoded;
 
         next();
-    } catch (error) {
+    }
+    catch (error) {
         if (error instanceof jwt.JsonWebTokenError) {
             res.status(401).json({
                 success: false,
@@ -81,7 +82,8 @@ export function verifyToken(token: string): JWTPayload | null {
     try {
         const jwtSecret = process.env.JWT_SECRET || 'your-secret-key';
         return jwt.verify(token, jwtSecret) as JWTPayload;
-    } catch (error) {
+    }
+    catch (error) {
         return null;
     }
 }

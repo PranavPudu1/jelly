@@ -22,7 +22,8 @@ export async function login(req: Request, res: Response): Promise<void> {
                 token: null,
             },
         });
-    } catch (error) {
+    }
+    catch (error) {
         console.error('Error logging in user:', error);
         res.status(500).json({
             success: false,

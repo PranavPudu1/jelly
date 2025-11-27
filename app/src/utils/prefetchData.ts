@@ -20,7 +20,7 @@ export async function prefetchAppData(
             return;
         }
 
-        // Prefetch initial restaurant data (first page) using getNearby
+        // Prefetch initial restaurant data (first page) using /restaurants
         await queryClient.prefetchInfiniteQuery({
             queryKey: restaurantKeys.nearby({
                 lat: userLocation.latitude,
@@ -34,12 +34,12 @@ export async function prefetchAppData(
                     long: userLocation.longitude,
                     radius: 5000,
                     page: pageParam,
-                    limit: 10,
+                    pageSize: 10,
                 });
             },
             initialPageParam: 1,
             getNextPageParam: (lastPage: Awaited<ReturnType<typeof restaurantApi.fetchNearbyPaginated>>) => {
-                if (lastPage.pagination.hasMore) {
+                if (lastPage.pagination.hasNextPage) {
                     return lastPage.pagination.page + 1;
                 }
                 return undefined;

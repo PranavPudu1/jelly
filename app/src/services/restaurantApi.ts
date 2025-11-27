@@ -6,10 +6,11 @@ import type { Restaurant } from '../types';
  */
 interface PaginationInfo {
     page: number;
-    limit: number;
-    total: number;
+    pageSize: number;
+    totalCount: number;
     totalPages: number;
-    hasMore: boolean;
+    hasNextPage: boolean;
+    hasPreviousPage: boolean;
 }
 
 interface RestaurantsResponse {
@@ -36,10 +37,10 @@ interface FetchNearbyParams {
     long: number;
     radius?: number;
     price?: string;
-    rating?: number;
+    minRating?: number;
     cuisine?: string;
     page?: number;
-    limit?: number;
+    pageSize?: number;
 }
 
 interface FetchRestaurantsResult {
@@ -158,105 +159,45 @@ export async function fetchRestaurantById(id: string): Promise<Restaurant> {
     return response.data; // Backend already returns transformed data
 }
 
-/**
- * Fetch nearby restaurants (non-paginated, for backward compatibility)
- */
-export async function fetchNearbyRestaurants(
-    lat: number,
-    long: number,
-    radius: number = 5000,
-): Promise<Restaurant[]> {
-    const queryParams = {
-        lat,
-        long,
-        radius,
-    };
-
-    const url = `${API_CONFIG.baseURL}${API_ENDPOINTS.restaurants.getNearby}${buildQueryString(queryParams)}`;
-
-    const response = await fetchWithErrorHandling<{
-        success: boolean;
-        data: any[];
-    }>(url);
-
-    if (!response.success) {
-        throw new Error('Failed to fetch nearby restaurants');
-    }
-
-    return response.data; // Backend already returns transformed data
-}
 
 /**
  * Fetch paginated nearby restaurants with filters
- * This function fetches restaurants using getNearby route and transforms each using getById
+ * This function uses the comprehensive /restaurants endpoint with proper pagination
  */
 export async function fetchNearbyPaginated(
     params: FetchNearbyParams
 ): Promise<FetchRestaurantsResult> {
-    const { lat, long, page = 1, limit = 10, ...filters } = params;
+    const { lat, long, page = 1, pageSize = 10, ...filters } = params;
 
-    // First, fetch nearby restaurants with filters
+    // Build query parameters matching the backend API
     const queryParams = {
         lat,
         long,
         radius: params.radius || 5000,
+        page,
+        pageSize,
+        sortBy: 'distance', // Default to sorting by distance
         ...(filters.price && { price: filters.price }),
-        ...(filters.rating && { rating: filters.rating }),
-        ...(filters.cuisine && { cuisine: filters.cuisine }),
+        ...(filters.minRating && { minRating: filters.minRating }),
+        ...(filters.cuisine && { types: filters.cuisine }),
     };
 
-    const url = `${API_CONFIG.baseURL}${API_ENDPOINTS.restaurants.getNearby}${buildQueryString(queryParams)}`;
+    const url = `${API_CONFIG.baseURL}${API_ENDPOINTS.restaurants.getAll}${buildQueryString(queryParams)}`;
 
-    const response = await fetchWithErrorHandling<{
-        success: boolean;
-        data: any[];
-    }>(url);
+    const response = await fetchWithErrorHandling<RestaurantsResponse>(url);
 
     if (!response.success) {
-        throw new Error('Failed to fetch nearby restaurants');
+        throw new Error('Failed to fetch restaurants');
     }
 
-    const allNearbyRestaurants = response.data;
-
-    // Apply pagination manually
-    const startIndex = (page - 1) * limit;
-    const endIndex = startIndex + limit;
-    const paginatedRestaurants = allNearbyRestaurants.slice(startIndex, endIndex);
-
-    // Transform each restaurant using getById route
-    const transformedRestaurants = await Promise.all(
-        paginatedRestaurants.map(async (restaurant) => {
-            try {
-                return await fetchRestaurantById(restaurant.id);
-            }
-            catch (error) {
-                // If transformation fails, return the original restaurant data
-                console.warn(`Failed to transform restaurant ${restaurant.id}:`, error);
-                return restaurant;
-            }
-        })
-    );
-
-    // Calculate pagination info
-    const total = allNearbyRestaurants.length;
-    const totalPages = Math.ceil(total / limit);
-    const hasMore = page < totalPages;
-
     return {
-        restaurants: transformedRestaurants,
-        pagination: {
-            page,
-            limit,
-            total,
-            totalPages,
-            hasMore,
-        },
+        restaurants: response.data, // Backend already returns fully transformed data
+        pagination: response.pagination,
     };
 }
 
 export const restaurantApi = {
     fetchRestaurants,
     fetchRestaurantById,
-    fetchNearbyRestaurants,
     fetchNearbyPaginated,
 };

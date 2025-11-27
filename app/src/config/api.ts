@@ -19,6 +19,5 @@ export const API_ENDPOINTS = {
     restaurants: {
         getAll: '/api/restaurants',
         getById: (id: string) => `/api/restaurants/${id}`,
-        getNearby: '/api/restaurants/nearby',
     },
 };

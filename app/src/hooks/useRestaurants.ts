@@ -45,14 +45,14 @@ export interface RestaurantFilters {
 }
 
 /**
- * General hook to fetch paginated restaurants using getNearby route
- * Fetches restaurants based on location and filters, then transforms each using getById
+ * General hook to fetch paginated restaurants using /restaurants route
+ * Fetches restaurants based on location and filters with server-side pagination
  */
 export function useRestaurants(params: NearbyRestaurantParams & {
     page?: number;
-    limit?: number;
+    pageSize?: number;
 }) {
-    const { lat, long, radius = 5000, filters = {}, page = 1, limit = 10 } = params;
+    const { lat, long, radius = 5000, filters = {}, page = 1, pageSize = 10 } = params;
 
     return useQuery({
         queryKey: restaurantKeys.nearby({ lat, long, radius, filters }),
@@ -62,8 +62,10 @@ export function useRestaurants(params: NearbyRestaurantParams & {
                 long,
                 radius,
                 page,
-                limit,
-                ...filters,
+                pageSize,
+                price: filters.price,
+                minRating: filters.rating,
+                cuisine: filters.cuisine,
             });
         },
         enabled: !!lat && !!long,
@@ -73,7 +75,7 @@ export function useRestaurants(params: NearbyRestaurantParams & {
 }
 
 /**
- * Hook to fetch restaurants with infinite scroll using getNearby route
+ * Hook to fetch restaurants with infinite scroll using /restaurants route
  * This is perfect for the swipe interface - it automatically loads more as needed
  */
 export function useInfiniteRestaurants(params: NearbyRestaurantParams & {
@@ -89,12 +91,14 @@ export function useInfiniteRestaurants(params: NearbyRestaurantParams & {
                 long,
                 radius,
                 page: pageParam,
-                limit,
-                ...filters,
+                pageSize: limit,
+                price: filters.price,
+                minRating: filters.rating,
+                cuisine: filters.cuisine,
             });
         },
         getNextPageParam: (lastPage) => {
-            if (lastPage.pagination.hasMore) {
+            if (lastPage.pagination.hasNextPage) {
                 return lastPage.pagination.page + 1;
             }
             return undefined;
@@ -130,8 +134,8 @@ export function useRestaurantsFlat(params: NearbyRestaurantParams & {
     const pages = query.data?.pages || [];
     const restaurants = pages.flatMap((page) => page.restaurants);
     const totalFetched = restaurants.length;
-    const total = pages[0]?.pagination?.total || 0;
-    const hasMore = pages[pages.length - 1]?.pagination?.hasMore || false;
+    const total = pages[0]?.pagination?.totalCount || 0;
+    const hasMore = pages[pages.length - 1]?.pagination?.hasNextPage || false;
 
     return {
         ...query,
