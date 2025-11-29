@@ -65,6 +65,8 @@ function calculateScore(
         reviews: reviewsWeight = 0,
     } = preferences;
 
+    // TODO: Look at RestaurantImages for rating
+
     // Normalize rating (0-5 scale)
     const ratingScore = restaurant.rating / 5;
 
@@ -78,6 +80,8 @@ function calculateScore(
     // Review count score (more reviews = more reliable)
     const reviewCount = restaurant.reviews?.length || 0;
     const reviewScore = Math.min(reviewCount / 50, 1); // Normalize to max of 50 reviews
+
+
 
     // Calculate weighted score
     const score =
