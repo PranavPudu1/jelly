@@ -383,31 +383,6 @@ export default function QuestionnaireScreen({
                             <Text style={ styles.questionText }>
                                 { currentQuestion.question }
                             </Text>
-
-                            <View style={ styles.squigglyLineContainer }>
-                                <View style={ styles.squigglyLine }>
-                                    { [...Array(8)].map((_, i) => (
-                                        <View
-                                            key={ i }
-                                            style={ [
-                                                styles.squiggleDot,
-                                                {
-                                                    transform: [
-                                                        {
-                                                            translateY:
-                                                                Math.sin(
-                                                                    (i *
-                                                                        Math.PI) /
-                                                                        2,
-                                                                ) * 3,
-                                                        },
-                                                    ],
-                                                },
-                                            ] }
-                                        />
-                                    )) }
-                                </View>
-                            </View>
                         </View>
 
                         { /* Ranking questions use DraggableFlatList (VirtualizedList) directly */ }
@@ -827,23 +802,6 @@ const styles = StyleSheet.create({
         lineHeight: 40,
         fontWeight: '700',
         marginBottom: Spacing.sm,
-    },
-    squigglyLineContainer: {
-        marginTop: Spacing.md,
-        alignItems: 'flex-start',
-    },
-    squigglyLine: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        height: 8,
-    },
-    squiggleDot: {
-        width: 14,
-        height: 3,
-        backgroundColor: AppColors.primary,
-        marginHorizontal: 1,
-        borderRadius: 2,
-        opacity: 0.7,
     },
     scrollView: {
         flex: 1,
