@@ -41,6 +41,28 @@ function calculateBoundingBox(lat: number, long: number, radiusMeters: number) {
 }
 
 /**
+ * Calculate ambiance score from AI-tagged ambiance images
+ */
+function calculateAmbianceScore(restaurant: any): number {
+    // Filter for ambiance-tagged images
+    const ambianceImages = restaurant.images.filter((image: any) =>
+        image.tags?.some((tag: any) => tag.value.toLowerCase() === 'ambiance')
+    );
+
+    // If no ambiance images, fall back to overall rating
+    if (ambianceImages.length === 0) {
+        return restaurant.rating / 5;
+    }
+
+    // Average the ratings of ambiance images
+    const totalRating = ambianceImages.reduce((sum: number, image: any) => sum + (image.rating || 0), 0);
+    const averageRating = totalRating / ambianceImages.length;
+
+    // Normalize to 0-1 scale (ratings are 1-5)
+    return averageRating / 5;
+}
+
+/**
  * Calculate custom score based on user preferences
  */
 function calculateScore(
@@ -54,8 +76,8 @@ function calculateScore(
         price?: number;
         reviews?: number;
     }
-): number {
-    if (!preferences) return 0;
+): { score: number; breakdown: any | null } {
+    if (!preferences) return { score: 0, breakdown: null };
 
     const {
         foodQuality = 0,
@@ -65,10 +87,11 @@ function calculateScore(
         reviews: reviewsWeight = 0,
     } = preferences;
 
-    // TODO: Look at RestaurantImages for rating
-
-    // Normalize rating (0-5 scale)
+    // Normalize rating (0-5 scale) - for food quality
     const ratingScore = restaurant.rating / 5;
+
+    // Calculate ambiance score from AI-tagged images
+    const ambianceScore = calculateAmbianceScore(restaurant);
 
     // Normalize proximity (inverse: closer = higher score)
     const proximityScore = 1 - distance / radiusMeters;
@@ -81,29 +104,110 @@ function calculateScore(
     const reviewCount = restaurant.reviews?.length || 0;
     const reviewScore = Math.min(reviewCount / 50, 1); // Normalize to max of 50 reviews
 
+    // Calculate weighted components
+    const weighted = {
+        foodQuality: ratingScore * foodQuality,
+        ambiance: ambianceScore * ambiance, // Now using actual ambiance image ratings!
+        proximity: proximityScore * proximity,
+        price: priceScore * priceWeight,
+        reviews: reviewScore * reviewsWeight,
+    };
 
-
-    // Calculate weighted score
     const score =
-        ratingScore * foodQuality +
-        ratingScore * ambiance + // Using rating as proxy for ambiance
-        proximityScore * proximity +
-        priceScore * priceWeight +
-        reviewScore * reviewsWeight;
+        weighted.foodQuality + weighted.ambiance + weighted.proximity + weighted.price + weighted.reviews;
 
-    return score;
+    return {
+        score,
+        breakdown: {
+            raw: {
+                ratingScore,
+                ambianceScore,
+                proximityScore,
+                priceScore,
+                reviewScore,
+                reviewCount,
+                priceValue,
+            },
+            weighted,
+            weights: {
+                foodQuality,
+                ambiance,
+                proximity,
+                price: priceWeight,
+                reviews: reviewsWeight,
+            },
+            totalScore: score,
+        },
+    };
+}
+
+function logScoreBreakdown(
+    restaurant: any,
+    distance: number,
+    radiusMeters: number,
+    breakdown: any,
+    preferences?: Record<string, number>
+): void {
+    if (!breakdown) return;
+
+    // Compact, structured log so you can see why each restaurant ranks where it does
+    console.log(
+        `[score-debug] ${restaurant.name} (${restaurant.id})`,
+        JSON.stringify(
+            {
+                distanceMeters: Math.round(distance),
+                radiusMeters,
+                weights: preferences,
+                raw: breakdown.raw,
+                weighted: breakdown.weighted,
+                totalScore: breakdown.totalScore,
+            },
+            null,
+            2
+        )
+    );
+}
+
+/**
+ * Check if ambiance is a high priority for the user (top 2 preferences)
+ */
+function isAmbianceHighPriority(preferences?: Record<string, number>): boolean {
+    if (!preferences) return false;
+
+    // Get all preference values and sort them in descending order
+    const sortedWeights = Object.entries(preferences)
+        .map(([key, value]) => ({ key, value }))
+        .sort((a, b) => b.value - a.value);
+
+    // Check if ambiance is in the top 2
+    const top2Keys = sortedWeights.slice(0, 2).map(item => item.key);
+    return top2Keys.includes('ambiance');
 }
 
 /**
  * Transform restaurant data into app-ready JSON format
  */
-function transformRestaurant(restaurant: any, distance: number) {
+function transformRestaurant(restaurant: any, distance: number, preferences?: Record<string, number>) {
     const allImages = restaurant.images.map((image: any) => ({
         id: image.id,
         url: image.url,
+        tags: image.tags,
     }));
 
-    const heroImage = allImages[0]?.url || '';
+    // Smart hero image selection based on ambiance priority
+    let heroImage = '';
+    if (isAmbianceHighPriority(preferences)) {
+        // Find ambiance-tagged images
+        const ambianceImages = restaurant.images.filter((image: any) =>
+            image.tags?.some((tag: any) => tag.value.toLowerCase() === 'ambiance')
+        );
+        // Use highest-rated ambiance image as hero, or fall back to first image
+        heroImage = ambianceImages[0]?.url || allImages[0]?.url || '';
+    } else {
+        // Default behavior: use highest-rated image overall
+        heroImage = allImages[0]?.url || '';
+    }
+
     const ambientImages = allImages.slice(1, 4).map((img: any) => img.url);
 
     // Get menu item images for popular dish photos
@@ -118,14 +222,41 @@ function transformRestaurant(restaurant: any, distance: number) {
         .filter((tag: any) => tag.tagType?.value === 'cuisine')
         .map((tag: any) => tag.value);
 
-    // Get top review
-    const topReview = restaurant.reviews[0]
-        ? {
-            author: restaurant.reviews[0].postedBy || 'Anonymous',
-            rating: restaurant.reviews[0].rating,
-            quote: restaurant.reviews[0].review,
-        }
-        : null;
+    // Smart review selection based on ambiance priority
+    let topReview = null;
+    if (isAmbianceHighPriority(preferences)) {
+        // Prioritize reviews that mention ambiance-related keywords
+        const ambianceKeywords = ['ambiance', 'atmosphere', 'decor', 'vibe', 'aesthetic', 'cozy', 'elegant', 'modern', 'rustic', 'romantic'];
+
+        // Find reviews with ambiance-related tags or content
+        const ambianceReviews = restaurant.reviews.filter((review: any) => {
+            const reviewText = (review.review || '').toLowerCase();
+            const hasTags = review.tags?.some((tag: any) =>
+                ambianceKeywords.some(keyword => tag.value.toLowerCase().includes(keyword))
+            );
+            const hasContent = ambianceKeywords.some(keyword => reviewText.includes(keyword));
+            return hasTags || hasContent;
+        });
+
+        // Use ambiance-focused review if found, otherwise use top-rated review
+        const selectedReview = ambianceReviews[0] || restaurant.reviews[0];
+        topReview = selectedReview
+            ? {
+                author: selectedReview.postedBy || 'Anonymous',
+                rating: selectedReview.rating,
+                quote: selectedReview.review,
+            }
+            : null;
+    } else {
+        // Default behavior: use highest-rated review
+        topReview = restaurant.reviews[0]
+            ? {
+                author: restaurant.reviews[0].postedBy || 'Anonymous',
+                rating: restaurant.reviews[0].rating,
+                quote: restaurant.reviews[0].review,
+            }
+            : null;
+    }
 
     // Get social media handles
     const socialMedia = {
@@ -155,6 +286,8 @@ function transformRestaurant(restaurant: any, distance: number) {
         lat: restaurant.lat,
         long: restaurant.long,
         mapLink: restaurant.mapLink,
+        // Include score for debugging (only present when using custom sorting)
+        ...(restaurant.score !== undefined && { score: restaurant.score }),
     };
 }
 
@@ -239,6 +372,9 @@ export async function getRestaurants(req: Request, res: Response): Promise<void>
             include: {
                 images: {
                     orderBy: { rating: 'desc' },
+                    include: {
+                        tags: true, // Include image tags for ambiance scoring
+                    },
                 },
                 reviews: {
                     orderBy: { rating: 'desc' },
@@ -295,7 +431,16 @@ export async function getRestaurants(req: Request, res: Response): Promise<void>
             restaurantsWithDistance = restaurantsWithDistance
                 .map((restaurant) => ({
                     ...restaurant,
-                    score: calculateScore(restaurant, restaurant.distance, radiusMeters, userPreferences),
+                    ...(() => {
+                        const { score, breakdown } = calculateScore(
+                            restaurant,
+                            restaurant.distance,
+                            radiusMeters,
+                            userPreferences
+                        );
+                        logScoreBreakdown(restaurant, restaurant.distance, radiusMeters, breakdown, userPreferences);
+                        return { score };
+                    })(),
                 }))
                 .sort((a, b) => b.score - a.score);
         }
@@ -316,7 +461,7 @@ export async function getRestaurants(req: Request, res: Response): Promise<void>
 
         // Transform data to app-ready format
         const transformedRestaurants = paginatedRestaurants.map((restaurant) =>
-            transformRestaurant(restaurant, restaurant.distance)
+            transformRestaurant(restaurant, restaurant.distance, userPreferences)
         );
 
         res.status(200).json({

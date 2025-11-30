@@ -46,6 +46,41 @@ import { QUESTIONS } from '../data/questions';
 
 import { QuestionnaireAnswers } from '../types';
 
+/**
+ * Mapping from display names to backend preference keys
+ */
+const PREFERENCE_KEY_MAPPING: Record<string, string> = {
+    'Food Quality': 'foodQuality',
+    'Ambiance': 'ambiance',
+    'Proximity': 'proximity',
+    'Price': 'price',
+    'Reviews': 'reviews',
+};
+
+/**
+ * Convert display name to backend key
+ */
+function itemToKey(item: string): string {
+    return PREFERENCE_KEY_MAPPING[item] || item.toLowerCase();
+}
+
+/**
+ * Convert rankings array to weighted preferences object using exponential weighting
+ * Exponential weights: 1st=5, 2nd=3, 3rd=2, 4th=1, 5th=0.5
+ * This makes top choices significantly more influential
+ */
+function convertRankingsToWeights(rankings: string[]): Record<string, number> {
+    const exponentialWeights = [5, 3, 2, 1, 0.5]; // Exponential scale
+    const weights: Record<string, number> = {};
+
+    rankings.forEach((item, index) => {
+        const key = itemToKey(item);
+        weights[key] = exponentialWeights[index] || 0;
+    });
+
+    return weights;
+}
+
 type QuestionnaireScreenProps = {
     navigation: NativeStackNavigationProp<RootStackParamList, 'Questionnaire'>;
 };
@@ -53,7 +88,7 @@ type QuestionnaireScreenProps = {
 export default function QuestionnaireScreen({
     navigation,
 }: QuestionnaireScreenProps) {
-    const { user } = useContext(UserContext);
+    const { user, setUser } = useContext(UserContext);
 
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(
         user === null ? -1 : 0,
@@ -133,7 +168,11 @@ export default function QuestionnaireScreen({
     useEffect(() => {
         const hasAnswer =
             isLastQuestion &&
-            (selectedCheckboxes.length > 0 || additionalText.trim().length > 0);
+            (currentQuestion?.type === 'checkboxes_text'
+                ? selectedCheckboxes.length > 0 || additionalText.trim().length > 0
+                : currentQuestion?.type === 'text'
+                    ? additionalText.trim().length > 0
+                    : false);
 
         if (hasAnswer) {
             buttonOpacity.setValue(0);
@@ -153,6 +192,7 @@ export default function QuestionnaireScreen({
         }
     }, [
         isLastQuestion,
+        currentQuestion?.type,
         selectedCheckboxes,
         additionalText,
         buttonOpacity,
@@ -319,6 +359,22 @@ export default function QuestionnaireScreen({
     }
 
     function handleStartDiscovering() {
+        // Convert preference rankings to weights and save to user context
+        const preferencesAnswer = answers['preferences'];
+        if (preferencesAnswer && Array.isArray(preferencesAnswer)) {
+            const preferenceWeights = convertRankingsToWeights(preferencesAnswer);
+
+            // Update user with preferences
+            setUser({
+                id: user?.id || 'temp-user',
+                name: user?.name || 'User',
+                email: user?.email,
+                preferences: preferenceWeights,
+            });
+
+            console.log('Saved preferences:', preferenceWeights);
+        }
+
         AnimationPresets.buttonPress(buttonScale).start(() => {
             navigation.replace('MainTabs');
         });
@@ -426,6 +482,7 @@ export default function QuestionnaireScreen({
                                 contentContainerStyle={ styles.optionsContainer }
                                 showsVerticalScrollIndicator={ false }
                                 keyboardShouldPersistTaps="handled"
+                                keyboardDismissMode="on-drag"
                             >
                                 { /* Single Choice Question */ }
                                 { currentQuestion.type === 'single_choice' &&
@@ -621,6 +678,46 @@ export default function QuestionnaireScreen({
                                     </>
                                 ) }
 
+                                { /* Text Input Question */ }
+                                { currentQuestion.type === 'text' && (
+                                    <View style={ styles.textQuestionContainer }>
+                                        <TextInput
+                                            style={ [
+                                                styles.textInput,
+                                                styles.multilineInput,
+                                            ] }
+                                            placeholder={
+                                                currentQuestion.placeholder ||
+                                                'Type your answer here...'
+                                            }
+                                            placeholderTextColor={
+                                                AppColors.textLight
+                                            }
+                                            value={ additionalText }
+                                            onChangeText={ (text) => {
+                                                setAdditionalText(text);
+                                                setAnswers((prev) => ({
+                                                    ...prev,
+                                                    [currentQuestion.id]: text,
+                                                }));
+                                            } }
+                                            multiline
+                                            numberOfLines={ 4 }
+                                            textAlignVertical="top"
+                                        />
+
+                                        <TouchableOpacity
+                                            style={ styles.skipButton }
+                                            onPress={ handleStartDiscovering }
+                                            activeOpacity={ 0.7 }
+                                        >
+                                            <Text style={ styles.skipButtonText }>
+                                                Skip this question →
+                                            </Text>
+                                        </TouchableOpacity>
+                                    </View>
+                                ) }
+
                                 { /* Checkboxes + Text Question */ }
                                 { currentQuestion.type === 'checkboxes_text' &&
                                 currentQuestion.checkboxOptions && (
@@ -714,8 +811,11 @@ export default function QuestionnaireScreen({
                         ) }
 
                         { isLastQuestion &&
-                            (selectedCheckboxes.length > 0 ||
-                                additionalText.trim().length > 0) && (
+                            ((currentQuestion.type === 'checkboxes_text' &&
+                                (selectedCheckboxes.length > 0 ||
+                                    additionalText.trim().length > 0)) ||
+                                (currentQuestion.type === 'text' &&
+                                    additionalText.trim().length > 0)) && (
                             <Animated.View
                                 style={ {
                                     opacity: buttonOpacity,
@@ -965,6 +1065,10 @@ const styles = StyleSheet.create({
         color: AppColors.white,
         fontSize: 16,
         fontWeight: '700',
+    },
+    textQuestionContainer: {
+        gap: Spacing.md,
+        paddingBottom: Spacing.md,
     },
     checkboxContainer: {
         gap: Spacing.xs,

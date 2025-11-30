@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, useCallback, useMemo } from 'react';
+import { useState, useRef, useEffect, useCallback, useMemo, useContext } from 'react';
 import {
     View,
     Text,
@@ -23,6 +23,7 @@ import {
 } from '../hooks/useRestaurants';
 import { useSavedRestaurants } from '../contexts/SavedRestaurantsContext';
 import { useLocation } from '../contexts/LocationContext';
+import { UserContext } from '../contexts/userContext';
 import type { Restaurant } from '../types';
 
 const { width, height } = Dimensions.get('window');
@@ -36,6 +37,7 @@ type FilterType = {
 export default function SwipeScreen() {
     const swiperRef = useRef<SwiperCardRefType>(null);
     const { userLocation, isLoading: isLoadingLocation } = useLocation();
+    const { user } = useContext(UserContext);
 
     const [currentIndex, setCurrentIndex] = useState(0);
     const { saveRestaurant } = useSavedRestaurants();
@@ -81,6 +83,7 @@ export default function SwipeScreen() {
         long: userLocation?.longitude || 0,
         radius,
         filters: apiFilters,
+        preferences: user?.preferences, // Use user's preference weights for custom sorting
         limit: 10,
     });
 

@@ -17,21 +17,17 @@ export const QUESTIONS: Question[] = [
         question: 'Rank your preferences',
         type: 'ranking',
         items: [
-            'Food Variety',
+            'Food Quality',
             'Ambiance',
             'Proximity',
-            'Nearby Vibe',
             'Price',
             'Reviews',
         ],
     },
     {
         id: 'additional_info',
-        question: 'Anything else you want to let us know?',
-        type: 'checkboxes_text',
-        checkboxOptions: [
-            'Vegetarian',
-            'Gluten Free',
-        ],
+        question: 'Anything else we should know?',
+        type: 'text',
+        placeholder: 'Let us know the occasion, dietary needs (vegetarian, gluten-free), or any other preferences...',
     },
 ];
