@@ -222,7 +222,7 @@ const styles = StyleSheet.create({
         flex: 0.4,
         justifyContent: 'center',
         alignItems: 'center',
-        paddingTop: height * 0.05,
+        paddingTop: height * 0.1,
     },
     logo: {
         width: 320,
