@@ -231,15 +231,15 @@ const styles = StyleSheet.create({
         height: 320,
     },
     title: {
-        ...Typography.displayLarge,
+        fontSize: 78,
+        fontWeight: '900',
         color: 'white',
         marginBottom: Spacing.sm,
         textAlign: 'center',
         textShadowColor: 'rgba(0, 0, 0, 0.75)',
-        textShadowOffset: { width: 0, height: 2 },
-        textShadowRadius: 4,
-        letterSpacing: 2,
-        fontStyle: 'italic'
+        textShadowOffset: { width: 0, height: 3 },
+        textShadowRadius: 6,
+        letterSpacing: 4,
     },
     subtitle: {
         ...Typography.bodyLarge,
