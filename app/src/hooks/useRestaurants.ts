@@ -32,6 +32,7 @@ export interface NearbyRestaurantParams {
     long: number;
     radius?: number;
     filters?: NearbyRestaurantFilters;
+    preferences?: Record<string, number>; // User preference weights for custom sorting
 }
 
 /**
@@ -52,10 +53,10 @@ export function useRestaurants(params: NearbyRestaurantParams & {
     page?: number;
     pageSize?: number;
 }) {
-    const { lat, long, radius = 5000, filters = {}, page = 1, pageSize = 10 } = params;
+    const { lat, long, radius = 5000, filters = {}, preferences, page = 1, pageSize = 10 } = params;
 
     return useQuery({
-        queryKey: restaurantKeys.nearby({ lat, long, radius, filters }),
+        queryKey: restaurantKeys.nearby({ lat, long, radius, filters, preferences }),
         queryFn: async () => {
             return await restaurantApi.fetchNearbyPaginated({
                 lat,
@@ -66,6 +67,7 @@ export function useRestaurants(params: NearbyRestaurantParams & {
                 price: filters.price,
                 minRating: filters.rating,
                 cuisine: filters.cuisine,
+                preferences, // Pass preferences to API
             });
         },
         enabled: !!lat && !!long,
@@ -81,10 +83,10 @@ export function useRestaurants(params: NearbyRestaurantParams & {
 export function useInfiniteRestaurants(params: NearbyRestaurantParams & {
     limit?: number;
 }) {
-    const { lat, long, radius = 5000, filters = {}, limit = 10 } = params;
+    const { lat, long, radius = 5000, filters = {}, preferences, limit = 10 } = params;
 
     return useInfiniteQuery({
-        queryKey: restaurantKeys.nearby({ lat, long, radius, filters }),
+        queryKey: restaurantKeys.nearby({ lat, long, radius, filters, preferences }),
         queryFn: async ({ pageParam = 1 }) => {
             return await restaurantApi.fetchNearbyPaginated({
                 lat,
@@ -95,6 +97,7 @@ export function useInfiniteRestaurants(params: NearbyRestaurantParams & {
                 price: filters.price,
                 minRating: filters.rating,
                 cuisine: filters.cuisine,
+                preferences, // Pass preferences to API
             });
         },
         getNextPageParam: (lastPage) => {

@@ -1,11 +1,12 @@
 export interface Question {
     id: string;
     question: string;
-    type: 'single_choice' | 'ranking' | 'checkboxes_text';
+    type: 'single_choice' | 'ranking' | 'checkboxes_text' | 'text';
     options?: string[];
     hasOtherOption?: boolean;
     items?: string[];
     checkboxOptions?: string[];
+    placeholder?: string;
 }
 
 export interface Review {
