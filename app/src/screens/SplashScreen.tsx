@@ -31,9 +31,9 @@ export default function SplashScreen({ navigation }: SplashScreenProps) {
                     useNativeDriver: true,
                 }),
             ]).start(() => {
-                // Navigate to Questionnaire after animation completes
+                // Navigate to Auth screen after animation completes
                 setTimeout(() => {
-                    navigation.replace('Questionnaire');
+                    navigation.replace('Auth');
                 }, AnimationDuration.normal);
             });
         }, AnimationDuration.normal);
@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     logo: {
-        width: 200,
-        height: 200,
+        width: 260,
+        height: 260,
     },
 });

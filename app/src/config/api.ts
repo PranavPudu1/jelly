@@ -20,4 +20,10 @@ export const API_ENDPOINTS = {
         getAll: '/api/restaurants',
         getById: (id: string) => `/api/restaurants/${id}`,
     },
+    users: {
+        register: '/api/users/register',
+        login: '/api/users/login',
+        createTemporary: '/api/users/temporary',
+        profile: '/api/users/profile',
+    },
 };

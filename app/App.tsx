@@ -15,6 +15,7 @@ import SavedRestaurantsProvider from './src/contexts/SavedRestaurantsContext';
 import LocationProvider from './src/contexts/LocationContext';
 
 import SplashScreenComponent from './src/screens/SplashScreen';
+import AuthScreen from './src/screens/AuthScreen';
 import QuestionnaireScreen from './src/screens/QuestionnaireScreen';
 import SwipeScreen from './src/screens/SwipeScreen';
 import SavedRestaurantsScreen from './src/screens/SavedRestaurantsScreen';
@@ -24,6 +25,7 @@ import { AppColors, Shadows } from './src/theme';
 
 export type RootStackParamList = {
     Splash: undefined;
+    Auth: undefined;
     Questionnaire: undefined;
     MainTabs: undefined;
 };
@@ -172,6 +174,11 @@ export default function App() {
                                     <Stack.Screen
                                         name="Splash"
                                         component={ SplashScreenComponent }
+                                    />
+
+                                    <Stack.Screen
+                                        name="Auth"
+                                        component={ AuthScreen }
                                     />
 
                                     <Stack.Screen
