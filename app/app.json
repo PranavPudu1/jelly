@@ -7,7 +7,7 @@
         "icon": "./assets/Logo.png",
         "userInterfaceStyle": "dark",
         "splash": {
-            "image": "./assets/Logo.png",
+            "image": "./assets/LogoFill.png",
             "resizeMode": "contain",
             "backgroundColor": "#FEE0DE"
         },
@@ -18,7 +18,7 @@
         },
         "android": {
             "adaptiveIcon": {
-                "foregroundImage": "./assets/Logo.png",
+                "foregroundImage": "./assets/LogoFill.png",
                 "backgroundColor": "#FEE0DE"
             },
             "package": "com.jelly.app"
