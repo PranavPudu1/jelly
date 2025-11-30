@@ -1,11 +1,6 @@
 import { Router, Request, Response } from 'express';
+
 import restaurantRoutes from './restaurant';
-import tagRoutes from './tag';
-import tagTypeRoutes from './tagType';
-import reviewRoutes from './review';
-import restaurantImageRoutes from './restaurantImage';
-import menuItemRoutes from './menuItem';
-import socialPostRoutes from './socialPost';
 import userRoutes from './user';
 
 const router = Router();
@@ -21,14 +16,7 @@ function handleHealthCheck(_req: Request, res: Response): void {
 
 router.get('/health', handleHealthCheck);
 
-// API routes
 router.use('/users', userRoutes);
 router.use('/restaurants', restaurantRoutes);
-router.use('/tags', tagRoutes);
-router.use('/tag-types', tagTypeRoutes);
-router.use('/reviews', reviewRoutes);
-router.use('/images', restaurantImageRoutes);
-router.use('/menu-items', menuItemRoutes);
-router.use('/social-posts', socialPostRoutes);
 
 export default router;
