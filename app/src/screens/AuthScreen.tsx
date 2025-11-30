@@ -38,11 +38,14 @@ export default function AuthScreen({ navigation }: AuthScreenProps) {
     const [error, setError] = useState<string | null>(null);
 
     // change this to: require('../../assets/videos/restaurant-background.mp4')
-    const player = useVideoPlayer('https://www.pexels.com/download/video/5498746/', player => {
-        player.loop = true;
-        player.muted = true;
-        player.play();
-    });
+    const player = useVideoPlayer(
+        'https://www.pexels.com/download/video/5498746/',
+        (player) => {
+            player.loop = true;
+            player.muted = true;
+            player.play();
+        },
+    );
 
     async function handleContinueAsGuest() {
         setLoading(true);
@@ -53,12 +56,10 @@ export default function AuthScreen({ navigation }: AuthScreenProps) {
             let deviceId: string | undefined;
             if (Platform.OS === 'android') {
                 deviceId = Application.getAndroidId();
+            } else if (Platform.OS === 'ios') {
+                deviceId =
+                    (await Application.getIosIdForVendorAsync()) || undefined;
             }
-            else if (Platform.OS === 'ios') {
-                deviceId = (await Application.getIosIdForVendorAsync()) || undefined;
-            }
-
-            console.log(deviceId);
 
             // Create temporary user on server with device ID
             const tempUser = await createTemporaryUser(deviceId);
@@ -68,17 +69,19 @@ export default function AuthScreen({ navigation }: AuthScreenProps) {
 
             // Navigate to questionnaire
             navigation.replace('Questionnaire');
-        }
-        catch (err) {
+        } catch (err) {
             console.error('Error creating temporary user:', err);
-            setError(err instanceof Error ? err.message : 'Failed to create guest account');
-        }
-        finally {
+            setError(
+                err instanceof Error
+                    ? err.message
+                    : 'Failed to create guest account',
+            );
+        } finally {
             setLoading(false);
         }
-    };
+    }
 
-    const handleLogin = async () => {
+    async function handleLogin() {
         setLoading(true);
         setError(null);
 
@@ -87,9 +90,9 @@ export default function AuthScreen({ navigation }: AuthScreenProps) {
             let deviceId: string | undefined;
             if (Platform.OS === 'android') {
                 deviceId = Application.getAndroidId();
-            }
-            else if (Platform.OS === 'ios') {
-                deviceId = (await Application.getIosIdForVendorAsync()) || undefined;
+            } else if (Platform.OS === 'ios') {
+                deviceId =
+                    (await Application.getIosIdForVendorAsync()) || undefined;
             }
 
             // TODO: For now, create a temporary user and navigate to MainTabs
@@ -101,82 +104,81 @@ export default function AuthScreen({ navigation }: AuthScreenProps) {
 
             // Navigate to main tabs (swipe screen)
             navigation.replace('MainTabs');
-        }
-        catch (err) {
+        } catch (err) {
             console.error('Error logging in:', err);
             setError(err instanceof Error ? err.message : 'Failed to login');
-        }
-        finally {
+        } finally {
             setLoading(false);
         }
-    };
+    }
 
     return (
-        <View style={ styles.container }>
-            { /* Background Video */ }
+        <View style={styles.container}>
+            {/* Background Video */}
             <VideoView
-                style={ styles.video }
-                player={ player }
+                style={styles.video}
+                player={player}
                 contentFit="cover"
-                nativeControls={ false }
+                nativeControls={false}
             />
 
-            { /* Dark overlay for better text visibility */ }
-            <View style={ styles.overlay } />
+            {/* Dark overlay for better text visibility */}
+            <View style={styles.overlay} />
 
-            <SafeAreaView style={ styles.safeArea }>
-                <View style={ styles.content }>
-                    { /* Logo Section */ }
-                    <View style={ styles.logoSection }>
+            <SafeAreaView style={styles.safeArea}>
+                <View style={styles.content}>
+                    {/* Logo Section */}
+                    <View style={styles.logoSection}>
                         <Image
-                            source={ require('../../assets/Logo.png') }
-                            style={ styles.logo }
+                            source={require('../../assets/Logo.png')}
+                            style={styles.logo}
                             resizeMode="contain"
                         />
-                        <Text style={ styles.title }>Welcome to Jelly</Text>
-                        <Text style={ styles.subtitle }>
+
+                        <Text style={styles.title}>Jelly</Text>
+                        <Text style={styles.subtitle}>
                             Discover your next favorite restaurant
                         </Text>
                     </View>
 
-                    { /* Buttons Section - positioned higher like Hinge */ }
-                    <View style={ styles.buttonsContainer }>
-                        { error && (
-                            <View style={ styles.errorContainer }>
-                                <Text style={ styles.errorText }>{ error }</Text>
+                    {/* Buttons Section - positioned higher like Hinge */}
+                    <View style={styles.buttonsContainer}>
+                        {error && (
+                            <View style={styles.errorContainer}>
+                                <Text style={styles.errorText}>{error}</Text>
                             </View>
-                        ) }
+                        )}
 
-                        { /* Login/Create Account Button */ }
+                        {/* Login/Create Account Button */}
                         <TouchableOpacity
-                            style={ [styles.primaryButton, styles.button] }
-                            onPress={ handleLogin }
-                            disabled={ loading }
-                            activeOpacity={ 0.8 }
+                            style={[styles.primaryButton, styles.button]}
+                            onPress={handleLogin}
+                            disabled={loading}
+                            activeOpacity={0.8}
                         >
-                            { loading ? (
-                                <ActivityIndicator color={ AppColors.primary } />
+                            {loading ? (
+                                <ActivityIndicator color={AppColors.primary} />
                             ) : (
-                                <Text style={ styles.primaryButtonText }>
+                                <Text style={styles.primaryButtonText}>
                                     Login / Create Account
                                 </Text>
-                            ) }
+                            )}
                         </TouchableOpacity>
 
-                        { /* Continue as Guest Button */ }
+                        {/* Continue as Guest Button */}
                         <TouchableOpacity
-                            style={ [styles.button, styles.secondaryButton] }
-                            onPress={ handleContinueAsGuest }
-                            disabled={ loading }
-                            activeOpacity={ 0.8 }
+                            style={[styles.button, styles.secondaryButton]}
+                            onPress={handleContinueAsGuest}
+                            disabled={loading}
+                            activeOpacity={0.8}
                         >
-                            { loading ? (
+                            {loading ? (
                                 <ActivityIndicator color="white" />
                             ) : (
-                                <Text style={ styles.secondaryButtonText }>
+                                <Text style={styles.secondaryButtonText}>
                                     Continue as Guest
                                 </Text>
-                            ) }
+                            )}
                         </TouchableOpacity>
                     </View>
                 </View>
@@ -220,10 +222,9 @@ const styles = StyleSheet.create({
     logo: {
         width: 320,
         height: 320,
-        marginBottom: Spacing.xl,
     },
     title: {
-        ...Typography.displayMedium,
+        ...Typography.displayLarge,
         color: 'white',
         marginBottom: Spacing.sm,
         textAlign: 'center',
@@ -247,11 +248,11 @@ const styles = StyleSheet.create({
     button: {
         paddingVertical: Spacing.lg,
         paddingHorizontal: Spacing.xl,
-        borderRadius: BorderRadius.lg,
+        borderRadius: BorderRadius.pill,
         alignItems: 'center',
         justifyContent: 'center',
         minHeight: 56,
-        backgroundColor: AppColors.primary
+        backgroundColor: AppColors.primary,
     },
     primaryButton: {
         backgroundColor: AppColors.primary,
@@ -265,12 +266,14 @@ const styles = StyleSheet.create({
     primaryButtonText: {
         ...Typography.button,
         color: '#1a1a1a',
-        fontWeight: '600',
+        // fontWeight: '600',
+        fontWeight: 'bold'
     },
     secondaryButtonText: {
         ...Typography.button,
         color: 'white',
-        fontWeight: '600',
+        // fontWeight: '600',
+        fontWeight: 'bold'
     },
     errorContainer: {
         backgroundColor: 'rgba(255, 59, 48, 0.9)',

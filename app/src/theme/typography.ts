@@ -2,16 +2,15 @@ import { TextStyle } from 'react-native';
 import { AppColors } from './colors';
 
 export const FontFamily = {
+    // Headers and display text
     poppins: {
         regular: 'Poppins-Regular',
         semiBold: 'Poppins-SemiBold',
         bold: 'Poppins-Bold',
     },
-    inter: {
-        regular: 'Inter-Regular',
-        medium: 'Inter-Medium',
-        semiBold: 'Inter-SemiBold',
-        bold: 'Inter-Bold',
+    // Body text and buttons
+    varelaRound: {
+        regular: 'VarelaRound-Regular',
     },
 };
 
@@ -35,41 +34,41 @@ export const Typography = {
         color: AppColors.text,
     } as TextStyle,
 
-    // Body styles (Inter)
+    // Body styles (Varela Round)
     bodyLarge: {
-        fontFamily: FontFamily.inter.regular,
+        fontFamily: FontFamily.varelaRound.regular,
         fontSize: 16,
         color: AppColors.text,
     } as TextStyle,
 
     bodyMedium: {
-        fontFamily: FontFamily.inter.regular,
+        fontFamily: FontFamily.varelaRound.regular,
         fontSize: 14,
         color: AppColors.text,
     } as TextStyle,
 
     bodySmall: {
-        fontFamily: FontFamily.inter.regular,
+        fontFamily: FontFamily.varelaRound.regular,
         fontSize: 12,
         color: AppColors.textLight,
     } as TextStyle,
 
-    // Title styles (Inter)
+    // Title styles (Varela Round)
     titleLarge: {
-        fontFamily: FontFamily.inter.medium,
+        fontFamily: FontFamily.varelaRound.regular,
         fontSize: 18,
         color: AppColors.text,
     } as TextStyle,
 
     titleMedium: {
-        fontFamily: FontFamily.inter.medium,
+        fontFamily: FontFamily.varelaRound.regular,
         fontSize: 16,
         color: AppColors.text,
     } as TextStyle,
 
-    // Button text
+    // Button text (Varela Round)
     button: {
-        fontFamily: FontFamily.inter.semiBold,
+        fontFamily: FontFamily.varelaRound.regular,
         fontSize: 16,
         color: AppColors.background,
     } as TextStyle,
