@@ -27,7 +27,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { RootStackParamList } from '../../App';
 import WelcomeCarousel from '../components/WelcomeCarousel';
 
-import { UserContext } from '../contexts/userContext';
+import { UserContext } from '../contexts/UserContext';
 
 import {
     AppColors,

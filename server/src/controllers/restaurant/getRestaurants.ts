@@ -203,7 +203,8 @@ function transformRestaurant(restaurant: any, distance: number, preferences?: Re
         );
         // Use highest-rated ambiance image as hero, or fall back to first image
         heroImage = ambianceImages[0]?.url || allImages[0]?.url || '';
-    } else {
+    }
+    else {
         // Default behavior: use highest-rated image overall
         heroImage = allImages[0]?.url || '';
     }
@@ -247,7 +248,8 @@ function transformRestaurant(restaurant: any, distance: number, preferences?: Re
                 quote: selectedReview.review,
             }
             : null;
-    } else {
+    }
+    else {
         // Default behavior: use highest-rated review
         topReview = restaurant.reviews[0]
             ? {

@@ -16,7 +16,7 @@ import { VideoView, useVideoPlayer } from 'expo-video';
 import * as Application from 'expo-application';
 
 import { RootStackParamList } from '../../App';
-import { UserContext } from '../contexts/userContext';
+import { UserContext } from '../contexts/UserContext';
 import { createTemporaryUser } from '../services/userApi';
 
 import {

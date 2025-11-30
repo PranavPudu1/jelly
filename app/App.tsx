@@ -10,7 +10,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import * as SplashScreen from 'expo-splash-screen';
 import * as Font from 'expo-font';
 
-import UserContextWrapper from './src/contexts/userContext';
+import UserContextWrapper from './src/contexts/UserContext';
 import SavedRestaurantsProvider from './src/contexts/SavedRestaurantsContext';
 import LocationProvider from './src/contexts/LocationContext';
 

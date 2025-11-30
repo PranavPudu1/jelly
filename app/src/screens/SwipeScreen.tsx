@@ -23,7 +23,7 @@ import {
 } from '../hooks/useRestaurants';
 import { useSavedRestaurants } from '../contexts/SavedRestaurantsContext';
 import { useLocation } from '../contexts/LocationContext';
-import { UserContext } from '../contexts/userContext';
+import { UserContext } from '../contexts/UserContext';
 import type { Restaurant } from '../types';
 
 const { width, height } = Dimensions.get('window');

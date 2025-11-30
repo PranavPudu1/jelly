@@ -26,37 +26,37 @@ export function scoreRestaurant(
         const weight = ranked.length - index; // First item gets highest weight
 
         switch (pref.toLowerCase()) {
-            case 'food variety':
-                // Higher score for restaurants with more food items
-                score += (restaurant.foodItems?.length || 0) * weight * 0.5;
-                break;
+        case 'food variety':
+            // Higher score for restaurants with more food items
+            score += (restaurant.foodItems?.length || 0) * weight * 0.5;
+            break;
 
-            case 'ambiance':
-                // Higher score for restaurants with ambience photos
-                score += (restaurant.ambiencePhotos?.length || 0) * weight * 0.3;
-                break;
+        case 'ambiance':
+            // Higher score for restaurants with ambience photos
+            score += (restaurant.ambiencePhotos?.length || 0) * weight * 0.3;
+            break;
 
-            case 'location':
-                // If user values location, prioritize closer restaurants
-                // (In a real app, you'd use actual distance calculation)
-                if (restaurant.lat && restaurant.long) {
-                    score += weight * 2;
-                }
-                break;
+        case 'location':
+            // If user values location, prioritize closer restaurants
+            // (In a real app, you'd use actual distance calculation)
+            if (restaurant.lat && restaurant.long) {
+                score += weight * 2;
+            }
+            break;
 
-            case 'price':
-                // Match price preference
-                // Assuming user wants good value ($$-$$$)
-                if (restaurant.priceLevel === '$$' || restaurant.priceLevel === '$$$') {
-                    score += weight * 3;
-                }
-                break;
+        case 'price':
+            // Match price preference
+            // Assuming user wants good value ($$-$$$)
+            if (restaurant.priceLevel === '$$' || restaurant.priceLevel === '$$$') {
+                score += weight * 3;
+            }
+            break;
 
-            case 'reviews':
-                // Higher score for restaurants with more reviews and higher ratings
-                const reviewCount = restaurant.reviews?.length || 0;
-                score += (reviewCount * 0.5 + restaurant.rating * 2) * weight * 0.4;
-                break;
+        case 'reviews':
+            // Higher score for restaurants with more reviews and higher ratings
+            const reviewCount = restaurant.reviews?.length || 0;
+            score += (reviewCount * 0.5 + restaurant.rating * 2) * weight * 0.4;
+            break;
         }
     });
 
