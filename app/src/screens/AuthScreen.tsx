@@ -18,6 +18,7 @@ import * as Application from 'expo-application';
 import { RootStackParamList } from '../../App';
 import { UserContext } from '../contexts/UserContext';
 import { createTemporaryUser } from '../services/userApi';
+import ErrorNotification from '../components/ErrorNotification';
 
 import {
     AppColors,
@@ -132,6 +133,9 @@ export default function AuthScreen({ navigation }: AuthScreenProps) {
             { /* Dark overlay for better text visibility */ }
             <View style={ styles.overlay } />
 
+            { /* Error notification at top */ }
+            <ErrorNotification message={ error } onDismiss={ () => setError(null) } />
+
             <SafeAreaView style={ styles.safeArea }>
                 <View style={ styles.content }>
                     { /* Logo Section */ }
@@ -150,12 +154,6 @@ export default function AuthScreen({ navigation }: AuthScreenProps) {
 
                     { /* Buttons Section - positioned higher like Hinge */ }
                     <View style={ styles.buttonsContainer }>
-                        { error && (
-                            <View style={ styles.errorContainer }>
-                                <Text style={ styles.errorText }>{ error }</Text>
-                            </View>
-                        ) }
-
                         { /* Login/Create Account Button */ }
                         <TouchableOpacity
                             style={ [styles.primaryButton, styles.button] }
@@ -281,19 +279,5 @@ const styles = StyleSheet.create({
         ...Typography.button,
         color: 'white',
         fontWeight: 'bold'
-    },
-    errorContainer: {
-        backgroundColor: 'rgba(255, 59, 48, 0.9)',
-        padding: Spacing.md,
-        borderRadius: BorderRadius.md,
-        borderLeftWidth: 4,
-        borderLeftColor: '#FF3B30',
-        marginBottom: Spacing.sm,
-    },
-    errorText: {
-        ...Typography.bodyMedium,
-        color: 'white',
-        textAlign: 'center',
-        fontWeight: '600',
     },
 });
