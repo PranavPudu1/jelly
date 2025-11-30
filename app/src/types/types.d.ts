@@ -1,17 +1,10 @@
 declare interface User {
     id: string;
-    phone?: string;
-    name?: string;
+    name: string;
     email?: string;
-    deviceId?: string;
-    dateAdded?: string;
-    dateUpdated?: string;
-    isConfirmed?: boolean;
+    preferences?: Record<string, number>; // User's preference weights
 }
-
 declare interface Session {
-    id: string;
-    userId: string;
-    started: string;
-    ended?: string | null;
+    token: string;
+    expiresAt: number;
 }

@@ -1,17 +1,5 @@
 import { createContext, PropsWithChildren, useState } from 'react';
 
-export interface User {
-    id: string;
-    name: string;
-    email?: string;
-    preferences?: Record<string, number>; // User's preference weights
-}
-
-export interface Session {
-    token: string;
-    expiresAt: number;
-}
-
 export const UserContext = createContext<{
     user: User | null;
     session: Session | null;
