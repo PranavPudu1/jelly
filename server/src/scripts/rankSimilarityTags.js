@@ -37,18 +37,7 @@ const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY,
 });
 
-// ============================================================
-// EDIT THESE IDEAL TAGS TO MATCH YOUR BUSINESS REQUIREMENTS
-// ============================================================
-
-const IDEAL_AMBIANCE_TAGS = [
-    'cozy',
-    'romantic',
-    'intimate',
-    'stylish',
-    'warm',
-    'inviting',
-];
+const IDEAL_AMBIANCE_TAGS = ['vibrant', 'romantic', 'trendy', 'stylish', 'immersive', 'inviting'];
 
 // ============================================================================
 // CONFIGURATION
@@ -176,7 +165,9 @@ function cosineSimilarity(vecA, vecB) {
  * @returns {Promise<number[]>} Average embedding of ideal tags
  */
 async function generateIdealAmbianceEmbedding() {
-    console.log(`\n📊 Generating ideal ambiance embedding from ${IDEAL_AMBIANCE_TAGS.length} tags...`);
+    console.log(
+        `\n📊 Generating ideal ambiance embedding from ${IDEAL_AMBIANCE_TAGS.length} tags...`
+    );
     console.log(`   Ideal tags: ${IDEAL_AMBIANCE_TAGS.join(', ')}`);
 
     try {
@@ -187,7 +178,9 @@ async function generateIdealAmbianceEmbedding() {
         );
 
         const averageEmbedding = averageEmbeddings(embeddings);
-        console.log(`✅ Generated ideal ambiance embedding (${averageEmbedding.length} dimensions)`);
+        console.log(
+            `✅ Generated ideal ambiance embedding (${averageEmbedding.length} dimensions)`
+        );
 
         return averageEmbedding;
     } catch (error) {
@@ -272,7 +265,9 @@ async function getRestaurantAmbianceTags(restaurantId, ambianceTagTypeId) {
 
         return Array.from(tagValues);
     } catch (error) {
-        throw new Error(`Failed to get ambiance tags for restaurant ${restaurantId}: ${error.message}`);
+        throw new Error(
+            `Failed to get ambiance tags for restaurant ${restaurantId}: ${error.message}`
+        );
     }
 }
 
@@ -334,7 +329,9 @@ async function processRestaurant(restaurant, idealEmbedding, ambianceTagTypeId) 
         });
 
         const duration = Date.now() - startTime;
-        console.log(`   ✅ Score: ${similarity.toFixed(4)} (${ambianceTags.length} tags) - Updated in ${duration}ms`);
+        console.log(
+            `   ✅ Score: ${similarity.toFixed(4)} (${ambianceTags.length} tags) - Updated in ${duration}ms`
+        );
 
         return { success: true, score: similarity, tagCount: ambianceTags.length };
     } catch (error) {
