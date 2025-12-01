@@ -2,8 +2,8 @@
  * Review Tagging Script
  *
  * This script processes restaurant reviews using OpenAI GPT-4o to:
- * - Extract exactly 5 descriptive keywords from each review
- * - Categorize each keyword as either "cuisine" or "ambiance"
+ * - Extract exactly 5 descriptive, multi-word contextual tags from each review
+ * - Categorize each tag as either "cuisine" or "ambiance"
  * - Create/find corresponding tags in the database
  * - Connect tags to the review
  *
@@ -12,6 +12,7 @@
  * - Exponential backoff retry logic
  * - Comprehensive error handling
  * - Progress tracking and logging
+ * - Processes ALL reviews (including previously tagged ones)
  */
 
 import dotenv from 'dotenv';
@@ -81,20 +82,20 @@ function validateTaggingResult(result) {
         return false;
     }
 
-    if (!Array.isArray(result.keywords) || result.keywords.length !== 5) {
-        console.warn(`⚠️  Expected 5 keywords, got ${result.keywords?.length || 0}`);
+    if (!Array.isArray(result.tags) || result.tags.length !== 5) {
+        console.warn(`⚠️  Expected 5 tags, got ${result.tags?.length || 0}`);
         return false;
     }
 
-    // Validate each keyword
-    for (const keyword of result.keywords) {
-        if (!keyword.word || typeof keyword.word !== 'string') {
-            console.warn(`⚠️  Invalid keyword word: ${JSON.stringify(keyword)}`);
+    // Validate each tag
+    for (const tag of result.tags) {
+        if (!tag.phrase || typeof tag.phrase !== 'string' || tag.phrase.trim().length === 0) {
+            console.warn(`⚠️  Invalid tag phrase: ${JSON.stringify(tag)}`);
             return false;
         }
 
-        if (!keyword.category || !['cuisine', 'ambiance'].includes(keyword.category)) {
-            console.warn(`⚠️  Invalid category "${keyword.category}" for word "${keyword.word}"`);
+        if (!tag.category || !['cuisine', 'ambiance'].includes(tag.category)) {
+            console.warn(`⚠️  Invalid category "${tag.category}" for phrase "${tag.phrase}"`);
             return false;
         }
     }
@@ -107,31 +108,33 @@ function validateTaggingResult(result) {
 // ============================================================================
 
 /**
- * Extracts keywords from a review using OpenAI GPT-4o
+ * Extracts multi-word contextual tags from a review using OpenAI GPT-4o
  * @param {string} reviewText - The review text to analyze
- * @returns {Promise<object>} Extraction result { keywords: [{word, category}] }
+ * @returns {Promise<object>} Extraction result { tags: [{phrase, category}] }
  */
 async function extractKeywordsFromReview(reviewText) {
-    const systemPrompt = `You are analyzing restaurant reviews to extract descriptive keywords.
+    const systemPrompt = `You are analyzing restaurant reviews to extract descriptive, multi-word contextual tags.
 
 Return JSON only:
 {
-  "keywords": [
-    {"word": "keyword1", "category": "cuisine" | "ambiance"},
-    {"word": "keyword2", "category": "cuisine" | "ambiance"},
-    {"word": "keyword3", "category": "cuisine" | "ambiance"},
-    {"word": "keyword4", "category": "cuisine" | "ambiance"},
-    {"word": "keyword5", "category": "cuisine" | "ambiance"}
+  "tags": [
+    {"phrase": "descriptive phrase 1", "category": "cuisine" | "ambiance"},
+    {"phrase": "descriptive phrase 2", "category": "cuisine" | "ambiance"},
+    {"phrase": "descriptive phrase 3", "category": "cuisine" | "ambiance"},
+    {"phrase": "descriptive phrase 4", "category": "cuisine" | "ambiance"},
+    {"phrase": "descriptive phrase 5", "category": "cuisine" | "ambiance"}
   ]
 }
 
 Rules:
-- Extract EXACTLY 5 descriptive keywords from the review.
-- Each keyword MUST be a single word (no phrases).
-- Categorize each keyword as either "cuisine" (food-related) or "ambiance" (atmosphere/environment-related).
-- Choose the most meaningful and distinctive words that capture the essence of the review.
-- Words should be adjectives or nouns that describe the food or atmosphere.
-- Convert all words to lowercase.`;
+- Extract EXACTLY 5 descriptive, contextual tags from the review.
+- Tags should be short phrases (2-5 words) that capture specific aspects of the experience.
+- Categorize each tag as either "cuisine" (food-related) or "ambiance" (atmosphere/environment-related).
+- Choose the most meaningful and distinctive phrases that capture the essence of the review.
+- Phrases should be descriptive and specific (e.g., "perfectly cooked pasta", "cozy romantic atmosphere", "authentic Italian flavors").
+- Avoid generic phrases - be specific and contextual to what the review describes.
+- Convert all phrases to lowercase.
+- Prioritize phrases that would help users discover similar restaurants or experiences.`;
 
     try {
         const response = await openai.chat.completions.create({
@@ -143,10 +146,10 @@ Rules:
                 },
                 {
                     role: 'user',
-                    content: `Extract 5 keywords from this review:\n\n${reviewText}`,
+                    content: `Extract 5 contextual tags from this review:\n\n${reviewText}`,
                 },
             ],
-            max_tokens: 300,
+            max_tokens: 400,
             response_format: { type: 'json_object' },
         });
 
@@ -163,7 +166,7 @@ Rules:
 
         return result;
     } catch (error) {
-        throw new Error(`Keyword extraction failed: ${error.message}`);
+        throw new Error(`Tag extraction failed: ${error.message}`);
     }
 }
 
@@ -179,7 +182,10 @@ async function processReview(review) {
         console.log(`📝 Processing review ID ${review.id}`);
         console.log(`   Preview: "${review.review.substring(0, 100)}..."`);
 
-        // Extract keywords with retry logic
+        // Clear existing tags first (for reprocessing)
+        await clearReviewTags(review.id);
+
+        // Extract tags with retry logic
         const taggingResult = await retry(
             () => extractKeywordsFromReview(review.review),
             CONFIG.MAX_RETRIES,
@@ -187,11 +193,11 @@ async function processReview(review) {
         );
 
         // Save tags to database and connect to review
-        await saveReviewTags(review.id, taggingResult.keywords);
+        await saveReviewTags(review.id, taggingResult.tags);
 
         const duration = Date.now() - startTime;
-        const keywords = taggingResult.keywords.map((k) => k.word).join(', ');
-        console.log(`✅ Review ${review.id} tagged with: ${keywords} in ${duration}ms`);
+        const tags = taggingResult.tags.map((t) => t.phrase).join(', ');
+        console.log(`✅ Review ${review.id} tagged with: ${tags} in ${duration}ms`);
 
         return true;
     } catch (error) {
@@ -228,19 +234,16 @@ async function processBatch(reviews) {
 // ============================================================================
 
 /**
- * Retrieves unprocessed reviews from database
+ * Retrieves all reviews from database
  * @param {number} batchSize - Number of reviews to fetch
+ * @param {number} skip - Number of reviews to skip (for pagination)
  * @returns {Promise<Array<object>>} Array of review objects
  */
-async function getUnprocessedReviews(batchSize) {
+async function getUnprocessedReviews(batchSize, skip = 0) {
     try {
         const reviews = await prisma.review.findMany({
-            where: {
-                tags: {
-                    none: {}, // Reviews with no tags are unprocessed
-                },
-            },
             take: batchSize,
+            skip: skip,
             orderBy: {
                 dateAdded: 'asc', // Process oldest first
             },
@@ -248,7 +251,28 @@ async function getUnprocessedReviews(batchSize) {
 
         return reviews;
     } catch (error) {
-        throw new Error(`Failed to fetch unprocessed reviews: ${error.message}`);
+        throw new Error(`Failed to fetch reviews: ${error.message}`);
+    }
+}
+
+/**
+ * Clears all tags from a review (for reprocessing)
+ * @param {string} reviewId - The review ID
+ * @returns {Promise<void>}
+ */
+async function clearReviewTags(reviewId) {
+    try {
+        await prisma.review.update({
+            where: { id: reviewId },
+            data: {
+                tags: {
+                    set: [], // Clear all tag connections
+                },
+            },
+        });
+    } catch (error) {
+        // Ignore errors if review doesn't exist or has no tags
+        console.log(`  ℹ️  Could not clear tags for review ${reviewId}: ${error.message}`);
     }
 }
 
@@ -312,23 +336,23 @@ async function getOrCreateTag(value, tagTypeId) {
 /**
  * Saves review tags to database
  * @param {string} reviewId - The review ID
- * @param {Array<object>} keywords - Array of {word, category} objects
+ * @param {Array<object>} tagPhrases - Array of {phrase, category} objects
  * @returns {Promise<void>}
  */
-async function saveReviewTags(reviewId, keywords) {
+async function saveReviewTags(reviewId, tagPhrases) {
     try {
         // Get or create tag types for cuisine and ambiance
         const tagTypes = {};
-        for (const keyword of keywords) {
-            if (!tagTypes[keyword.category]) {
-                tagTypes[keyword.category] = await getOrCreateTagType(keyword.category);
+        for (const tagPhrase of tagPhrases) {
+            if (!tagTypes[tagPhrase.category]) {
+                tagTypes[tagPhrase.category] = await getOrCreateTagType(tagPhrase.category);
             }
         }
 
-        // Get or create tags for each keyword
+        // Get or create tags for each phrase
         const tags = await Promise.all(
-            keywords.map((keyword) =>
-                getOrCreateTag(keyword.word, tagTypes[keyword.category].id)
+            tagPhrases.map((tagPhrase) =>
+                getOrCreateTag(tagPhrase.phrase, tagTypes[tagPhrase.category].id)
             )
         );
 
@@ -363,6 +387,7 @@ async function run() {
   - Batch size: ${CONFIG.BATCH_SIZE}
   - Max retries: ${CONFIG.MAX_RETRIES}
   - OpenAI model: ${CONFIG.OPENAI_MODEL}
+  - Processing: ALL reviews (including previously tagged)
 \n`);
 
     const startTime = Date.now();
@@ -378,25 +403,30 @@ async function run() {
             throw new Error('OPENAI_API_KEY environment variable is not set');
         }
 
+        // Get total count of reviews
+        const totalReviews = await prisma.review.count();
+        console.log(`📊 Total reviews in database: ${totalReviews}\n`);
+
         let batchNumber = 0;
         let hasMoreReviews = true;
+        let skip = 0;
 
         while (hasMoreReviews) {
             batchNumber++;
             console.log(`\n${'='.repeat(60)}`);
-            console.log(`BATCH #${batchNumber}`);
+            console.log(`BATCH #${batchNumber} (Reviews ${skip + 1}-${Math.min(skip + CONFIG.BATCH_SIZE, totalReviews)} of ${totalReviews})`);
             console.log(`${'='.repeat(60)}`);
 
-            // Fetch next batch of unprocessed reviews
-            const reviews = await getUnprocessedReviews(CONFIG.BATCH_SIZE);
+            // Fetch next batch of reviews
+            const reviews = await getUnprocessedReviews(CONFIG.BATCH_SIZE, skip);
 
             if (reviews.length === 0) {
-                console.log('\n✨ No more unprocessed reviews found. Processing complete!');
+                console.log('\n✨ No more reviews found. Processing complete!');
                 hasMoreReviews = false;
                 break;
             }
 
-            console.log(`Found ${reviews.length} unprocessed reviews`);
+            console.log(`Found ${reviews.length} reviews to process`);
 
             // Process the batch
             const batchStats = await processBatch(reviews);
@@ -405,6 +435,9 @@ async function run() {
             globalStats.totalProcessed += batchStats.total;
             globalStats.totalSuccessful += batchStats.successful;
             globalStats.totalFailed += batchStats.failed;
+
+            // Move to next batch
+            skip += CONFIG.BATCH_SIZE;
 
             // If we got fewer reviews than batch size, we're done
             if (reviews.length < CONFIG.BATCH_SIZE) {

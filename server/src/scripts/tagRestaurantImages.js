@@ -3,8 +3,7 @@
  *
  * This script processes restaurant images using OpenAI Vision API (GPT-4o) to:
  * - Categorize images as "ambiance", "food", or "other"
- * - Generate exactly 5 descriptive words
- * - Rate the image quality/dining experience (1-5)
+ * - Generate exactly 5 multi-word, contextual descriptive tags (2-4 words each)
  *
  * Features:
  * - Batch processing for efficiency
@@ -110,20 +109,28 @@ function validateClassificationResult(result) {
         return false;
     }
 
-    if (typeof result.description !== 'string' || !result.description.trim()) {
+    if (!Array.isArray(result.tags)) {
         return false;
     }
 
-    if (typeof result.rating !== 'number' || result.rating < 1 || result.rating > 5) {
-        return false;
-    }
-
-    // Validate that description contains 5 words
-    const words = result.description.split(',').map((w) => w.trim().replace(/['"]/g, ''));
-    if (words.length !== 5) {
+    if (result.tags.length !== 5) {
         console.warn(
-            `⚠️  Description has ${words.length} words instead of 5: "${result.description}"`
+            `⚠️  Tags array has ${result.tags.length} items instead of 5`
         );
+        return false;
+    }
+
+    // Validate that all tags are non-empty strings with 2-4 words
+    for (const tag of result.tags) {
+        if (typeof tag !== 'string' || !tag.trim()) {
+            return false;
+        }
+        const wordCount = tag.trim().split(/\s+/).length;
+        if (wordCount < 2 || wordCount > 4) {
+            console.warn(
+                `⚠️  Tag "${tag}" has ${wordCount} words (expected 2-4)`
+            );
+        }
     }
 
     return true;
@@ -136,22 +143,22 @@ function validateClassificationResult(result) {
 /**
  * Classifies a single restaurant image using OpenAI Vision API
  * @param {string} imageUrl - The URL of the image to classify
- * @returns {Promise<object>} Classification result { category, description, rating }
+ * @returns {Promise<object>} Classification result { category, tags }
  */
 async function classifyImage(imageUrl) {
-    const systemPrompt = `You are classifying restaurant images.
+    const systemPrompt = `You are classifying restaurant images and generating descriptive tags.
 
 Return JSON only:
 {
   "category": "ambiance" | "food" | "other",
-  "description": "word1, word2, word3, word4, word5",
-  "rating": 1-5
+  "tags": ["tag1", "tag2", "tag3", "tag4", "tag5"]
 }
 
 Rules:
-- Description MUST be exactly 5 single descriptive words.
-- Words MUST be comma-separated.
-- Rating MUST reflect the quality and expected dining experience of the food or ambiance shown.`;
+- Generate EXACTLY 5 contextual, multi-word descriptive tags (2-4 words each).
+- Tags should be specific and descriptive (e.g., "rustic wooden decor", "crispy golden fries", "intimate candlelit atmosphere").
+- Avoid generic single words - be specific and contextual.
+- Tags should capture the essence, mood, quality, and distinctive features of the image.`;
 
     try {
         // Convert URL to base64 for OpenAI API
@@ -193,8 +200,7 @@ Rules:
 
         return {
             category: result.category,
-            description: result.description,
-            rating: Math.round(result.rating), // Ensure integer
+            tags: result.tags,
         };
     } catch (error) {
         throw new Error(`Image classification failed: ${error.message}`);
@@ -219,13 +225,22 @@ async function processImage(image) {
             `image ${image.id}`
         );
 
+        // Clear existing tags before adding new ones
+        await prisma.restaurantImage.update({
+            where: { id: image.id },
+            data: {
+                tags: {
+                    set: [], // Clear all existing tags
+                },
+            },
+        });
+
         // Save classification to database
         await saveImageClassification(image.id, classification);
 
         const duration = Date.now() - startTime;
         console.log(
-            `✅ Image ${image.id} classified as "${classification.category}" ` +
-                `(rating: ${classification.rating}/5) in ${duration}ms`
+            `✅ Image ${image.id} classified as "${classification.category}" in ${duration}ms`
         );
 
         return true;
@@ -267,16 +282,15 @@ async function processBatch(images) {
 // ============================================================================
 
 /**
- * Retrieves unprocessed restaurant images from database
+ * Retrieves restaurant images from database
  * @param {number} batchSize - Number of images to fetch
+ * @param {number} skip - Number of images to skip for pagination
  * @returns {Promise<Array<object>>} Array of restaurant image objects
  */
-async function getUnprocessedRestaurantImages(batchSize) {
+async function getRestaurantImages(batchSize, skip = 0) {
     try {
         const images = await prisma.restaurantImage.findMany({
-            where: {
-                rating: null, // Unprocessed images have no rating
-            },
+            skip,
             take: batchSize,
             orderBy: {
                 dateAdded: 'asc', // Process oldest first
@@ -285,7 +299,7 @@ async function getUnprocessedRestaurantImages(batchSize) {
 
         return images;
     } catch (error) {
-        throw new Error(`Failed to fetch unprocessed images: ${error.message}`);
+        throw new Error(`Failed to fetch images: ${error.message}`);
     }
 }
 
@@ -349,7 +363,7 @@ async function getOrCreateTag(value, tagTypeId) {
 /**
  * Saves image classification results to database
  * @param {string} imageId - The restaurant image ID
- * @param {object} data - Classification data { category, description, rating }
+ * @param {object} data - Classification data { category, tags }
  * @returns {Promise<void>}
  */
 async function saveImageClassification(imageId, data) {
@@ -360,31 +374,25 @@ async function saveImageClassification(imageId, data) {
         // Get or create the appropriate TagType
         const tagType = await getOrCreateTagType(tagTypeValue);
 
-        // Parse the 5 words from the description
-        const words = data.description
-            .split(',')
-            .map(w => w.trim().replace(/['"]/g, ''))
-            .filter(w => w.length > 0);
-
-        // Get or create tags for each word
+        // Get or create tags for each multi-word tag
         const tags = await Promise.all(
-            words.map(word => getOrCreateTag(word, tagType.id))
+            data.tags.map(tagValue => getOrCreateTag(tagValue.trim(), tagType.id))
         );
 
         console.log(`  🔗 Connecting ${tags.length} tags to image ${imageId}`);
+        console.log(`  🏷️  Tags: ${data.tags.join(', ')}`);
 
-        // Update the image: set rating and connect tags
+        // Update the image: connect tags
         await prisma.restaurantImage.update({
             where: { id: imageId },
             data: {
-                rating: data.rating,
                 tags: {
                     connect: tags.map(tag => ({ id: tag.id })),
                 },
             },
         });
 
-        console.log(`  💾 Saved rating (${data.rating}/5) and ${tags.length} tags for image ${imageId}`);
+        console.log(`  💾 Saved ${tags.length} tags for image ${imageId}`);
     } catch (error) {
         throw new Error(`Failed to save classification for image ${imageId}: ${error.message}`);
     }
@@ -431,6 +439,7 @@ async function run() {
         }
 
         let batchNumber = 0;
+        let skip = 0;
         let hasMoreImages = true;
 
         while (hasMoreImages) {
@@ -439,16 +448,16 @@ async function run() {
             console.log(`BATCH #${batchNumber}`);
             console.log(`${'='.repeat(60)}`);
 
-            // Fetch next batch of unprocessed images
-            const images = await getUnprocessedRestaurantImages(CONFIG.BATCH_SIZE);
+            // Fetch next batch of images
+            const images = await getRestaurantImages(CONFIG.BATCH_SIZE, skip);
 
             if (images.length === 0) {
-                console.log('\n✨ No more unprocessed images found. Processing complete!');
+                console.log('\n✨ No more images found. Processing complete!');
                 hasMoreImages = false;
                 break;
             }
 
-            console.log(`Found ${images.length} unprocessed images`);
+            console.log(`Found ${images.length} images (skipped ${skip})`);
 
             // Process the batch
             const batchStats = await processBatch(images);
@@ -457,6 +466,9 @@ async function run() {
             globalStats.totalProcessed += batchStats.total;
             globalStats.totalSuccessful += batchStats.successful;
             globalStats.totalFailed += batchStats.failed;
+
+            // Move to next batch
+            skip += CONFIG.BATCH_SIZE;
 
             // If we got fewer images than batch size, we're done
             if (images.length < CONFIG.BATCH_SIZE) {
