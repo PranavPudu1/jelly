@@ -43,6 +43,9 @@ function calculateBoundingBox(lat: number, long: number, radiusMeters: number) {
 
 /**
  * Calculate custom score based on user preferences
+ *
+ * Uses foodQualityScore (0-10 scale, calculated by GPT-4o from image/review tags)
+ * as the primary indicator of food quality. Falls back to rating * 2 if not available.
  */
 function calculateScore(
     restaurant: any,
@@ -66,8 +69,10 @@ function calculateScore(
         reviews: reviewsWeight = 0,
     } = preferences;
 
-    // Normalize rating (0-5 scale) - for food quality
-    const ratingScore = restaurant.rating / 5;
+    // Normalize food quality score (0-10 scale) - calculated by GPT-4o based on image/review tags
+    // Fallback to rating (0-5 scale) if foodQualityScore is not available
+    const foodQualityValue = restaurant.foodQualityScore ?? restaurant.rating * 2; // Convert rating to 0-10 scale if needed
+    const foodQualityNormalized = foodQualityValue / 10;
 
     // Use pre-calculated ambiance score from database (already normalized 0-1)
     const ambianceScore = restaurant.ambianceScore || 0;
@@ -85,7 +90,7 @@ function calculateScore(
 
     // Calculate weighted components
     const weighted = {
-        foodQuality: ratingScore * foodQuality,
+        foodQuality: foodQualityNormalized * foodQuality,
         ambiance: ambianceScore * ambiance, // Now using actual ambiance image ratings!
         proximity: proximityScore * proximity,
         price: priceScore * priceWeight,
@@ -99,7 +104,8 @@ function calculateScore(
         score,
         breakdown: {
             raw: {
-                ratingScore,
+                foodQualityScore: foodQualityNormalized,
+                foodQualityValue, // The actual 0-10 score before normalization
                 ambianceScore,
                 proximityScore,
                 priceScore,

@@ -1,0 +1,73 @@
+{
+  "restaurant": {
+    "id": "e926b0b2-7a84-41a9-8303-5f3bb83edfb7",
+    "name": "Roppolo’s Pizzeria West Campus",
+    "price": "$"
+  },
+  "analysis": {
+    "timestamp": "2025-12-05T23:03:25.408Z",
+    "scores": {
+      "flavorful": 6,
+      "authentic": 5,
+      "satisfying": 8,
+      "comforting": 7,
+      "aromatic": 5,
+      "appetizing": 6,
+      "overall": 6
+    },
+    "imageTags": [
+      "neon restaurant signage",
+      "tree with string lights",
+      "outdoor evening setting",
+      "red bar stools seating",
+      "casual dining atmosphere",
+      "checkered serving tray",
+      "veggie topped pizza slice",
+      "meat swirl bread roll",
+      "crispy cheese crust",
+      "casual dining presentation",
+      "self-serve pizza counter",
+      "variety of pizzas",
+      "large pizza slices",
+      "pizza display case",
+      "toppings selection showcase",
+      "red and white theme",
+      "painted sports mural",
+      "white brick exterior",
+      "vibrant pizzeria sign",
+      "urban street art",
+      "italian cuisine offerings",
+      "vegan gluten-free options",
+      "colorful handwritten prices",
+      "chalkboard pizza menu",
+      "specialty whole pies",
+      "pepperoni pizza slice",
+      "mixed toppings variety",
+      "plastic red checkered tray",
+      "ranch dipping sauces",
+      "casual dining presentation",
+      "vibrant street art",
+      "brick wall mural",
+      "bold red signage",
+      "bull riding theme",
+      "restaurant exterior art",
+      "neon pizza signage",
+      "tree-lined setting",
+      "casual dining vibe",
+      "outdoor seating area",
+      "nighttime street view"
+    ],
+    "reviewTags": [
+      "late-night pizza place",
+      "order at a kiosk",
+      "affordable price",
+      "enormous pizza slices",
+      "pizza by the slice",
+      "huge pizza slices",
+      "happy hour deals",
+      "halal pizza options",
+      "16 inch margherita pizza",
+      "daily lunch specials"
+    ]
+  }
+}

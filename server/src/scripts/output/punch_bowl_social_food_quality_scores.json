@@ -1,0 +1,73 @@
+{
+  "restaurant": {
+    "id": "3a441a20-6614-41d8-b479-f88df59f9562",
+    "name": "Punch Bowl Social",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2025-12-05T23:03:15.459Z",
+    "scores": {
+      "flavorful": 7,
+      "authentic": 6,
+      "satisfying": 8,
+      "comforting": 8,
+      "aromatic": 7,
+      "appetizing": 8,
+      "overall": 7
+    },
+    "imageTags": [
+      "fresh fruit garnishes",
+      "golden syrup waffles",
+      "hearty brunch spread",
+      "savory breakfast skillet",
+      "eggs sunny side up",
+      "industrial chic decor",
+      "outdoor patio seating",
+      "stylish casual dining",
+      "large glass windows",
+      "modern urban exterior",
+      "neon lighting decor",
+      "retro arcade vibes",
+      "foosball and skee ball",
+      "casual gaming space",
+      "industrial ceiling design",
+      "wooden table setting",
+      "creamy dipping sauce",
+      "golden crispy fries",
+      "refreshing cocktails",
+      "buffalo cauliflower bites",
+      "rustic wood accents",
+      "cozy modern fireplace",
+      "retro wall tiles",
+      "warm lounge seating",
+      "industrial ceiling design",
+      "jalapeno topped fries",
+      "creamy drizzled sauce",
+      "spicy crispy texture",
+      "loaded snack bowl",
+      "crumbled cheese garnish",
+      "crispy french fries",
+      "casual dining setup",
+      "refreshing cucumber drink",
+      "sesame seed burger",
+      "floral tablecloth design",
+      "relaxed social setting",
+      "dart game setup",
+      "frothy draft beers",
+      "modern table design",
+      "casual leisure activity"
+    ],
+    "reviewTags": [
+      "fun afternoon with friends",
+      "photo-taking service",
+      "duckpin bowling",
+      "4 person punch bowls",
+      "extra nice server",
+      "chicken quesadillas",
+      "cool updated games",
+      "small group happy hour",
+      "desert blooms",
+      "terrific food and service"
+    ]
+  }
+}

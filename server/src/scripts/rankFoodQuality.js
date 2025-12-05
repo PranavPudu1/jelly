@@ -106,38 +106,35 @@ Price Range: ${priceRange}
 Image tags: ${imageTags.join(', ')}
 Review tags: ${reviewTags.join(', ')}
 
-IMPORTANT: "Good food quality" is context-dependent and should match the restaurant's style and price point. However, EXCEPTIONAL food quality goes beyond just being "appropriate" - it means the food is notably superior, memorable, skillfully prepared, and creates a distinct culinary experience.
+IMPORTANT: "Good food" is context-dependent and should match the restaurant's concept. However, EXCEPTIONAL food goes beyond just being "appropriate" - it means the cuisine is notably memorable, skillfully executed, uses quality ingredients, and delivers a distinct culinary experience.
 
 Examples of food quality levels:
-- EXCEPTIONAL (8-10): Michelin-starred or equivalent - extraordinary ingredients, masterful technique, innovative preparations, unforgettable flavors, perfect execution
-- VERY GOOD (6-7): High-quality ingredients, skilled preparation, consistently delicious, well-executed dishes, above average for the category
-- GOOD (4-5): Decent quality, satisfying food, competent preparation, meets expectations but not particularly memorable
-- AVERAGE (2-3): Basic quality, inconsistent execution, standard ingredients, forgettable dishes
-- POOR (0-1): Low quality ingredients, poor execution, disappointing or unpleasant food
+- EXCEPTIONAL (8-10): Uchi Austin (Japanese) - pristine ingredients, masterful technique, creative presentation, complex flavors, memorable dishes that showcase culinary artistry
+- GOOD (6-7): Solid sushi restaurant - fresh fish, competent preparation, tasty but not particularly memorable or distinctive
+- AVERAGE (4-5): Generic restaurant with standard dishes, acceptable execution but forgettable, lacks refinement
+- POOR (0-3): Low-quality ingredients, poor execution, bland or off-putting flavors
 
-A fine dining restaurant with tags like "wagyu", "truffle", "perfectly seared", "exquisite presentation" can score 9-10 if execution matches the premium ingredients. A taco truck with tags like "authentic", "fresh tortillas", "flavorful", "juicy meat" can also score 9-10 if the food is exceptionally well-executed for its category.
+A taco truck can score 9-10 if the ingredients are exceptional and technique is masterful. A fine dining establishment can score 3-4 if execution is poor despite fancy plating. The tags should reflect DISTINCTIVENESS and QUALITY of execution, not just appropriateness to cuisine type.
 
 Rate the following food quality attributes from 0-10:
 
-- freshness: ingredients are fresh, vibrant, high quality
-- flavor: delicious, well-seasoned, balanced, memorable taste
-- presentation: visually appealing, thoughtful plating, professional appearance
-- technique: skillful preparation, proper cooking methods, culinary expertise
-- authenticity: true to cuisine style, traditional methods, genuine recipes (if applicable)
-- creativity: innovative dishes, unique combinations, artistic interpretations
-- consistency: reliable quality, well-executed across dishes
-- value: quality justifies the price point, good portion sizes for cost
+- flavorful: bold, well-balanced, complex flavors that create memorable taste experiences
+- authentic: true to culinary tradition, respects cultural roots, genuine execution (when applicable)
+- satisfying: portion sizes appropriate, leaves diners content, well-composed and fulfilling dishes
+- comforting: soul-satisfying, evokes warmth and nostalgia, creates emotional connection through food
+- aromatic: enticing smells, fragrant spices/herbs, dishes that engage the senses before first bite
+- appetizing: visually appealing presentation, dishes that look as good as they taste, inviting plating
 
 Provide an overall "food quality" score from 0-10:
-- 9-10: Exceptional, world-class food that's memorable and masterfully executed
-- 7-8: Very good, high-quality food with skilled preparation
-- 5-6: Good, satisfying food that meets expectations
-- 3-4: Average, acceptable but nothing special
-- 0-2: Poor, disappointing or low quality
+- 9-10: Exceptional, memorable, masterfully executed cuisine (like Uchi Austin)
+- 7-8: Very good, skillfully prepared, notable quality and technique
+- 5-6: Good, tasty, well-prepared but not particularly distinctive
+- 3-4: Average, acceptable but forgettable, lacks refinement
+- 0-2: Poor, low-quality ingredients or execution
 
-The overall score should reflect how MEMORABLE and WELL-EXECUTED the food is. Focus on food-related tags like dish names, ingredients, cooking methods, taste descriptors, and food quality mentions in reviews. Ambiance tags should not heavily influence the food quality score.
+The overall score should reflect how MEMORABLE and SKILLFULLY EXECUTED the food is. A restaurant with rich, distinctive descriptors (e.g., "handmade pasta", "wood-fired", "locally-sourced", "technique-driven") should score much higher than one with generic descriptors (e.g., "tasty", "decent", "fine").
 
-Return as JSON: { freshness: n, flavor: n, presentation: n, technique: n, authenticity: n, creativity: n, consistency: n, value: n, overall: n }`;
+Return as JSON: { flavorful: n, authentic: n, satisfying: n, comforting: n, aromatic: n, appetizing: n, overall: n }`;
 
         const response = await openai.chat.completions.create({
             model: CONFIG.OPENAI_MODEL,
@@ -213,14 +210,12 @@ async function processRestaurant(restaurant, index, total) {
 
         // Display scores
         console.log(`\n   🎯 Food Quality Scores:`);
-        console.log(`      Freshness: ${result.scores.freshness}/10`);
-        console.log(`      Flavor: ${result.scores.flavor}/10`);
-        console.log(`      Presentation: ${result.scores.presentation}/10`);
-        console.log(`      Technique: ${result.scores.technique}/10`);
-        console.log(`      Authenticity: ${result.scores.authenticity}/10`);
-        console.log(`      Creativity: ${result.scores.creativity}/10`);
-        console.log(`      Consistency: ${result.scores.consistency}/10`);
-        console.log(`      Value: ${result.scores.value}/10`);
+        console.log(`      Flavorful: ${result.scores.flavorful}/10`);
+        console.log(`      Authentic: ${result.scores.authentic}/10`);
+        console.log(`      Satisfying: ${result.scores.satisfying}/10`);
+        console.log(`      Comforting: ${result.scores.comforting}/10`);
+        console.log(`      Aromatic: ${result.scores.aromatic}/10`);
+        console.log(`      Appetizing: ${result.scores.appetizing}/10`);
         console.log(`      Overall: ${result.scores.overall}/10 ⬅️  Saved to database`);
 
         return {

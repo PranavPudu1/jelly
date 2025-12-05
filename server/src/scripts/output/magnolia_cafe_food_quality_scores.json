@@ -1,0 +1,68 @@
+{
+  "restaurant": {
+    "id": "6c2c500f-dd78-44f7-9731-6226c58027a1",
+    "name": "Magnolia Cafe",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2025-12-05T23:02:47.105Z",
+    "scores": {
+      "flavorful": 6,
+      "authentic": 5,
+      "satisfying": 7,
+      "comforting": 8,
+      "aromatic": 6,
+      "appetizing": 7,
+      "overall": 6
+    },
+    "imageTags": [
+      "slice of apple pie",
+      "cinnamon dusted dessert",
+      "classic homemade treat",
+      "creamy whipped topping",
+      "warm rustic presentation",
+      "brick floor setting",
+      "open air dining",
+      "wooden ceiling beams",
+      "casual outdoor seating",
+      "industrial ceiling fans",
+      "outdoor seating area",
+      "shaded patio umbrella",
+      "rustic brick flooring",
+      "lush green surroundings",
+      "charming wooden signage",
+      "artistic wall murals",
+      "diners with booths",
+      "fun dinosaur decor",
+      "menu board display",
+      "casual dining area",
+      "salsa dip cup",
+      "poached eggs on top",
+      "savory breakfast pancake",
+      "shredded cheese garnish",
+      "fresh side salad",
+      "vintage neon signage",
+      "colorful illuminated signs",
+      "urban roadside appeal",
+      "nighttime street view",
+      "retro diner atmosphere",
+      "vibrant turquoise color",
+      "outdoor cafe signage",
+      "neon vintage style",
+      "retro diner sign",
+      "classic American diner",
+      "savory black bean side",
+      "flaky croissant sandwich",
+      "cheesy omelette delight",
+      "tangy salsa dip",
+      "crispy breakfast potatoes"
+    ],
+    "reviewTags": [
+      "friendly and attentive service",
+      "queso omelette",
+      "mimosa bar",
+      "nice indoor and outdoor seating",
+      "large menu selection"
+    ]
+  }
+}

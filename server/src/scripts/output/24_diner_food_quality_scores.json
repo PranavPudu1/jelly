@@ -5,16 +5,14 @@
     "price": "$$"
   },
   "analysis": {
-    "timestamp": "2025-12-05T22:18:11.331Z",
+    "timestamp": "2025-12-05T23:00:09.102Z",
     "scores": {
-      "freshness": 7,
-      "flavor": 8,
-      "presentation": 7,
-      "technique": 7,
-      "authenticity": 6,
-      "creativity": 5,
-      "consistency": 6,
-      "value": 7,
+      "flavorful": 7,
+      "authentic": 6,
+      "satisfying": 8,
+      "comforting": 9,
+      "aromatic": 7,
+      "appetizing": 7,
       "overall": 7
     },
     "imageTags": [

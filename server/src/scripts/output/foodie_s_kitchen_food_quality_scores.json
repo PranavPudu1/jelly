@@ -1,0 +1,62 @@
+{
+  "restaurant": {
+    "id": "6c972726-5960-43b4-b0cd-349f6adfd57c",
+    "name": "Foodie's Kitchen",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2025-12-05T23:01:38.534Z",
+    "scores": {
+      "flavorful": 6,
+      "authentic": 5,
+      "satisfying": 7,
+      "comforting": 6,
+      "aromatic": 5,
+      "appetizing": 6,
+      "overall": 6
+    },
+    "imageTags": [
+      "condiment station setup",
+      "informational notice board",
+      "cafe service counter",
+      "takeout order bags",
+      "printed menu display",
+      "soft flour tortilla",
+      "foil wrapped taco",
+      "cheese loaded delight",
+      "fresh vegetable toppings",
+      "accompanying sauce containers",
+      "cozy corner kitchen",
+      "industrial metal accents",
+      "community coffee sign",
+      "counter service setup",
+      "menu board display",
+      "minimalist seating area",
+      "bright fluorescent lighting",
+      "industrial kitchen view",
+      "urban street window",
+      "modern casual setting",
+      "menu display board",
+      "restaurant hiring notice",
+      "printed food listings",
+      "breakfast and lunch options",
+      "stacked white plates",
+      "fried egg topping",
+      "savory curry sauce",
+      "cucumber and nut sides",
+      "traditional Asian dish",
+      "fluffy white rice",
+      "takeout foam container",
+      "juicy gourmet burger",
+      "fresh lettuce filling",
+      "tangy sauce dip",
+      "crispy cheese layer",
+      "soft flour tortilla",
+      "savory meat vegetables",
+      "casual takeout meal",
+      "foil wrapped burrito",
+      "hearty beef filling"
+    ],
+    "reviewTags": []
+  }
+}

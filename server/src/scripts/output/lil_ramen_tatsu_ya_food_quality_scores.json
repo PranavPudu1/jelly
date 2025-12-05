@@ -1,0 +1,68 @@
+{
+  "restaurant": {
+    "id": "b553bb0c-bf54-4b23-b041-e408b1bac1cb",
+    "name": "Lil' Ramen Tatsu-Ya",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2025-12-05T23:02:31.201Z",
+    "scores": {
+      "flavorful": 7,
+      "authentic": 6,
+      "satisfying": 7,
+      "comforting": 8,
+      "aromatic": 7,
+      "appetizing": 8,
+      "overall": 7
+    },
+    "imageTags": [
+      "daily operating hours",
+      "business management details",
+      "reflected street view",
+      "storefront glass signage",
+      "bold red lettering",
+      "eye-catching exterior design",
+      "bold dragon mural",
+      "vibrant street art",
+      "urban ramen shopfront",
+      "neon and graphic elements",
+      "industrial dining space",
+      "eclectic urban vibe",
+      "bold wall artwork",
+      "wooden signage decor",
+      "exposed metal ceiling",
+      "vibrant dragon mural",
+      "eye-catching street art",
+      "playful exterior design",
+      "neon ramen signage",
+      "nighttime urban vibe",
+      "wooden accent decor",
+      "bright red chairs",
+      "quirky wall mural",
+      "playful monster design",
+      "industrial metal panels",
+      "nori seaweed garnish",
+      "charred chashu slices",
+      "creamy tonkotsu broth",
+      "soft boiled egg",
+      "buttery corn kernels",
+      "urban",
+      "neon",
+      "colorful",
+      "mural",
+      "dragon",
+      "signage",
+      "glass",
+      "street",
+      "reflection",
+      "storefront"
+    ],
+    "reviewTags": [
+      "refreshing strawberry yuzu lemonade",
+      "delicious mi-so-not ramen",
+      "no inside seating",
+      "attentive and nice employees",
+      "limited menu options"
+    ]
+  }
+}
