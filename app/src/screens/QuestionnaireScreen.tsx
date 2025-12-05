@@ -309,7 +309,13 @@ export default function QuestionnaireScreen({
             ...prev,
             [currentQuestion!.id]: rankedItems,
         }));
-        handleNext();
+
+        // If this is the last question, start discovering
+        if (isLastQuestion) {
+            handleStartDiscovering();
+        } else {
+            handleNext();
+        }
     }
 
     function animateTransition(callback: () => void) {
