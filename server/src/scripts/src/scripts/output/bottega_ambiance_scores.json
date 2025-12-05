@@ -1,0 +1,73 @@
+{
+  "restaurant": {
+    "id": "6dc45271-6bdc-4c8d-8761-395c1fa9d265",
+    "name": "Bottega",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2025-12-05T21:42:11.622Z",
+    "scores": {
+      "vibrant": 7,
+      "romantic": 6,
+      "trendy": 8,
+      "stylish": 8,
+      "immersive": 6,
+      "inviting": 7,
+      "overall": 7
+    },
+    "imageTags": [
+      "artistic latte art",
+      "bright pink saucer",
+      "sunlit coffee table",
+      "cozy morning coffee",
+      "leafy shadows play",
+      "cozy pink walls",
+      "modern wicker chairs",
+      "intimate corner space",
+      "artistic flower arrangement",
+      "natural wooden tabletop",
+      "circular foam pattern",
+      "intricate latte art",
+      "artisan coffee design",
+      "vibrant green background",
+      "creamy coffee texture",
+      "creamy espresso drink",
+      "white tiled surface",
+      "frothy coffee topping",
+      "outdoor garden table",
+      "pink ceramic cup",
+      "brick wall exterior",
+      "outdoor seating area",
+      "vintage storefront decor",
+      "ice cream parlor entrance",
+      "pastel door accents",
+      "casual dining spot",
+      "sunlit patio area",
+      "industrial chic chairs",
+      "iced coffee table",
+      "outdoor cafe seating",
+      "cafe menu display",
+      "alternative milk choices",
+      "diverse drink options",
+      "ice cream scoops variety",
+      "seasonal special offerings",
+      "simple white bowl",
+      "colorful rose bouquet",
+      "vanilla bean ice cream",
+      "casual outdoor setting",
+      "rustic wooden spoons"
+    ],
+    "reviewTags": [
+      "neighborhood gem",
+      "brekky sandwich",
+      "perfectly tucked in",
+      "sweet and friendly staff",
+      "iced lattes with house made syrup",
+      "small interior",
+      "cute little interior",
+      "window-service coffee shop",
+      "tasty treats",
+      "paris-cafe feeling patio"
+    ]
+  }
+}

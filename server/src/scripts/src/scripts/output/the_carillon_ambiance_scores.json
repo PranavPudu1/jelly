@@ -1,0 +1,73 @@
+{
+  "restaurant": {
+    "id": "69731774-9b67-4d12-9dc4-6d372ffa15cf",
+    "name": "The Carillon",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2025-12-05T21:45:38.063Z",
+    "scores": {
+      "vibrant": 6,
+      "romantic": 8,
+      "trendy": 7,
+      "stylish": 8,
+      "immersive": 7,
+      "inviting": 8,
+      "overall": 7
+    },
+    "imageTags": [
+      "edible floral garnish",
+      "chocolate and berry accents",
+      "intricate plated pastry",
+      "gourmet dessert presentation",
+      "elegant fine dining plating",
+      "buttered dinner roll",
+      "prosciutto slices",
+      "sparkling water glass",
+      "fresh berry salad",
+      "elegant table setting",
+      "self-serve dining setup",
+      "chef at work",
+      "granite buffet counter",
+      "assorted fruit toppings",
+      "freshly prepared pastries",
+      "fresh microgreens garnish",
+      "gourmet seafood dish",
+      "seared scallops presentation",
+      "creamy orange puree base",
+      "elegant plating style",
+      "soft warm lighting",
+      "rustic wooden tables",
+      "elegant archways design",
+      "cozy upscale atmosphere",
+      "grand circular chandeliers",
+      "inviting",
+      "warm",
+      "restaurant",
+      "buffet",
+      "counter",
+      "artistic sauce droplets",
+      "nutty almond crunch",
+      "colorful citrus garnish",
+      "elegant gourmet plating",
+      "fresh microgreens topping",
+      "inviting",
+      "modern",
+      "elegant",
+      "spacious",
+      "warm"
+    ],
+    "reviewTags": [
+      "peach mousse tart with strawberry crumble",
+      "private dining room",
+      "creamy spring onion and potato soup",
+      "beautiful and well decorated",
+      "wonderful lunch buffet",
+      "consistently exceeded expectations",
+      "artistry and chemistry",
+      "beautiful and magnificent dishes",
+      "wine and cheese",
+      "hidden gem"
+    ]
+  }
+}

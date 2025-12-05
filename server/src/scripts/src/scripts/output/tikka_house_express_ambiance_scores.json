@@ -1,16 +1,17 @@
 {
   "restaurant": {
     "id": "bbe7aebd-2f24-4e02-a7f0-f01b097d8d4c",
-    "name": "Tikka House Express"
+    "name": "Tikka House Express",
+    "price": "$$"
   },
   "analysis": {
-    "timestamp": "2025-12-01T05:04:14.200Z",
+    "timestamp": "2025-12-05T21:46:00.793Z",
     "scores": {
-      "vibrant": 7,
+      "vibrant": 8,
       "romantic": 3,
-      "trendy": 5,
-      "stylish": 6,
-      "immersive": 4,
+      "trendy": 6,
+      "stylish": 7,
+      "immersive": 5,
       "inviting": 7,
       "overall": 6
     },

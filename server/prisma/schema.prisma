@@ -8,19 +8,20 @@ datasource db {
 }
 
 model Restaurant {
-    id            String   @id @default(uuid()) @db.Uuid
-    name          String
-    rating        Float
-    lat           Float
-    long          Float
-    address       String
-    mapLink       String?
-    price         String
-    phoneNumber   String
-    dateAdded     DateTime @default(now())
-    sourceId      String?
-    source        String?
-    ambianceScore Float?   @default(0)
+    id               String   @id @default(uuid()) @db.Uuid
+    name             String
+    rating           Float
+    lat              Float
+    long             Float
+    address          String
+    mapLink          String?
+    price            String
+    phoneNumber      String
+    dateAdded        DateTime @default(now())
+    sourceId         String?
+    source           String?
+    ambianceScore    Float?   @default(0)
+    foodQualityScore Float?   @default(0)
 
     images      RestaurantImage[]
     reviews     Review[]

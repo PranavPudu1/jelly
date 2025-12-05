@@ -1,15 +1,16 @@
 {
   "restaurant": {
     "id": "02346477-eddd-4eb6-8cdf-60d301fa3d28",
-    "name": "Alamo Drafthouse Cinema Mueller"
+    "name": "Alamo Drafthouse Cinema Mueller",
+    "price": "$$"
   },
   "analysis": {
-    "timestamp": "2025-12-01T05:06:55.315Z",
+    "timestamp": "2025-12-05T21:41:43.866Z",
     "scores": {
       "vibrant": 8,
       "romantic": 5,
       "trendy": 8,
-      "stylish": 8,
+      "stylish": 7,
       "immersive": 7,
       "inviting": 7,
       "overall": 7

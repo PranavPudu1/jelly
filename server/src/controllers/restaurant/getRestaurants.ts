@@ -40,27 +40,6 @@ function calculateBoundingBox(lat: number, long: number, radiusMeters: number) {
     };
 }
 
-/**
- * Calculate ambiance score from AI-tagged ambiance images
- */
-function calculateAmbianceScore(restaurant: any): number {
-    // Filter for ambiance-tagged images
-    const ambianceImages = restaurant.images.filter((image: any) =>
-        image.tags?.some((tag: any) => tag.value.toLowerCase() === 'ambiance')
-    );
-
-    // If no ambiance images, fall back to overall rating
-    if (ambianceImages.length === 0) {
-        return restaurant.rating / 5;
-    }
-
-    // Average the ratings of ambiance images
-    const totalRating = ambianceImages.reduce((sum: number, image: any) => sum + (image.rating || 0), 0);
-    const averageRating = totalRating / ambianceImages.length;
-
-    // Normalize to 0-1 scale (ratings are 1-5)
-    return averageRating / 5;
-}
 
 /**
  * Calculate custom score based on user preferences
@@ -90,8 +69,8 @@ function calculateScore(
     // Normalize rating (0-5 scale) - for food quality
     const ratingScore = restaurant.rating / 5;
 
-    // Calculate ambiance score from AI-tagged images
-    const ambianceScore = calculateAmbianceScore(restaurant);
+    // Use pre-calculated ambiance score from database (already normalized 0-1)
+    const ambianceScore = restaurant.ambianceScore || 0;
 
     // Normalize proximity (inverse: closer = higher score)
     const proximityScore = 1 - distance / radiusMeters;

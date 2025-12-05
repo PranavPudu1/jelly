@@ -1,0 +1,73 @@
+{
+  "restaurant": {
+    "id": "36360a1e-3a1d-4f1a-abf4-63fd5c8e26a2",
+    "name": "Kerbey Lane Cafe - Mueller",
+    "price": "$"
+  },
+  "analysis": {
+    "timestamp": "2025-12-05T21:43:57.550Z",
+    "scores": {
+      "vibrant": 7,
+      "romantic": 4,
+      "trendy": 8,
+      "stylish": 7,
+      "immersive": 5,
+      "inviting": 8,
+      "overall": 7
+    },
+    "imageTags": [
+      "grilled salmon salad",
+      "mixed leafy greens",
+      "tangy dressing cup",
+      "colorful vegetable crunch",
+      "fresh avocado slices",
+      "cornbread with toppings",
+      "fresh juice pairing",
+      "brunch plate setting",
+      "poached eggs avocado",
+      "diced tomato garnish",
+      "contemporary architecture",
+      "lush greenery accents",
+      "modern glass facade",
+      "sunny outdoor seating",
+      "urban street view",
+      "maple syrup bottle",
+      "scrambled eggs side",
+      "fluffy breakfast pancakes",
+      "crispy bacon strips",
+      "fresh fruit medley",
+      "contemporary interior decor",
+      "warm ambient lighting",
+      "modern casual seating",
+      "cozy booth arrangements",
+      "lively dining atmosphere",
+      "powdered sugar sprinkles",
+      "buttery scrambled eggs",
+      "creamy dipping sauce",
+      "crispy bacon strips",
+      "golden brown toast",
+      "creamy eggs benedict",
+      "fluffy blueberry pancakes",
+      "sweet potato fries",
+      "savory breakfast delight",
+      "warm maple syrup",
+      "creamy black beans",
+      "hearty breakfast platter",
+      "spicy seasoned rice",
+      "mexican scrambled eggs",
+      "cheesy tortilla chips"
+    ],
+    "reviewTags": [
+      "well seasoned wagyu",
+      "massive portions",
+      "affordable meal",
+      "moist cornbread",
+      "incredible brunch",
+      "loud indoor environment",
+      "perfect service",
+      "quick food delivery",
+      "pleasant outdoor atmosphere",
+      "homemade syrup drinks"
+    ]
+  }
+}

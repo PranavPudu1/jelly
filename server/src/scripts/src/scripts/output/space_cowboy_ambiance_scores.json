@@ -1,18 +1,19 @@
 {
   "restaurant": {
     "id": "45008785-21c4-4af3-b64b-de8af86fece6",
-    "name": "Space Cowboy"
+    "name": "Space Cowboy",
+    "price": "$$"
   },
   "analysis": {
-    "timestamp": "2025-12-01T05:01:37.278Z",
+    "timestamp": "2025-12-05T21:45:22.592Z",
     "scores": {
       "vibrant": 8,
       "romantic": 7,
       "trendy": 9,
-      "stylish": 8,
-      "immersive": 9,
+      "stylish": 9,
+      "immersive": 8,
       "inviting": 8,
-      "overall": 9
+      "overall": 8
     },
     "imageTags": [
       "sleek serving vessel",

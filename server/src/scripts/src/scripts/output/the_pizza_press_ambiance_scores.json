@@ -1,10 +1,11 @@
 {
   "restaurant": {
     "id": "fee6594d-8411-41b9-bf68-a0ba6b223d03",
-    "name": "The Pizza Press"
+    "name": "The Pizza Press",
+    "price": "$"
   },
   "analysis": {
-    "timestamp": "2025-12-01T05:05:32.431Z",
+    "timestamp": "2025-12-05T21:45:54.440Z",
     "scores": {
       "vibrant": 6,
       "romantic": 3,

@@ -1,10 +1,11 @@
 {
   "restaurant": {
     "id": "9ac8ea16-1fd7-4d12-9c7d-070d2f5e4f41",
-    "name": "Tiki Tatsu-Ya"
+    "name": "Tiki Tatsu-Ya",
+    "price": "$$"
   },
   "analysis": {
-    "timestamp": "2025-12-01T04:58:50.511Z",
+    "timestamp": "2025-12-05T21:45:58.846Z",
     "scores": {
       "vibrant": 9,
       "romantic": 6,
