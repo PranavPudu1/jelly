@@ -24,7 +24,6 @@ import {
     Spacing,
     BorderRadius,
     Shadows,
-    Gradients,
     SpringConfig,
     AnimationScale,
 } from '../theme';
@@ -306,9 +305,9 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
                             />
 
                             <LinearGradient
-                                colors={ Gradients.translucentOverlay.colors }
-                                start={ Gradients.translucentOverlay.start }
-                                end={ Gradients.translucentOverlay.end }
+                                colors={ ['transparent', 'rgba(0, 0, 0, 0.6)'] }
+                                start={ { x: 0.5, y: 0 } }
+                                end={ { x: 0.5, y: 1 } }
                                 style={ styles.gradient }
                             >
                                 <Text style={ styles.quoteText }>
