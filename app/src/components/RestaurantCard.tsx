@@ -35,7 +35,7 @@ import { useTheme } from '../contexts/ThemeContext';
 
 const { width, height } = Dimensions.get('window');
 
-const NAVIGATION_BAR_HEIGHT = 80; // Approximate height of navigation bar
+const NAVIGATION_BAR_HEIGHT = 215; // Approximate height of navigation bar + safe area
 const CARD_HEIGHT = height - NAVIGATION_BAR_HEIGHT;
 
 interface RestaurantCardProps {
@@ -563,8 +563,7 @@ const createStyles = (colors: typeof AppColors) => StyleSheet.create({
         borderRadius: BorderRadius.lg,
         overflow: 'hidden',
         marginHorizontal: 8,
-        paddingTop: Spacing.sm,
-        paddingHorizontal: Spacing.sm,
+        paddingBottom: 20,
         borderWidth: 1,
         borderColor: 'rgba(0, 0, 0, 0.05)',
         ...Shadows.soft,
@@ -704,13 +703,13 @@ const createStyles = (colors: typeof AppColors) => StyleSheet.create({
     },
     quoteText: {
         ...Typography.bodyLarge,
-        color: colors.white,
+        color: '#FFFFFF',
         fontStyle: 'italic',
         marginBottom: Spacing.xs,
     },
     quoteAuthor: {
         ...Typography.bodyMedium,
-        color: colors.white,
+        color: '#FFFFFF',
     },
 
     // Reviews Section
@@ -807,6 +806,7 @@ const createStyles = (colors: typeof AppColors) => StyleSheet.create({
     },
     viewAllButtonContainer: {
         marginTop: Spacing.lg,
+        marginBottom: Spacing.lg
     },
     viewAllButtonText: {
         ...Typography.button,
