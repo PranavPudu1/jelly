@@ -252,7 +252,10 @@ export default function QuestionnaireScreen({
 
         return (
             <ScaleDecorator>
-                <View
+                <TouchableOpacity
+                    onPressIn={ drag }
+                    disabled={ isActive }
+                    activeOpacity={ 0.7 }
                     style={ [
                         styles.rankingItem,
                         isActive && styles.rankingItemActive,
@@ -265,15 +268,10 @@ export default function QuestionnaireScreen({
                     </View>
 
                     <Text style={ styles.rankingItemText }>{ item }</Text>
-                    <TouchableOpacity
-                        style={ styles.dragHandle }
-                        onPressIn={ drag }
-                        disabled={ isActive }
-                        activeOpacity={ 0.7 }
-                    >
+                    <View style={ styles.dragHandle }>
                         <Text style={ styles.dragHandleText }>≡</Text>
-                    </TouchableOpacity>
-                </View>
+                    </View>
+                </TouchableOpacity>
             </ScaleDecorator>
         );
     }
@@ -467,8 +465,6 @@ export default function QuestionnaireScreen({
                                         mass: 0.05,
                                         stiffness: 400,
                                         overshootClamping: false,
-                                        restSpeedThreshold: 0.01,
-                                        restDisplacementThreshold: 0.01,
                                     } }
                                 />
 
