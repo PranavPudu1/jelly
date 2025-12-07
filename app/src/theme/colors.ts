@@ -4,20 +4,20 @@ export const AppColors = {
     accent: '#8C6A77',
     secondary: '#C36A79',
 
-    background: '#181818FF',
-    white: '#FAFAFA',
+    background: '#FAFAFA',
+    white: '#FFFFFF',
 
-    surface: '#2E2E2E',
-    surfaceVariant: '#584D52',
+    surface: '#F5F5F5',
+    surfaceVariant: '#E8E8E8',
 
     // Text Colors
-    text: '#FAFAF7',
+    text: '#212121',
     textDark: '#212121',
-    textLight: '#B0B0B0',
+    textLight: '#757575',
 
     // Semantic Colors
     save: '#FEE0DE',
-    skip: '#584D52',
+    skip: '#E0E0E0',
 
     cardShadow: 'rgba(0, 0, 0, 0.15)',
     overlay: 'rgba(0, 0, 0, 0.38)',
@@ -28,4 +28,5 @@ export const AppColors = {
 
     // Review Colors
     starOrange: '#FFA07A',
+    warning: '#FFA07A',
 };

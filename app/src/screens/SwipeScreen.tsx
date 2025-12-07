@@ -17,6 +17,7 @@ import { Swiper, SwiperCardRefType } from 'rn-swiper-list';
 import RestaurantCard from '../components/RestaurantCard';
 
 import { AppColors, Typography, Spacing } from '../theme';
+import { useTheme } from '../contexts/ThemeContext';
 import {
     useRestaurantsFlat,
     NearbyRestaurantFilters,
@@ -35,6 +36,9 @@ type FilterType = {
 };
 
 export default function SwipeScreen() {
+    const { colors } = useTheme();
+    const styles = useMemo(() => createStyles(colors), [colors]);
+
     const swiperRef = useRef<SwiperCardRefType>(null);
     const { userLocation, isLoading: isLoadingLocation } = useLocation();
     const { user } = useContext(UserContext);
@@ -209,17 +213,17 @@ export default function SwipeScreen() {
             >
                 <View
                     style={ {
-                        backgroundColor: AppColors.background,
+                        backgroundColor: colors.background,
                         borderRadius: 12,
                         paddingVertical: 12,
                         paddingHorizontal: 16,
                         borderWidth: 2,
-                        borderColor: AppColors.background,
+                        borderColor: colors.background,
                     } }
                 >
                     <Text
                         style={ {
-                            color: AppColors.white,
+                            color: colors.white,
                             fontSize: 26,
                             fontWeight: 'bold',
                         } }
@@ -229,7 +233,7 @@ export default function SwipeScreen() {
                 </View>
             </View>
         );
-    }, []);
+    }, [colors]);
 
     const OverlayLabelLeft = useCallback(() => {
         return (
@@ -242,17 +246,17 @@ export default function SwipeScreen() {
             >
                 <View
                     style={ {
-                        backgroundColor: AppColors.primary,
+                        backgroundColor: colors.primary,
                         borderRadius: 12,
                         paddingVertical: 12,
                         paddingHorizontal: 16,
                         borderWidth: 2,
-                        borderColor: AppColors.primary,
+                        borderColor: colors.primary,
                     } }
                 >
                     <Text
                         style={ {
-                            color: AppColors.textDark,
+                            color: colors.textDark,
                             fontSize: 26,
                             fontWeight: 'bold',
                         } }
@@ -262,7 +266,7 @@ export default function SwipeScreen() {
                 </View>
             </View>
         );
-    }, []);
+    }, [colors]);
 
     function FilterChip({
         label,
@@ -298,7 +302,7 @@ export default function SwipeScreen() {
                 <View style={ styles.loadingContainer }>
                     <ActivityIndicator
                         size="large"
-                        color={ AppColors.secondary }
+                        color={ colors.secondary }
                     />
                     <Text style={ styles.loadingText }>
                         { isLoadingLocation
@@ -318,7 +322,7 @@ export default function SwipeScreen() {
                     <Ionicons
                         name="location-outline"
                         size={ 64 }
-                        color={ AppColors.textLight }
+                        color={ colors.textLight }
                     />
                     <Text style={ styles.errorTitle }>Location Required</Text>
                     <Text style={ styles.errorMessage }>
@@ -338,7 +342,7 @@ export default function SwipeScreen() {
                     <Ionicons
                         name="alert-circle"
                         size={ 64 }
-                        color={ AppColors.textLight }
+                        color={ colors.textLight }
                     />
                     <Text style={ styles.errorTitle }>
                         Oops! Something went wrong
@@ -364,7 +368,7 @@ export default function SwipeScreen() {
                         <Ionicons
                             name="restaurant"
                             size={ 64 }
-                            color={ AppColors.textDark }
+                            color={ colors.textDark }
                         />
                     </View>
                     <Text style={ styles.endTitle }>No restaurants found</Text>
@@ -385,7 +389,7 @@ export default function SwipeScreen() {
                         <Ionicons
                             name="restaurant"
                             size={ 64 }
-                            color={ AppColors.textDark }
+                            color={ colors.textDark }
                         />
                     </View>
 
@@ -519,16 +523,16 @@ export default function SwipeScreen() {
     );
 }
 
-const styles = StyleSheet.create({
+const createStyles = (colors: typeof AppColors) => StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: AppColors.white,
+        backgroundColor: colors.white,
     },
     filterContainer: {
         paddingVertical: Spacing.md,
-        backgroundColor: AppColors.white,
+        backgroundColor: colors.white,
         borderBottomWidth: 1,
-        borderBottomColor: '#F0F0F0',
+        borderBottomColor: colors.textLight + '20',
     },
     filterScrollContent: {
         paddingHorizontal: Spacing.md,
@@ -538,22 +542,22 @@ const styles = StyleSheet.create({
         paddingHorizontal: 16,
         paddingVertical: 8,
         borderRadius: 20,
-        backgroundColor: AppColors.white,
+        backgroundColor: colors.white,
         borderWidth: 1.5,
-        borderColor: '#E0E0E0',
+        borderColor: colors.textLight + '40',
         marginRight: Spacing.sm,
     },
     filterChipActive: {
-        backgroundColor: AppColors.textDark,
-        borderColor: AppColors.textDark,
+        backgroundColor: colors.textDark,
+        borderColor: colors.textDark,
     },
     filterChipText: {
         fontSize: 14,
         fontWeight: '600',
-        color: AppColors.textDark,
+        color: colors.textDark,
     },
     filterChipTextActive: {
-        color: AppColors.white,
+        color: colors.white,
     },
     cardContainer: {
         flex: 1,
@@ -569,7 +573,7 @@ const styles = StyleSheet.create({
         width: 120,
         height: 120,
         borderRadius: 60,
-        backgroundColor: AppColors.primary,
+        backgroundColor: colors.primary,
         justifyContent: 'center',
         alignItems: 'center',
         marginBottom: Spacing.xl,
@@ -579,22 +583,23 @@ const styles = StyleSheet.create({
         fontSize: 28,
         marginBottom: Spacing.sm,
         textAlign: 'center',
+        color: colors.textDark,
     },
     endSubtitle: {
         ...Typography.bodyLarge,
-        color: AppColors.textLight,
+        color: colors.textLight,
         marginBottom: Spacing.xxl,
         textAlign: 'center',
     },
     startOverButton: {
-        backgroundColor: AppColors.primary,
+        backgroundColor: colors.primary,
         paddingVertical: Spacing.md,
         paddingHorizontal: Spacing.xxxl,
         borderRadius: 30,
     },
     startOverButtonText: {
         ...Typography.button,
-        color: AppColors.textDark,
+        color: colors.textDark,
     },
     loadingContainer: {
         flex: 1,
@@ -604,7 +609,7 @@ const styles = StyleSheet.create({
     },
     loadingText: {
         ...Typography.bodyLarge,
-        color: AppColors.textLight,
+        color: colors.textLight,
         marginTop: Spacing.lg,
         textAlign: 'center',
     },
@@ -620,16 +625,17 @@ const styles = StyleSheet.create({
         marginTop: Spacing.lg,
         marginBottom: Spacing.sm,
         textAlign: 'center',
+        color: colors.textDark,
     },
     errorMessage: {
         ...Typography.bodyLarge,
-        color: AppColors.textLight,
+        color: colors.textLight,
         marginBottom: Spacing.md,
         textAlign: 'center',
     },
     errorHint: {
         ...Typography.bodySmall,
-        color: AppColors.textLight,
+        color: colors.textLight,
         fontStyle: 'italic',
         textAlign: 'center',
     },
@@ -644,13 +650,13 @@ const styles = StyleSheet.create({
         gap: Spacing.sm,
         paddingVertical: Spacing.sm,
         paddingHorizontal: Spacing.lg,
-        backgroundColor: 'rgba(255, 255, 255, 0.9)',
+        backgroundColor: colors.white + 'E6',
         borderRadius: 20,
         alignSelf: 'center',
     },
     fetchingNextText: {
         ...Typography.bodySmall,
-        color: AppColors.textDark,
+        color: colors.textDark,
         fontWeight: '600',
     },
 });

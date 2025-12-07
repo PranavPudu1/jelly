@@ -10,6 +10,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import * as SplashScreen from 'expo-splash-screen';
 import * as Font from 'expo-font';
 
+import ThemeProvider from './src/contexts/ThemeContext';
 import UserContextWrapper from './src/contexts/UserContext';
 import SavedRestaurantsProvider from './src/contexts/SavedRestaurantsContext';
 import LocationProvider from './src/contexts/LocationContext';
@@ -22,6 +23,7 @@ import SavedRestaurantsScreen from './src/screens/SavedRestaurantsScreen';
 import UserProfileScreen from './src/screens/UserProfileScreen';
 
 import { AppColors, Shadows } from './src/theme';
+import { useTheme } from './src/contexts/ThemeContext';
 
 export type RootStackParamList = {
     Splash: undefined;
@@ -54,6 +56,8 @@ const queryClient = new QueryClient({
 });
 
 function MainTabs() {
+    const { colors } = useTheme();
+
     return (
         <Tab.Navigator
             screenOptions={ ({ route }) => ({
@@ -80,10 +84,10 @@ function MainTabs() {
                         <Ionicons name={ iconName } size={ size } color={ color } />
                     );
                 },
-                tabBarActiveTintColor: AppColors.textDark,
-                tabBarInactiveTintColor: AppColors.secondary,
+                tabBarActiveTintColor: colors.textDark,
+                tabBarInactiveTintColor: colors.secondary,
                 tabBarStyle: {
-                    backgroundColor: AppColors.primary,
+                    backgroundColor: colors.primary,
                     borderTopWidth: 0,
                     height: 80,
                     paddingBottom: 18,
@@ -160,37 +164,39 @@ export default function App() {
     return (
         <GestureHandlerRootView>
             <QueryClientProvider client={ queryClient }>
-                <UserContextWrapper>
-                    <LocationProvider>
-                        <SavedRestaurantsProvider>
-                            <NavigationContainer onReady={ onLayoutRootView }>
-                                <Stack.Navigator
-                                    screenOptions={ {
-                                        headerShown: false,
-                                        animation: 'fade_from_bottom',
-                                    } }
-                                >
-                                    <Stack.Screen
-                                        name="Splash"
-                                        component={ SplashScreenComponent }
-                                    />
+                <ThemeProvider>
+                    <UserContextWrapper>
+                        <LocationProvider>
+                            <SavedRestaurantsProvider>
+                                <NavigationContainer onReady={ onLayoutRootView }>
+                                    <Stack.Navigator
+                                        screenOptions={ {
+                                            headerShown: false,
+                                            animation: 'fade_from_bottom',
+                                        } }
+                                    >
+                                        <Stack.Screen
+                                            name="Splash"
+                                            component={ SplashScreenComponent }
+                                        />
 
-                                    <Stack.Screen
-                                        name="Auth"
-                                        component={ AuthScreen }
-                                    />
+                                        <Stack.Screen
+                                            name="Auth"
+                                            component={ AuthScreen }
+                                        />
 
-                                    <Stack.Screen
-                                        name="Questionnaire"
-                                        component={ QuestionnaireScreen }
-                                    />
+                                        <Stack.Screen
+                                            name="Questionnaire"
+                                            component={ QuestionnaireScreen }
+                                        />
 
-                                    <Stack.Screen name="MainTabs" component={ MainTabs } />
-                                </Stack.Navigator>
-                            </NavigationContainer>
-                        </SavedRestaurantsProvider>
-                    </LocationProvider>
-                </UserContextWrapper>
+                                        <Stack.Screen name="MainTabs" component={ MainTabs } />
+                                    </Stack.Navigator>
+                                </NavigationContainer>
+                            </SavedRestaurantsProvider>
+                        </LocationProvider>
+                    </UserContextWrapper>
+                </ThemeProvider>
             </QueryClientProvider>
         </GestureHandlerRootView>
     );

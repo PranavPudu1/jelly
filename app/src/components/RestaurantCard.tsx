@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useMemo } from 'react';
 import {
     View,
     Text,
@@ -31,6 +31,7 @@ import {
 
 import { Restaurant } from '../types';
 import { openInMaps } from '../utils/location';
+import { useTheme } from '../contexts/ThemeContext';
 
 const { width, height } = Dimensions.get('window');
 
@@ -42,6 +43,9 @@ interface RestaurantCardProps {
 }
 
 export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
+    const { colors } = useTheme();
+    const styles = useMemo(() => createStyles(colors), [colors]);
+
     const [heroReelVisible, setHeroReelVisible] = useState(false);
     const [foodReelVisible, setFoodReelVisible] = useState(false);
     const [ambianceModalVisible, setAmbianceModalVisible] = useState(false);
@@ -129,7 +133,7 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
                     key={ i }
                     name="star"
                     size={ starSize }
-                    color={ AppColors.secondary }
+                    color={ colors.secondary }
                 />,
             );
         }
@@ -140,7 +144,7 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
                     key="half"
                     name="star-half"
                     size={ starSize }
-                    color={ AppColors.secondary }
+                    color={ colors.secondary }
                 />,
             );
 
@@ -150,7 +154,7 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
                     key={ `empty-${i}` }
                     name="star-outline"
                     size={ starSize }
-                    color={ AppColors.secondary }
+                    color={ colors.secondary }
                 />,
             );
         }
@@ -243,7 +247,7 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
                                 <Ionicons
                                     name="location"
                                     size={ 14 }
-                                    color={ AppColors.textDark }
+                                    color={ colors.textDark }
                                 />
                                 <Text style={ [styles.infoValue, styles.locationText] } numberOfLines={ 1 }>
                                     { formatDistanceFromMeters(restaurant.distance) }
@@ -256,7 +260,7 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
                                 <Ionicons
                                     name="call"
                                     size={ 14 }
-                                    color={ AppColors.textDark }
+                                    color={ colors.textDark }
                                 />
                                 <Text style={ styles.infoValue } numberOfLines={ 1 }>
                                     { restaurant.phoneNumber }
@@ -269,7 +273,7 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
                                 <Ionicons
                                     name="business"
                                     size={ 14 }
-                                    color={ AppColors.textDark }
+                                    color={ colors.textDark }
                                 />
                                 <Text style={ styles.infoValue } numberOfLines={ 1 }>
                                     { extractCity(restaurant.address) }
@@ -342,13 +346,13 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
                                 <Ionicons
                                     name="logo-instagram"
                                     size={ 16 }
-                                    color={ AppColors.instagram }
+                                    color={ colors.instagram }
                                 />
 
                                 <Text
                                     style={ [
                                         styles.socialText,
-                                        { color: AppColors.instagram },
+                                        { color: colors.instagram },
                                     ] }
                                 >
                                     { restaurant.socialMedia.instagram }
@@ -365,7 +369,7 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
                                 <Ionicons
                                     name="logo-tiktok"
                                     size={ 16 }
-                                    color={ AppColors.textDark }
+                                    color={ colors.textDark }
                                 />
 
                                 <Text style={ styles.socialText }>
@@ -464,7 +468,7 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
                                                                 name="star"
                                                                 size={ 11 }
                                                                 color={
-                                                                    AppColors.starOrange
+                                                                    colors.starOrange
                                                                 }
                                                             />
                                                         )) }
@@ -598,11 +602,11 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
     );
 }
 
-const styles = StyleSheet.create({
+const createStyles = (colors: typeof AppColors) => StyleSheet.create({
     card: {
         width: width - 16,
         height: CARD_HEIGHT,
-        backgroundColor: AppColors.white,
+        backgroundColor: colors.white,
         borderRadius: BorderRadius.lg,
         overflow: 'hidden',
         marginHorizontal: 8,
@@ -615,7 +619,7 @@ const styles = StyleSheet.create({
         marginTop: 8,
     },
     stickyHeader: {
-        backgroundColor: AppColors.white,
+        backgroundColor: colors.white,
         paddingBottom: Spacing.sm,
         borderBottomWidth: 1,
         borderBottomColor: 'rgba(0,0,0,0.05)',
@@ -647,7 +651,7 @@ const styles = StyleSheet.create({
         ...Typography.titleLarge,
         fontSize: 24,
         fontWeight: '700',
-        color: AppColors.textDark,
+        color: colors.textDark,
         flexShrink: 1,
         maxWidth: '70%',
     },
@@ -656,13 +660,13 @@ const styles = StyleSheet.create({
     },
     separatorDot: {
         fontSize: 16,
-        color: AppColors.textLight,
+        color: colors.textLight,
         lineHeight: 24,
     },
     priceLevel: {
         ...Typography.bodyMedium,
         fontSize: 16,
-        color: AppColors.textLight,
+        color: colors.textLight,
     },
     ratingRow: {
         flexDirection: 'row',
@@ -670,7 +674,7 @@ const styles = StyleSheet.create({
     },
     cuisine: {
         ...Typography.bodySmall,
-        color: AppColors.textLight,
+        color: colors.textLight,
     },
     heroImage: {
         width: '100%',
@@ -685,7 +689,7 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
         borderColor: 'rgba(0,0,0,0.1)',
         paddingVertical: Spacing.xs,
-        backgroundColor: AppColors.white,
+        backgroundColor: colors.white,
         flexDirection: 'row',
         justifyContent: 'space-evenly',
         alignItems: 'center',
@@ -705,13 +709,13 @@ const styles = StyleSheet.create({
     },
     infoValue: {
         ...Typography.bodySmall,
-        color: AppColors.textDark,
+        color: colors.textDark,
         fontWeight: '500',
         fontSize: 11,
         flexShrink: 1,
     },
     locationText: {
-        color: AppColors.textDark,
+        color: colors.textDark,
         fontWeight: '600',
     },
 
@@ -721,7 +725,7 @@ const styles = StyleSheet.create({
     },
     ambianceLabel: {
         ...Typography.bodyMedium,
-        color: AppColors.textLight,
+        color: colors.textLight,
         paddingHorizontal: Spacing.sm,
         marginBottom: Spacing.md,
     },
@@ -747,13 +751,13 @@ const styles = StyleSheet.create({
     },
     quoteText: {
         ...Typography.bodyLarge,
-        color: AppColors.white,
+        color: colors.white,
         fontStyle: 'italic',
         marginBottom: Spacing.xs,
     },
     quoteAuthor: {
         ...Typography.bodyMedium,
-        color: AppColors.white,
+        color: colors.white,
     },
 
     // Reviews Section
@@ -763,7 +767,7 @@ const styles = StyleSheet.create({
     },
     sectionTitle: {
         ...Typography.bodyMedium,
-        color: AppColors.textLight,
+        color: colors.textLight,
         marginBottom: Spacing.md,
     },
     socialHandles: {
@@ -777,7 +781,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: Spacing.sm,
         paddingVertical: 6,
         borderRadius: BorderRadius.md,
-        backgroundColor: AppColors.primary,
+        backgroundColor: colors.primary,
         gap: 6,
         ...Shadows.subtle,
     },
@@ -788,7 +792,7 @@ const styles = StyleSheet.create({
         ...Typography.bodySmall,
         fontSize: 11,
         fontWeight: '600',
-        color: AppColors.textDark,
+        color: colors.textDark,
     },
     foodItemRow: {
         flexDirection: 'row',
@@ -825,7 +829,7 @@ const styles = StyleSheet.create({
         marginRight: Spacing.xs,
     },
     avatarText: {
-        color: AppColors.white,
+        color: '#FFFFFF',
         fontSize: 12,
         fontWeight: 'bold',
     },
@@ -836,7 +840,7 @@ const styles = StyleSheet.create({
         ...Typography.bodySmall,
         fontSize: 11,
         fontWeight: '600',
-        color: AppColors.textDark,
+        color: '#FFFFFF',
     },
     reviewStars: {
         flexDirection: 'row',
@@ -845,7 +849,7 @@ const styles = StyleSheet.create({
     reviewQuote: {
         ...Typography.bodySmall,
         fontSize: 11,
-        color: AppColors.textLight,
+        color: '#FFFFFF',
         lineHeight: 16,
     },
     viewAllButtonContainer: {
@@ -862,7 +866,7 @@ const styles = StyleSheet.create({
         ...Typography.titleLarge,
         fontSize: 28,
         fontWeight: '700',
-        color: AppColors.textDark,
+        color: colors.textDark,
         textAlign: 'center',
         marginBottom: Spacing.xl,
     },

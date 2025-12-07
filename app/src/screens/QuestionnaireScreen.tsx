@@ -1,4 +1,4 @@
-import { useState, useRef, useContext, useEffect } from 'react';
+import { useState, useRef, useContext, useEffect, useMemo } from 'react';
 
 import {
     View,
@@ -28,6 +28,7 @@ import { RootStackParamList } from '../../App';
 import WelcomeCarousel from '../components/WelcomeCarousel';
 
 import { UserContext } from '../contexts/UserContext';
+import { useTheme } from '../contexts/ThemeContext';
 
 import {
     AppColors,
@@ -89,6 +90,8 @@ export default function QuestionnaireScreen({
     navigation,
 }: QuestionnaireScreenProps) {
     const { user, setUser } = useContext(UserContext);
+    const { colors } = useTheme();
+    const styles = useMemo(() => createStyles(colors), [colors]);
 
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(
         user === null ? -1 : 0,
@@ -643,7 +646,7 @@ export default function QuestionnaireScreen({
                                                             }
                                                             placeholder="Please specify..."
                                                             placeholderTextColor={
-                                                                AppColors.textLight
+                                                                colors.textLight
                                                             }
                                                             value={ otherText }
                                                             onChangeText={
@@ -693,7 +696,7 @@ export default function QuestionnaireScreen({
                                                 'Type your answer here...'
                                             }
                                             placeholderTextColor={
-                                                AppColors.textLight
+                                                colors.textLight
                                             }
                                             value={ additionalText }
                                             onChangeText={ (text) => {
@@ -787,7 +790,7 @@ export default function QuestionnaireScreen({
                                             ] }
                                             placeholder="Anything else? (e.g., nut allergy)"
                                             placeholderTextColor={
-                                                AppColors.textLight
+                                                colors.textLight
                                             }
                                             value={ additionalText }
                                             onChangeText={
@@ -857,14 +860,14 @@ export default function QuestionnaireScreen({
     );
 }
 
-const styles = StyleSheet.create({
+const createStyles = (colors: typeof AppColors) => StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#FFF9F8',
+        backgroundColor: colors.background,
     },
     progressBarContainer: {
         height: 6,
-        backgroundColor: AppColors.background,
+        backgroundColor: colors.background,
         width: '100%',
         overflow: 'hidden',
     },
@@ -884,7 +887,7 @@ const styles = StyleSheet.create({
     },
     questionNumber: {
         ...Typography.bodySmall,
-        color: AppColors.accent,
+        color: colors.accent,
         fontWeight: '600',
         marginBottom: Spacing.xs,
         textTransform: 'uppercase',
@@ -892,14 +895,14 @@ const styles = StyleSheet.create({
     },
     encouragementText: {
         ...Typography.bodyMedium,
-        color: AppColors.primary,
+        color: colors.primary,
         fontWeight: '600',
         marginBottom: Spacing.md,
         fontSize: 16,
     },
     questionText: {
         ...Typography.displaySmall,
-        color: AppColors.textDark,
+        color: colors.textDark,
         fontSize: 32,
         lineHeight: 40,
         fontWeight: '700',
@@ -919,7 +922,7 @@ const styles = StyleSheet.create({
         paddingBottom: Spacing.md,
     },
     optionButton: {
-        backgroundColor: AppColors.white,
+        backgroundColor: colors.white,
         paddingVertical: Spacing.lg,
         paddingHorizontal: Spacing.lg,
         borderRadius: BorderRadius.lg,
@@ -929,7 +932,7 @@ const styles = StyleSheet.create({
         ...Shadows.subtle,
     },
     optionButtonSelected: {
-        borderColor: AppColors.primary,
+        borderColor: colors.primary,
         backgroundColor: '#FFF9F8',
         ...Shadows.warm,
     },
@@ -946,33 +949,33 @@ const styles = StyleSheet.create({
         marginRight: Spacing.md,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: AppColors.white,
+        backgroundColor: colors.white,
     },
     optionRadioSelected: {
-        borderColor: AppColors.primary,
+        borderColor: colors.primary,
         borderWidth: 3,
     },
     optionRadioInner: {
         width: 14,
         height: 14,
         borderRadius: 7,
-        backgroundColor: AppColors.primary,
+        backgroundColor: colors.primary,
     },
     optionText: {
         ...Typography.bodyLarge,
-        color: AppColors.textDark,
+        color: colors.textDark,
         flex: 1,
         fontSize: 17,
     },
     optionTextSelected: {
-        color: AppColors.textDark,
+        color: colors.textDark,
         fontWeight: '700',
     },
     otherInputContainer: {
         paddingBottom: Spacing.xxl,
     },
     textInput: {
-        backgroundColor: AppColors.white,
+        backgroundColor: colors.white,
         borderRadius: BorderRadius.md,
         borderWidth: 2,
         borderColor: '#F0E8EC',
@@ -980,7 +983,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: Spacing.lg,
         marginTop: Spacing.md,
         fontSize: 16,
-        color: AppColors.textDark,
+        color: colors.textDark,
         ...Shadows.subtle,
     },
     multilineInput: {
@@ -993,7 +996,7 @@ const styles = StyleSheet.create({
     },
     rankingHint: {
         ...Typography.bodySmall,
-        color: AppColors.textLight,
+        color: colors.textLight,
         textAlign: 'center',
         marginBottom: Spacing.sm,
         fontSize: 13,
@@ -1004,7 +1007,7 @@ const styles = StyleSheet.create({
     rankingItem: {
         flexDirection: 'row',
         alignItems: 'center',
-        backgroundColor: AppColors.white,
+        backgroundColor: colors.white,
         paddingVertical: Spacing.sm + 2,
         paddingHorizontal: Spacing.md,
         borderRadius: BorderRadius.md,
@@ -1014,7 +1017,7 @@ const styles = StyleSheet.create({
         ...Shadows.subtle,
     },
     rankingItemActive: {
-        borderColor: AppColors.primary,
+        borderColor: colors.primary,
         backgroundColor: '#FFF9F8',
         ...Shadows.warm,
         elevation: 8,
@@ -1023,20 +1026,20 @@ const styles = StyleSheet.create({
         width: 28,
         height: 28,
         borderRadius: 14,
-        backgroundColor: AppColors.primary,
+        backgroundColor: colors.primary,
         alignItems: 'center',
         justifyContent: 'center',
         marginRight: Spacing.sm,
     },
     rankingNumberText: {
-        color: AppColors.white,
+        color: colors.white,
         fontSize: 14,
         fontWeight: '700',
     },
     rankingItemText: {
         flex: 1,
         fontSize: 15,
-        color: AppColors.textDark,
+        color: colors.textDark,
         fontWeight: '600',
     },
     dragHandle: {
@@ -1050,12 +1053,12 @@ const styles = StyleSheet.create({
     },
     dragHandleText: {
         fontSize: 28,
-        color: AppColors.primary,
+        color: colors.primary,
         fontWeight: '700',
         opacity: 0.8,
     },
     continueButton: {
-        backgroundColor: AppColors.primary,
+        backgroundColor: colors.primary,
         paddingVertical: Spacing.sm + 2,
         paddingHorizontal: Spacing.xl,
         borderRadius: BorderRadius.pill,
@@ -1064,7 +1067,7 @@ const styles = StyleSheet.create({
         ...Shadows.warm,
     },
     continueButtonText: {
-        color: AppColors.white,
+        color: colors.white,
         fontSize: 16,
         fontWeight: '700',
     },
@@ -1078,7 +1081,7 @@ const styles = StyleSheet.create({
     },
     checkboxHint: {
         ...Typography.bodySmall,
-        color: AppColors.textLight,
+        color: colors.textLight,
         marginBottom: Spacing.xs,
         fontStyle: 'italic',
         fontSize: 12,
@@ -1086,7 +1089,7 @@ const styles = StyleSheet.create({
     checkboxItem: {
         flexDirection: 'row',
         alignItems: 'center',
-        backgroundColor: AppColors.white,
+        backgroundColor: colors.white,
         paddingVertical: Spacing.sm,
         paddingHorizontal: Spacing.md,
         borderRadius: BorderRadius.md,
@@ -1096,7 +1099,7 @@ const styles = StyleSheet.create({
         ...Shadows.subtle,
     },
     checkboxItemSelected: {
-        borderColor: AppColors.primary,
+        borderColor: colors.primary,
         backgroundColor: '#FFF9F8',
     },
     checkbox: {
@@ -1108,20 +1111,20 @@ const styles = StyleSheet.create({
         marginRight: Spacing.md,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: AppColors.white,
+        backgroundColor: colors.white,
     },
     checkboxChecked: {
-        borderColor: AppColors.primary,
-        backgroundColor: AppColors.primary,
+        borderColor: colors.primary,
+        backgroundColor: colors.primary,
     },
     checkmark: {
-        color: AppColors.white,
+        color: colors.white,
         fontSize: 16,
         fontWeight: '700',
     },
     checkboxText: {
         ...Typography.bodyLarge,
-        color: AppColors.textDark,
+        color: colors.textDark,
         flex: 1,
         fontSize: 17,
     },
@@ -1138,7 +1141,7 @@ const styles = StyleSheet.create({
     },
     startButtonText: {
         ...Typography.button,
-        color: AppColors.textDark,
+        color: colors.textDark,
         fontSize: 19,
         fontWeight: '800',
         letterSpacing: 0.5,
@@ -1151,10 +1154,10 @@ const styles = StyleSheet.create({
         marginTop: Spacing.lg,
         backgroundColor: 'transparent',
         borderWidth: 2,
-        borderColor: AppColors.textLight,
+        borderColor: colors.textLight,
     },
     skipButtonText: {
-        color: AppColors.textLight,
+        color: colors.textLight,
         fontSize: 16,
         fontWeight: '600',
     },

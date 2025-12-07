@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import {
     View,
     Text,
@@ -12,6 +12,7 @@ import {
 import { Ionicons } from '@expo/vector-icons';
 
 import { AppColors, Typography, Spacing, BorderRadius } from '../theme';
+import { useTheme } from '../contexts/ThemeContext';
 import { FoodItem } from '../types';
 
 interface MenuModalProps {
@@ -29,6 +30,8 @@ export default function MenuModal({
     menuImages,
     onPhotoPress,
 }: MenuModalProps) {
+    const { colors } = useTheme();
+    const styles = useMemo(() => createStyles(colors), [colors]);
     const [activeTab, setActiveTab] = useState<'items' | 'menu'>('items');
 
     function getAvatarColor(index: number) {
@@ -58,7 +61,7 @@ export default function MenuModal({
                         <Ionicons
                             name="close"
                             size={ 28 }
-                            color={ AppColors.textDark }
+                            color={ colors.textDark }
                         />
                     </TouchableOpacity>
                 </View>
@@ -217,7 +220,7 @@ export default function MenuModal({
                                                                                 11
                                                                             }
                                                                             color={
-                                                                                AppColors.starOrange
+                                                                                colors.starOrange
                                                                             }
                                                                         />
                                                                     ),
@@ -293,10 +296,10 @@ export default function MenuModal({
     );
 }
 
-const styles = StyleSheet.create({
+const createStyles = (colors: typeof AppColors) => StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: AppColors.white,
+        backgroundColor: colors.white,
     },
     header: {
         flexDirection: 'row',
@@ -311,7 +314,7 @@ const styles = StyleSheet.create({
         ...Typography.titleLarge,
         fontSize: 24,
         fontWeight: '700',
-        color: AppColors.textDark,
+        color: colors.textDark,
     },
     closeButton: {
         padding: Spacing.xs,
@@ -329,16 +332,16 @@ const styles = StyleSheet.create({
         borderBottomColor: 'transparent',
     },
     activeTab: {
-        borderBottomColor: AppColors.primary,
+        borderBottomColor: colors.primary,
     },
     tabText: {
         ...Typography.bodyMedium,
         fontSize: 16,
         fontWeight: '600',
-        color: AppColors.textLight,
+        color: colors.textLight,
     },
     activeTabText: {
-        color: AppColors.primary,
+        color: colors.primary,
     },
     content: {
         flex: 1,
@@ -361,7 +364,7 @@ const styles = StyleSheet.create({
         width: 160,
         height: 160,
         borderRadius: BorderRadius.sm,
-        backgroundColor: AppColors.surface,
+        backgroundColor: colors.surface,
     },
     foodReview: {
         flex: 1,
@@ -371,7 +374,7 @@ const styles = StyleSheet.create({
         ...Typography.titleMedium,
         fontSize: 16,
         fontWeight: '700',
-        color: AppColors.textDark,
+        color: colors.textDark,
         marginBottom: Spacing.xs,
     },
     reviewHeader: {
@@ -388,7 +391,7 @@ const styles = StyleSheet.create({
         marginRight: Spacing.xs,
     },
     avatarText: {
-        color: AppColors.white,
+        color: colors.white,
         fontSize: 12,
         fontWeight: 'bold',
     },
@@ -399,7 +402,7 @@ const styles = StyleSheet.create({
         ...Typography.bodySmall,
         fontSize: 11,
         fontWeight: '600',
-        color: AppColors.textDark,
+        color: colors.textDark,
     },
     reviewStars: {
         flexDirection: 'row',
@@ -408,7 +411,7 @@ const styles = StyleSheet.create({
     reviewQuote: {
         ...Typography.bodySmall,
         fontSize: 11,
-        color: AppColors.textLight,
+        color: colors.textLight,
         lineHeight: 16,
     },
     menuList: {
@@ -421,6 +424,6 @@ const styles = StyleSheet.create({
         width: '100%',
         height: 400,
         borderRadius: BorderRadius.md,
-        backgroundColor: AppColors.surface,
+        backgroundColor: colors.surface,
     },
 });

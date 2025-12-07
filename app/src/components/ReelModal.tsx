@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useMemo } from 'react';
 import {
     View,
     Text,
@@ -17,6 +17,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 
 import { AppColors, Typography, Spacing } from '../theme';
+import { useTheme } from '../contexts/ThemeContext';
 import { Review } from '../types';
 
 const { width, height } = Dimensions.get('window');
@@ -43,6 +44,8 @@ export default function ReelModal({
     initialPhotoIndex = 0,
     tooltipText = 'Scroll for more pictures',
 }: ReelModalProps) {
+    const { colors } = useTheme();
+    const styles = useMemo(() => createStyles(colors), [colors]);
     const [currentPhotoIndex, setCurrentPhotoIndex] =
         useState(initialPhotoIndex);
 
@@ -180,7 +183,7 @@ export default function ReelModal({
             >
                 { /* Close Button */ }
                 <TouchableOpacity style={ styles.closeButton } onPress={ onClose }>
-                    <Ionicons name="close" size={ 32 } color={ AppColors.white } />
+                    <Ionicons name="close" size={ 32 } color="#FFFFFF" />
                 </TouchableOpacity>
 
                 { /* Tooltip */ }
@@ -306,7 +309,7 @@ export default function ReelModal({
                                     <Ionicons
                                         name="chevron-down"
                                         size={ 24 }
-                                        color={ AppColors.textDark }
+                                        color={ colors.textDark }
                                     />
                                 </TouchableOpacity>
                             </View>
@@ -348,7 +351,7 @@ export default function ReelModal({
                                                         name="star"
                                                         size={ 12 }
                                                         color={
-                                                            AppColors.starOrange
+                                                            colors.starOrange
                                                         }
                                                     />
                                                 )) }
@@ -369,10 +372,10 @@ export default function ReelModal({
     );
 }
 
-const styles = StyleSheet.create({
+const createStyles = (colors: typeof AppColors) => StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: AppColors.background,
+        backgroundColor: colors.background,
     },
     closeButton: {
         position: 'absolute',
@@ -396,7 +399,7 @@ const styles = StyleSheet.create({
     },
     tooltipText: {
         ...Typography.bodyMedium,
-        color: AppColors.white,
+        color: '#FFFFFF',
         backgroundColor: 'rgba(0,0,0,0.75)',
         paddingHorizontal: Spacing.lg,
         paddingVertical: Spacing.sm,
@@ -420,7 +423,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(255,255,255,0.4)',
     },
     activeIndicator: {
-        backgroundColor: AppColors.white,
+        backgroundColor: '#FFFFFF',
         height: 24,
     },
     photoContainer: {
@@ -444,14 +447,14 @@ const styles = StyleSheet.create({
     },
     reviewQuote: {
         ...Typography.bodyLarge,
-        color: AppColors.white,
+        color: '#FFFFFF',
         fontSize: 16,
         fontStyle: 'italic',
         lineHeight: 24,
     },
     reviewAuthor: {
         ...Typography.bodyMedium,
-        color: AppColors.white,
+        color: '#FFFFFF',
         fontSize: 14,
     },
     moreReviewsButton: {
@@ -460,7 +463,7 @@ const styles = StyleSheet.create({
     },
     moreReviewsText: {
         ...Typography.bodyMedium,
-        color: AppColors.white,
+        color: '#FFFFFF',
         fontSize: 14,
         fontWeight: '600',
         textDecorationLine: 'underline',
@@ -470,7 +473,7 @@ const styles = StyleSheet.create({
         bottom: 0,
         left: 0,
         right: 0,
-        backgroundColor: AppColors.white,
+        backgroundColor: colors.white,
         borderTopLeftRadius: 20,
         borderTopRightRadius: 20,
         overflow: 'hidden',
@@ -490,7 +493,7 @@ const styles = StyleSheet.create({
         ...Typography.titleMedium,
         fontSize: 18,
         fontWeight: '700',
-        color: AppColors.textDark,
+        color: colors.textDark,
     },
     reviewItem: {
         padding: Spacing.lg,
@@ -511,7 +514,7 @@ const styles = StyleSheet.create({
         marginRight: Spacing.sm,
     },
     avatarText: {
-        color: AppColors.white,
+        color: '#FFFFFF',
         fontSize: 16,
         fontWeight: 'bold',
     },
@@ -522,7 +525,7 @@ const styles = StyleSheet.create({
         ...Typography.bodyMedium,
         fontSize: 14,
         fontWeight: '600',
-        color: AppColors.textDark,
+        color: colors.textDark,
         marginBottom: 2,
     },
     reviewStars: {
@@ -532,7 +535,7 @@ const styles = StyleSheet.create({
     reviewItemQuote: {
         ...Typography.bodySmall,
         fontSize: 13,
-        color: AppColors.textLight,
+        color: colors.textLight,
         lineHeight: 20,
     },
 });

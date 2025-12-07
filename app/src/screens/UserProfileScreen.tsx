@@ -4,15 +4,19 @@ import {
     StyleSheet,
     TouchableOpacity,
     ScrollView,
+    Switch,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 
 import { AppColors, Typography, Spacing } from '../theme';
+import { useTheme } from '../contexts/ThemeContext';
 
 export default function UserProfileScreen() {
     // TODO: Replace with actual user data from context
     const userName = 'User';
+    const { isDarkMode, toggleTheme, colors } = useTheme();
+    const styles = createStyles(colors);
 
     function handleEditProfile() {
         console.log('Edit profile');
@@ -42,7 +46,7 @@ export default function UserProfileScreen() {
                         <Ionicons
                             name="person"
                             size={ 48 }
-                            color={ AppColors.textDark }
+                            color={ colors.textDark }
                         />
                     </View>
                     <Text style={ styles.userName }>{ userName }</Text>
@@ -60,7 +64,7 @@ export default function UserProfileScreen() {
                             <Ionicons
                                 name="person-outline"
                                 size={ 24 }
-                                color={ AppColors.textDark }
+                                color={ colors.textDark }
                             />
                             <Text style={ styles.menuItemText }>
                                 Edit Profile
@@ -69,9 +73,26 @@ export default function UserProfileScreen() {
                         <Ionicons
                             name="chevron-forward"
                             size={ 20 }
-                            color={ AppColors.textLight }
+                            color={ colors.textLight }
                         />
                     </TouchableOpacity>
+
+                    <View style={ styles.menuItem }>
+                        <View style={ styles.menuItemLeft }>
+                            <Ionicons
+                                name={ isDarkMode ? 'moon' : 'moon-outline' }
+                                size={ 24 }
+                                color={ colors.textDark }
+                            />
+                            <Text style={ styles.menuItemText }>Dark Mode</Text>
+                        </View>
+                        <Switch
+                            value={ isDarkMode }
+                            onValueChange={ toggleTheme }
+                            trackColor={ { false: '#D1D1D1', true: colors.secondary } }
+                            thumbColor={ isDarkMode ? colors.primary : '#f4f3f4' }
+                        />
+                    </View>
 
                     <TouchableOpacity
                         style={ styles.menuItem }
@@ -82,14 +103,14 @@ export default function UserProfileScreen() {
                             <Ionicons
                                 name="settings-outline"
                                 size={ 24 }
-                                color={ AppColors.textDark }
+                                color={ colors.textDark }
                             />
                             <Text style={ styles.menuItemText }>Preferences</Text>
                         </View>
                         <Ionicons
                             name="chevron-forward"
                             size={ 20 }
-                            color={ AppColors.textLight }
+                            color={ colors.textLight }
                         />
                     </TouchableOpacity>
                 </View>
@@ -106,14 +127,14 @@ export default function UserProfileScreen() {
                             <Ionicons
                                 name="information-circle-outline"
                                 size={ 24 }
-                                color={ AppColors.textDark }
+                                color={ colors.textDark }
                             />
                             <Text style={ styles.menuItemText }>About</Text>
                         </View>
                         <Ionicons
                             name="chevron-forward"
                             size={ 20 }
-                            color={ AppColors.textLight }
+                            color={ colors.textLight }
                         />
                     </TouchableOpacity>
                 </View>
@@ -128,7 +149,7 @@ export default function UserProfileScreen() {
                             <Ionicons
                                 name="log-out-outline"
                                 size={ 24 }
-                                color={ AppColors.secondary }
+                                color={ colors.secondary }
                             />
                             <Text
                                 style={ [styles.menuItemText, styles.logoutText] }
@@ -143,22 +164,22 @@ export default function UserProfileScreen() {
     );
 }
 
-const styles = StyleSheet.create({
+const createStyles = (colors: typeof AppColors) => StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: AppColors.white,
+        backgroundColor: colors.white,
     },
     header: {
         alignItems: 'center',
         paddingVertical: Spacing.xxl,
         borderBottomWidth: 1,
-        borderBottomColor: 'rgba(0,0,0,0.1)',
+        borderBottomColor: colors.textLight + '20',
     },
     avatarContainer: {
         width: 100,
         height: 100,
         borderRadius: 50,
-        backgroundColor: AppColors.primary,
+        backgroundColor: colors.primary,
         justifyContent: 'center',
         alignItems: 'center',
         marginBottom: Spacing.md,
@@ -166,14 +187,15 @@ const styles = StyleSheet.create({
     userName: {
         ...Typography.displaySmall,
         fontSize: 24,
+        color: colors.textDark,
     },
     section: {
         marginTop: Spacing.lg,
         paddingHorizontal: Spacing.lg,
     },
     sectionTitle: {
-        ...Typography.titleMedium, // TODO: see if functionally the same
-        color: AppColors.textLight,
+        ...Typography.titleMedium,
+        color: colors.textLight,
         marginBottom: Spacing.sm,
         marginLeft: Spacing.sm,
     },
@@ -183,7 +205,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         paddingVertical: Spacing.md,
         paddingHorizontal: Spacing.md,
-        backgroundColor: '#F5F5F5',
+        backgroundColor: colors.surface,
         borderRadius: 12,
         marginBottom: Spacing.sm,
     },
@@ -194,13 +216,14 @@ const styles = StyleSheet.create({
     menuItemText: {
         ...Typography.bodyLarge,
         marginLeft: Spacing.md,
+        color: colors.textDark,
     },
     logoutButton: {
         backgroundColor: 'transparent',
         borderWidth: 1,
-        borderColor: AppColors.secondary,
+        borderColor: colors.secondary,
     },
     logoutText: {
-        color: AppColors.secondary,
+        color: colors.secondary,
     },
 });

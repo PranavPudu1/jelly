@@ -5,12 +5,16 @@ import { Ionicons } from '@expo/vector-icons';
 import { GestureHandlerRootView, PanGestureHandler } from 'react-native-gesture-handler';
 
 import { AppColors, Typography, Spacing, Shadows } from '../theme';
+import { useTheme } from '../contexts/ThemeContext';
 import { useSavedRestaurants } from '../contexts/SavedRestaurantsContext';
 import SavedRestaurantCard from '../components/SavedRestaurantCard';
 import RestaurantCard from '../components/RestaurantCard';
 import type { Restaurant } from '../types';
 
 export default function SavedRestaurantsScreen() {
+    const { colors } = useTheme();
+    const styles = createStyles(colors);
+
     const { savedRestaurants, unsaveRestaurant, isLoading } = useSavedRestaurants();
     const [selectedRestaurant, setSelectedRestaurant] = useState<Restaurant | null>(null);
     const translateY = useRef(new Animated.Value(0)).current;
@@ -76,7 +80,7 @@ export default function SavedRestaurantsScreen() {
                     <Ionicons
                         name="heart-outline"
                         size={ 64 }
-                        color={ AppColors.white }
+                        color={ colors.white }
                     />
                 </View>
 
@@ -166,10 +170,10 @@ export default function SavedRestaurantsScreen() {
     );
 }
 
-const styles = StyleSheet.create({
+const createStyles = (colors: typeof AppColors) => StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: AppColors.white,
+        backgroundColor: colors.white,
     },
     header: {
         flexDirection: 'row',
@@ -178,15 +182,16 @@ const styles = StyleSheet.create({
         paddingHorizontal: Spacing.xl,
         paddingVertical: Spacing.lg,
         borderBottomWidth: 1,
-        borderBottomColor: 'rgba(0,0,0,0.1)',
+        borderBottomColor: colors.textLight + '20',
     },
     headerTitle: {
         ...Typography.displaySmall,
         fontSize: 24,
+        color: colors.textDark,
     },
     count: {
         ...Typography.bodyLarge,
-        color: AppColors.primary,
+        color: colors.primary,
         fontWeight: '600',
     },
     loadingContainer: {
@@ -211,7 +216,7 @@ const styles = StyleSheet.create({
         width: 120,
         height: 120,
         borderRadius: 60,
-        backgroundColor: AppColors.primary,
+        backgroundColor: colors.primary,
         justifyContent: 'center',
         alignItems: 'center',
         marginBottom: Spacing.xl,
@@ -221,15 +226,16 @@ const styles = StyleSheet.create({
         fontSize: 24,
         marginBottom: Spacing.sm,
         textAlign: 'center',
+        color: colors.textDark,
     },
     emptySubtitle: {
         ...Typography.bodyLarge,
-        color: AppColors.textLight,
+        color: colors.textLight,
         textAlign: 'center',
     },
     modalContainer: {
         flex: 1,
-        backgroundColor: AppColors.white,
+        backgroundColor: colors.white,
     },
     animatedContainer: {
         flex: 1,

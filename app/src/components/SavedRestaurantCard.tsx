@@ -2,6 +2,7 @@ import { View, Text, StyleSheet, TouchableOpacity, Image, Dimensions } from 'rea
 import { Ionicons } from '@expo/vector-icons';
 import type { Restaurant } from '../types';
 import { AppColors, Typography, Spacing } from '../theme';
+import { useTheme } from '../contexts/ThemeContext';
 
 const { width } = Dimensions.get('window');
 const CARD_WIDTH = width - Spacing.lg * 2;
@@ -17,6 +18,8 @@ export default function SavedRestaurantCard({
     onPress,
     onUnsave,
 }: SavedRestaurantCardProps) {
+    const { colors } = useTheme();
+    const styles = createStyles(colors);
     return (
         <TouchableOpacity
             style={ styles.card }
@@ -34,7 +37,7 @@ export default function SavedRestaurantCard({
                 onPress={ onUnsave }
                 hitSlop={ { top: 10, bottom: 10, left: 10, right: 10 } }
             >
-                <Ionicons name="heart" size={ 24 } color={ AppColors.primary } />
+                <Ionicons name="heart" size={ 24 } color={ colors.primary } />
             </TouchableOpacity>
 
             <View style={ styles.content }>
@@ -43,7 +46,7 @@ export default function SavedRestaurantCard({
                         { restaurant.name }
                     </Text>
                     <View style={ styles.ratingContainer }>
-                        <Ionicons name="star" size={ 14 } color={ AppColors.warning } />
+                        <Ionicons name="star" size={ 14 } color={ colors.warning } />
                         <Text style={ styles.rating }>{ restaurant.rating.toFixed(1) }</Text>
                     </View>
                 </View>
@@ -62,7 +65,7 @@ export default function SavedRestaurantCard({
                         <Ionicons
                             name="location-outline"
                             size={ 14 }
-                            color={ AppColors.textLight }
+                            color={ colors.textLight }
                         />
                         <Text style={ styles.location } numberOfLines={ 1 }>
                             { restaurant.infoList[0].text }
@@ -74,10 +77,10 @@ export default function SavedRestaurantCard({
     );
 }
 
-const styles = StyleSheet.create({
+const createStyles = (colors: typeof AppColors) => StyleSheet.create({
     card: {
         width: CARD_WIDTH,
-        backgroundColor: AppColors.white,
+        backgroundColor: colors.white,
         borderRadius: 16,
         marginBottom: Spacing.lg,
         overflow: 'hidden',
@@ -90,7 +93,7 @@ const styles = StyleSheet.create({
     image: {
         width: '100%',
         height: 180,
-        backgroundColor: AppColors.background,
+        backgroundColor: colors.background,
     },
     unsaveButton: {
         position: 'absolute',
@@ -140,12 +143,12 @@ const styles = StyleSheet.create({
     tag: {
         paddingHorizontal: Spacing.md,
         paddingVertical: Spacing.xs,
-        backgroundColor: AppColors.background,
+        backgroundColor: colors.background,
         borderRadius: 12,
     },
     tagText: {
         ...Typography.caption,
-        color: AppColors.text,
+        color: colors.text,
         fontWeight: '500',
     },
     locationContainer: {
@@ -155,7 +158,7 @@ const styles = StyleSheet.create({
     },
     location: {
         ...Typography.bodySmall,
-        color: AppColors.textLight,
+        color: colors.textLight,
         flex: 1,
     },
 });
