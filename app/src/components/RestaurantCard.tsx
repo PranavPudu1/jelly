@@ -30,7 +30,7 @@ import {
 } from '../theme';
 
 import { Restaurant } from '../types';
-import { formatDistance, openInMaps } from '../utils/location';
+import { openInMaps } from '../utils/location';
 
 const { width, height } = Dimensions.get('window');
 
@@ -58,6 +58,43 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
         if (restaurant.lat && restaurant.long) {
             openInMaps(restaurant.lat, restaurant.long, restaurant.name);
         }
+    }
+
+    function formatDistanceFromMeters(meters: number): string {
+        // Convert meters to miles
+        const miles = meters * 0.000621371;
+
+        if (miles < 0.1) {
+            return 'Nearby';
+        }
+        else if (miles < 1) {
+            return `${(miles * 5280).toFixed(0)} ft`;
+        }
+        else {
+            return `${miles.toFixed(1)} mi`;
+        }
+    }
+
+    function extractCity(address: string): string {
+        // Address format: "Street, City, State ZIP"
+        // Split by comma and get the second part (index 1) which is the city
+        const parts = address.split(',').map(part => part.trim());
+
+        if (parts.length >= 2) {
+            // The city is typically the second part (index 1)
+            const cityPart = parts[1];
+
+            // If the city part contains state code (e.g., "Austin TX" instead of just "Austin"),
+            // extract only the city name before the state code
+            const stateMatch = cityPart.match(/^(.+?)\s+[A-Z]{2}(\s|$)/);
+            if (stateMatch) {
+                return stateMatch[1].trim();
+            }
+
+            return cityPart;
+        }
+
+        return '';
     }
 
     // Animation values for image interactions (DelightfulButton handles button animations)
@@ -205,11 +242,11 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
                             <View style={ styles.infoCell }>
                                 <Ionicons
                                     name="location"
-                                    size={ 16 }
+                                    size={ 14 }
                                     color={ AppColors.textDark }
                                 />
-                                <Text style={ [styles.infoValue, styles.locationText] }>
-                                    { formatDistance(restaurant.distance) }
+                                <Text style={ [styles.infoValue, styles.locationText] } numberOfLines={ 1 }>
+                                    { formatDistanceFromMeters(restaurant.distance) }
                                 </Text>
                             </View>
                         </TouchableOpacity>
@@ -218,11 +255,24 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
                             <View style={ styles.infoCell }>
                                 <Ionicons
                                     name="call"
-                                    size={ 16 }
+                                    size={ 14 }
                                     color={ AppColors.textDark }
                                 />
-                                <Text style={ styles.infoValue }>
+                                <Text style={ styles.infoValue } numberOfLines={ 1 }>
                                     { restaurant.phoneNumber }
+                                </Text>
+                            </View>
+                        </View>
+
+                        <View>
+                            <View style={ styles.infoCell }>
+                                <Ionicons
+                                    name="business"
+                                    size={ 14 }
+                                    color={ AppColors.textDark }
+                                />
+                                <Text style={ styles.infoValue } numberOfLines={ 1 }>
+                                    { extractCity(restaurant.address) }
                                 </Text>
                             </View>
                         </View>
@@ -630,22 +680,24 @@ const styles = StyleSheet.create({
     },
     infoTable: {
         marginTop: Spacing.md,
-        paddingHorizontal: Spacing.md,
+        paddingHorizontal: Spacing.xs,
         borderTopWidth: 1,
         borderBottomWidth: 1,
         borderColor: 'rgba(0,0,0,0.1)',
         paddingVertical: Spacing.xs,
         backgroundColor: AppColors.white,
         flexDirection: 'row',
-        flexWrap: 'wrap',
+        justifyContent: 'space-evenly',
+        alignItems: 'center',
     },
     infoCell: {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
-        gap: 6,
-        width: '50%',
+        gap: 4,
+        flex: 1,
         paddingVertical: Spacing.sm,
+        paddingHorizontal: 2,
     },
     infoCellBottomRow: {
         borderTopWidth: 1,
@@ -655,7 +707,8 @@ const styles = StyleSheet.create({
         ...Typography.bodySmall,
         color: AppColors.textDark,
         fontWeight: '500',
-        fontSize: 12,
+        fontSize: 11,
+        flexShrink: 1,
     },
     locationText: {
         color: AppColors.textDark,
