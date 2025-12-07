@@ -15,6 +15,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Swiper, SwiperCardRefType } from 'rn-swiper-list';
 
 import RestaurantCard from '../components/RestaurantCard';
+import AnimatedButton from '../components/AnimatedButton';
 
 import { AppColors, Typography, Spacing } from '../theme';
 import { useTheme } from '../contexts/ThemeContext';
@@ -399,15 +400,15 @@ export default function SwipeScreen() {
                         You've seen all available restaurants
                     </Text>
 
-                    <TouchableOpacity
-                        style={ styles.startOverButton }
+                    <AnimatedButton
                         onPress={ handleStartOver }
-                        activeOpacity={ 0.8 }
+                        variant="primary"
+                        style={ styles.startOverButton }
                     >
                         <Text style={ styles.startOverButtonText }>
                             Start Over
                         </Text>
-                    </TouchableOpacity>
+                    </AnimatedButton>
                 </View>
             </SafeAreaView>
         );
@@ -592,10 +593,7 @@ const createStyles = (colors: typeof AppColors) => StyleSheet.create({
         textAlign: 'center',
     },
     startOverButton: {
-        backgroundColor: colors.primary,
-        paddingVertical: Spacing.md,
-        paddingHorizontal: Spacing.xxxl,
-        borderRadius: 30,
+        marginTop: Spacing.md,
     },
     startOverButtonText: {
         ...Typography.button,

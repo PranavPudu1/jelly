@@ -26,6 +26,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 
 import { RootStackParamList } from '../../App';
 import WelcomeCarousel from '../components/WelcomeCarousel';
+import AnimatedButton from '../components/AnimatedButton';
 
 import { UserContext } from '../contexts/UserContext';
 import { useTheme } from '../contexts/ThemeContext';
@@ -471,14 +472,15 @@ export default function QuestionnaireScreen({
                                     } }
                                 />
 
-                                <TouchableOpacity
-                                    style={ styles.continueButton }
+                                <AnimatedButton
                                     onPress={ handleNextFromRanking }
+                                    variant="primary"
+                                    delayMs={ 500 }
                                 >
                                     <Text style={ styles.continueButtonText }>
                                         Continue →
                                     </Text>
-                                </TouchableOpacity>
+                                </AnimatedButton>
                             </View>
                         ) : (
                             <ScrollView
@@ -711,15 +713,16 @@ export default function QuestionnaireScreen({
                                             textAlignVertical="top"
                                         />
 
-                                        <TouchableOpacity
-                                            style={ styles.skipButton }
+                                        <AnimatedButton
                                             onPress={ handleStartDiscovering }
-                                            activeOpacity={ 0.7 }
+                                            variant="secondary"
+                                            delayMs={ 600 }
+                                            style={ styles.skipButton }
                                         >
                                             <Text style={ styles.skipButtonText }>
                                                 Skip this question →
                                             </Text>
-                                        </TouchableOpacity>
+                                        </AnimatedButton>
                                     </View>
                                 ) }
 
@@ -801,15 +804,16 @@ export default function QuestionnaireScreen({
                                             textAlignVertical="top"
                                         />
 
-                                        <TouchableOpacity
-                                            style={ styles.skipButton }
+                                        <AnimatedButton
                                             onPress={ handleStartDiscovering }
-                                            activeOpacity={ 0.7 }
+                                            variant="secondary"
+                                            delayMs={ 600 }
+                                            style={ styles.skipButton }
                                         >
                                             <Text style={ styles.skipButtonText }>
                                                 Skip this question →
                                             </Text>
-                                        </TouchableOpacity>
+                                        </AnimatedButton>
                                     </View>
                                 ) }
                             </ScrollView>
@@ -830,27 +834,22 @@ export default function QuestionnaireScreen({
                                     ],
                                 } }
                             >
-                                <TouchableOpacity
+                                <AnimatedButton
                                     onPress={ handleStartDiscovering }
-                                    activeOpacity={ 0.8 }
+                                    variant="primary"
+                                    delayMs={ 700 }
+                                    style={ styles.startButton }
                                 >
-                                    <LinearGradient
-                                        colors={ Gradients.button.colors }
-                                        start={ Gradients.button.start }
-                                        end={ Gradients.button.end }
-                                        style={ styles.startButton }
+                                    <Text
+                                        style={ styles.startButtonText }
                                     >
-                                        <Text
-                                            style={ styles.startButtonText }
-                                        >
-                                            { getRandomMicrocopy([
-                                                ...Microcopy.success
-                                                    .completed,
-                                            ]) }{ ' ' }
-                                                🎉
-                                        </Text>
-                                    </LinearGradient>
-                                </TouchableOpacity>
+                                        { getRandomMicrocopy([
+                                            ...Microcopy.success
+                                                .completed,
+                                        ]) }{ ' ' }
+                                            🎉
+                                    </Text>
+                                </AnimatedButton>
                             </Animated.View>
                         ) }
                     </Animated.View>
@@ -1058,16 +1057,10 @@ const createStyles = (colors: typeof AppColors) => StyleSheet.create({
         opacity: 0.8,
     },
     continueButton: {
-        backgroundColor: colors.primary,
-        paddingVertical: Spacing.sm + 2,
-        paddingHorizontal: Spacing.xl,
-        borderRadius: BorderRadius.pill,
-        alignItems: 'center',
         marginTop: Spacing.md,
-        ...Shadows.warm,
     },
     continueButtonText: {
-        color: colors.white,
+        color: colors.textDark,
         fontSize: 16,
         fontWeight: '700',
     },
@@ -1132,12 +1125,7 @@ const createStyles = (colors: typeof AppColors) => StyleSheet.create({
         fontWeight: '700',
     },
     startButton: {
-        paddingVertical: Spacing.lg + 2,
-        paddingHorizontal: Spacing.xxl,
-        borderRadius: BorderRadius.pill,
-        alignItems: 'center',
         marginTop: Spacing.xl,
-        ...Shadows.warm,
     },
     startButtonText: {
         ...Typography.button,
@@ -1147,17 +1135,11 @@ const createStyles = (colors: typeof AppColors) => StyleSheet.create({
         letterSpacing: 0.5,
     },
     skipButton: {
-        paddingVertical: Spacing.md,
-        paddingHorizontal: Spacing.lg,
-        borderRadius: BorderRadius.md,
-        alignItems: 'center',
         marginTop: Spacing.lg,
         backgroundColor: 'transparent',
-        borderWidth: 2,
-        borderColor: colors.textLight,
     },
     skipButtonText: {
-        color: colors.textLight,
+        color: 'white',
         fontSize: 16,
         fontWeight: '600',
     },

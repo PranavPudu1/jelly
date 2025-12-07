@@ -3,7 +3,6 @@ import {
     View,
     Text,
     StyleSheet,
-    TouchableOpacity,
     ActivityIndicator,
     Dimensions,
     Image,
@@ -19,13 +18,12 @@ import { RootStackParamList } from '../../App';
 import { UserContext } from '../contexts/UserContext';
 import { createTemporaryUser } from '../services/userApi';
 import ErrorNotification from '../components/ErrorNotification';
+import AnimatedButton from '../components/AnimatedButton';
 
 import {
     AppColors,
     Typography,
     Spacing,
-    BorderRadius,
-    Shadows,
 } from '../theme';
 
 type AuthScreenProps = {
@@ -155,11 +153,11 @@ export default function AuthScreen({ navigation }: AuthScreenProps) {
                     { /* Buttons Section - positioned higher like Hinge */ }
                     <View style={ styles.buttonsContainer }>
                         { /* Login/Create Account Button */ }
-                        <TouchableOpacity
-                            style={ [styles.primaryButton, styles.button] }
+                        <AnimatedButton
                             onPress={ handleLogin }
                             disabled={ loading }
-                            activeOpacity={ 0.8 }
+                            loading={ loading }
+                            variant="primary"
                         >
                             { loading ? (
                                 <ActivityIndicator color={ AppColors.primary } />
@@ -168,14 +166,14 @@ export default function AuthScreen({ navigation }: AuthScreenProps) {
                                     Login / Create Account
                                 </Text>
                             ) }
-                        </TouchableOpacity>
+                        </AnimatedButton>
 
                         { /* Continue as Guest Button */ }
-                        <TouchableOpacity
-                            style={ [styles.button, styles.secondaryButton] }
+                        <AnimatedButton
                             onPress={ handleContinueAsGuest }
                             disabled={ loading }
-                            activeOpacity={ 0.8 }
+                            loading={ loading }
+                            variant="secondary"
                         >
                             { loading ? (
                                 <ActivityIndicator color="white" />
@@ -184,7 +182,7 @@ export default function AuthScreen({ navigation }: AuthScreenProps) {
                                     Continue as Guest
                                 </Text>
                             ) }
-                        </TouchableOpacity>
+                        </AnimatedButton>
                     </View>
                 </View>
             </SafeAreaView>
@@ -251,24 +249,6 @@ const styles = StyleSheet.create({
         width: '100%',
         gap: Spacing.md,
         marginBottom: height * 0.08,
-    },
-    button: {
-        paddingVertical: Spacing.lg,
-        paddingHorizontal: Spacing.xl,
-        borderRadius: BorderRadius.pill,
-        alignItems: 'center',
-        justifyContent: 'center',
-        minHeight: 56,
-        backgroundColor: AppColors.primary,
-    },
-    primaryButton: {
-        backgroundColor: AppColors.primary,
-        ...Shadows.medium,
-    },
-    secondaryButton: {
-        backgroundColor: 'transparent',
-        borderWidth: 2,
-        borderColor: AppColors.primary,
     },
     primaryButtonText: {
         ...Typography.button,

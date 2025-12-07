@@ -16,7 +16,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 
 import ReelModal from './ReelModal';
 import MenuModal from './MenuModal';
-import DelightfulButton from './DelightfulButton';
+import AnimatedButton from './AnimatedButton';
 
 import {
     AppColors,
@@ -515,12 +515,15 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
 
                     { /* View All Items and Menu Button */ }
                     <View style={ styles.viewAllButtonContainer }>
-                        <DelightfulButton
-                            title="View Full Menu & More ›"
+                        <AnimatedButton
                             onPress={ () => setMenuModalVisible(true) }
                             variant="primary"
-                            size="large"
-                        />
+                            delayMs={ 800 }
+                        >
+                            <Text style={ styles.viewAllButtonText }>
+                                View Full Menu & More ›
+                            </Text>
+                        </AnimatedButton>
                     </View>
                 </View>
 
@@ -539,14 +542,18 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
                                 style={ styles.reservationIcon }
                             />
 
-                            <DelightfulButton
-                                title="OpenTable"
+                            <AnimatedButton
                                 onPress={ () => {
                                     // TODO: Open OpenTable reservation
                                 } }
                                 variant="primary"
-                                size="medium"
-                            />
+                                delayMs={ 900 }
+                                style={ styles.reservationButton }
+                            >
+                                <Text style={ styles.reservationButtonText }>
+                                    OpenTable
+                                </Text>
+                            </AnimatedButton>
                         </View>
 
                         <View style={ styles.reservationButtonWrapper }>
@@ -557,14 +564,18 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
                                 style={ styles.reservationIcon }
                             />
 
-                            <DelightfulButton
-                                title="Yelp"
+                            <AnimatedButton
                                 onPress={ () => {
                                     // TODO: Open Yelp reservation
                                 } }
                                 variant="primary"
-                                size="medium"
-                            />
+                                delayMs={ 1000 }
+                                style={ styles.reservationButton }
+                            >
+                                <Text style={ styles.reservationButtonText }>
+                                    Yelp
+                                </Text>
+                            </AnimatedButton>
                         </View>
                     </View>
                 </View>
@@ -855,6 +866,12 @@ const createStyles = (colors: typeof AppColors) => StyleSheet.create({
     viewAllButtonContainer: {
         marginTop: Spacing.lg,
     },
+    viewAllButtonText: {
+        ...Typography.button,
+        color: colors.textDark,
+        fontSize: 17,
+        fontWeight: '700',
+    },
 
     // Reservation Section
     reservationSection: {
@@ -881,5 +898,14 @@ const createStyles = (colors: typeof AppColors) => StyleSheet.create({
     },
     reservationIcon: {
         marginBottom: Spacing.xs,
+    },
+    reservationButton: {
+        minWidth: 140,
+    },
+    reservationButtonText: {
+        ...Typography.button,
+        color: colors.textDark,
+        fontSize: 16,
+        fontWeight: '700',
     },
 });
