@@ -349,12 +349,7 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
                                     color={ colors.instagram }
                                 />
 
-                                <Text
-                                    style={ [
-                                        styles.socialText,
-                                        { color: colors.instagram },
-                                    ] }
-                                >
+                                <Text style={ styles.socialText }>
                                     { restaurant.socialMedia.instagram }
                                 </Text>
                             </TouchableOpacity>
@@ -524,59 +519,6 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
                                 View Full Menu & More ›
                             </Text>
                         </AnimatedButton>
-                    </View>
-                </View>
-
-                { /* Reservation Section */ }
-                <View style={ styles.reservationSection }>
-                    <Text style={ styles.reservationTitle }>
-                        Ready to go? Book your table!
-                    </Text>
-
-                    <View style={ styles.reservationButtons }>
-                        <View style={ styles.reservationButtonWrapper }>
-                            <Ionicons
-                                name="restaurant"
-                                size={ 32 }
-                                color="#DA3743"
-                                style={ styles.reservationIcon }
-                            />
-
-                            <AnimatedButton
-                                onPress={ () => {
-                                    // TODO: Open OpenTable reservation
-                                } }
-                                variant="primary"
-                                delayMs={ 900 }
-                                style={ styles.reservationButton }
-                            >
-                                <Text style={ styles.reservationButtonText }>
-                                    OpenTable
-                                </Text>
-                            </AnimatedButton>
-                        </View>
-
-                        <View style={ styles.reservationButtonWrapper }>
-                            <Ionicons
-                                name="star"
-                                size={ 32 }
-                                color="#D32323"
-                                style={ styles.reservationIcon }
-                            />
-
-                            <AnimatedButton
-                                onPress={ () => {
-                                    // TODO: Open Yelp reservation
-                                } }
-                                variant="primary"
-                                delayMs={ 1000 }
-                                style={ styles.reservationButton }
-                            >
-                                <Text style={ styles.reservationButtonText }>
-                                    Yelp
-                                </Text>
-                            </AnimatedButton>
-                        </View>
                     </View>
                 </View>
 
@@ -868,7 +810,7 @@ const createStyles = (colors: typeof AppColors) => StyleSheet.create({
     },
     viewAllButtonText: {
         ...Typography.button,
-        color: colors.textDark,
+        color: '#212121',
         fontSize: 17,
         fontWeight: '700',
     },
@@ -894,7 +836,7 @@ const createStyles = (colors: typeof AppColors) => StyleSheet.create({
     },
     reservationButtonWrapper: {
         alignItems: 'center',
-        gap: Spacing.sm,
+        gap: Spacing.sm,    
     },
     reservationIcon: {
         marginBottom: Spacing.xs,

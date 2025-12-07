@@ -1060,7 +1060,7 @@ const createStyles = (colors: typeof AppColors) => StyleSheet.create({
         marginTop: Spacing.md,
     },
     continueButtonText: {
-        color: colors.textDark,
+        color: '#212121',
         fontSize: 16,
         fontWeight: '700',
     },

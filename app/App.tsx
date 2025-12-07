@@ -84,7 +84,7 @@ function MainTabs() {
                         <Ionicons name={ iconName } size={ size } color={ color } />
                     );
                 },
-                tabBarActiveTintColor: colors.textDark,
+                tabBarActiveTintColor: '#212121',
                 tabBarInactiveTintColor: colors.secondary,
                 tabBarStyle: {
                     backgroundColor: colors.primary,
