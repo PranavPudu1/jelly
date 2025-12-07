@@ -7,6 +7,7 @@ import {
     Dimensions,
     ScrollView,
     ActivityIndicator,
+    Image,
 } from 'react-native';
 
 import { Ionicons } from '@expo/vector-icons';
@@ -301,9 +302,10 @@ export default function SwipeScreen() {
         return (
             <SafeAreaView style={ styles.container } edges={ ['top'] }>
                 <View style={ styles.loadingContainer }>
-                    <ActivityIndicator
-                        size="large"
-                        color={ colors.secondary }
+                    <Image
+                        source={ require('../../assets/loadingjelly.gif') }
+                        style={ styles.loadingGif }
+                        resizeMode="contain"
                     />
                     <Text style={ styles.loadingText }>
                         { isLoadingLocation
@@ -604,6 +606,10 @@ const createStyles = (colors: typeof AppColors) => StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         paddingHorizontal: Spacing.xxl,
+    },
+    loadingGif: {
+        width: 200,
+        height: 200,
     },
     loadingText: {
         ...Typography.bodyLarge,
