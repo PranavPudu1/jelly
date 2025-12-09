@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react';
-import { View, Text, StyleSheet, FlatList, ActivityIndicator, Modal, TouchableOpacity, Animated } from 'react-native';
+import { View, Text, StyleSheet, FlatList, ActivityIndicator, Modal, TouchableOpacity, Animated, Alert } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { GestureHandlerRootView, PanGestureHandler } from 'react-native-gesture-handler';
@@ -7,15 +7,17 @@ import { GestureHandlerRootView, PanGestureHandler } from 'react-native-gesture-
 import { AppColors, Typography, Spacing, Shadows } from '../theme';
 import { useTheme } from '../contexts/ThemeContext';
 import { useSavedRestaurants } from '../contexts/SavedRestaurantsContext';
+import { useLocation } from '../contexts/LocationContext';
 import SavedRestaurantCard from '../components/SavedRestaurantCard';
 import RestaurantCard from '../components/RestaurantCard';
-import type { Restaurant } from '../types';
+import type { Restaurant, SavedRestaurant } from '../types';
 
 export default function SavedRestaurantsScreen() {
     const { colors } = useTheme();
     const styles = createStyles(colors);
 
-    const { savedRestaurants, unsaveRestaurant, isLoading } = useSavedRestaurants();
+    const { savedRestaurants, unsaveRestaurant, clearAllSavedRestaurants, isLoading } = useSavedRestaurants();
+    const { userLocation } = useLocation();
     const [selectedRestaurant, setSelectedRestaurant] = useState<Restaurant | null>(null);
     const translateY = useRef(new Animated.Value(0)).current;
 
@@ -63,12 +65,33 @@ export default function SavedRestaurantsScreen() {
         unsaveRestaurant(restaurantId);
     }
 
-    function renderRestaurantCard({ item }: { item: Restaurant }) {
+    function handleClearAll() {
+        Alert.alert(
+            'Clear All Saved Restaurants',
+            'Are you sure you want to remove all saved restaurants? This action cannot be undone.',
+            [
+                {
+                    text: 'Cancel',
+                    style: 'cancel',
+                },
+                {
+                    text: 'Clear All',
+                    style: 'destructive',
+                    onPress: () => {
+                        clearAllSavedRestaurants();
+                    },
+                },
+            ],
+        );
+    }
+
+    function renderRestaurantCard({ item }: { item: SavedRestaurant }) {
         return (
             <SavedRestaurantCard
-                restaurant={ item }
-                onPress={ () => handleRestaurantPress(item) }
-                onUnsave={ () => handleUnsave(item.id) }
+                savedRestaurant={ item }
+                userLocation={ userLocation }
+                onPress={ () => handleRestaurantPress(item.restaurant) }
+                onUnsave={ () => handleUnsave(item.restaurant.id) }
             />
         );
     }
@@ -109,16 +132,27 @@ export default function SavedRestaurantsScreen() {
     return (
         <SafeAreaView style={ styles.container } edges={ ['top'] }>
             <View style={ styles.header }>
-                <Text style={ styles.headerTitle }>Saved Restaurants</Text>
+                <View style={ styles.headerLeft }>
+                    <Text style={ styles.headerTitle }>Saved Restaurants</Text>
+                    { savedRestaurants.length > 0 && (
+                        <Text style={ styles.count }>{ savedRestaurants.length }</Text>
+                    ) }
+                </View>
                 { savedRestaurants.length > 0 && (
-                    <Text style={ styles.count }>{ savedRestaurants.length }</Text>
+                    <TouchableOpacity
+                        onPress={ handleClearAll }
+                        style={ styles.clearButton }
+                        activeOpacity={ 0.7 }
+                    >
+                        <Ionicons name="trash-outline" size={ 20 } color={ colors.secondary } />
+                    </TouchableOpacity>
                 ) }
             </View>
 
             <FlatList
                 data={ savedRestaurants }
                 renderItem={ renderRestaurantCard }
-                keyExtractor={ (item) => item.id }
+                keyExtractor={ (item) => item.restaurant.id }
                 ListEmptyComponent={ renderEmptyState }
                 contentContainerStyle={
                     savedRestaurants.length === 0
@@ -184,6 +218,11 @@ const createStyles = (colors: typeof AppColors) => StyleSheet.create({
         borderBottomWidth: 1,
         borderBottomColor: colors.textLight + '20',
     },
+    headerLeft: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: Spacing.sm,
+    },
     headerTitle: {
         ...Typography.displaySmall,
         fontSize: 24,
@@ -193,6 +232,11 @@ const createStyles = (colors: typeof AppColors) => StyleSheet.create({
         ...Typography.bodyLarge,
         color: colors.primary,
         fontWeight: '600',
+    },
+    clearButton: {
+        padding: Spacing.sm,
+        borderRadius: 8,
+        backgroundColor: colors.secondary + '15',
     },
     loadingContainer: {
         flex: 1,

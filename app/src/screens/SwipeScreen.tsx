@@ -149,9 +149,10 @@ export default function SwipeScreen() {
     const handleSwipedRight = useCallback((index: number) => {
         if (stableRestaurants[index]) {
             console.log('Liked:', stableRestaurants[index].name);
-            saveRestaurant(stableRestaurants[index]);
+            // Save restaurant with user's current preferences
+            saveRestaurant(stableRestaurants[index], user?.preferences);
         }
-    }, [stableRestaurants, saveRestaurant]);
+    }, [stableRestaurants, saveRestaurant, user?.preferences]);
 
     const handleSwipedLeft = useCallback((index: number) => {
         if (stableRestaurants[index]) {

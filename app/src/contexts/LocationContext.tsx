@@ -1,6 +1,15 @@
 import { createContext, PropsWithChildren, useState, useEffect, useContext } from 'react';
 import * as Location from 'expo-location';
 
+// Set to true to use test location (Madrid, Spain)
+// Set to false to use real GPS location
+const USE_TEST_LOCATION = true;
+
+const TEST_LOCATION = {
+    latitude: 40.4168,  // Madrid, Spain
+    longitude: -3.7038,
+};
+
 interface LocationContextType {
     userLocation: { latitude: number; longitude: number } | null;
     locationPermission: Location.PermissionStatus | null;
@@ -55,14 +64,20 @@ export default function LocationProvider({ children }: PropsWithChildren) {
 
     async function getCurrentLocation() {
         try {
-            const location = await Location.getCurrentPositionAsync({
-                accuracy: Location.Accuracy.Balanced,
-            });
+            if (USE_TEST_LOCATION) {
+                // Use test location for testing
+                setUserLocation(TEST_LOCATION);
+            } else {
+                // Use real GPS location
+                const location = await Location.getCurrentPositionAsync({
+                    accuracy: Location.Accuracy.Balanced,
+                });
 
-            setUserLocation({
-                latitude: location.coords.latitude,
-                longitude: location.coords.longitude,
-            });
+                setUserLocation({
+                    latitude: location.coords.latitude,
+                    longitude: location.coords.longitude,
+                });
+            }
         }
         catch (error) {
             console.error('Error getting location:', error);

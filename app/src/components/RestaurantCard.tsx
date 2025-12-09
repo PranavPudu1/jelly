@@ -79,6 +79,10 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
     }
 
     function extractCity(address: string): string {
+        if (!address || typeof address !== 'string') {
+            return '';
+        }
+
         // Address format: "Street, City, State ZIP"
         // Split by comma and get the second part (index 1) which is the city
         const parts = address.split(',').map(part => part.trim());
@@ -87,6 +91,15 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
             // The city is typically the second part (index 1)
             const cityPart = parts[1];
 
+            // Skip if it looks like a number (e.g., "4" from "Street 4")
+            if (/^\d+$/.test(cityPart)) {
+                // Try the next part if available
+                if (parts.length >= 3) {
+                    return parts[2].replace(/\s+\d{5}(-\d{4})?$/, '').trim();
+                }
+                return '';
+            }
+
             // If the city part contains state code (e.g., "Austin TX" instead of just "Austin"),
             // extract only the city name before the state code
             const stateMatch = cityPart.match(/^(.+?)\s+[A-Z]{2}(\s|$)/);
@@ -94,7 +107,14 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
                 return stateMatch[1].trim();
             }
 
-            return cityPart;
+            // Remove any ZIP codes that might be at the end
+            return cityPart.replace(/\s+\d{5}(-\d{4})?$/, '').trim();
+        }
+
+        // If only one part, it might be the full address - try to extract meaningful info
+        if (parts.length === 1 && parts[0].length > 0) {
+            // Return the first part (better than nothing)
+            return parts[0].substring(0, 30); // Limit length
         }
 
         return '';
@@ -791,7 +811,7 @@ const createStyles = (colors: typeof AppColors) => StyleSheet.create({
         ...Typography.bodySmall,
         fontSize: 11,
         fontWeight: '600',
-        color: '#FFFFFF',
+        color: colors.textDark,
     },
     reviewStars: {
         flexDirection: 'row',
@@ -800,7 +820,7 @@ const createStyles = (colors: typeof AppColors) => StyleSheet.create({
     reviewQuote: {
         ...Typography.bodySmall,
         fontSize: 11,
-        color: '#FFFFFF',
+        color: colors.textLight,
         lineHeight: 16,
     },
     viewAllButtonContainer: {

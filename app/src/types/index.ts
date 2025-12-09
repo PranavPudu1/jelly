@@ -62,3 +62,9 @@ export interface QuestionnaireAnswers {
         | { checkboxes: string[]; text: string }
         | null;
 }
+
+export interface SavedRestaurant {
+    restaurant: Restaurant;
+    savedAt: number; // Timestamp when saved
+    preferences?: Record<string, number>; // User's preferences at time of saving
+}
