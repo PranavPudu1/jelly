@@ -40,6 +40,7 @@ export default function AuthScreen({ navigation }: AuthScreenProps) {
     // change this to: require('../../assets/videos/restaurant-background.mp4')
     const player = useVideoPlayer(
         'https://www.pexels.com/download/video/5498746/',
+        // require('../../assets/restaurant-background.mp4'),
         (player) => {
             player.loop = true;
             player.muted = true;
