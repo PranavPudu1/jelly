@@ -428,22 +428,6 @@ export default function QuestionnaireScreen({
                         { ...panResponder.panHandlers }
                     >
                         <View style={ styles.questionContainer }>
-                            <Text style={ styles.questionNumber }>
-                                Question { currentQuestionIndex + 1 } of{ ' ' }
-                                { QUESTIONS.length }{ ' ' }
-                                { currentQuestionIndex > 0 && '✨' }
-                            </Text>
-
-                            <Text style={ styles.encouragementText }>
-                                { currentQuestionIndex === 0
-                                    ? getRandomMicrocopy([
-                                        ...Microcopy.onboarding.steps,
-                                    ])
-                                    : getRandomMicrocopy([
-                                        ...Microcopy.encouragement.general,
-                                    ]) }
-                            </Text>
-
                             <Text style={ styles.questionText }>
                                 { currentQuestion.question }
                             </Text>
@@ -452,10 +436,6 @@ export default function QuestionnaireScreen({
                         { /* Ranking questions use DraggableFlatList (VirtualizedList) directly */ }
                         { currentQuestion.type === 'ranking' ? (
                             <View style={ styles.rankingContainer }>
-                                <Text style={ styles.rankingHint }>
-                                    Drag ≡ to reorder
-                                </Text>
-
                                 <DraggableFlatList
                                     data={ rankedItems }
                                     onDragEnd={ ({ data }) => handleDragEnd(data) }
@@ -878,8 +858,8 @@ const createStyles = (colors: typeof AppColors) => StyleSheet.create({
         flex: 1,
         paddingHorizontal: Spacing.xl,
         paddingTop: 60,
-        justifyContent: 'space-between',
         paddingBottom: Spacing.xxl,
+        overflow: 'visible',
     },
     questionContainer: {
         marginBottom: Spacing.xxl,
@@ -992,6 +972,9 @@ const createStyles = (colors: typeof AppColors) => StyleSheet.create({
     rankingContainer: {
         paddingTop: 0,
         paddingBottom: Spacing.md,
+        flex: 1,
+        justifyContent: 'space-between',
+        overflow: 'visible',
     },
     rankingHint: {
         ...Typography.bodySmall,
@@ -1002,22 +985,24 @@ const createStyles = (colors: typeof AppColors) => StyleSheet.create({
     },
     draggableList: {
         flex: 0,
+        overflow: 'visible',
     },
     rankingItem: {
         flexDirection: 'row',
         alignItems: 'center',
-        backgroundColor: colors.white,
+        backgroundColor: 'transparent',
         paddingVertical: Spacing.sm + 2,
         paddingHorizontal: Spacing.md,
         borderRadius: BorderRadius.md,
         borderWidth: 2,
         borderColor: '#F0E8EC',
-        marginBottom: Spacing.xs,
+        marginBottom: Spacing.sm,
+        marginHorizontal: Spacing.md,
         ...Shadows.subtle,
     },
     rankingItemActive: {
         borderColor: colors.primary,
-        backgroundColor: '#FFF9F8',
+        backgroundColor: 'transparent',
         ...Shadows.warm,
         elevation: 8,
     },
@@ -1047,7 +1032,6 @@ const createStyles = (colors: typeof AppColors) => StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         marginLeft: Spacing.xs,
-        backgroundColor: '#FFF9F8',
         borderRadius: BorderRadius.sm,
     },
     dragHandleText: {
@@ -1057,7 +1041,7 @@ const createStyles = (colors: typeof AppColors) => StyleSheet.create({
         opacity: 0.8,
     },
     continueButton: {
-        marginTop: Spacing.md,
+        marginTop: Spacing.lg,
     },
     continueButtonText: {
         color: '#212121',
