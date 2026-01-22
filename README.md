@@ -19,63 +19,81 @@
 
 ---
 
+## The Story
+
+We were sitting in our apartment after spending 30 minutes trying to decide where to eat. Again. My roommate and I had been through this same frustrating cycle countless times - scrolling through endless Yelp listings, getting overwhelmed by too many choices, second-guessing reviews, and eventually just defaulting to the same few places we already knew.
+
+That's when it clicked. The problem wasn't a lack of options. It was decision fatigue from too many options presented in the wrong way. We wanted something simple, visual, and quick. Like swiping through a dating app, but for restaurants.
+
+We started building Jelly that night. The first technical challenge was figuring out how to actually personalize recommendations. We couldn't just sort by rating or distance - that's what every other app does. We needed to understand what makes a restaurant appealing beyond just the food.
+
+After pulling all-nighters and whiteboarding sessions, we landed on a tag-based classification system. Every restaurant gets tagged with attributes extracted from reviews - things like "romantic ambiance," "loud and energetic," "comfort food," "innovative dishes." We built scrapers for Yelp and Foursquare APIs to pull in restaurant data, reviews, and images. Then we used OpenAI's API to analyze reviews and automatically extract these tags.
+
+But tags alone weren't enough. We needed to weight them based on user preferences. That's where the questionnaire came in. We ask users to tell us what matters more to them: the ambiance or the food quality. These weights (stored as percentages that sum to 100) become the user's preference vector.
+
+Here's where it gets interesting. Each restaurant has scores for ambiance and food quality derived from review sentiment analysis. When a user requests recommendations, we compute a weighted score using their preference vector. Someone who values ambiance at 70% and food at 30% will see a completely different ordering than someone with the opposite preferences.
+
+We also experimented with cosine similarity for the tag system. User swipe behavior builds their preference profile - if you keep swiping right on Italian restaurants tagged with "cozy" and "romantic," the algorithm picks up on that. We represent both the user's preferences and each restaurant's attributes as vectors in the same tag space, then use cosine similarity to find the best matches. Higher similarity means the restaurant is more aligned with what you've historically liked.
+
+The result is a feed that actually feels personalized. Not just "restaurants near you," but "restaurants near you that match your vibe."
+
 ## Overview
 
-**Jelly** is a Tinder-style restaurant discovery application that helps users find their next dining experience through an intuitive swiping interface. Built with React Native and Expo, Jelly provides personalized restaurant recommendations based on user preferences, location, and dining habits.
+Jelly is a Tinder-style restaurant discovery application built with React Native and Expo. It provides personalized restaurant recommendations based on user preferences, location, and dining habits through an intuitive swiping interface.
 
 ## Features
 
 ### Core Functionality
 
-- **🎯 Swipe-Based Discovery**: Intuitive Tinder-like interface for discovering restaurants
+- **Swipe-Based Discovery**: Intuitive Tinder-like interface for discovering restaurants
   - Swipe right to save restaurants you like
   - Swipe left to pass on restaurants
   - Smooth card animations and transitions
 
-- **📍 Location-Based Recommendations**: Find restaurants near you
+- **Location-Based Recommendations**: Find restaurants near you
   - Real-time location tracking
   - Distance filters (< 1 mi, < 3 mi, < 5 mi)
   - View restaurant locations on maps
 
-- **🎨 Rich Restaurant Cards**: Beautiful, information-rich restaurant presentations
+- **Rich Restaurant Cards**: Beautiful, information-rich restaurant presentations
   - High-quality hero images
   - Ambiance photos with customer reviews
   - Popular dish photos
   - Star ratings and price levels
   - Contact information and directions
 
-- **🔍 Advanced Filtering**: Customize your search
+- **Advanced Filtering**: Customize your search
   - Price range filters ($, $$, $$$)
   - Distance-based filtering
   - Rating filters (4.0+, 4.5+)
   - Cuisine type filtering
 
-- **💾 Save Favorites**: Build your personal restaurant collection
+- **Save Favorites**: Build your personal restaurant collection
   - Save restaurants with your current preferences
   - View all saved restaurants with dynamic distance updates
   - Organize restaurants by preference weights
 
-- **👤 Personalized Experience**:
+- **Personalized Experience**:
   - User questionnaire for preference gathering
   - Custom restaurant sorting based on preferences
   - Ambiance vs. food quality preference weighting
 
-### User Interface Features
+### User Interface
 
-- **📱 Beautiful UI/UX**:
+- **Beautiful UI/UX**:
   - Custom theme system with consistent design language
   - Smooth animations using React Native Reanimated
   - Interactive modals for menus and photo reels
   - Loading states with custom animations
   - Error handling with user-friendly messages
 
-- **📸 Interactive Media**:
+- **Interactive Media**:
   - Full-screen photo reel viewer
   - Swipeable image galleries
   - Video backgrounds on splash screen
   - Instagram and TikTok social media integration
 
-- **🗺️ Navigation**:
+- **Navigation**:
   - Bottom tab navigation (Discover, Saved, Profile)
   - Stack navigation for onboarding flow
   - Deep linking support
@@ -206,196 +224,89 @@ The application uses PostgreSQL with Prisma ORM. Key models include:
    - Dynamic distance calculation based on current location
    - Synced across app sessions
 
-## Prerequisites
+## Technical Architecture Deep Dive
 
-Before you begin, ensure you have the following installed:
+### Tag System & Classification
 
-- **Node.js** (v18.0.0 or higher)
-- **npm** (v9.0.0 or higher) or **yarn**
-- **PostgreSQL** (v13 or higher)
-- **Expo CLI** (optional, for easier development)
-- **iOS Simulator** (for Mac users) or **Android Studio** (for Android development)
-- **Git**
+The core of Jelly's personalization lies in its tag-based classification system. We designed a flexible schema in PostgreSQL:
 
-## Installation & Setup
+- **TagType** model: Defines categories like "cuisine," "ambiance," "dish_type," "atmosphere"
+- **Tag** model: Specific tags within each type (e.g., "Italian" under cuisine, "romantic" under ambiance)
+- **Many-to-many relationships**: Tags can be associated with restaurants, images, reviews, menu items, and social posts
 
-### 1. Clone the Repository
+This allows us to build rich attribute vectors for each restaurant. For example, a restaurant might have:
+- Cuisine tags: ["Italian", "Mediterranean"]
+- Ambiance tags: ["romantic", "dim lighting", "quiet"]
+- Dish tags: ["pasta", "seafood", "wine selection"]
 
-```bash
-git clone https://github.com/yourusername/jelly.git
-cd jelly
+### Review Analysis & Sentiment Scoring
+
+When seeding the database with Yelp/Foursquare data, we don't just store raw reviews. We process them:
+
+1. **Sentiment Analysis**: Reviews are analyzed using OpenAI's API to extract sentiment scores for specific aspects
+2. **Ambiance Score**: Aggregated from review mentions of atmosphere, decor, vibe, noise level
+3. **Food Quality Score**: Aggregated from review mentions of taste, presentation, freshness, creativity
+
+These scores are stored as floats (0-100) in the Restaurant model and become the basis for preference weighting.
+
+### Preference Weighting Algorithm
+
+User preferences are collected via the questionnaire as two values:
+- `ambianceWeight` (0-100)
+- `foodQualityWeight` (0-100)
+
+These must sum to 100, creating a normalized preference vector. When generating recommendations:
+
+```
+restaurantScore = (restaurant.ambianceScore * user.ambianceWeight / 100)
+                + (restaurant.foodQualityScore * user.foodQualityWeight / 100)
 ```
 
-### 2. Backend Setup
+This weighted score is computed server-side and used to order restaurants beyond just distance or rating.
 
-#### Install Dependencies
+### Cosine Similarity for Tag Matching
 
-```bash
-cd server
-npm install
+For advanced personalization, we implemented cosine similarity matching:
+
+1. **User Vector**: Built from swipe history (right swipes) by aggregating tags from liked restaurants
+2. **Restaurant Vector**: Each restaurant's tag distribution across all tag types
+3. **Similarity Calculation**: Cosine similarity between vectors measures alignment
+
+```
+similarity = (userVector · restaurantVector) / (||userVector|| * ||restaurantVector||)
 ```
 
-#### Environment Configuration
+Higher similarity (closer to 1) means the restaurant closely matches the user's demonstrated preferences. This works because cosine similarity is invariant to vector magnitude - it measures the angle between preference spaces, not just overlap.
 
-Create a `.env` file in the `server` directory:
+### Location-Based Querying
 
-```env
-# Server Configuration
-NODE_ENV=development
-PORT=3000
+Restaurant queries use PostgreSQL's built-in geospatial functions:
 
-# Database
-DATABASE_URL="postgresql://username:password@localhost:5432/jelly_db?schema=public"
+1. Haversine formula for distance calculation from user's lat/long
+2. Radius filtering (converted from miles to meters)
+3. Indexed queries on lat/long columns for performance
+4. Results ordered by computed score, then distance as tiebreaker
 
-# Authentication
-JWT_SECRET=your-super-secret-jwt-key-change-this
-JWT_EXPIRES_IN=7d
+### Infinite Scroll & Pagination
 
-# External APIs (Optional - for seeding data)
-YELP_API_KEY=your-yelp-api-key
-FOURSQUARE_API_KEY=your-foursquare-api-key
-OPENAI_API_KEY=your-openai-api-key
-```
+The mobile app uses React Query for server state management with smart prefetching:
 
-#### Database Setup
+- Default limit: 10 restaurants per page
+- Prefetch trigger: When user reaches 70% through current batch
+- 300ms debounce to prevent rapid consecutive API calls
+- Flat data structure (no nested pages) for easier rendering
 
-```bash
-# Generate Prisma Client
-npm run prisma:generate
+This creates the illusion of infinite scroll while maintaining memory efficiency by only rendering visible cards.
 
-# Run database migrations
-npm run prisma:migrate
-
-# (Optional) Seed the database with sample data
-npm run seed
-
-# Or seed with Yelp/Foursquare data (requires API keys)
-npm run seed:yelp
-npm run seed:foursquare
-```
-
-#### Start the Server
-
-```bash
-# Development mode with hot reload
-npm run dev
-
-# Or build and run production
-npm run build
-npm start
-```
-
-The server will start on `http://localhost:3000`
-
-### 3. Mobile App Setup
-
-#### Install Dependencies
-
-```bash
-cd ../app
-npm install
-```
-
-#### Environment Configuration
-
-Create a `.env` file in the `app` directory:
-
-```env
-# API Configuration
-API_URL=http://localhost:3000/api
-```
-
-**Note**: For iOS simulator, use `http://localhost:3000/api`. For Android emulator, use `http://10.0.2.2:3000/api`.
-
-#### Start the App
-
-```bash
-# Start Expo development server
-npm start
-
-# Or run directly on platforms
-npm run ios      # iOS simulator
-npm run android  # Android emulator
-npm run web      # Web browser
-```
-
-## Running the Project
-
-### Development Workflow
-
-1. **Start the Backend Server**:
-   ```bash
-   cd server
-   npm run dev
-   ```
-   Server runs on `http://localhost:3000`
-
-2. **Start the Mobile App**:
-   ```bash
-   cd app
-   npm start
-   ```
-   - Press `i` for iOS simulator
-   - Press `a` for Android emulator
-   - Scan QR code with Expo Go app for physical device
-
-3. **Access the App**:
-   - Complete the onboarding flow (splash → auth → questionnaire)
-   - Start swiping through restaurants!
-
-### Building for Production
-
-#### Backend
-
-```bash
-cd server
-npm run build
-npm start
-```
-
-#### Mobile App
-
-```bash
-cd app
-
-# iOS
-npm run ios
-
-# Android
-npm run android
-```
-
-For app store deployment, refer to [Expo's deployment documentation](https://docs.expo.dev/distribution/introduction/).
-
-## API Endpoints
-
-### Health Check
-- `GET /api/health` - Server health status
-
-### Authentication
-- `POST /api/auth/register` - Register new user
-- `POST /api/auth/login` - Login user
-- `POST /api/auth/temporary` - Create temporary device-based user
-
-### Users
-- `GET /api/users/profile` - Get user profile (requires auth)
-- `PUT /api/users/profile` - Update user profile (requires auth)
-- `PUT /api/users/password` - Change password (requires auth)
-
-### Restaurants
-- `GET /api/restaurants` - Get nearby restaurants with filters
-  - Query params: `lat`, `long`, `radius`, `price`, `rating`, `limit`, `offset`
-- `GET /api/restaurants/:id` - Get restaurant by ID
-
-## Features Deep Dive
+## Technical Highlights
 
 ### Swipe Screen
 
 The main discovery interface features:
-- **Infinite scroll**: Automatically loads more restaurants as you swipe
-- **Smart prefetching**: Fetches next page when 70% through current batch
-- **Memory management**: Optimized card rendering
-- **Filter persistence**: Remembers your filter preferences
+- Infinite scroll that automatically loads more restaurants as you swipe
+- Smart prefetching that fetches the next page when 70% through the current batch
+- Optimized card rendering for memory management
+- Filter persistence that remembers your preferences
 
 ### Restaurant Cards
 
@@ -410,10 +321,10 @@ Each card displays:
 
 ### Saved Restaurants
 
-- **Dynamic distance**: Updates distance based on current location
-- **Preference context**: Shows why you saved each restaurant
-- **Drag to reorder**: Organize your saved list
-- **Quick actions**: Call, navigate, or remove restaurants
+- Dynamic distance updates based on current location
+- Preference context showing why you saved each restaurant
+- Drag to reorder functionality
+- Quick actions to call, navigate, or remove restaurants
 
 ### Personalization
 
@@ -423,107 +334,8 @@ The questionnaire collects:
 - Automatically balances weights to 100%
 - Used for custom restaurant sorting
 
-## Troubleshooting
-
-### Backend Issues
-
-**Database Connection Error**:
-```bash
-# Check PostgreSQL is running
-psql --version
-
-# Verify DATABASE_URL in .env
-# Reset database if needed
-npm run prisma:reset
-```
-
-**Port Already in Use**:
-```bash
-# Change PORT in server/.env
-PORT=3001
-```
-
-### Mobile App Issues
-
-**Metro Bundler Cache Issues**:
-```bash
-# Clear Expo cache
-npm start -- --clear
-```
-
-**Cannot Connect to Server**:
-- iOS Simulator: Use `http://localhost:3000`
-- Android Emulator: Use `http://10.0.2.2:3000`
-- Physical Device: Use your computer's local IP (e.g., `http://192.168.1.x:3000`)
-
-**Location Permission Issues**:
-- iOS: Check Settings → Privacy → Location Services
-- Android: Check App Settings → Permissions → Location
-
-## Development Scripts
-
-### Server
-
-```bash
-npm run dev              # Start development server with hot reload
-npm run build            # Compile TypeScript to JavaScript
-npm start                # Run compiled production server
-npm run lint             # Run ESLint
-npm run format           # Format code with Prettier
-npm run seed             # Seed database with sample data
-npm run seed:yelp        # Seed with Yelp API data
-npm run seed:foursquare  # Seed with Foursquare API data
-npm run prisma:generate  # Generate Prisma Client
-npm run prisma:migrate   # Run database migrations
-npm run prisma:studio    # Open Prisma Studio (database GUI)
-npm run prisma:reset     # Reset database
-```
-
-### App
-
-```bash
-npm start           # Start Expo development server
-npm run ios         # Run on iOS simulator
-npm run android     # Run on Android emulator
-npm run web         # Run on web browser
-npm run lint        # Run ESLint
-npm run lint:fix    # Fix ESLint issues
-```
-
-## Contributing
-
-Contributions are welcome! Please follow these guidelines:
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-### Code Style
-
-- Follow the existing code style
-- Run `npm run lint` before committing
-- Use TypeScript for type safety
-- Write meaningful commit messages
+---
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## Acknowledgments
-
-- Restaurant data provided by Yelp and Foursquare APIs
-- Icons from Expo Vector Icons
-- Fonts: Poppins and Varela Round
-- Built with love using React Native and Expo
-
----
-
-<div align="center">
-
-  **Made with ❤️ for food lovers everywhere**
-
-  [Report Bug](https://github.com/yourusername/jelly/issues) · [Request Feature](https://github.com/yourusername/jelly/issues)
-
-</div>
+This project is private and proprietary. All rights reserved.
