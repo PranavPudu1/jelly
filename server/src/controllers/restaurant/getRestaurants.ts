@@ -309,6 +309,9 @@ function transformRestaurant(restaurant: any, distance: number, preferences?: Re
         popularDishPhotos,
         menu: restaurant.menu.map((m: any) => ({ id: m.id, images: m.images.map((i: any) => i.url), tags: m.tags.map((t: any) => t.value) })),
         topReview,
+        reviews: restaurant.reviews
+            .filter((rv: any) => rv.review)
+            .map((rv: any) => ({ author: rv.postedBy || 'Anonymous', rating: rv.rating, quote: rv.review })),
         cuisine: cuisineTags,
         socialMedia,
         address: restaurant.address,

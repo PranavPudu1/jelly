@@ -55,6 +55,8 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
         Array<{ imageUrl: string; review?: any }>
     >([]);
 
+    const [expandedReview, setExpandedReview] = useState<number | null>(null);
+
     const scrollViewRef = useRef<ScrollView>(null);
 
     function handleLocationPress() {
@@ -330,7 +332,7 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
                                 end={ { x: 0.5, y: 1 } }
                                 style={ styles.gradient }
                             >
-                                <Text style={ styles.quoteText }>
+                                <Text style={ styles.quoteText } numberOfLines={ 2 }>
                                     "{ restaurant.topReview.quote }"
                                 </Text>
 
@@ -431,73 +433,59 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
                                     </TouchableOpacity>
                                 ) }
                                 <View style={ styles.foodReview }>
-                                    { restaurant.topReview && (
-                                        <>
-                                            <View style={ styles.reviewHeader }>
-                                                <View
-                                                    style={ [
-                                                        styles.avatar,
-                                                        {
-                                                            backgroundColor:
-                                                                getAvatarColor(
-                                                                    index,
-                                                                ),
-                                                        },
-                                                    ] }
-                                                >
-                                                    <Text
-                                                        style={
-                                                            styles.avatarText
-                                                        }
-                                                    >
-                                                        { getInitial(
-                                                            restaurant.topReview.author,
-                                                        ) }
-                                                    </Text>
-                                                </View>
-
-                                                <View style={ styles.reviewInfo }>
-                                                    <Text
-                                                        style={
-                                                            styles.reviewAuthor
-                                                        }
-                                                    >
-                                                        { restaurant.topReview.author }
-                                                    </Text>
-
+                                    { (() => {
+                                        const review = (restaurant.reviews ?? [])[index] || restaurant.topReview;
+                                        if (!review) return null;
+                                        const isExpanded = expandedReview === index;
+                                        return (
+                                            <>
+                                                <View style={ styles.reviewHeader }>
                                                     <View
-                                                        style={
-                                                            styles.reviewStars
-                                                        }
+                                                        style={ [
+                                                            styles.avatar,
+                                                            { backgroundColor: getAvatarColor(index) },
+                                                        ] }
                                                     >
-                                                        { [
-                                                            ...Array(
-                                                                Math.floor(
-                                                                    restaurant.topReview.rating,
-                                                                ),
-                                                            ),
-                                                        ].map((_, i) => (
-                                                            <Ionicons
-                                                                key={ i }
-                                                                name="star"
-                                                                size={ 11 }
-                                                                color={
-                                                                    colors.starOrange
-                                                                }
-                                                            />
-                                                        )) }
+                                                        <Text style={ styles.avatarText }>
+                                                            { getInitial(review.author) }
+                                                        </Text>
+                                                    </View>
+
+                                                    <View style={ styles.reviewInfo }>
+                                                        <Text style={ styles.reviewAuthor }>
+                                                            { review.author }
+                                                        </Text>
+
+                                                        <View style={ styles.reviewStars }>
+                                                            { [...Array(Math.floor(review.rating))].map((_, i) => (
+                                                                <Ionicons
+                                                                    key={ i }
+                                                                    name="star"
+                                                                    size={ 11 }
+                                                                    color={ colors.starOrange }
+                                                                />
+                                                            )) }
+                                                        </View>
                                                     </View>
                                                 </View>
-                                            </View>
 
-                                            <Text
-                                                style={ styles.reviewQuote }
-                                                numberOfLines={ 4 }
-                                            >
-                                                "{ restaurant.topReview.quote }"
-                                            </Text>
-                                        </>
-                                    ) }
+                                                <Text
+                                                    style={ styles.reviewQuote }
+                                                    numberOfLines={ isExpanded ? undefined : 3 }
+                                                >
+                                                    "{ review.quote }"
+                                                </Text>
+                                                <TouchableOpacity
+                                                    onPress={ () => setExpandedReview(isExpanded ? null : index) }
+                                                    hitSlop={ { top: 6, bottom: 6, left: 6, right: 6 } }
+                                                >
+                                                    <Text style={ styles.readMore }>
+                                                        { isExpanded ? 'Show less' : 'Read more' }
+                                                    </Text>
+                                                </TouchableOpacity>
+                                            </>
+                                        );
+                                    })() }
                                 </View>
 
                                 { !isEven && (
@@ -822,6 +810,12 @@ const createStyles = (colors: typeof AppColors) => StyleSheet.create({
         fontSize: 11,
         color: colors.textLight,
         lineHeight: 16,
+    },
+    readMore: {
+        fontSize: 11,
+        fontWeight: '600',
+        color: colors.primary,
+        marginTop: 4,
     },
     viewAllButtonContainer: {
         marginTop: Spacing.lg,

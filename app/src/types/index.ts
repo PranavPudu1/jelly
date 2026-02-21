@@ -43,6 +43,7 @@ export interface Restaurant {
     popularDishPhotos: string[];
     menu: any[];
     topReview: Review;
+    reviews: Review[];
     cuisine: string[];
     socialMedia: {
         instagram: string | null;
