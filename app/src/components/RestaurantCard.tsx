@@ -326,20 +326,22 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
                                 resizeMode="cover"
                             />
 
-                            <LinearGradient
-                                colors={ ['transparent', 'rgba(0, 0, 0, 0.6)'] }
-                                start={ { x: 0.5, y: 0 } }
-                                end={ { x: 0.5, y: 1 } }
-                                style={ styles.gradient }
-                            >
-                                <Text style={ styles.quoteText } numberOfLines={ 2 }>
-                                    "{ restaurant.topReview.quote }"
-                                </Text>
+                            { restaurant.topReview && (
+                                <LinearGradient
+                                    colors={ ['transparent', 'rgba(0, 0, 0, 0.6)'] }
+                                    start={ { x: 0.5, y: 0 } }
+                                    end={ { x: 0.5, y: 1 } }
+                                    style={ styles.gradient }
+                                >
+                                    <Text style={ styles.quoteText } numberOfLines={ 2 }>
+                                        "{ restaurant.topReview.quote }"
+                                    </Text>
 
-                                <Text style={ styles.quoteAuthor }>
-                                    - { restaurant.topReview.author }
-                                </Text>
-                            </LinearGradient>
+                                    <Text style={ styles.quoteAuthor }>
+                                        - { restaurant.topReview.author }
+                                    </Text>
+                                </LinearGradient>
+                            ) }
                         </TouchableOpacity>
                     </Animated.View>
                 </View>

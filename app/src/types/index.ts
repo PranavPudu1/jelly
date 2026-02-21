@@ -42,7 +42,7 @@ export interface Restaurant {
     ambientImages: string[];
     popularDishPhotos: string[];
     menu: any[];
-    topReview: Review;
+    topReview: Review | null;
     reviews: Review[];
     cuisine: string[];
     socialMedia: {
