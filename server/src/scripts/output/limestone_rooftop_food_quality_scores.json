@@ -1,0 +1,62 @@
+{
+  "restaurant": {
+    "id": "e8502957-5ef9-4376-a355-39223364e57b",
+    "name": "Limestone Rooftop",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:08:33.659Z",
+    "scores": {
+      "flavorful": 7,
+      "authentic": 6,
+      "satisfying": 7,
+      "comforting": 6,
+      "aromatic": 8,
+      "appetizing": 8,
+      "overall": 7
+    },
+    "imageTags": [
+      "large panoramic windows",
+      "stylish wooden accents",
+      "cozy colorful cushions",
+      "soft pastel seating areas",
+      "modern minimalist interior",
+      "fresh herb garnishes",
+      "luxurious bar setting",
+      "vibrant citrus flavors",
+      "artfully crafted cocktails",
+      "elegant glassware selection",
+      "fresh arugula topping",
+      "savory barbecue sauce",
+      "tasty flatbread pizza",
+      "colorful shredded carrots",
+      "vibrant salad garnish",
+      "vibrant purple lighting",
+      "chic bar area",
+      "modern lounge seating",
+      "stylish decorative accents",
+      "welcoming contemporary design",
+      "marble table setting",
+      "garnished with herbs",
+      "colorful seasonal fruit salad",
+      "crispy golden falafel balls",
+      "elegant serving dishes",
+      "modern high-rise setting",
+      "stunning cityscape view",
+      "cozy candlelit table",
+      "panoramic urban scene",
+      "tranquil evening atmosphere",
+      "casual dining setting",
+      "refreshing citrus beverage",
+      "spicy rimmed cocktail glass",
+      "elegantly garnished drink",
+      "creamy chilled drink",
+      "colorful vegetable garnish",
+      "rich black marble table",
+      "warm flatbread on side",
+      "creamy hummus with olives",
+      "modern minimalist presentation"
+    ],
+    "reviewTags": []
+  }
+}

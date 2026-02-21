@@ -1,0 +1,47 @@
+{
+  "restaurant": {
+    "id": "14f0d1d0-0409-4b3b-a566-275e67bf7c40",
+    "name": "Fogonero Venezuelan",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T02:52:56.731Z",
+    "scores": {
+      "vibrant": 6,
+      "romantic": 4,
+      "trendy": 5,
+      "stylish": 6,
+      "immersive": 5,
+      "inviting": 7,
+      "overall": 6
+    },
+    "imageTags": [
+      "crispy fried plantains",
+      "savory shredded meat",
+      "poached egg on rice",
+      "black beans and avocado",
+      "traditional Latin cuisine",
+      "grilled steak with cheese",
+      "smoky sausage topping",
+      "fresh leafy greens salad",
+      "savory black bean medley",
+      "flavorful gourmet presentation",
+      "fluffy white rice",
+      "crispy golden plantains",
+      "hearty Caribbean meal",
+      "fresh green onion garnish",
+      "savory beef stew sauce",
+      "fried egg on rice",
+      "aromatic seasoned ingredients",
+      "side of black beans",
+      "hearty Latin American dish",
+      "savory shredded beef",
+      "casual dining atmosphere",
+      "artisan dipping sauces",
+      "handheld savory treat",
+      "crispy golden pastry",
+      "freshly squeezed juice"
+    ],
+    "reviewTags": []
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "restaurant": {
+    "id": "378566d7-165f-48ba-8e60-5b74bb0927cd",
+    "name": "COVER 3 Round Rock",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:03:32.943Z",
+    "scores": {
+      "flavorful": 5,
+      "authentic": 4,
+      "satisfying": 6,
+      "comforting": 7,
+      "aromatic": 5,
+      "appetizing": 6,
+      "overall": 5
+    },
+    "imageTags": [
+      "crispy fried chicken sandwich",
+      "delicious comfort meal",
+      "hand-cut French fries",
+      "toasted soft rolls",
+      "house-made ketchup dip",
+      "creamy guacamole topping",
+      "loaded nachos with chicken",
+      "black bean and cheese layers",
+      "crispy tortilla chips base",
+      "fresh cilantro and tomato garnish",
+      "powdered sugar garnish",
+      "vanilla ice cream scoops",
+      "rich dessert presentation",
+      "drizzled caramel sauce",
+      "decadent chocolate brownie",
+      "fluffy mashed potatoes",
+      "colorful bell pepper strips",
+      "steamed green vegetables",
+      "creamy white gravy sauce",
+      "crispy fried chicken cutlet"
+    ],
+    "reviewTags": [
+      "sports bar atmosphere",
+      "watered down drinks",
+      "chicken tenders disappointment",
+      "awful mac & cheese",
+      "flat cucumber drink",
+      "attentive service",
+      "spicy salsa and queso",
+      "unique and delicious rice",
+      "fulfilling mahi tacos",
+      "unique guacamole"
+    ]
+  }
+}

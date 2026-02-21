@@ -1,0 +1,27 @@
+{
+  "restaurant": {
+    "id": "ccb85c18-f8b0-4392-bbbe-d535449b8c2d",
+    "name": "Chyngon Eats",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T02:51:14.984Z",
+    "scores": {
+      "vibrant": 7,
+      "romantic": 4,
+      "trendy": 6,
+      "stylish": 6,
+      "immersive": 5,
+      "inviting": 7,
+      "overall": 6
+    },
+    "imageTags": [
+      "sunny side up egg",
+      "colorful bell peppers",
+      "flavorful seasoned potatoes",
+      "rich and savory dish",
+      "juicy steak strips"
+    ],
+    "reviewTags": []
+  }
+}

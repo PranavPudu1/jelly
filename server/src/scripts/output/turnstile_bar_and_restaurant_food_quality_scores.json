@@ -1,0 +1,47 @@
+{
+  "restaurant": {
+    "id": "e9dfb16e-9198-4c32-baeb-b988ef690a2f",
+    "name": "Turnstile Bar and Restaurant",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:13:39.814Z",
+    "scores": {
+      "flavorful": 7,
+      "authentic": 6,
+      "satisfying": 8,
+      "comforting": 7,
+      "aromatic": 7,
+      "appetizing": 8,
+      "overall": 7
+    },
+    "imageTags": [
+      "elegant glassware display",
+      "crafted artisanal cocktails",
+      "sleek modern bar design",
+      "fresh herb garnish presentation",
+      "vibrant colorful drinks",
+      "wooden bar counter",
+      "craft beer selection",
+      "hazy pale ale",
+      "stylish glassware design",
+      "frothy dark stout",
+      "subtle bokeh lighting effects",
+      "wooden bar counter background",
+      "amber ale with frothy head",
+      "craft beer in unique glass",
+      "artisanal brewery ambiance",
+      "crispy sweet potato fries",
+      "juicy bacon cheeseburger",
+      "artisanal burger bun",
+      "rustic wooden bar top",
+      "house-made dipping sauce",
+      "toasted brioche bun",
+      "artisan plating style",
+      "fresh garden greens",
+      "succulent bacon burger",
+      "sharing platter background"
+    ],
+    "reviewTags": []
+  }
+}

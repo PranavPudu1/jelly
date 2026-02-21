@@ -1,0 +1,27 @@
+{
+  "restaurant": {
+    "id": "ed023216-c826-4f8d-9da7-b32fd7ef0df7",
+    "name": "Chuy's",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:04:11.092Z",
+    "scores": {
+      "flavorful": 7,
+      "authentic": 6,
+      "satisfying": 8,
+      "comforting": 8,
+      "aromatic": 7,
+      "appetizing": 7,
+      "overall": 7
+    },
+    "imageTags": [],
+    "reviewTags": [
+      "amazing queso",
+      "friendly staff",
+      "taco and enchilada combo",
+      "simple and nice menu",
+      "perfectly balanced plate"
+    ]
+  }
+}

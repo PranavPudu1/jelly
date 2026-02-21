@@ -1,0 +1,38 @@
+{
+  "restaurant": {
+    "id": "68cfa274-7c3f-4ead-9a8a-192904c9b473",
+    "name": "Crenshaw's Bar & Eatery",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:04:39.766Z",
+    "scores": {
+      "flavorful": 8,
+      "authentic": 7,
+      "satisfying": 8,
+      "comforting": 8,
+      "aromatic": 7,
+      "appetizing": 9,
+      "overall": 8
+    },
+    "imageTags": [
+      "elegant dining presentation",
+      "garnished with herbs",
+      "crispy bacon topping",
+      "creamy potato soup",
+      "serving in stoneware bowl",
+      "fresh romaine lettuce",
+      "crispy crouton toppings",
+      "creamy dressing drizzle",
+      "rotisserie chicken salad",
+      "colorful cherry tomatoes"
+    ],
+    "reviewTags": [
+      "great dining experience",
+      "super delicious food",
+      "austin area gem",
+      "amazing presentation",
+      "awesome funny server"
+    ]
+  }
+}

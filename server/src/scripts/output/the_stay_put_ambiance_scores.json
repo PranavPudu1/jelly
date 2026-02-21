@@ -1,0 +1,38 @@
+{
+  "restaurant": {
+    "id": "0e716e98-c457-46db-a6ca-f8fb101d0473",
+    "name": "The Stay Put",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T02:59:51.169Z",
+    "scores": {
+      "vibrant": 6,
+      "romantic": 5,
+      "trendy": 6,
+      "stylish": 7,
+      "immersive": 5,
+      "inviting": 8,
+      "overall": 6
+    },
+    "imageTags": [
+      "citrusy refreshing drink",
+      "rich dark coffee",
+      "decorative citrus garnish",
+      "cozy outdoor setting",
+      "variety of hot beverages",
+      "wooden picnic tables",
+      "cozy rustic decor",
+      "green accent lighting",
+      "spacious communal seating",
+      "low lighting atmosphere"
+    ],
+    "reviewTags": [
+      "amazing vendor events",
+      "great music vibes",
+      "open-air patio",
+      "dog friendly atmosphere",
+      "fun and welcoming spot"
+    ]
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "restaurant": {
+    "id": "81bb34fb-0fd3-43e2-bd36-dbf72e7c6802",
+    "name": "fez Austin",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:14:42.906Z",
+    "scores": {
+      "flavorful": 8,
+      "authentic": 7,
+      "satisfying": 8,
+      "comforting": 7,
+      "aromatic": 8,
+      "appetizing": 9,
+      "overall": 8
+    },
+    "imageTags": [
+      "vibrant fresh salad",
+      "flavorful marinated meats",
+      "aromatic saffron rice",
+      "colorful culinary presentation",
+      "grilled meat skewers variety",
+      "fresh mint and herbs",
+      "vibrant roasted cauliflower dish",
+      "tangy green olive garnish",
+      "crunchy toasted almond slices",
+      "colorful spiced puree base",
+      "creamy dipping sauces",
+      "fluffy seasoned rice",
+      "spicy grilled chicken skewers",
+      "zesty lime wedge garnish",
+      "fresh garden salad mix"
+    ],
+    "reviewTags": [
+      "honey harissa sauce",
+      "great combination of flavors",
+      "picture worthy presentation",
+      "best wings in a long time",
+      "loaded fez fries"
+    ]
+  }
+}

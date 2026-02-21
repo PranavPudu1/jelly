@@ -1,0 +1,48 @@
+{
+  "restaurant": {
+    "id": "30fbbfeb-4249-4407-b19b-51743e6c2bbd",
+    "name": "TaterQue",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:12:13.900Z",
+    "scores": {
+      "flavorful": 6,
+      "authentic": 5,
+      "satisfying": 7,
+      "comforting": 8,
+      "aromatic": 6,
+      "appetizing": 7,
+      "overall": 6
+    },
+    "imageTags": [
+      "casual outdoor seating",
+      "rustic wooden architecture",
+      "colorful restaurant signage",
+      "spacious parking area",
+      "welcoming dining entrance",
+      "cheesy comfort food bake",
+      "herb-garnished casserole",
+      "savory barbecue sauce drizzle",
+      "melty cheddar topping",
+      "smoky pulled pork layers",
+      "chopped green onions garnish",
+      "colorful shredded cheese",
+      "drizzled barbecue sauce",
+      "smoky pulled pork toppings",
+      "creamy ranch dressing"
+    ],
+    "reviewTags": [
+      "unpleasant dining atmosphere",
+      "inedible honey cornbread",
+      "soggy fries disappointment",
+      "fresh catfish flavor",
+      "deafeningly loud music",
+      "hearty portion sizes",
+      "loaded tater cakes",
+      "delicious ox tails",
+      "rich comfort food",
+      "shareable entrees"
+    ]
+  }
+}

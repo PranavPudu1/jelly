@@ -1,0 +1,43 @@
+{
+  "restaurant": {
+    "id": "1b3c0e40-6106-4d3e-8395-c9928ef1ea50",
+    "name": "Canyon Grille",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:03:43.443Z",
+    "scores": {
+      "flavorful": 7,
+      "authentic": 6,
+      "satisfying": 8,
+      "comforting": 7,
+      "aromatic": 6,
+      "appetizing": 7,
+      "overall": 7
+    },
+    "imageTags": [
+      "tangy dipping sauces",
+      "zesty lemon wedges",
+      "creamy coleslaw side",
+      "golden brown french fries",
+      "crispy battered fish fillets"
+    ],
+    "reviewTags": [
+      "better food than touristy spots",
+      "outstanding kobe burger",
+      "great views and atmosphere",
+      "hidden jewel restaurant",
+      "huge jalapeno margarita",
+      "delicious food",
+      "comfortable dining",
+      "impressive views",
+      "great waterfront location",
+      "wonderful bar service",
+      "elevator to yacht parking",
+      "pretty view",
+      "service not up to par",
+      "dry wagyu sandwich",
+      "good starter peppers"
+    ]
+  }
+}

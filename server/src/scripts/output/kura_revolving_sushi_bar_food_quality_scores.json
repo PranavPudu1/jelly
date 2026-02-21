@@ -1,0 +1,52 @@
+{
+  "restaurant": {
+    "id": "86b038b0-a40c-4378-ba87-b18f50783860",
+    "name": "Kura Revolving Sushi Bar",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:07:49.587Z",
+    "scores": {
+      "flavorful": 7,
+      "authentic": 6,
+      "satisfying": 7,
+      "comforting": 6,
+      "aromatic": 7,
+      "appetizing": 8,
+      "overall": 7
+    },
+    "imageTags": [
+      "colorful sushi presentation",
+      "fresh seafood ingredients",
+      "minimalist plate design",
+      "assorted sushi rolls",
+      "signature dipping sauces",
+      "fresh seafood presentation",
+      "conveyor belt sushi",
+      "seared salmon with mayo",
+      "modern dining experience",
+      "assorted sushi plates",
+      "clean and organized setup",
+      "sushi conveyor belt system",
+      "brightly lit dining area",
+      "modern minimalistic design",
+      "spacious seating arrangements",
+      "modern sushi bar design",
+      "minimalist furniture layout",
+      "red accent chair seating",
+      "contemporary wooden ceiling",
+      "light-filled dining area",
+      "fresh green onions",
+      "spicy ramen bowl",
+      "sliced pork belly",
+      "soft boiled egg garnish",
+      "sesame seeds topping",
+      "colorful sushi rolls",
+      "sushi on conveyor belt",
+      "crispy tempura topping",
+      "modern sushi dining experience",
+      "jalapeño slices garnish"
+    ],
+    "reviewTags": []
+  }
+}

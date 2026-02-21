@@ -1,0 +1,32 @@
+{
+  "restaurant": {
+    "id": "d322d6c8-521f-41bd-bb2c-df3f5303d622",
+    "name": "Hyde Park Bar & Grill",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T02:54:01.558Z",
+    "scores": {
+      "vibrant": 6,
+      "romantic": 5,
+      "trendy": 6,
+      "stylish": 6,
+      "immersive": 4,
+      "inviting": 7,
+      "overall": 6
+    },
+    "imageTags": [],
+    "reviewTags": [
+      "impeccable service",
+      "ahi tuna steak with noodles",
+      "bloody mary's",
+      "awesome bartender",
+      "great brunch experience",
+      "amazing food",
+      "attentive service",
+      "friendly atmosphere",
+      "fast seating",
+      "return visit"
+    ]
+  }
+}

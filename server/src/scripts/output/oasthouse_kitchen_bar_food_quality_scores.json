@@ -1,0 +1,32 @@
+{
+  "restaurant": {
+    "id": "0153c5ac-3f1c-46ce-9e7f-64d62ea890ab",
+    "name": "Oasthouse Kitchen + Bar",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:09:54.405Z",
+    "scores": {
+      "flavorful": 7,
+      "authentic": 6,
+      "satisfying": 7,
+      "comforting": 7,
+      "aromatic": 6,
+      "appetizing": 7,
+      "overall": 7
+    },
+    "imageTags": [
+      "fresh microgreens garnish",
+      "rustic wooden table setting",
+      "caramelized onions and pasta",
+      "spicy jalapeño topping",
+      "savory grilled sausages dish",
+      "craft beer pairing",
+      "casual dining experience",
+      "crispy golden fish fillets",
+      "refreshing lemon wedge",
+      "fries with dipping sauces"
+    ],
+    "reviewTags": []
+  }
+}

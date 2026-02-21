@@ -1,0 +1,27 @@
+{
+  "restaurant": {
+    "id": "d5ccbe79-1a95-4385-b3d8-7bc57dad842c",
+    "name": "Loro Asian Smokehouse & Bar",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T02:55:34.848Z",
+    "scores": {
+      "vibrant": 7,
+      "romantic": 4,
+      "trendy": 7,
+      "stylish": 6,
+      "immersive": 5,
+      "inviting": 6,
+      "overall": 6
+    },
+    "imageTags": [
+      "crispy fried chicken sandwich",
+      "seasoned pickle garnish",
+      "tangy coleslaw topping",
+      "soft fluffy bun",
+      "vibrant vegetable colors"
+    ],
+    "reviewTags": []
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "restaurant": {
+    "id": "5656fe3d-cb0a-4c8f-a8ab-8ea3a09734f9",
+    "name": "Perla's",
+    "price": "$$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T02:56:55.219Z",
+    "scores": {
+      "vibrant": 8,
+      "romantic": 7,
+      "trendy": 8,
+      "stylish": 9,
+      "immersive": 8,
+      "inviting": 9,
+      "overall": 8
+    },
+    "imageTags": [
+      "striped patio umbrellas",
+      "casual seating area",
+      "outdoor garden dining",
+      "lush greenery plants",
+      "sunny relaxed atmosphere",
+      "outdoor dining setting",
+      "fresh cucumber salad",
+      "vibrant green dressing",
+      "elegant glassware on table",
+      "sunlit rustic table",
+      "pan-seared fish fillet",
+      "elegant seafood presentation",
+      "rich tomato sauce base",
+      "fresh wilted spinach",
+      "white fish gourmet plating",
+      "fresh oysters on ice",
+      "metal serving tray",
+      "seafood platter presentation",
+      "lemon and sauce garnish",
+      "dining table setting",
+      "casual dining atmosphere",
+      "woven stool seating",
+      "hanging wicker lamps",
+      "chef at oyster station",
+      "coastal seafood bar",
+      "lively outdoor seating",
+      "tree shaded dining",
+      "lush garden surroundings",
+      "neon sign entrance",
+      "casual gathering space",
+      "fresh lettuce and tomato",
+      "tangy dipping sauce",
+      "perfectly seasoned fries",
+      "toasted sandwich bun",
+      "crispy fried shrimp sandwich"
+    ],
+    "reviewTags": [
+      "outdoor seating",
+      "fried egg in gumbo",
+      "great experience",
+      "absolutely delicious food",
+      "spirit forward drinks",
+      "oak-shaded patio",
+      "lobster roll indulgence",
+      "seaside-escape in austin",
+      "upscale brunch experience",
+      "warm and attentive service",
+      "covered dining area",
+      "warm lobster roll",
+      "great variety of oysters",
+      "tuna tostadas",
+      "cool vibe"
+    ]
+  }
+}

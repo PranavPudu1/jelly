@@ -1,0 +1,32 @@
+{
+  "restaurant": {
+    "id": "0798675a-d9b1-484e-ad0b-b207a76916b7",
+    "name": "Happy Chicks",
+    "price": "$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:06:40.956Z",
+    "scores": {
+      "flavorful": 8,
+      "authentic": 6,
+      "satisfying": 9,
+      "comforting": 8,
+      "aromatic": 7,
+      "appetizing": 7,
+      "overall": 8
+    },
+    "imageTags": [],
+    "reviewTags": [
+      "larger serving size",
+      "juicy spicy chicken strips",
+      "fantastic mac and cheese",
+      "very attentive service",
+      "delicious food experience",
+      "generous portions",
+      "crispy seasoned chicken",
+      "tasty filling meal",
+      "casual busy energy",
+      "friendly fast service"
+    ]
+  }
+}

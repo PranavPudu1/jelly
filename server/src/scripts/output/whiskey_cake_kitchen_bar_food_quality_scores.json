@@ -1,0 +1,73 @@
+{
+  "restaurant": {
+    "id": "700e7ec8-a97b-42be-9781-56573b5dd3fc",
+    "name": "Whiskey Cake Kitchen & Bar",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:14:19.161Z",
+    "scores": {
+      "flavorful": 8,
+      "authentic": 7,
+      "satisfying": 8,
+      "comforting": 8,
+      "aromatic": 7,
+      "appetizing": 9,
+      "overall": 8
+    },
+    "imageTags": [
+      "modern brick exterior",
+      "distinctive restaurant signage",
+      "restaurant name in bold",
+      "outdoor dining appeal",
+      "stylish urban aesthetics",
+      "elegant cocktail presentation",
+      "assorted gourmet cheeses",
+      "crispy flatbread triangles",
+      "house-made fruit preserves",
+      "artisan charcuterie platter",
+      "whipped cream topping",
+      "rich maple syrup",
+      "crunchy pecan garnish",
+      "decadent caramel drizzle",
+      "thick French toast",
+      "fresh strawberry slices",
+      "fluffy pancake stack",
+      "drizzling maple syrup",
+      "crumbly cake topping",
+      "strawberry ice cream scoop",
+      "inviting restaurant entrance",
+      "outdoor patio seating",
+      "modern brick facade",
+      "whiskey-themed decor",
+      "clear blue sky backdrop",
+      "rustic wooden table",
+      "colorful crafted cocktails",
+      "tropical themed drink",
+      "stylish drink presentation",
+      "gastronomic bar offerings",
+      "elegant glassware presentation",
+      "variety of bourbons",
+      "crafted whiskey selections",
+      "whiskey tasting flight",
+      "artisanal wooden board"
+    ],
+    "reviewTags": [
+      "high noise level",
+      "insufficient parking",
+      "pleasant and helpful staff",
+      "overpriced food",
+      "tough piece of steak",
+      "amazing food experience",
+      "top-notch drinks",
+      "professional bar team",
+      "synchronized service",
+      "kind and welcoming staff",
+      "fresh wilted greens and tomatoes",
+      "amazing dessert whiskey cake",
+      "wonderful welcoming atmosphere",
+      "fried green tomatoes full of flavor",
+      "perfectly seasoned shrimp and grits"
+    ]
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "restaurant": {
+    "id": "7449858f-a414-4bdb-b6b5-ed0170555f6c",
+    "name": "XENiA Mediterranean Kitchen - Austin",
+    "price": "$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:01:11.378Z",
+    "scores": {
+      "vibrant": 7,
+      "romantic": 4,
+      "trendy": 5,
+      "stylish": 6,
+      "immersive": 5,
+      "inviting": 7,
+      "overall": 6
+    },
+    "imageTags": [],
+    "reviewTags": [
+      "careless kitchen practices",
+      "dangerous meal experience",
+      "unacceptable dining experience",
+      "food safety concerns",
+      "unsafe food handling",
+      "great dining experience",
+      "high quality ingredients",
+      "delicious and fresh food",
+      "amazing service by roger",
+      "vibrant atmosphere",
+      "really good food",
+      "best mediterranean food",
+      "husband loved the meal",
+      "unexpectedly enjoyed cuisine",
+      "highly satisfying experience",
+      "good food overall",
+      "flavorful chicken dish",
+      "hard-to-find carrot hummus",
+      "yogurt dressing recommendation",
+      "menu item unavailable"
+    ]
+  }
+}

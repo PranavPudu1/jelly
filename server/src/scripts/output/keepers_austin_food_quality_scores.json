@@ -1,0 +1,53 @@
+{
+  "restaurant": {
+    "id": "b1ec9189-b875-4e12-9c91-1a76b73d1986",
+    "name": "Keepers Austin",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:07:40.697Z",
+    "scores": {
+      "flavorful": 7,
+      "authentic": 6,
+      "satisfying": 8,
+      "comforting": 7,
+      "aromatic": 7,
+      "appetizing": 8,
+      "overall": 7
+    },
+    "imageTags": [
+      "crispy golden fries",
+      "fresh lemon wedge",
+      "creamy lobster filling",
+      "lobster roll sandwich",
+      "tangy dill pickles",
+      "colorful vegetable garnish",
+      "vibrant fresh ceviche",
+      "savory seafood mix",
+      "crispy golden tortilla chips",
+      "zesty lime dressing",
+      "grilled bread slices",
+      "toasted garlic breadcrumbs",
+      "herb-infused oil drizzle",
+      "linguine with clams",
+      "creamy seafood sauce"
+    ],
+    "reviewTags": [
+      "great happy hour dishes",
+      "patio dining experience",
+      "favorite arancini balls",
+      "crunchy roll surprise",
+      "blackened salmon tacos",
+      "date night destination",
+      "excellent service experience",
+      "great seafood spot",
+      "recommended by the staff",
+      "birthday dinner celebration",
+      "flavorful linguine noodles",
+      "delicious lobster mac and cheese",
+      "too crunchy bread",
+      "spicy cajun seasoning",
+      "good service experience"
+    ]
+  }
+}

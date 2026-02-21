@@ -1,0 +1,37 @@
+{
+  "restaurant": {
+    "id": "f281c2b2-708e-4813-855c-203aed22e74c",
+    "name": "Garage",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:06:17.585Z",
+    "scores": {
+      "flavorful": 7,
+      "authentic": 6,
+      "satisfying": 7,
+      "comforting": 8,
+      "aromatic": 7,
+      "appetizing": 7,
+      "overall": 7
+    },
+    "imageTags": [],
+    "reviewTags": [
+      "intimate seating arrangement",
+      "unique cocktail offerings",
+      "perfect for date night",
+      "speakeasy-style cocktail bar",
+      "dark and moody atmosphere",
+      "great pizza and caesar salad",
+      "friendly whole staff",
+      "cozy tables and lounges",
+      "tremendous cocktail pairings",
+      "great atmosphere at the bar",
+      "memorable bartender experience",
+      "great classic cocktails",
+      "creative new cocktails",
+      "personal attention service",
+      "unique venue atmosphere"
+    ]
+  }
+}

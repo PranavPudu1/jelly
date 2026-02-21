@@ -1,0 +1,38 @@
+{
+  "restaurant": {
+    "id": "deecbb82-308d-4ed9-a51c-a006995e598a",
+    "name": "The Goat Pflugerville",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T02:59:15.969Z",
+    "scores": {
+      "vibrant": 6,
+      "romantic": 3,
+      "trendy": 5,
+      "stylish": 5,
+      "immersive": 4,
+      "inviting": 7,
+      "overall": 5
+    },
+    "imageTags": [
+      "melted cheddar cheese",
+      "soft toasted bun",
+      "fresh lettuce and tomato",
+      "juicy beef burger",
+      "crispy pickles topping"
+    ],
+    "reviewTags": [
+      "outstanding service",
+      "too salty fries",
+      "kids tenders and fries",
+      "messy feta whip",
+      "feta melt with sweet potato fries",
+      "tasty breakfast tacos",
+      "delicious brunch menu",
+      "impressive food quality",
+      "best bloody Mary",
+      "fun menu options"
+    ]
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "restaurant": {
+    "id": "34512b85-3225-4df5-98ce-3870be9bb572",
+    "name": "1618 Asian Fusion",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T02:48:48.420Z",
+    "scores": {
+      "vibrant": 8,
+      "romantic": 5,
+      "trendy": 7,
+      "stylish": 8,
+      "immersive": 7,
+      "inviting": 8,
+      "overall": 7
+    },
+    "imageTags": [
+      "colorful gourmet dishes",
+      "signature sauces and dips",
+      "lavish seafood platter",
+      "varied Asian culinary spread",
+      "exotic herbal garnishes",
+      "fresh herbs and greens",
+      "hearty beef bone soup",
+      "rich savory broth",
+      "traditional Vietnamese cuisine",
+      "colorful garnishes and sides",
+      "authentic Vietnamese dining experience",
+      "tender meat on the bone",
+      "fresh vegetables and condiments",
+      "hearty beef noodle soup",
+      "flavorful broth with herbs"
+    ],
+    "reviewTags": []
+  }
+}

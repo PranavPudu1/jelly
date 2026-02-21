@@ -1,0 +1,27 @@
+{
+  "restaurant": {
+    "id": "896f6256-d130-4f62-be91-fc6791bbedcc",
+    "name": "Salt Traders Coastal Cooking",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T02:57:59.392Z",
+    "scores": {
+      "vibrant": 7,
+      "romantic": 5,
+      "trendy": 6,
+      "stylish": 7,
+      "immersive": 5,
+      "inviting": 8,
+      "overall": 6
+    },
+    "imageTags": [
+      "casual dining atmosphere",
+      "bright airy space",
+      "rustic wooden accents",
+      "colorful nautical artwork",
+      "large windows with views"
+    ],
+    "reviewTags": []
+  }
+}

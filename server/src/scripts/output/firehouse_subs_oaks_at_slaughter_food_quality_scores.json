@@ -1,0 +1,42 @@
+{
+  "restaurant": {
+    "id": "74b2f12d-5f7c-41fd-adcb-29928f908e47",
+    "name": "Firehouse Subs Oaks at Slaughter",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:05:44.334Z",
+    "scores": {
+      "flavorful": 6,
+      "authentic": 5,
+      "satisfying": 7,
+      "comforting": 6,
+      "aromatic": 5,
+      "appetizing": 6,
+      "overall": 6
+    },
+    "imageTags": [
+      "casual dining atmosphere",
+      "colorful snack rack",
+      "organized menu display",
+      "efficient ordering setup",
+      "bright and inviting interior",
+      "savory barbecue flavor",
+      "hearty meat sandwich",
+      "freshly shredded lettuce",
+      "toasted hoagie bread",
+      "generous portion size",
+      "firehouse themed decor",
+      "bright and welcoming space",
+      "functional seating arrangements",
+      "casual dining environment",
+      "order counter visible",
+      "casual dining atmosphere",
+      "brightly lit interior",
+      "vibrant hot sauce station",
+      "organized condiment display",
+      "modern restaurant decor"
+    ],
+    "reviewTags": []
+  }
+}

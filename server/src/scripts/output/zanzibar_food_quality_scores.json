@@ -1,0 +1,37 @@
+{
+  "restaurant": {
+    "id": "ddbaf9fe-2241-45d8-a1e7-d297ac42f4d8",
+    "name": "Zanzibar",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:14:40.822Z",
+    "scores": {
+      "flavorful": 7,
+      "authentic": 6,
+      "satisfying": 7,
+      "comforting": 6,
+      "aromatic": 7,
+      "appetizing": 8,
+      "overall": 7
+    },
+    "imageTags": [],
+    "reviewTags": [
+      "enjoyable appetizers",
+      "outstanding atmosphere",
+      "breathtaking view",
+      "amazing service",
+      "loud music",
+      "perfect food",
+      "overcooked shrimp skewers",
+      "beautiful roof-top experience",
+      "inoperable external elevator",
+      "marriott lobby entrance",
+      "friendly and attentive service",
+      "engaging atmosphere",
+      "considerate handling of requests",
+      "awesome bartender service",
+      "great drink selection"
+    ]
+  }
+}

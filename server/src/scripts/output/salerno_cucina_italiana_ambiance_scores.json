@@ -1,0 +1,43 @@
+{
+  "restaurant": {
+    "id": "103a7f90-0207-434e-b85a-2a690fdae533",
+    "name": "Salerno Cucina Italiana",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T02:57:55.481Z",
+    "scores": {
+      "vibrant": 6,
+      "romantic": 7,
+      "trendy": 6,
+      "stylish": 7,
+      "immersive": 5,
+      "inviting": 8,
+      "overall": 6
+    },
+    "imageTags": [
+      "soft warm lighting",
+      "modern rustic decor",
+      "open kitchen view",
+      "casual dining atmosphere",
+      "spacious wooden seating",
+      "fresh basil garnish",
+      "creamy fettuccine alfredo",
+      "elegant white plate presentation",
+      "rich pasta dish",
+      "hearty Italian classic",
+      "outdoor seating area",
+      "casual dining atmosphere",
+      "colorful restaurant signage",
+      "inviting stone facade",
+      "charming Italian restaurant exterior"
+    ],
+    "reviewTags": [
+      "inviting dining room",
+      "comfortable seating",
+      "cheerful service staff",
+      "incredible pizza",
+      "clean restaurant environment"
+    ]
+  }
+}

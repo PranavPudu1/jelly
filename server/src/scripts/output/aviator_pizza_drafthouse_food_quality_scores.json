@@ -1,0 +1,68 @@
+{
+  "restaurant": {
+    "id": "0d789b2b-9ac4-41c5-89a1-4e6c9db3ee06",
+    "name": "Aviator Pizza & Drafthouse",
+    "price": "$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:02:25.714Z",
+    "scores": {
+      "flavorful": 7,
+      "authentic": 6,
+      "satisfying": 7,
+      "comforting": 7,
+      "aromatic": 6,
+      "appetizing": 7,
+      "overall": 7
+    },
+    "imageTags": [
+      "modern industrial design",
+      "casual dining atmosphere",
+      "large glass windows",
+      "exposed ceiling fixtures",
+      "wooden wall paneling",
+      "crispy pizza crust",
+      "parmesan and chili flakes",
+      "herb garnished pizza",
+      "artichoke pizza slices",
+      "sliced chicken topping",
+      "casual dining setting",
+      "pepperoni mushroom pizza",
+      "thick golden crust",
+      "marble tabletop surface",
+      "metal pizza tray",
+      "vintage aviation mural",
+      "modern industrial lighting",
+      "quilted leather seating",
+      "contemporary casual vibe",
+      "wooden high tables",
+      "casual dining setup",
+      "modern industrial design",
+      "spacious seating area",
+      "cozy wooden accents",
+      "high ceiling lamps",
+      "crispy golden crust",
+      "marble table setting",
+      "fresh basil topping",
+      "side of creamy sauce",
+      "pepperoni tomato combo",
+      "thin crust delight",
+      "arugula topped pizza",
+      "crumbled feta cheese",
+      "marble countertop dining",
+      "large shared serving",
+      "cozy dining atmosphere",
+      "modern industrial facade",
+      "outdoor patio seating",
+      "rustic stone exterior",
+      "soft evening lighting"
+    ],
+    "reviewTags": [
+      "fully loaded toppings",
+      "slight sweetness to dough",
+      "dirty restroom",
+      "crisp bottom pizza",
+      "light and airy dough"
+    ]
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "restaurant": {
+    "id": "f177c833-ada2-42e5-b501-a033ea9d1769",
+    "name": "Cafe Malta",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:03:36.032Z",
+    "scores": {
+      "flavorful": 7,
+      "authentic": 6,
+      "satisfying": 7,
+      "comforting": 6,
+      "aromatic": 7,
+      "appetizing": 8,
+      "overall": 7
+    },
+    "imageTags": [
+      "artisanal beverage selection",
+      "handcrafted local specialties",
+      "decorative glass display",
+      "Italian citrus-based spirits",
+      "colorful bottled liqueurs",
+      "casual dining atmosphere",
+      "warm wooden furnishings",
+      "nautical themed decor",
+      "soft lighting with pendant lamps",
+      "colorful boat artworks",
+      "fresh garden salad",
+      "sliced ripe avocado",
+      "charred vegetable medley",
+      "balsamic drizzle art",
+      "grilled steak strips",
+      "crystal clear cocktail",
+      "classic martini presentation",
+      "fresh lemon peel garnish",
+      "elegant glassware detail",
+      "stylish bar ambiance"
+    ],
+    "reviewTags": []
+  }
+}

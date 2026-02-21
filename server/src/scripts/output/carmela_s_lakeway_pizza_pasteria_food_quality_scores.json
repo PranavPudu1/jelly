@@ -1,0 +1,53 @@
+{
+  "restaurant": {
+    "id": "d6cc75d9-c5b9-4862-887d-6c892d5f5ceb",
+    "name": "Carmela's Lakeway Pizza & Pasteria",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:03:47.328Z",
+    "scores": {
+      "flavorful": 6,
+      "authentic": 5,
+      "satisfying": 7,
+      "comforting": 7,
+      "aromatic": 6,
+      "appetizing": 7,
+      "overall": 6
+    },
+    "imageTags": [
+      "outdoor seating area",
+      "potted greenery accents",
+      "casual dining setting",
+      "comfortable table arrangement",
+      "inviting storefront facade",
+      "herb garnish topping",
+      "colorful vegetable medley",
+      "grilled fish fillet",
+      "al dente pasta",
+      "buttery white sauce",
+      "crispy thin crust",
+      "pizza box presentation",
+      "loaded meat pizza slice",
+      "savory ham and bacon",
+      "generous topping portions",
+      "Italian specialty cocktails",
+      "fresh ingredients and flavors",
+      "sophisticated dining atmosphere",
+      "customizable pizza toppings",
+      "variety of pizza options"
+    ],
+    "reviewTags": [
+      "lively and inviting",
+      "appetizer and drink specials",
+      "sicilian and chicken pesto pizza",
+      "med-style spinach salad",
+      "friendly and professional staff",
+      "long wait for bill",
+      "unpleasant waitress attitude",
+      "slow service and inattentive staff",
+      "incorrect food orders",
+      "frustrating dining experience"
+    ]
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "restaurant": {
+    "id": "044c3123-a7d5-4800-8562-ec0cddd50de4",
+    "name": "Rosita's Tacos & More",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T02:57:47.977Z",
+    "scores": {
+      "vibrant": 7,
+      "romantic": 2,
+      "trendy": 4,
+      "stylish": 5,
+      "immersive": 5,
+      "inviting": 6,
+      "overall": 5
+    },
+    "imageTags": [
+      "casual outdoor seating",
+      "rustic picnic tables",
+      "sunny blue sky",
+      "colorful exterior signage",
+      "inviting taco shop",
+      "crispy tortilla chips",
+      "flavorful dip trio",
+      "zesty pico de gallo",
+      "freshly made guacamole",
+      "creamy white queso",
+      "hearty breakfast platter",
+      "crispy golden french fries",
+      "homemade salsa on side",
+      "loaded breakfast tacos",
+      "cheesy quesadilla slices",
+      "crispy tortilla chips",
+      "fresh pico de gallo",
+      "sizzling fajitas platter",
+      "creamy sour cream dip",
+      "colorful rice and beans"
+    ],
+    "reviewTags": [
+      "worst carne asada",
+      "tough and flavorless",
+      "locker kitchen system",
+      "okay chilaquiles",
+      "good barbacoa tacos",
+      "unpleasant taste",
+      "disappointing al pastor tacos",
+      "inedible mexican food",
+      "bad food experience",
+      "fake tasting meat"
+    ]
+  }
+}

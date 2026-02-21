@@ -1,0 +1,38 @@
+{
+  "restaurant": {
+    "id": "014f14d7-8e29-45c0-a63a-5963836827ac",
+    "name": "Sixty Vines",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:11:40.813Z",
+    "scores": {
+      "flavorful": 5,
+      "authentic": 4,
+      "satisfying": 6,
+      "comforting": 5,
+      "aromatic": 5,
+      "appetizing": 6,
+      "overall": 5
+    },
+    "imageTags": [
+      "modern architectural design",
+      "lush greenery decor",
+      "inviting outdoor seating",
+      "stylish glass facade",
+      "vibrant urban atmosphere"
+    ],
+    "reviewTags": [
+      "underwhelming house salad",
+      "disappointing service experience",
+      "acceptable mushroom pizza",
+      "well cooked filet mignon",
+      "extremely salty pasta",
+      "clean and well maintained",
+      "pesto flavored pasta with chicken",
+      "knowledgeable staff recommendations",
+      "friendly and professional staff",
+      "good quality and quantity"
+    ]
+  }
+}

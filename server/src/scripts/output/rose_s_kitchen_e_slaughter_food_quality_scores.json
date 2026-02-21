@@ -1,0 +1,32 @@
+{
+  "restaurant": {
+    "id": "6d09eac7-a610-4438-8d2b-ec1f75798149",
+    "name": "Rose's Kitchen E Slaughter",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:11:01.431Z",
+    "scores": {
+      "flavorful": 8,
+      "authentic": 9,
+      "satisfying": 8,
+      "comforting": 8,
+      "aromatic": 8,
+      "appetizing": 7,
+      "overall": 8
+    },
+    "imageTags": [],
+    "reviewTags": [
+      "hidden gem",
+      "fast service",
+      "delightful texture noodles",
+      "great serving portions",
+      "one-of-a-kind sauce",
+      "thoughtful dietary accommodations",
+      "best thai food",
+      "warm and welcoming atmosphere",
+      "rich flavorful green curry",
+      "authentic touch"
+    ]
+  }
+}

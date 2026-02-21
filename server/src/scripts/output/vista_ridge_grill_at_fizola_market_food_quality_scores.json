@@ -1,0 +1,63 @@
+{
+  "restaurant": {
+    "id": "759e917a-611c-40b8-92f6-95b48274dee9",
+    "name": "Vista Ridge Grill (at Fizola Market)",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:14:11.346Z",
+    "scores": {
+      "flavorful": 7,
+      "authentic": 6,
+      "satisfying": 8,
+      "comforting": 8,
+      "aromatic": 7,
+      "appetizing": 7,
+      "overall": 7
+    },
+    "imageTags": [
+      "crispy crinkle-cut fries",
+      "toasted bread sandwich",
+      "layers of lettuce and bacon",
+      "dipping sauces on side",
+      "two sandwiches on display",
+      "casual dining experience",
+      "variety of food options",
+      "vibrant deli atmosphere",
+      "colorful menu signage",
+      "friendly neighborhood vibe",
+      "savory beef sandwich",
+      "succulent shredded beef",
+      "toasted sandwich bun",
+      "rich flavor profile",
+      "spicy pickled vegetables",
+      "melted cheese slice",
+      "golden toasted exterior",
+      "breakfast on the go",
+      "flaky croissant sandwich",
+      "savory ham and egg",
+      "melted cheddar cheese",
+      "scrambled egg base",
+      "crispy golden hash browns",
+      "toasted flatbread crust",
+      "flavorful chorizo topping",
+      "melty cheddar cheese",
+      "fresh sliced tomatoes",
+      "juicy beef patty layer",
+      "crispy grilled cheese sandwich",
+      "onion and lettuce toppings",
+      "melted cheddar cheese",
+      "juicy double cheeseburger",
+      "toasted sesame seed bun",
+      "crispy bacon and egg",
+      "fresh toppings and condiments"
+    ],
+    "reviewTags": [
+      "fresh ingredients",
+      "generous portions",
+      "authentically made",
+      "best sandwich in cedar park",
+      "delicious breakfast"
+    ]
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "restaurant": {
+    "id": "1d9764c2-3660-4d40-8ecf-9989d6b1df67",
+    "name": "Birrieria Mama Rosa #1",
+    "price": "$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T02:50:07.366Z",
+    "scores": {
+      "vibrant": 6,
+      "romantic": 2,
+      "trendy": 4,
+      "stylish": 5,
+      "immersive": 3,
+      "inviting": 7,
+      "overall": 5
+    },
+    "imageTags": [],
+    "reviewTags": [
+      "exciting menu options",
+      "refreshing strawberry lemonade",
+      "really good flavor salsas",
+      "phenomenal food truck",
+      "beef birrieria tacos",
+      "delicious food",
+      "full of meat tacos",
+      "quick service time",
+      "tasty comfort food",
+      "loaded birria fries"
+    ]
+  }
+}

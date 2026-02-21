@@ -1,0 +1,73 @@
+{
+  "restaurant": {
+    "id": "745186eb-0de1-4881-8079-9ea2b0b3e423",
+    "name": "Launderette",
+    "price": "$$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T02:55:11.133Z",
+    "scores": {
+      "vibrant": 8,
+      "romantic": 7,
+      "trendy": 9,
+      "stylish": 8,
+      "immersive": 7,
+      "inviting": 8,
+      "overall": 8
+    },
+    "imageTags": [
+      "casual social gathering",
+      "bright airy interior",
+      "large indoor greenery",
+      "sleek modern bar counter",
+      "artsy eclectic decor",
+      "rustic wooden table",
+      "crisp radish slices",
+      "gourmet toast presentation",
+      "herb garnish detail",
+      "creamy poached eggs",
+      "marble table setting",
+      "decorative doily presentation",
+      "ice cream sandwich squares",
+      "sweet layered treat",
+      "colorful sprinkle dessert",
+      "powdered sugar dusting",
+      "marble tabletop setting",
+      "fluffy buttermilk pancakes",
+      "dollop of cream",
+      "blueberry compote topping",
+      "crispy golden fries",
+      "creamy dipping sauce",
+      "elegant table setting",
+      "classic white dishware",
+      "spicy orange condiment",
+      "marble table setting",
+      "vibrant vegetable salad",
+      "glazed short ribs",
+      "marbled steak slices",
+      "elegant casual dining",
+      "outdoor casual dining",
+      "retro neon signage",
+      "tree-lined neighborhood",
+      "evening relaxed vibe",
+      "urban green space"
+    ],
+    "reviewTags": [
+      "wood fired octopus",
+      "thoughtfully designed space",
+      "ideal for a date night",
+      "moist and flavorful redfish",
+      "creative house cocktails",
+      "busy weekend atmosphere",
+      "marmalade brussel sprouts",
+      "great stop for lunch",
+      "fantastic deviled eggs",
+      "friendly informative service",
+      "cute vibe",
+      "decent price",
+      "pork hash and pancakes",
+      "great brunch options",
+      "small close quarters"
+    ]
+  }
+}

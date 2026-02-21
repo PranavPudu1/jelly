@@ -1,0 +1,32 @@
+{
+  "restaurant": {
+    "id": "47827843-60df-4334-b407-e122a33667ad",
+    "name": "The Long Goodbye",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:12:53.770Z",
+    "scores": {
+      "flavorful": 8,
+      "authentic": 9,
+      "satisfying": 8,
+      "comforting": 7,
+      "aromatic": 8,
+      "appetizing": 9,
+      "overall": 8
+    },
+    "imageTags": [
+      "fried corn chips special",
+      "traditional Mexican barbacoa",
+      "homemade corn tortillas",
+      "crispy cheese taco",
+      "fresh mint agua fresca",
+      "colorful cocktail presentation",
+      "refreshing tropical flavors",
+      "garnished with dried pineapple",
+      "artisan mixologist behind bar",
+      "served in tall glass"
+    ],
+    "reviewTags": []
+  }
+}

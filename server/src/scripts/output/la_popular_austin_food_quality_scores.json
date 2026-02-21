@@ -1,0 +1,53 @@
+{
+  "restaurant": {
+    "id": "f1f5957d-26e5-43ff-8b3e-74440b82d1b3",
+    "name": "La Popular Austin",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:07:57.393Z",
+    "scores": {
+      "flavorful": 8,
+      "authentic": 7,
+      "satisfying": 8,
+      "comforting": 7,
+      "aromatic": 8,
+      "appetizing": 9,
+      "overall": 8
+    },
+    "imageTags": [
+      "citrusy refreshing beverage",
+      "creative cocktail presentation",
+      "garnished with straw strands",
+      "elegant wooden serving surface",
+      "unique cactus vessel drink",
+      "vibrant pickled onions",
+      "artisan homemade dips",
+      "lightly salted tortilla chips",
+      "variety of salsas selection",
+      "colorful salsa presentation",
+      "grilled shrimp tacos",
+      "tangy green salsa",
+      "crispy corn tortillas",
+      "citrusy lime garnish",
+      "fresh pico de gallo topping",
+      "vibrant nightlife vibe",
+      "comfortable seating area",
+      "modern sleek bar design",
+      "entertaining sports screens",
+      "well-stocked liquor display"
+    ],
+    "reviewTags": [
+      "fantastic ambiance",
+      "baja shrimp taco",
+      "amazing service",
+      "indoor and outdoor seating",
+      "suizas enchiladas",
+      "celebratory cultural atmosphere",
+      "festive dining environment",
+      "birria tacos delight",
+      "green chicken enchiladas",
+      "seafood tostados treat"
+    ]
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "restaurant": {
+    "id": "27c45674-56ae-49ba-9a31-70aeac45a7e5",
+    "name": "Raku Sushi & Asian Bistro",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T02:57:26.570Z",
+    "scores": {
+      "vibrant": 7,
+      "romantic": 4,
+      "trendy": 6,
+      "stylish": 6,
+      "immersive": 5,
+      "inviting": 7,
+      "overall": 6
+    },
+    "imageTags": [
+      "fresh garden salad",
+      "giant fluffy omelette",
+      "colorful vegetable stir-fry",
+      "quirky Asian fusion dish",
+      "tangy red sauce drizzle",
+      "stir-fried egg noodles",
+      "colorful bell pepper slices",
+      "succulent shrimp pieces",
+      "crispy vegetable medley",
+      "savory soy sauce flavor"
+    ],
+    "reviewTags": []
+  }
+}

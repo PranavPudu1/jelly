@@ -1,0 +1,33 @@
+{
+  "restaurant": {
+    "id": "3131c4d0-f985-4c0a-a069-954b15233005",
+    "name": "Kome y Toma",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:07:47.406Z",
+    "scores": {
+      "flavorful": 8,
+      "authentic": 7,
+      "satisfying": 8,
+      "comforting": 7,
+      "aromatic": 8,
+      "appetizing": 8,
+      "overall": 8
+    },
+    "imageTags": [
+      "colorful mixed vegetables",
+      "well-plated gourmet dish",
+      "grilled steak with seasoning",
+      "savory creamy sauce",
+      "fluffy seasoned rice"
+    ],
+    "reviewTags": [
+      "great food",
+      "friendly service",
+      "classic mexican restaurant",
+      "kome y toma margarita",
+      "deserves more hype"
+    ]
+  }
+}

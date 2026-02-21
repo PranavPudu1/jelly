@@ -1,0 +1,37 @@
+{
+  "restaurant": {
+    "id": "45e4da5a-9f20-49d3-bbec-516aff8c3838",
+    "name": "Sixty Three Restaurant & Bar",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T02:58:21.572Z",
+    "scores": {
+      "vibrant": 8,
+      "romantic": 9,
+      "trendy": 8,
+      "stylish": 9,
+      "immersive": 8,
+      "inviting": 9,
+      "overall": 9
+    },
+    "imageTags": [
+      "fresh microgreens topping",
+      "gourmet beef tartare presentation",
+      "crispy tortilla chips garnish",
+      "vibrant egg yolk centerpiece",
+      "colorful roasted tomato slices",
+      "lush green surroundings",
+      "tranquil sunset ambiance",
+      "luxurious poolside setting",
+      "scenic lakeside view",
+      "outdoor dining terrace",
+      "elegant dining presentation",
+      "fresh microgreens garnish",
+      "colorful roasted vegetables",
+      "beautifully plated salmon dish",
+      "creamy pasta with greens"
+    ],
+    "reviewTags": []
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "restaurant": {
+    "id": "ce5835e7-8f11-42f3-8730-125802a0f0b6",
+    "name": "Shore Raw Bar & Grill",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T02:58:15.816Z",
+    "scores": {
+      "vibrant": 5,
+      "romantic": 6,
+      "trendy": 5,
+      "stylish": 6,
+      "immersive": 4,
+      "inviting": 7,
+      "overall": 6
+    },
+    "imageTags": [
+      "freshly shucked oysters",
+      "tangy lemon wedges",
+      "spicy cocktail sauce",
+      "zesty ginger garnish",
+      "chilled serving platter"
+    ],
+    "reviewTags": [
+      "slow service experience",
+      "food presented beautifully",
+      "nice and attentive staff",
+      "wonderful restaurant atmosphere",
+      "great tasting food",
+      "casual dining atmosphere",
+      "delicious king crab appetizer",
+      "pricey for the quality",
+      "fresh lobster entree",
+      "oversauced halibut dish"
+    ]
+  }
+}

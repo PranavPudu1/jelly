@@ -1,0 +1,68 @@
+{
+  "restaurant": {
+    "id": "275c3ad0-7608-4db3-9b28-71224dc7512c",
+    "name": "Hillside Farmacy",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T02:53:38.607Z",
+    "scores": {
+      "vibrant": 7,
+      "romantic": 6,
+      "trendy": 8,
+      "stylish": 8,
+      "immersive": 6,
+      "inviting": 7,
+      "overall": 7
+    },
+    "imageTags": [
+      "vintage storefront design",
+      "lush outdoor planters",
+      "quaint street presence",
+      "retro pharmacy signage",
+      "striped awning exterior",
+      "fresh fruit platter",
+      "crystal clear glassware",
+      "elegant brunch presentation",
+      "light refreshing drink",
+      "grapefruit and berries",
+      "hearty breakfast platter",
+      "vibrant orange juice",
+      "sliced ripe avocado",
+      "freshly toasted bread",
+      "golden scrambled eggs",
+      "vintage wooden bar",
+      "industrial hanging lights",
+      "retro tile flooring",
+      "ornate wallpaper design",
+      "elegant green bottles",
+      "crispy bread slices",
+      "fried egg topping",
+      "fresh arugula garnish",
+      "avocado toast sandwich",
+      "bistro style breakfast",
+      "exposed ceiling pipes",
+      "vintage tiled flooring",
+      "elegant mosaic design",
+      "cozy plant decor",
+      "modern yellow barstools"
+    ],
+    "reviewTags": [
+      "chic ambiance",
+      "mind-blowing flavors",
+      "fabulous food",
+      "adorable zen",
+      "citrus salad with shrimp",
+      "unfriendly service",
+      "food was equally good",
+      "really good bar",
+      "pretty restaurant",
+      "transactional experience",
+      "variety of brunch options",
+      "tasty granola in yogurt",
+      "flavorful shrimp n grits",
+      "delicious avocado toast",
+      "amazing pancakes and eggs"
+    ]
+  }
+}

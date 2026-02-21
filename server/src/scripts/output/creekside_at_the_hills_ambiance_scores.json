@@ -1,0 +1,43 @@
+{
+  "restaurant": {
+    "id": "4c02211c-694a-4570-91fb-92c791199401",
+    "name": "Creekside at the Hills",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T02:51:36.785Z",
+    "scores": {
+      "vibrant": 5,
+      "romantic": 7,
+      "trendy": 5,
+      "stylish": 7,
+      "immersive": 6,
+      "inviting": 8,
+      "overall": 7
+    },
+    "imageTags": [
+      "lush green fairways",
+      "scenic golf course views",
+      "golden hour lighting",
+      "serene waterfall backdrop",
+      "natural landscape tranquility"
+    ],
+    "reviewTags": [
+      "golf course backdrop",
+      "mediocre and overpriced food",
+      "pleasant servers",
+      "nice setting",
+      "discouraging social members",
+      "sublime service",
+      "fantastic dining experience",
+      "10 out of 10",
+      "recommended to friends",
+      "huge crowd atmosphere",
+      "exceptional service experience",
+      "pricey for the value",
+      "nice patio setting",
+      "captive country club restaurant",
+      "beyond great burgers"
+    ]
+  }
+}

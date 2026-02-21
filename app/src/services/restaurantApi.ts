@@ -42,6 +42,7 @@ interface FetchNearbyParams {
     page?: number;
     pageSize?: number;
     preferences?: Record<string, number>; // User preference weights for custom sorting
+    context?: string; // Free-text meal context for LLM-based re-ranking
 }
 
 interface FetchRestaurantsResult {
@@ -168,7 +169,7 @@ export async function fetchRestaurantById(id: string): Promise<Restaurant> {
 export async function fetchNearbyPaginated(
     params: FetchNearbyParams
 ): Promise<FetchRestaurantsResult> {
-    const { lat, long, page = 1, pageSize = 10, preferences, ...filters } = params;
+    const { lat, long, page = 1, pageSize = 10, preferences, context, ...filters } = params;
 
     // Build query parameters matching the backend API
     const queryParams = {
@@ -181,7 +182,8 @@ export async function fetchNearbyPaginated(
         ...(filters.price && { price: filters.price }),
         ...(filters.minRating && { minRating: filters.minRating }),
         ...(filters.cuisine && { types: filters.cuisine }),
-        ...(preferences && { preferences: JSON.stringify(preferences) }), // Send preferences as JSON string
+        ...(preferences && { preferences: JSON.stringify(preferences) }),
+        ...(context && { context }), // Free-text context for LLM re-ranking
     };
 
     const url = `${API_CONFIG.baseURL}${API_ENDPOINTS.restaurants.getAll}${buildQueryString(queryParams)}`;

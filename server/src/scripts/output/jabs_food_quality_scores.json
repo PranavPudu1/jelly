@@ -1,0 +1,57 @@
+{
+  "restaurant": {
+    "id": "e453be4f-8820-4004-af68-8b998072b87f",
+    "name": "JABS",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:07:13.885Z",
+    "scores": {
+      "flavorful": 8,
+      "authentic": 6,
+      "satisfying": 8,
+      "comforting": 9,
+      "aromatic": 7,
+      "appetizing": 8,
+      "overall": 8
+    },
+    "imageTags": [
+      "rustic wooden decor",
+      "casual dining atmosphere",
+      "vibrant neon signage",
+      "colorful outdoor seating",
+      "green grassy area",
+      "melted cheddar cheese",
+      "soft toasted bun",
+      "fresh lettuce and tomato",
+      "juicy double beef patties",
+      "creamy special sauce",
+      "melted cheddar cheese",
+      "juicy double cheeseburger",
+      "crispy crinkle-cut fries",
+      "freshly baked soft buns",
+      "succulent grilled beef patties",
+      "twinkling string lights",
+      "colorful food vendor selection",
+      "grass-covered seating area",
+      "modern food truck design",
+      "lively outdoor dining",
+      "soft toasted bun",
+      "juicy beef patty",
+      "melting cheddar cheese",
+      "grilled onion slices",
+      "handheld comfort food",
+      "bold burger truck signage",
+      "eye-catching graphic design",
+      "playful food truck branding",
+      "peace love theme",
+      "food truck culinary experience",
+      "melted cheddar cheese",
+      "fresh lettuce and tomato",
+      "crispy toasted bun",
+      "juicy grilled hamburger",
+      "served with ketchup cups"
+    ],
+    "reviewTags": []
+  }
+}

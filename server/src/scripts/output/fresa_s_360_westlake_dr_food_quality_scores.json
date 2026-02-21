@@ -1,0 +1,27 @@
+{
+  "restaurant": {
+    "id": "36d6df18-0310-49c6-b3ef-4a89eb6ef949",
+    "name": "Fresa's - 360 & Westlake Dr",
+    "price": "$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:06:06.532Z",
+    "scores": {
+      "flavorful": 6,
+      "authentic": 5,
+      "satisfying": 7,
+      "comforting": 6,
+      "aromatic": 5,
+      "appetizing": 6,
+      "overall": 6
+    },
+    "imageTags": [
+      "outdoor dining area",
+      "modern restaurant facade",
+      "contemporary architectural features",
+      "convenient parking lot",
+      "stylish signage design"
+    ],
+    "reviewTags": []
+  }
+}

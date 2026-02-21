@@ -1,0 +1,58 @@
+{
+  "restaurant": {
+    "id": "aceed600-9566-4f7a-b7a1-9f165df72d5e",
+    "name": "54th Street Restaurant & Drafthouse",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:01:51.131Z",
+    "scores": {
+      "flavorful": 7,
+      "authentic": 6,
+      "satisfying": 8,
+      "comforting": 7,
+      "aromatic": 6,
+      "appetizing": 7,
+      "overall": 7
+    },
+    "imageTags": [
+      "crispy golden fries",
+      "refreshing cold beer",
+      "fresh coleslaw side",
+      "smoky barbecue ribs",
+      "sizzling cast iron platter",
+      "contemporary dining area",
+      "rustic wooden accents",
+      "modern lodge atmosphere",
+      "natural stone flooring",
+      "imposing bear statue",
+      "crispy tortilla chips",
+      "creamy spinach dip",
+      "zesty salsa container",
+      "generous portion size",
+      "snack appetizer platter",
+      "sports bar atmosphere",
+      "casual dining experience",
+      "large screen TVs",
+      "modern industrial setting",
+      "refreshing cold beers",
+      "modern architectural design",
+      "vibrant red lighting",
+      "well-maintained landscaping",
+      "welcoming outdoor entrance",
+      "clear night sky backdrop"
+    ],
+    "reviewTags": [
+      "good conversation spots",
+      "soft mignon steak",
+      "unique water service",
+      "friendly and roomy atmosphere",
+      "hot wings with flavorful sauce",
+      "quick seating service",
+      "well done fish tacos",
+      "average spinach dip",
+      "great for couples",
+      "impromptu date night"
+    ]
+  }
+}

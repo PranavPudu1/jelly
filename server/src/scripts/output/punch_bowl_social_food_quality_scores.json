@@ -1,0 +1,53 @@
+{
+  "restaurant": {
+    "id": "e68ce1de-6f3d-4425-b634-238e463fa731",
+    "name": "Punch Bowl Social",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:10:37.824Z",
+    "scores": {
+      "flavorful": 7,
+      "authentic": 5,
+      "satisfying": 8,
+      "comforting": 7,
+      "aromatic": 6,
+      "appetizing": 8,
+      "overall": 7
+    },
+    "imageTags": [
+      "modern industrial decor",
+      "bright natural lighting",
+      "stylish bar seating",
+      "vibrant color scheme",
+      "open dining space",
+      "tangy pickled onions",
+      "rustic wooden table setting",
+      "fresh jalapeño slices",
+      "crispy loaded nachos",
+      "creamy dollop of dip",
+      "colorful ambient lighting",
+      "functional social space",
+      "unique overhead art installation",
+      "modern circular bar design",
+      "industrial style decor",
+      "artisan brioche bun",
+      "crispy sweet potato fries",
+      "rustic cast iron serving",
+      "colorful vegetable toppings",
+      "juicy cheddar cheese burger",
+      "modern industrial design",
+      "spacious seating arrangement",
+      "colorful game zone",
+      "large flat-screen televisions",
+      "vibrant bar atmosphere"
+    ],
+    "reviewTags": [
+      "attentive staff",
+      "amazing service",
+      "fun activities",
+      "great night out",
+      "delicious drinks"
+    ]
+  }
+}

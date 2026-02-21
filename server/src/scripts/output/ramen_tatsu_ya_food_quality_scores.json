@@ -1,0 +1,43 @@
+{
+  "restaurant": {
+    "id": "e30fe0f0-9918-400f-87b1-2b75d4a1620a",
+    "name": "Ramen Tatsu-Ya",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:10:45.702Z",
+    "scores": {
+      "flavorful": 6,
+      "authentic": 8,
+      "satisfying": 5,
+      "comforting": 7,
+      "aromatic": 6,
+      "appetizing": 5,
+      "overall": 6
+    },
+    "imageTags": [
+      "fresh green onions",
+      "soft boiled egg",
+      "tender ground meat topping",
+      "sweet corn garnish",
+      "spicy miso ramen bowl"
+    ],
+    "reviewTags": [
+      "extra charge for chasu",
+      "five star ramen",
+      "tatsu-ya establishment",
+      "high price for ramen",
+      "unexpected menu pricing",
+      "great service",
+      "authentic japanese ramen",
+      "karaage in the og",
+      "firm noodles",
+      "fatty and flavorful broth",
+      "burnt broth flavor",
+      "unsatisfactory noodle portion",
+      "insufficient pork slice",
+      "mediocre gyoza quality",
+      "disappointing ramen experience"
+    ]
+  }
+}

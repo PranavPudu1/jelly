@@ -1,0 +1,37 @@
+{
+  "restaurant": {
+    "id": "9d548b98-f800-4145-a1ec-86e9ee3597ce",
+    "name": "Curra's Hyde Park",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T02:51:43.147Z",
+    "scores": {
+      "vibrant": 7,
+      "romantic": 5,
+      "trendy": 6,
+      "stylish": 6,
+      "immersive": 5,
+      "inviting": 8,
+      "overall": 6
+    },
+    "imageTags": [],
+    "reviewTags": [
+      "fun and personable bartender",
+      "impressive selection of tequilas",
+      "top shelf margaritas",
+      "unique avocado blended drink",
+      "high quality tortilla chips",
+      "tacos al carbon",
+      "flavorful soup",
+      "crispy cheese",
+      "grilled vegetables",
+      "delicious sides",
+      "casual dining experience",
+      "diverse drink selection",
+      "excellent margarita flight",
+      "refreshing avocado margarita",
+      "gluten-free friendly"
+    ]
+  }
+}

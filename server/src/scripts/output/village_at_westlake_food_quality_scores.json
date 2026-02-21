@@ -1,0 +1,73 @@
+{
+  "restaurant": {
+    "id": "f59a9390-055c-43f1-940e-9a9701ff438c",
+    "name": "Village At Westlake",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:14:06.904Z",
+    "scores": {
+      "flavorful": 6,
+      "authentic": 5,
+      "satisfying": 7,
+      "comforting": 6,
+      "aromatic": 5,
+      "appetizing": 6,
+      "overall": 6
+    },
+    "imageTags": [
+      "well-stocked shelves",
+      "colorful produce displays",
+      "modern retail ambiance",
+      "self-serve salad bar",
+      "spacious grocery layout",
+      "ice bed presentation",
+      "fresh seafood selection",
+      "variety of fish fillets",
+      "price tags displayed prominently",
+      "premium quality fish cuts",
+      "bright open layout",
+      "modern industrial decor",
+      "casual dining atmosphere",
+      "hanging globe lights",
+      "community gathering space",
+      "busy shopping atmosphere",
+      "vibrant produce displays",
+      "organic food sections",
+      "variety of fresh vegetables",
+      "promotional signage overhead",
+      "American flag design",
+      "handcrafted Mexican style",
+      "vibrant decorative trim",
+      "colorful straw hats",
+      "artisanal market display",
+      "open kitchen concept",
+      "modern casual dining",
+      "colorful seating arrangement",
+      "industrial light fixtures",
+      "bright and airy atmosphere",
+      "extensive wine selection",
+      "ready-to-eat meal displays",
+      "organized beer section",
+      "well-lit grocery aisles",
+      "modern supermarket layout"
+    ],
+    "reviewTags": [
+      "friendly customer service",
+      "patient and helpful staff",
+      "knowledgeable about options",
+      "joyful experience",
+      "perfect juice blends",
+      "modern and comfortable",
+      "well run chik-fil-a",
+      "packed parking lot",
+      "super nice staff",
+      "clean and great staff",
+      "poor customer service",
+      "laziest cashiers",
+      "inexperienced bagger",
+      "slow checkout process",
+      "frustrating shopping experience"
+    ]
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "restaurant": {
+    "id": "4d518c01-659c-41d9-b920-fea3ae460cd5",
+    "name": "Eat Love Repeat (Cedar Park)",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:05:15.677Z",
+    "scores": {
+      "flavorful": 7,
+      "authentic": 5,
+      "satisfying": 8,
+      "comforting": 8,
+      "aromatic": 6,
+      "appetizing": 6,
+      "overall": 7
+    },
+    "imageTags": [],
+    "reviewTags": [
+      "food truck experience",
+      "huge burger",
+      "veggie samosa burger",
+      "awesome burgers and fries",
+      "messy to eat"
+    ]
+  }
+}

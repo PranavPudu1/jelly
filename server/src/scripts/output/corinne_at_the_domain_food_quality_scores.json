@@ -1,0 +1,37 @@
+{
+  "restaurant": {
+    "id": "cec30b91-f197-4d5a-a0a1-dc9d19de121b",
+    "name": "Corinne at The Domain",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:04:30.305Z",
+    "scores": {
+      "flavorful": 8,
+      "authentic": 7,
+      "satisfying": 8,
+      "comforting": 8,
+      "aromatic": 7,
+      "appetizing": 8,
+      "overall": 8
+    },
+    "imageTags": [],
+    "reviewTags": [
+      "friendly attentive service",
+      "celebratory birthday experience",
+      "delicious crab cake benedict",
+      "phenomenal food quality",
+      "must try crab croquettes",
+      "amazing brunch experience",
+      "fresh and delicious food",
+      "inexpensive dining option",
+      "must-try cobb salad",
+      "sweet and attentive service",
+      "beautiful atmosphere",
+      "wonderful waitress service",
+      "good music selection",
+      "vanilla latte with oat milk",
+      "delicious crabcake benedict"
+    ]
+  }
+}

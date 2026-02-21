@@ -1,0 +1,73 @@
+{
+  "restaurant": {
+    "id": "632cf78b-2f4e-48c5-ba08-b83584cc1b43",
+    "name": "Cherrywood Coffeehouse",
+    "price": "$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T02:51:10.503Z",
+    "scores": {
+      "vibrant": 8,
+      "romantic": 5,
+      "trendy": 7,
+      "stylish": 7,
+      "immersive": 6,
+      "inviting": 8,
+      "overall": 7
+    },
+    "imageTags": [
+      "cozy outdoor seating",
+      "casual picnic tables",
+      "twinkling string lights",
+      "nighttime gathering spot",
+      "umbrella shaded areas",
+      "rich dark coffee",
+      "colorful patterned mug",
+      "freshly baked pastry",
+      "crispy flaky texture",
+      "cozy cafe atmosphere",
+      "charming outdoor seating",
+      "colorful exterior design",
+      "rustic wooden details",
+      "unique canopy entrance",
+      "inviting storefront atmosphere",
+      "modern rustic decor",
+      "wooden bar seating",
+      "colorful chalkboard menus",
+      "casual cozy environment",
+      "bright pendant lighting",
+      "casual relaxed atmosphere",
+      "charming coffeehouse entrance",
+      "sunlit outdoor seating",
+      "vintage wooden decor",
+      "colorful lanterns illumination",
+      "outdoor seating area",
+      "casual dining space",
+      "vibrant atmosphere",
+      "tree-lined entrance",
+      "colorful striped exterior",
+      "variety of coffee drinks",
+      "seasonal flavored teas",
+      "customizable milk options",
+      "colorful beverage offerings",
+      "handwritten chalkboard menu"
+    ],
+    "reviewTags": [
+      "live music and comedy shows",
+      "pleasant outside patio",
+      "tricky outlet availability",
+      "great burgers and fish tacos",
+      "healthy cucumber salad option",
+      "casual vibe",
+      "generously portioned meals",
+      "fairly priced food",
+      "top notch coffee",
+      "memorable dining experience",
+      "moody server attitude",
+      "unwelcoming vibe",
+      "zero eye contact",
+      "super satisfying tacos",
+      "kind and helpful staff"
+    ]
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "restaurant": {
+    "id": "7976496b-babd-4cf0-af4e-e78608e4ab12",
+    "name": "The Salt Lick - Round Rock",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T02:59:49.584Z",
+    "scores": {
+      "vibrant": 5,
+      "romantic": 3,
+      "trendy": 4,
+      "stylish": 6,
+      "immersive": 5,
+      "inviting": 7,
+      "overall": 6
+    },
+    "imageTags": [
+      "casual dining atmosphere",
+      "spacious communal seating",
+      "warm wooden beams",
+      "natural light flooding in",
+      "rustic stone wall decor"
+    ],
+    "reviewTags": [
+      "family-friendly atmosphere",
+      "generous portions",
+      "charming staff interaction",
+      "hearty barbecue",
+      "top-notch service",
+      "moist brisket",
+      "great for family dining",
+      "accommodating staff",
+      "homemade spicy bbq sauces",
+      "conveniently located",
+      "family-friendly atmosphere",
+      "delicious food experience",
+      "great service staff",
+      "birthday celebration venue",
+      "patient and accommodating staff",
+      "metallic aftertaste",
+      "tough chewy beef ribs",
+      "decent mac n cheese",
+      "inconsistent meat quality",
+      "nasty baked beans"
+    ]
+  }
+}

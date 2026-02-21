@@ -1,0 +1,27 @@
+{
+  "restaurant": {
+    "id": "7e29ad96-3264-4291-ad77-1a3486dc52cf",
+    "name": "Salty Sow",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:11:18.401Z",
+    "scores": {
+      "flavorful": 8,
+      "authentic": 7,
+      "satisfying": 8,
+      "comforting": 8,
+      "aromatic": 7,
+      "appetizing": 7,
+      "overall": 7
+    },
+    "imageTags": [],
+    "reviewTags": [
+      "really good service",
+      "clean and inviting atmosphere",
+      "smoked pork tacos",
+      "honey butter chicken biscuit",
+      "flavorful and smoky"
+    ]
+  }
+}

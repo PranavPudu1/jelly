@@ -1,0 +1,27 @@
+{
+  "restaurant": {
+    "id": "bc6f4d8a-e1d4-4458-bc42-8185de3a674f",
+    "name": "Las Cazuelas Méxican Restaurant - Austin",
+    "price": "$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:08:18.731Z",
+    "scores": {
+      "flavorful": 7,
+      "authentic": 8,
+      "satisfying": 7,
+      "comforting": 8,
+      "aromatic": 7,
+      "appetizing": 7,
+      "overall": 7
+    },
+    "imageTags": [],
+    "reviewTags": [
+      "friendly service",
+      "reasonably priced margaritas",
+      "outstanding atmosphere",
+      "authentic mexican food",
+      "scrumptious breakfast tacos"
+    ]
+  }
+}

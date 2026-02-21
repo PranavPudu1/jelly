@@ -1,0 +1,73 @@
+{
+  "restaurant": {
+    "id": "d4188369-49ee-499b-994a-68ad475603c1",
+    "name": "Yellow Ranger",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:14:35.985Z",
+    "scores": {
+      "flavorful": 6,
+      "authentic": 5,
+      "satisfying": 4,
+      "comforting": 6,
+      "aromatic": 5,
+      "appetizing": 7,
+      "overall": 5
+    },
+    "imageTags": [
+      "rustic wooden table",
+      "vintage floral plate",
+      "drizzled creamy sauce",
+      "garnished fresh herbs",
+      "crispy topped pancakes",
+      "warm ambient lighting",
+      "cozy wooden interior",
+      "vintage wall decor",
+      "intimate dining booths",
+      "rustic pub atmosphere",
+      "cozy dim lighting",
+      "casual seating arrangement",
+      "warm inviting atmosphere",
+      "neon sign accents",
+      "vintage bar decor",
+      "colorful food presentation",
+      "variety of flavors",
+      "shared meal experience",
+      "vibrant Asian dishes",
+      "wooden dining table",
+      "wooden table setting",
+      "hearty ramen bowl",
+      "medium boiled egg",
+      "crispy fried tofu",
+      "savory broth noodles",
+      "crispy roasted meat",
+      "elegant dining setup",
+      "intricate table setting",
+      "colorful noodle dish",
+      "herb garnished noodles",
+      "rustic wooden table",
+      "sweet chili dipping sauce",
+      "colorful circus plate",
+      "bamboo cutlery holder",
+      "crispy fried egg rolls",
+      "warm wooden interior",
+      "dim cozy lighting",
+      "rustic wooden floors",
+      "casual bar seating",
+      "welcoming retro signage"
+    ],
+    "reviewTags": [
+      "confusing pricing structure",
+      "small portion sizes",
+      "shrinkflation pricing",
+      "mediocre crab rangoon",
+      "overpriced general tsao",
+      "perfectly cooked fries",
+      "amazing sides",
+      "bar setting",
+      "well designed food",
+      "multidimensional dishes"
+    ]
+  }
+}

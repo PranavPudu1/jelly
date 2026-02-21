@@ -1,0 +1,33 @@
+{
+  "restaurant": {
+    "id": "036ea294-c256-4ae9-bf45-ed8b3be946ab",
+    "name": "Spare Birdie",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:11:47.623Z",
+    "scores": {
+      "flavorful": 7,
+      "authentic": 6,
+      "satisfying": 8,
+      "comforting": 7,
+      "aromatic": 7,
+      "appetizing": 8,
+      "overall": 7
+    },
+    "imageTags": [
+      "stylish pendant lighting",
+      "open contemporary layout",
+      "plush seating arrangements",
+      "modern elegant bar design",
+      "sleek green tile backdrop"
+    ],
+    "reviewTags": [
+      "friendly and attentive service",
+      "better food than typical sports bar",
+      "upscale relaxed atmosphere",
+      "delicious oysters",
+      "fun games available"
+    ]
+  }
+}

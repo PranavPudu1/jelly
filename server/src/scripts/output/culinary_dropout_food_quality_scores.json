@@ -1,0 +1,33 @@
+{
+  "restaurant": {
+    "id": "cb76658c-b3fb-4d4b-89bd-955847b3f74c",
+    "name": "Culinary Dropout",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:04:41.720Z",
+    "scores": {
+      "flavorful": 7,
+      "authentic": 6,
+      "satisfying": 8,
+      "comforting": 8,
+      "aromatic": 7,
+      "appetizing": 7,
+      "overall": 7
+    },
+    "imageTags": [
+      "creamy cheese sauce",
+      "spicy pulled pork topping",
+      "fresh guacamole dollop",
+      "loaded nachos supreme",
+      "tasty black bean mixture"
+    ],
+    "reviewTags": [
+      "amazing service",
+      "smokehouse hash",
+      "pub burger",
+      "food came out hot",
+      "banana bread french toast"
+    ]
+  }
+}

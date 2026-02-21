@@ -1,0 +1,32 @@
+{
+  "restaurant": {
+    "id": "80a8afb4-09fb-4b23-a6c5-8a02680e7018",
+    "name": "Barrett’s Too",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T02:49:58.327Z",
+    "scores": {
+      "vibrant": 8,
+      "romantic": 5,
+      "trendy": 6,
+      "stylish": 7,
+      "immersive": 7,
+      "inviting": 8,
+      "overall": 7
+    },
+    "imageTags": [],
+    "reviewTags": [
+      "welcoming environment",
+      "great happy hour",
+      "safe bike lane access",
+      "amazing coffee",
+      "patio and outdoor seating",
+      "spicy chicken enchiladas",
+      "warm welcoming atmosphere",
+      "authentic mexican flavors",
+      "handcrafted margaritas",
+      "vibrant festive decor"
+    ]
+  }
+}

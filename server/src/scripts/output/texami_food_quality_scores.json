@@ -1,0 +1,48 @@
+{
+  "restaurant": {
+    "id": "660d93fc-791e-41ea-8722-2b96426387d3",
+    "name": "Texami",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:12:18.847Z",
+    "scores": {
+      "flavorful": 7,
+      "authentic": 6,
+      "satisfying": 8,
+      "comforting": 7,
+      "aromatic": 6,
+      "appetizing": 7,
+      "overall": 7
+    },
+    "imageTags": [
+      "red checkered basket",
+      "crispy cheesy quesadilla",
+      "refreshing soda can",
+      "lemony lime wedge",
+      "sauce in plastic container",
+      "sesame seed bun",
+      "two dipping sauces",
+      "checked paper presentation",
+      "crispy tater tot sides",
+      "fresh lettuce and toppings"
+    ],
+    "reviewTags": [
+      "text mex flavors",
+      "great sandwich and tots",
+      "fried chicken sandwich",
+      "stuffed after meal",
+      "upcoming quesadilla and burger",
+      "needs a little salt",
+      "super friendly service",
+      "fresh hot food",
+      "definitely returning",
+      "tasty food options",
+      "excellent ingredient quality",
+      "flavors are always on point",
+      "great takeout option",
+      "passionate food preparation",
+      "chicken and veggie quesadillas"
+    ]
+  }
+}

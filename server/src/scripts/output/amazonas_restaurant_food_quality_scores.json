@@ -1,0 +1,53 @@
+{
+  "restaurant": {
+    "id": "dd7a1fc6-556a-4ccd-b8e6-54d6f2efd6d7",
+    "name": "Amazonas Restaurant",
+    "price": "$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:02:13.084Z",
+    "scores": {
+      "flavorful": 7,
+      "authentic": 8,
+      "satisfying": 8,
+      "comforting": 8,
+      "aromatic": 7,
+      "appetizing": 7,
+      "overall": 7
+    },
+    "imageTags": [
+      "outdoor dining area",
+      "colorful menu displays",
+      "friendly staff welcoming atmosphere",
+      "vibrant exterior signage",
+      "floral decorations near entrance",
+      "colorful cabbage slaw",
+      "grilled plantain slices",
+      "creamy black bean mix",
+      "light fluffy rice",
+      "succulent pulled pork",
+      "outdoor casual dining",
+      "colorful menu displays",
+      "cozy wooden elements",
+      "brightly lit signage",
+      "inviting garden seating",
+      "triple big criolla burger",
+      "variety of Latin dishes",
+      "pork belly chicharrón",
+      "hot dog with toppings",
+      "pabellón arepa specialty",
+      "colorful menu display",
+      "variety of comfort foods",
+      "bright neon open sign",
+      "traditional Venezuelan dishes",
+      "signature burgers and hot dogs"
+    ],
+    "reviewTags": [
+      "comfortable outdoor seating",
+      "pabellon arepas available",
+      "covered and shaded area",
+      "helpful staff experience",
+      "massive menu variety"
+    ]
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "restaurant": {
+    "id": "a98be48e-15ef-48b1-9118-447e48866c6d",
+    "name": "Mama Betty's Tex-Mex - Burnet Rd",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T02:55:55.721Z",
+    "scores": {
+      "vibrant": 9,
+      "romantic": 6,
+      "trendy": 8,
+      "stylish": 8,
+      "immersive": 7,
+      "inviting": 8,
+      "overall": 8
+    },
+    "imageTags": [
+      "casual dining atmosphere",
+      "vibrant neon signage",
+      "inviting outdoor entrance",
+      "highlighted happy hour specials",
+      "fun evening vibe",
+      "modern eclectic decor",
+      "intimate dining experience",
+      "vibrant purple lighting",
+      "bustling restaurant atmosphere",
+      "ornate hanging fixtures",
+      "zesty green salsa",
+      "sliced ripe avocado",
+      "creamy refried beans",
+      "colorful fresh pico de gallo",
+      "savory seasoned ground meat",
+      "rich barbecue sauce drizzle",
+      "savory grilled steak bites",
+      "cilantro herb garnish",
+      "seasoned vegetable medley",
+      "fresh diced tomatoes topping",
+      "soft and fluffy texture",
+      "freshly cooked tortillas",
+      "traditional cooking method",
+      "authentic Indian bread",
+      "golden brown flatbreads"
+    ],
+    "reviewTags": [
+      "fresh chips and salsa",
+      "fun dinner spot",
+      "flavorful chicken fajitas",
+      "lively new year's vibe",
+      "festive atmosphere",
+      "tejas enchiladas with smoke flavor",
+      "variety of lunch combos",
+      "nice menu of drinks",
+      "homemade tortillas fresh",
+      "similar to mole sauce",
+      "fun atmosphere",
+      "homemade tortillas station",
+      "delicious fajita combo nachos",
+      "great outdoor patio",
+      "vibrant and fun decor"
+    ]
+  }
+}

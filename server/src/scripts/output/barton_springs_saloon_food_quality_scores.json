@@ -1,0 +1,48 @@
+{
+  "restaurant": {
+    "id": "053fd3a6-7e42-4a89-9851-77b6a7e0addf",
+    "name": "Barton Springs Saloon",
+    "price": "$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:02:50.092Z",
+    "scores": {
+      "flavorful": 5,
+      "authentic": 4,
+      "satisfying": 6,
+      "comforting": 6,
+      "aromatic": 4,
+      "appetizing": 5,
+      "overall": 5
+    },
+    "imageTags": [
+      "craft beer selection",
+      "modern bar decor",
+      "brightly lit atmosphere",
+      "colorful tap handles",
+      "diverse brewing options",
+      "cozy outdoor seating",
+      "casual social gathering",
+      "vibrant festive decor",
+      "warm evening atmosphere",
+      "twinkling fairy lights"
+    ],
+    "reviewTags": [
+      "friendly bartenders",
+      "cold refreshing drinks",
+      "country rock vibe",
+      "fun empowering atmosphere",
+      "charming staff presence",
+      "top shelf dive bar",
+      "food truck with chicken wings",
+      "weekly trivia night",
+      "awesome patio in summer",
+      "great selection of draft beer",
+      "outdoor patio seating",
+      "eclectic mix of patrons",
+      "great proximity to burgers",
+      "not quite a dive bar",
+      "local austin staple"
+    ]
+  }
+}

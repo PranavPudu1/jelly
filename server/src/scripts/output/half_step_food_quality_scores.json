@@ -1,0 +1,37 @@
+{
+  "restaurant": {
+    "id": "34fc581b-d95d-4654-9133-53b9d140faaa",
+    "name": "Half Step",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:06:39.459Z",
+    "scores": {
+      "flavorful": 7,
+      "authentic": 6,
+      "satisfying": 7,
+      "comforting": 8,
+      "aromatic": 7,
+      "appetizing": 7,
+      "overall": 7
+    },
+    "imageTags": [],
+    "reviewTags": [
+      "friendly bartenders",
+      "plenty of seating",
+      "great for people watching",
+      "chill vibe",
+      "bachelor and bachelorette parties",
+      "insanely good strudel",
+      "amazing bartenders choice drinks",
+      "festive atmosphere",
+      "ginger no. 3 cocktail",
+      "seasonal drinks selection",
+      "balance and flavor",
+      "mastery in motion",
+      "personalized cocktails",
+      "calm confident presence",
+      "memorable hospitality"
+    ]
+  }
+}

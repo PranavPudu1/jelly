@@ -1,0 +1,38 @@
+{
+  "restaurant": {
+    "id": "d9f5d5bd-c4e0-4912-bfcd-c25474d354be",
+    "name": "Vaqueros Cafe & Cantina",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:13:59.662Z",
+    "scores": {
+      "flavorful": 8,
+      "authentic": 8,
+      "satisfying": 8,
+      "comforting": 9,
+      "aromatic": 7,
+      "appetizing": 7,
+      "overall": 8
+    },
+    "imageTags": [
+      "vintage lighting fixtures",
+      "rustic wooden decor",
+      "vibrant mural artwork",
+      "intimate dining setting",
+      "colorful chair accents"
+    ],
+    "reviewTags": [
+      "vibrant event space",
+      "fantastic chicken and beef fajitas",
+      "delicious corn tortillas",
+      "taquitos and beans",
+      "perfect christmas atmosphere",
+      "light warm sopaipillas",
+      "warm friendly service",
+      "best tex-mex spots",
+      "1862 margaritas",
+      "must-try fajitas"
+    ]
+  }
+}

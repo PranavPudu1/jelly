@@ -1,0 +1,68 @@
+{
+  "restaurant": {
+    "id": "2f90362e-e844-48f2-b1df-08f80892e07f",
+    "name": "Mile High Mo's Austin - First Class Food",
+    "price": "$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:09:28.457Z",
+    "scores": {
+      "flavorful": 7,
+      "authentic": 5,
+      "satisfying": 8,
+      "comforting": 8,
+      "aromatic": 6,
+      "appetizing": 7,
+      "overall": 7
+    },
+    "imageTags": [
+      "casual diner seating",
+      "winged logo design",
+      "bright artificial lighting",
+      "industrial modern facade",
+      "glass front entrance",
+      "golden fried chicken",
+      "smoky bacon bits",
+      "creamy ranch drizzle",
+      "crispy fried onion topping",
+      "melted yellow cheese",
+      "melted cheesy toppings",
+      "crispy golden onion rings",
+      "hearty steak sandwich",
+      "toasted sub roll",
+      "fast food presentation",
+      "crispy seasoned fries",
+      "casual dining presentation",
+      "checkered paper basket",
+      "hearty comfort food",
+      "spicy sauce coating",
+      "casual dining presentation",
+      "melted cheese topping",
+      "branded burger bun",
+      "juicy cheeseburger patty",
+      "savory sandwich meal",
+      "crispy seasoned fries",
+      "casual dining setting",
+      "savory beef toppings",
+      "loaded cheese fries",
+      "hearty cheesesteak subs",
+      "crispy golden fries",
+      "spicy buffalo wings",
+      "casual dining snack",
+      "glazed chicken tenders",
+      "savory fast food meal"
+    ],
+    "reviewTags": [
+      "whirlwind of wonder dessert",
+      "double fried crispy fries",
+      "extra mile with first class food",
+      "sweet and savory bacon egg burger",
+      "import bread from philly",
+      "classic poutine gravy",
+      "air-conditioned seating inside",
+      "juicy flavorful smashburger",
+      "kiosk ordering system",
+      "signature cheese curds squeak"
+    ]
+  }
+}

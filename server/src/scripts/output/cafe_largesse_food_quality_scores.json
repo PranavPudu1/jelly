@@ -1,0 +1,33 @@
+{
+  "restaurant": {
+    "id": "b34b1489-af8c-4fbd-85b5-f67c91ac4cf6",
+    "name": "Cafe Largesse",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:03:34.302Z",
+    "scores": {
+      "flavorful": 7,
+      "authentic": 6,
+      "satisfying": 7,
+      "comforting": 8,
+      "aromatic": 7,
+      "appetizing": 8,
+      "overall": 7
+    },
+    "imageTags": [
+      "shredded cheese topping",
+      "fresh microgreens garnish",
+      "drizzled spicy sauce",
+      "charred vegetable medley",
+      "wood-fired flatbread pizza"
+    ],
+    "reviewTags": [
+      "lovely atmosphere",
+      "comfortable bar stools",
+      "cute decor and open kitchen",
+      "dietary restriction friendly",
+      "really good cappuccino"
+    ]
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "restaurant": {
+    "id": "6f04a61d-032a-43cd-9335-69c4356dfd39",
+    "name": "Roaring Fork",
+    "price": "$$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T02:57:37.370Z",
+    "scores": {
+      "vibrant": 8,
+      "romantic": 7,
+      "trendy": 9,
+      "stylish": 9,
+      "immersive": 7,
+      "inviting": 8,
+      "overall": 8
+    },
+    "imageTags": [
+      "delicately seasoned fish filet",
+      "creamy baked macaroni dish",
+      "zesty corn and seafood salad",
+      "freshly steamed green beans",
+      "charred lime for garnish",
+      "modern upscale decor",
+      "dimly lit interior",
+      "interactive bar atmosphere",
+      "large screen viewing area",
+      "wooden ceiling accents",
+      "vibrant social atmosphere",
+      "stylish pendant lighting",
+      "spacious modern interior",
+      "contemporary wooden decor",
+      "large windows with greenery",
+      "drizzled olive oil",
+      "fresh arugula salad",
+      "seared steak slices",
+      "herbaceous chimichurri sauce",
+      "vibrant yellow tomatoes",
+      "grilled salmon filet",
+      "creamy herb risotto",
+      "lemon garlic butter sauce",
+      "savory roasted mushrooms",
+      "seasonal asparagus spears"
+    ],
+    "reviewTags": []
+  }
+}

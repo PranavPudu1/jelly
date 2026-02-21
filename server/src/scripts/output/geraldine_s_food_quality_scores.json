@@ -1,0 +1,32 @@
+{
+  "restaurant": {
+    "id": "826ae63c-4d8b-4f42-8c85-7fa14f54a081",
+    "name": "Geraldine's",
+    "price": "$$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:06:22.368Z",
+    "scores": {
+      "flavorful": 8,
+      "authentic": 7,
+      "satisfying": 8,
+      "comforting": 7,
+      "aromatic": 8,
+      "appetizing": 8,
+      "overall": 8
+    },
+    "imageTags": [],
+    "reviewTags": [
+      "tender lamb",
+      "amazing steak",
+      "very unique food",
+      "friendly attentive staff",
+      "delicious halibut",
+      "fun atmosphere",
+      "really good food",
+      "really cute drinks",
+      "reindeer over rainey",
+      "awesome server"
+    ]
+  }
+}

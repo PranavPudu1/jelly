@@ -1,0 +1,58 @@
+{
+  "restaurant": {
+    "id": "4f717414-7231-4303-ae17-05c68f5a49d6",
+    "name": "Burnett food for the soul",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:03:25.845Z",
+    "scores": {
+      "flavorful": 6,
+      "authentic": 4,
+      "satisfying": 5,
+      "comforting": 7,
+      "aromatic": 6,
+      "appetizing": 5,
+      "overall": 5
+    },
+    "imageTags": [
+      "sticky glazed chicken wings",
+      "crispy textured skin",
+      "delicious party appetizer",
+      "appetizing red sauce",
+      "savory finger food",
+      "grilled chicken sandwich",
+      "zesty garlic sauce drizzle",
+      "colorful roasted peppers",
+      "smoky grilled flavor",
+      "cheesy crinkle-cut fries",
+      "creamy macaroni and cheese",
+      "sweet cornbread slice",
+      "flavorful onion garnish",
+      "tender braised beef stew",
+      "hearty soul food platter",
+      "comfort food platter",
+      "sweet cornbread square",
+      "creamy mac and cheese",
+      "crispy fried catfish fillets",
+      "herb-seasoned coating"
+    ],
+    "reviewTags": [
+      "unfriendly service",
+      "not authentic soul food",
+      "watery mac & cheese",
+      "disappointing side dishes",
+      "undercooked tough wings",
+      "friendly owner",
+      "home cooked meals",
+      "lots of flavor",
+      "fresh ingredients daily",
+      "made when you order",
+      "welcoming environment",
+      "feels like home",
+      "always fresh food",
+      "high quality taste",
+      "consistent food presentation"
+    ]
+  }
+}

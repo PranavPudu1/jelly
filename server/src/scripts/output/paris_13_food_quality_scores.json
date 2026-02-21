@@ -1,0 +1,43 @@
+{
+  "restaurant": {
+    "id": "3aaedb8f-ff67-4c78-849e-7b70f1045501",
+    "name": "Paris 13",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:10:06.384Z",
+    "scores": {
+      "flavorful": 8,
+      "authentic": 7,
+      "satisfying": 8,
+      "comforting": 8,
+      "aromatic": 8,
+      "appetizing": 8,
+      "overall": 8
+    },
+    "imageTags": [
+      "traditional Indian appetizer",
+      "flaky pastry exterior",
+      "delicate spiced filling",
+      "decorative serving dish",
+      "crispy golden samosas"
+    ],
+    "reviewTags": [
+      "varied menu choices",
+      "favorite veggie samosas",
+      "best part of farmer's market",
+      "delicious quiche option",
+      "recommended for saturday visits",
+      "perfectly crunchy samosas",
+      "delicious vegetarian friendly options",
+      "flavorful vegetarian options",
+      "must try at the farmers market",
+      "out of this world quiche",
+      "great service",
+      "best quiches ever",
+      "crunchy perfectly-spiced samosas",
+      "amazing hachis parmentier",
+      "fresh and warm food"
+    ]
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "restaurant": {
+    "id": "0277b541-9b07-42a7-b546-1ba5f48207a2",
+    "name": "Himalayan Flavor",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:06:46.828Z",
+    "scores": {
+      "flavorful": 8,
+      "authentic": 9,
+      "satisfying": 7,
+      "comforting": 8,
+      "aromatic": 9,
+      "appetizing": 8,
+      "overall": 8
+    },
+    "imageTags": [
+      "colorful presentation",
+      "cozy dining experience",
+      "soft naan bread",
+      "savory chicken curry",
+      "rich aromatic spices",
+      "variety of naan breads",
+      "authentic Nepali momo dumplings",
+      "seasoned tandoori selections",
+      "refreshing mango lassi beverages",
+      "Himalayan cuisine specialties",
+      "juicy caramelized onions",
+      "citrus lemon garnish",
+      "vibrant colorful presentation",
+      "sizzling grilled chicken",
+      "charred smoky flavor"
+    ],
+    "reviewTags": [
+      "slow service experience",
+      "delicious chicken biryani",
+      "shady tipping practice",
+      "spicy masala chai",
+      "underwhelming attention from server",
+      "crispy vegetable pakora",
+      "rich and flavorful sauce",
+      "himalayan flavor special naan",
+      "attentive and helpful staff",
+      "cozy dining experience",
+      "fresh ingredients",
+      "authentic spices",
+      "must try momos",
+      "savory laphing",
+      "delicious chicken lolipop"
+    ]
+  }
+}

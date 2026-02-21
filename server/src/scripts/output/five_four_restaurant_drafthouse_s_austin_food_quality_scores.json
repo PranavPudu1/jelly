@@ -1,0 +1,42 @@
+{
+  "restaurant": {
+    "id": "a443ed1d-60bc-436f-8b09-feeefdbf335e",
+    "name": "Five Four Restaurant & Drafthouse- S Austin",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:05:48.043Z",
+    "scores": {
+      "flavorful": 7,
+      "authentic": 6,
+      "satisfying": 8,
+      "comforting": 7,
+      "aromatic": 7,
+      "appetizing": 8,
+      "overall": 7
+    },
+    "imageTags": [
+      "modern exterior design",
+      "prominent restaurant signage",
+      "amplified natural lighting",
+      "contemporary building facade",
+      "inviting outdoor seating",
+      "fresh lettuce and tomato",
+      "creamy guacamole spread",
+      "golden fried potato wedges",
+      "juicy beef patty burger",
+      "crispy bacon layer",
+      "spicy jalapeño slices",
+      "melted cheese goodness",
+      "loaded nachos platter",
+      "tangy salsa on the side",
+      "creamy guacamole dollop",
+      "rich savory sauce",
+      "creamy pasta dish",
+      "crispy garlic bread",
+      "hearty portion size",
+      "sprinkled with green onions"
+    ],
+    "reviewTags": []
+  }
+}

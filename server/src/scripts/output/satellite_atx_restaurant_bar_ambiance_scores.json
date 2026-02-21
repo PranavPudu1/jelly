@@ -1,0 +1,37 @@
+{
+  "restaurant": {
+    "id": "c832232e-e221-4c10-b274-229240a26c4b",
+    "name": "Satellite ATX Restaurant & Bar",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T02:58:08.565Z",
+    "scores": {
+      "vibrant": 6,
+      "romantic": 8,
+      "trendy": 7,
+      "stylish": 8,
+      "immersive": 6,
+      "inviting": 7,
+      "overall": 7
+    },
+    "imageTags": [
+      "rich savory sauce",
+      "creamy mashed potatoes",
+      "fresh crisp green beans",
+      "chardonnay wine pairing",
+      "succulent grilled pork chop",
+      "elegant champagne flute",
+      "decadent chocolate layer cake",
+      "lightly sweetened cream frosting",
+      "garnished with fresh strawberries",
+      "artful dessert presentation",
+      "soft ambient lighting",
+      "modern rustic interior design",
+      "chic blue dining chairs",
+      "earthy color palette",
+      "natural stone accents"
+    ],
+    "reviewTags": []
+  }
+}

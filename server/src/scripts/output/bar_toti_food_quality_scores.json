@@ -1,0 +1,32 @@
+{
+  "restaurant": {
+    "id": "fee15bc8-89ae-4665-904c-2efd9433a343",
+    "name": "Bar Toti",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:02:42.541Z",
+    "scores": {
+      "flavorful": 8,
+      "authentic": 7,
+      "satisfying": 8,
+      "comforting": 8,
+      "aromatic": 8,
+      "appetizing": 8,
+      "overall": 8
+    },
+    "imageTags": [],
+    "reviewTags": [
+      "great overall experience",
+      "great vibes",
+      "tasty well-balanced food",
+      "smooth valet service",
+      "well made cocktails",
+      "perfectly crispy mushrooms",
+      "beautifully cooked squash risotto",
+      "pretty lights garden",
+      "cozy outdoor ambiance",
+      "umami mushroom flavor"
+    ]
+  }
+}

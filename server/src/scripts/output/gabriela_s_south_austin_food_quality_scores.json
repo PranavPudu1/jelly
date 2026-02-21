@@ -1,0 +1,32 @@
+{
+  "restaurant": {
+    "id": "00b4d4ba-ba01-4bc4-bddf-465231291c23",
+    "name": "Gabriela's South Austin",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:06:14.044Z",
+    "scores": {
+      "flavorful": 7,
+      "authentic": 6,
+      "satisfying": 7,
+      "comforting": 6,
+      "aromatic": 7,
+      "appetizing": 8,
+      "overall": 7
+    },
+    "imageTags": [
+      "casual seating arrangement",
+      "artistic mural backdrop",
+      "outdoor dining area",
+      "colorful picnic tables",
+      "playful summer vibe",
+      "colorful fruit garnish",
+      "refreshing cocktail drinks",
+      "chili powder rimmed glass",
+      "lime wedge decoration",
+      "vibrant tropical presentation"
+    ],
+    "reviewTags": []
+  }
+}

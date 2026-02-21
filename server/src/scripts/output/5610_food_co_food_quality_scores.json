@@ -1,0 +1,37 @@
+{
+  "restaurant": {
+    "id": "c1b84ab7-0480-4a91-b7bc-4637a0ac9c0d",
+    "name": "5610 Food Co",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:01:53.404Z",
+    "scores": {
+      "flavorful": 6,
+      "authentic": 5,
+      "satisfying": 6,
+      "comforting": 5,
+      "aromatic": 5,
+      "appetizing": 4,
+      "overall": 5
+    },
+    "imageTags": [],
+    "reviewTags": [
+      "convenient pickup lockers",
+      "hub for delivery services",
+      "limited dining space",
+      "variety of restaurant kitchens",
+      "food to go business",
+      "casual dining experience",
+      "fresh and flavorful",
+      "quick service",
+      "ideal spot for takeout",
+      "real good tacos",
+      "fast-food style service",
+      "stale tapioca balls",
+      "overflowed garbage area",
+      "poorly maintained seating",
+      "good butter marsala chicken"
+    ]
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "restaurant": {
+    "id": "29d4d28a-cbac-4db1-8187-068d8ae0e67c",
+    "name": "Summer on Music Lane",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:11:50.754Z",
+    "scores": {
+      "flavorful": 4,
+      "authentic": 5,
+      "satisfying": 6,
+      "comforting": 5,
+      "aromatic": 5,
+      "appetizing": 6,
+      "overall": 5
+    },
+    "imageTags": [
+      "lush greenery accents",
+      "modern rustic design",
+      "inviting casual atmosphere",
+      "contemporary metal furniture",
+      "sunlit outdoor seating",
+      "crispy bacon strips on plate",
+      "artisan cocktails with berries",
+      "colorful gourmet breakfast spread",
+      "vibrant arugula salad",
+      "creative dish garnished with cream"
+    ],
+    "reviewTags": [
+      "standard drinks",
+      "okay service",
+      "super cute spot",
+      "under seasoned food",
+      "toasted marshmallow espresso martini",
+      "warm genuine service",
+      "chill atmosphere for conversation",
+      "effortless vibe",
+      "beautiful indoor/outdoor setup",
+      "best skinny spicy margaritas",
+      "outdoor seating",
+      "disappointing burger",
+      "relaxed and inviting",
+      "great fries",
+      "consistently friendly service"
+    ]
+  }
+}

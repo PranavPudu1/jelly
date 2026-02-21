@@ -1,0 +1,37 @@
+{
+  "restaurant": {
+    "id": "fd9f0e0a-db2b-4a46-9a39-e6825827e231",
+    "name": "Baldinucci Pizza Romana",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T02:49:40.581Z",
+    "scores": {
+      "vibrant": 5,
+      "romantic": 3,
+      "trendy": 4,
+      "stylish": 5,
+      "immersive": 4,
+      "inviting": 7,
+      "overall": 5
+    },
+    "imageTags": [],
+    "reviewTags": [
+      "best pizza ever",
+      "lasagna romana slice",
+      "out of this world delicious",
+      "pistachio gelato",
+      "margherita ny slice",
+      "chewy mozzarella texture",
+      "garlic knots were excellent",
+      "help yourself service",
+      "light and airy crust",
+      "small shop atmosphere",
+      "great service",
+      "enjoyable dining experience",
+      "incredible food quality",
+      "wonderful pizza",
+      "fantastic environment"
+    ]
+  }
+}

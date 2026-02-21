@@ -1,0 +1,27 @@
+{
+  "restaurant": {
+    "id": "4ecd44a7-c637-4d6d-bcce-aecf3feaeef6",
+    "name": "Uncle Nicky's Italian Specialties",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:13:56.092Z",
+    "scores": {
+      "flavorful": 9,
+      "authentic": 8,
+      "satisfying": 8,
+      "comforting": 8,
+      "aromatic": 8,
+      "appetizing": 8,
+      "overall": 8
+    },
+    "imageTags": [],
+    "reviewTags": [
+      "absolutely amazing food",
+      "perfectly cooked",
+      "porshetta sandwich",
+      "phenomenal experience",
+      "so flavorful"
+    ]
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "restaurant": {
+    "id": "f55435ed-c8d4-49fd-b49f-6f71083826af",
+    "name": "Besos Cocina & Cantina",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T02:50:01.554Z",
+    "scores": {
+      "vibrant": 9,
+      "romantic": 5,
+      "trendy": 8,
+      "stylish": 8,
+      "immersive": 7,
+      "inviting": 8,
+      "overall": 8
+    },
+    "imageTags": [
+      "hearty beans accompaniment",
+      "slices of lime garnish",
+      "side of green salsa",
+      "tortillas topped with chorizo",
+      "fresh cilantro and onion",
+      "crispy tortilla chips",
+      "salted rim glass",
+      "colorful frozen cocktail",
+      "appetizing menu selection",
+      "vibrant restaurant setting",
+      "fluffy Mexican rice",
+      "fresh guacamole with lettuce",
+      "colorful vibrant plate presentation",
+      "rich savory bean soup",
+      "savory beef chunks in sauce",
+      "lime garnished drink",
+      "spicy rim with chili",
+      "colorful tropical cocktail",
+      "vibrant layered presentation",
+      "refreshing fruity flavors"
+    ],
+    "reviewTags": [
+      "lively atmosphere",
+      "top notch service",
+      "delicious birthday dinner",
+      "nice ambiance",
+      "family-friendly dining",
+      "super chill atmosphere",
+      "green and red salsa",
+      "comfortable high top stools",
+      "great bartender personality",
+      "best strawberry lemonade"
+    ]
+  }
+}

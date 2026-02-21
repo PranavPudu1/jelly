@@ -1,0 +1,32 @@
+{
+  "restaurant": {
+    "id": "7a4d38ee-0f6a-494a-90e3-359990e5168b",
+    "name": "Day Maker Half Day Cafe",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:04:49.762Z",
+    "scores": {
+      "flavorful": 8,
+      "authentic": 7,
+      "satisfying": 8,
+      "comforting": 9,
+      "aromatic": 8,
+      "appetizing": 8,
+      "overall": 8
+    },
+    "imageTags": [],
+    "reviewTags": [
+      "warm and attentive service",
+      "clean and inviting space",
+      "cozy vibe",
+      "fresh tasting ingredients",
+      "genuinely delicious food",
+      "gingerbread latte",
+      "creative menu options",
+      "crowded during brunch hours",
+      "well seasoned chicken",
+      "colorful and welcoming decor"
+    ]
+  }
+}

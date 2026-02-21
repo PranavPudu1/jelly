@@ -1,0 +1,53 @@
+{
+  "restaurant": {
+    "id": "04962de2-c5dc-40ca-851e-0e2b7fa29fcb",
+    "name": "Waterloo Ice House Burnet Road",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:00:57.733Z",
+    "scores": {
+      "vibrant": 7,
+      "romantic": 3,
+      "trendy": 5,
+      "stylish": 6,
+      "immersive": 4,
+      "inviting": 8,
+      "overall": 6
+    },
+    "imageTags": [
+      "vibrant neon signage",
+      "inviting bar area",
+      "casual dining space",
+      "spacious seating arrangement",
+      "comfortable wooden furnishings",
+      "clear blue sky",
+      "outdoor dining area",
+      "varied meal options",
+      "casual dining establishment",
+      "restaurant signage display",
+      "sunny side up eggs",
+      "crispy bacon strips",
+      "toasted white bread",
+      "crispy golden hashbrowns",
+      "classic diner breakfast"
+    ],
+    "reviewTags": [
+      "casual dining experience",
+      "good food",
+      "average portion sizes",
+      "overpriced breakfast",
+      "dive breakfast place",
+      "fast service",
+      "pumpkin patch atmosphere",
+      "great menu options",
+      "great dining experience",
+      "lovely staff",
+      "clean place",
+      "great service",
+      "pulled pork sandwich",
+      "mexican breakfast tacos",
+      "family friendly"
+    ]
+  }
+}

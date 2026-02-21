@@ -1,0 +1,37 @@
+{
+  "restaurant": {
+    "id": "3c5e155d-f52f-48a1-9fe7-e9b6b50dd853",
+    "name": "BJ's Restaurant & Brewhouse",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:02:31.015Z",
+    "scores": {
+      "flavorful": 7,
+      "authentic": 6,
+      "satisfying": 8,
+      "comforting": 8,
+      "aromatic": 7,
+      "appetizing": 8,
+      "overall": 7
+    },
+    "imageTags": [
+      "crispy golden fries",
+      "fresh avocado spread",
+      "melted cheese and mushrooms",
+      "savory bacon toppings",
+      "assorted gourmet burgers",
+      "grilled marbled steak",
+      "creamy garlic sauce",
+      "charred asparagus spears",
+      "fresh green onions garnish",
+      "baked Idaho potato",
+      "colorful sprinkles topping",
+      "scoops of vanilla ice cream",
+      "drizzling chocolate sauce",
+      "served with silver spoons",
+      "warm chocolate cookie skillet"
+    ],
+    "reviewTags": []
+  }
+}

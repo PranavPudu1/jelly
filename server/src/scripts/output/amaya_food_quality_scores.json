@@ -1,0 +1,68 @@
+{
+  "restaurant": {
+    "id": "5958d987-8ebe-4468-9590-ef858090aa1d",
+    "name": "Amaya",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:02:11.353Z",
+    "scores": {
+      "flavorful": 7,
+      "authentic": 5,
+      "satisfying": 7,
+      "comforting": 6,
+      "aromatic": 7,
+      "appetizing": 8,
+      "overall": 7
+    },
+    "imageTags": [
+      "soft ambient lighting",
+      "elegant wooden accents",
+      "modern bar design elements",
+      "stylish high-backed stools",
+      "intimate social atmosphere",
+      "colorful fresh salads",
+      "scenic sunset dining",
+      "gourmet dishes with elegance",
+      "variety of flavorful cuisines",
+      "sumptuous dinner spread",
+      "creamy dipping sauce",
+      "crispy falafel balls",
+      "colorful vegetable platter",
+      "elegant dining experience",
+      "artisan pita bread",
+      "modern outdoor seating",
+      "lush greenery accents",
+      "warm atmospheric lighting",
+      "contemporary fire feature",
+      "textured brick walls",
+      "elegantly crafted cocktail",
+      "served in classic coupe glass",
+      "refined bar setting",
+      "vibrant berry hue",
+      "garnished with citrus twist",
+      "crunchy pistachio topping",
+      "fragrant mint leaves",
+      "tangy grapefruit chunks",
+      "refreshing cucumber salad",
+      "vibrant seasonal ingredients"
+    ],
+    "reviewTags": [
+      "beautiful atmosphere",
+      "wonderful staff",
+      "great service by christian",
+      "papas bravas are a must",
+      "delicious plates",
+      "unique decor style",
+      "overpriced dining experience",
+      "friendly waitress service",
+      "slow kitchen service",
+      "inauthentic food flavors",
+      "refreshing ceviche salad",
+      "great place for sharing",
+      "best greek food",
+      "flavors full of punch",
+      "moist falafel"
+    ]
+  }
+}

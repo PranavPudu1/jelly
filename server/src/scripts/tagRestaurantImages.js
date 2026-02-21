@@ -35,7 +35,7 @@ const CONFIG = {
     MAX_RETRIES: 3, // Maximum retry attempts for failed API calls
     RETRY_DELAY_MS: 1000, // Initial retry delay (exponential backoff)
     REQUEST_TIMEOUT_MS: 30000, // Timeout for image fetch requests
-    OPENAI_MODEL: 'gpt-4o', // OpenAI model to use
+    OPENAI_MODEL: 'gpt-4o-mini', // OpenAI model to use
 };
 
 // ============================================================================
@@ -292,8 +292,11 @@ async function getRestaurantImages(batchSize, skip = 0) {
         const images = await prisma.restaurantImage.findMany({
             skip,
             take: batchSize,
+            where: {
+                tags: { none: {} }, // Only fetch images with no tags yet
+            },
             orderBy: {
-                dateAdded: 'asc', // Process oldest first
+                dateAdded: 'asc',
             },
         });
 

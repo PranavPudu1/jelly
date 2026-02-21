@@ -1,0 +1,68 @@
+{
+  "restaurant": {
+    "id": "06ca1b66-4e01-4fd6-a0fd-a8c62d784bc3",
+    "name": "Sheesh",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:11:29.558Z",
+    "scores": {
+      "flavorful": 8,
+      "authentic": 7,
+      "satisfying": 8,
+      "comforting": 8,
+      "aromatic": 9,
+      "appetizing": 8,
+      "overall": 8
+    },
+    "imageTags": [
+      "vintage food truck",
+      "retro turquoise exterior",
+      "rustic urban setting",
+      "handwritten chalkboard menu",
+      "outdoor festoon lights",
+      "spicy lentil soup",
+      "mosaic table setting",
+      "assorted chutneys selection",
+      "refreshing mango lassi",
+      "vibrant taco platter",
+      "creamy mango lassi",
+      "fresh colorful vegetables",
+      "wooden serving board",
+      "rustic food presentation",
+      "stuffed foil-wrapped wraps",
+      "wooden table surface",
+      "creamy saffron drink",
+      "tropical mango blend",
+      "refreshing summer beverage",
+      "clear plastic cup",
+      "string lights decoration",
+      "casual outdoor setting",
+      "turquoise exterior design",
+      "vintage food truck",
+      "chalkboard menu sign",
+      "colorful vegetable wraps",
+      "mosaic tiled table",
+      "saffron dessert garnishing",
+      "vibrant curry presentation",
+      "rustic rolling pin decor",
+      "stuffed pita wrap",
+      "wooden serving board",
+      "street food presentation",
+      "fresh vegetable filling",
+      "spiced yellow soup"
+    ],
+    "reviewTags": [
+      "immaculate vibes",
+      "lots of cardamom",
+      "best mango lassi",
+      "amazing service",
+      "flavorful indian cuisine",
+      "east side prices",
+      "legit food experience",
+      "full meal under $15",
+      "highly recommend",
+      "best food truck"
+    ]
+  }
+}

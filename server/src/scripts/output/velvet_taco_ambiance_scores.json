@@ -1,0 +1,43 @@
+{
+  "restaurant": {
+    "id": "6ff2c970-a768-4849-9d75-f77ba5f298fa",
+    "name": "Velvet Taco",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:00:36.728Z",
+    "scores": {
+      "vibrant": 8,
+      "romantic": 3,
+      "trendy": 7,
+      "stylish": 7,
+      "immersive": 5,
+      "inviting": 8,
+      "overall": 7
+    },
+    "imageTags": [
+      "bright inviting signage",
+      "busy open kitchen environment",
+      "modern casual dining space",
+      "industrial style decor",
+      "exposed wooden accents",
+      "colorful patio umbrellas",
+      "prominent restaurant signage",
+      "vibrant outdoor seating area",
+      "inviting casual atmosphere",
+      "modern urban dining experience",
+      "crispy fried filling",
+      "creamy white sauce drizzle",
+      "loaded savory tacos",
+      "warm corn tortillas",
+      "fresh green herbs garnish"
+    ],
+    "reviewTags": [
+      "lively restaurant atmosphere",
+      "lovely outdoor seating",
+      "slightly loud evening setting",
+      "fresh guacamole with chips",
+      "average corn based side"
+    ]
+  }
+}

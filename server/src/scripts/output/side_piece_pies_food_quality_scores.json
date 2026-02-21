@@ -1,0 +1,27 @@
+{
+  "restaurant": {
+    "id": "f94a0ce6-86c2-4868-bd35-abf2b4e85fa3",
+    "name": "Side Piece Pies",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:11:34.647Z",
+    "scores": {
+      "flavorful": 7,
+      "authentic": 6,
+      "satisfying": 7,
+      "comforting": 8,
+      "aromatic": 6,
+      "appetizing": 7,
+      "overall": 7
+    },
+    "imageTags": [
+      "industrial kitchen setting",
+      "stainless steel appliances",
+      "teamwork in action",
+      "casual staff uniforms",
+      "modern black tiles"
+    ],
+    "reviewTags": []
+  }
+}

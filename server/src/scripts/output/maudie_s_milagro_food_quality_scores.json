@@ -1,0 +1,37 @@
+{
+  "restaurant": {
+    "id": "481c395c-9c9c-4833-ad41-7b335359bd6a",
+    "name": "Maudie's Milagro",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:09:20.244Z",
+    "scores": {
+      "flavorful": 8,
+      "authentic": 7,
+      "satisfying": 8,
+      "comforting": 8,
+      "aromatic": 7,
+      "appetizing": 8,
+      "overall": 8
+    },
+    "imageTags": [
+      "charming outdoor seating",
+      "warm evening lighting",
+      "natural greenery surroundings",
+      "inviting entrance pathway",
+      "rustic southwestern architecture",
+      "colorful vegetable garnish",
+      "fresh guacamole topping",
+      "flavorful grilled beef",
+      "creamy sour cream dollop",
+      "sizzling cheesy nachos",
+      "melted cheese topping",
+      "rich savory sauce",
+      "fluffy Mexican rice",
+      "creamy refried beans",
+      "hearty enchiladas smothered"
+    ],
+    "reviewTags": []
+  }
+}

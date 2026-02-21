@@ -1,0 +1,73 @@
+{
+  "restaurant": {
+    "id": "90c19295-c735-4990-8ba6-fac64e533259",
+    "name": "Intero Restaurant",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T02:54:08.760Z",
+    "scores": {
+      "vibrant": 7,
+      "romantic": 8,
+      "trendy": 8,
+      "stylish": 8,
+      "immersive": 7,
+      "inviting": 8,
+      "overall": 8
+    },
+    "imageTags": [
+      "unique outdoor artwork",
+      "industrial metal sculpture",
+      "recycled materials design",
+      "creative metal figure",
+      "modern architectural exterior",
+      "cozy wooden table",
+      "elegant cocktail glass",
+      "artisanal bread slices",
+      "herb-infused butter",
+      "ceramic tea service",
+      "sprinkled fresh herbs",
+      "garnished with chives",
+      "rich savory sauce",
+      "white ceramic bowl",
+      "creamy noodle dish",
+      "toasted meringue dollops",
+      "caramel drizzle topping",
+      "speckled ceramic plate",
+      "rustic wooden tabletop",
+      "creamy ice cream scoop",
+      "exposed wooden ceiling",
+      "intimate warm lighting",
+      "open kitchen bar",
+      "cozy modern seating",
+      "urban plant decor",
+      "vibrant mixed salad",
+      "colorful vegetable medley",
+      "toasted rustic bread",
+      "birthday dinner setting",
+      "soft ambient lighting",
+      "rustic wooden table",
+      "creamy pasta dish",
+      "birthday dinner setting",
+      "sautéed broccoli greens",
+      "plated gourmet meal",
+      "rustic wooden table",
+      "creamy burrata cheese",
+      "gourmet artisan pizza",
+      "crispy ciabatta bread",
+      "cozy candlelit setting"
+    ],
+    "reviewTags": [
+      "house made ricotta",
+      "cozy and inviting atmosphere",
+      "gnocchi with pork ragu",
+      "kampachi crudo",
+      "excellent service experience",
+      "creative modern italian",
+      "exceptional service",
+      "brown sugar cake",
+      "great date night spot",
+      "good food"
+    ]
+  }
+}

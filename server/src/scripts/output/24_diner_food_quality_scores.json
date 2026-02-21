@@ -1,0 +1,48 @@
+{
+  "restaurant": {
+    "id": "0a28f356-3f46-4998-b9f2-708e5ceba7fb",
+    "name": "24 Diner",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:01:49.395Z",
+    "scores": {
+      "flavorful": 8,
+      "authentic": 6,
+      "satisfying": 8,
+      "comforting": 8,
+      "aromatic": 7,
+      "appetizing": 8,
+      "overall": 8
+    },
+    "imageTags": [
+      "modern industrial design",
+      "casual dining atmosphere",
+      "rustic bar counter",
+      "vintage pendant lighting",
+      "stylish mid-century seating",
+      "creamy vanilla ice cream",
+      "fluffy golden waffles",
+      "rich maple syrup drizzle",
+      "crunchy fried chicken wings",
+      "spicy sauce accent",
+      "crispy bacon strips",
+      "seasoned french fries",
+      "fluffy golden waffles",
+      "spicy chicken sliders",
+      "fried sunny side eggs"
+    ],
+    "reviewTags": [
+      "lasting impression",
+      "amazing vegan burger",
+      "unforgettable dining experience",
+      "spur of the moment stop",
+      "worth the drive",
+      "best burger ever",
+      "quick service experience",
+      "stylish interior design",
+      "nice and chill music",
+      "perfectly cooked wagyu"
+    ]
+  }
+}

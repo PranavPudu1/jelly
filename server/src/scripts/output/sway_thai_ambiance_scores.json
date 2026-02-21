@@ -1,0 +1,32 @@
+{
+  "restaurant": {
+    "id": "1843f87e-5acd-47d7-afb6-3e00d7f7ac53",
+    "name": "sway thai",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:01:25.038Z",
+    "scores": {
+      "vibrant": 6,
+      "romantic": 5,
+      "trendy": 7,
+      "stylish": 8,
+      "immersive": 5,
+      "inviting": 7,
+      "overall": 6
+    },
+    "imageTags": [],
+    "reviewTags": [
+      "delicious mushrooms and bamboo shoots",
+      "fall-apart good meat",
+      "creamy curry texture",
+      "attentive and patient waiter",
+      "fragrant coconut lime soda",
+      "top notch service",
+      "amazing experience",
+      "fresh made sodas",
+      "quality bar drinks",
+      "exemplary plating"
+    ]
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "restaurant": {
+    "id": "04a77fdd-bd1c-4cd0-b252-c09492dc8163",
+    "name": "MorninGlory",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:09:32.230Z",
+    "scores": {
+      "flavorful": 7,
+      "authentic": 6,
+      "satisfying": 7,
+      "comforting": 6,
+      "aromatic": 7,
+      "appetizing": 8,
+      "overall": 7
+    },
+    "imageTags": [
+      "warm ambient lighting",
+      "natural wood accents",
+      "modern minimalist interior",
+      "greenery along the wall",
+      "stylish table settings",
+      "creamy nut butter drizzle",
+      "crunchy granola and chia",
+      "toppings of fresh fruit",
+      "tropical flavor combination",
+      "colorful acai bowl"
+    ],
+    "reviewTags": []
+  }
+}

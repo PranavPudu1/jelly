@@ -1,0 +1,42 @@
+{
+  "restaurant": {
+    "id": "d6a34c18-cc3a-4b7b-a813-1a8c188735fe",
+    "name": "URBAN Eat.Drink",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:13:48.894Z",
+    "scores": {
+      "flavorful": 7,
+      "authentic": 6,
+      "satisfying": 7,
+      "comforting": 6,
+      "aromatic": 8,
+      "appetizing": 8,
+      "overall": 7
+    },
+    "imageTags": [
+      "modern bar design",
+      "inviting wooden accents",
+      "stylish pendant lighting",
+      "shelving with various spirits",
+      "sleek counter presentation",
+      "fresh mint garnish",
+      "vibrant drink presentation",
+      "zesty citrus flavors",
+      "colorful tropical cocktails",
+      "decorative dried fruits",
+      "fresh microgreens garnish",
+      "aromatic rice bed",
+      "crispy breaded fish fillet",
+      "flavorful tomato sauce base",
+      "seasonal sautéed green beans",
+      "colorful cocktail presentation",
+      "garnished with dried citrus",
+      "stylish glassware aesthetics",
+      "vibrant floral accents",
+      "refreshing mixed beverages"
+    ],
+    "reviewTags": []
+  }
+}

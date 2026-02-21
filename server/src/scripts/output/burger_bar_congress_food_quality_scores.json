@@ -1,0 +1,32 @@
+{
+  "restaurant": {
+    "id": "5f5c1671-8022-4a97-8bbb-f028a83b3ce6",
+    "name": "Burger Bar Congress",
+    "price": "$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:03:24.087Z",
+    "scores": {
+      "flavorful": 8,
+      "authentic": 7,
+      "satisfying": 8,
+      "comforting": 9,
+      "aromatic": 7,
+      "appetizing": 8,
+      "overall": 8
+    },
+    "imageTags": [],
+    "reviewTags": [
+      "well balanced flavors",
+      "delicious burger on the plancha",
+      "excellent quality of food",
+      "exceptionally friendly service",
+      "highly recommend double patty",
+      "family-friendly atmosphere",
+      "best food in austin",
+      "great service experience",
+      "highly recommend dining",
+      "personalized cooking from ana"
+    ]
+  }
+}

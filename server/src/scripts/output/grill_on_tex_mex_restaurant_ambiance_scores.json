@@ -1,0 +1,53 @@
+{
+  "restaurant": {
+    "id": "8ec33c4e-74f6-4add-9ee8-e9a6524d2b96",
+    "name": "Grill On Tex Mex Restaurant",
+    "price": "$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T02:53:26.107Z",
+    "scores": {
+      "vibrant": 7,
+      "romantic": 3,
+      "trendy": 6,
+      "stylish": 7,
+      "immersive": 5,
+      "inviting": 8,
+      "overall": 6
+    },
+    "imageTags": [
+      "modern interior design",
+      "friendly staff interaction",
+      "stone and wood accents",
+      "welcoming restaurant entrance",
+      "bright neon open sign",
+      "soft brioche bun",
+      "grilled chicken sandwich",
+      "golden French fries",
+      "housemade dipping sauce",
+      "fresh crisp lettuce",
+      "freshly squeezed orange juice",
+      "fluffy buttermilk pancakes",
+      "rustic wooden tabletop",
+      "warm maple syrup drizzle",
+      "butter dollop on top",
+      "crispy golden edges",
+      "creamy guacamole dip",
+      "colorful salsa garnish",
+      "tasty Mexican platter",
+      "freshly made tortillas",
+      "fresh lime garnish",
+      "vibrant colorful vegetables",
+      "sizzling shrimp and chicken",
+      "smoky seasoned aroma",
+      "grilled beef fajitas"
+    ],
+    "reviewTags": [
+      "relaxing atmosphere",
+      "good selection on the menu",
+      "awesome unsweetened tea",
+      "clean well decorated",
+      "really salty chicken tortilla soup"
+    ]
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "restaurant": {
+    "id": "68017470-2c8d-4797-8839-ab07de25bbd1",
+    "name": "Aladdin halal grill",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:02:05.373Z",
+    "scores": {
+      "flavorful": 8,
+      "authentic": 8,
+      "satisfying": 9,
+      "comforting": 8,
+      "aromatic": 8,
+      "appetizing": 8,
+      "overall": 8
+    },
+    "imageTags": [
+      "outdoor patio seating",
+      "inviting evening atmosphere",
+      "warm decorative lighting",
+      "upcoming restaurant signage",
+      "modern brick facade",
+      "fresh garden salad",
+      "creamy yogurt sauce",
+      "flavorful saffron rice",
+      "spicy tangy dressing",
+      "grilled marinated chicken",
+      "fresh herbs garnish",
+      "vibrant vegetable salad",
+      "creamy hummus drizzle",
+      "fragrant yellow rice",
+      "flavorful marinated beef"
+    ],
+    "reviewTags": [
+      "welcoming atmosphere",
+      "friendly and attentive service",
+      "sweet baklava dessert",
+      "delicious chicken shawarma rice",
+      "full of flavor",
+      "generous portions",
+      "solid mediterranean spot",
+      "delivered on flavor",
+      "affordable prices",
+      "regular rotation",
+      "perfectly cooked kebabs",
+      "beautifully served coffee",
+      "flavorful kebabs",
+      "ornate cup presentation",
+      "satisfying meal",
+      "best middle eastern food",
+      "creamy sauce wrap",
+      "chicken arabi plate",
+      "refreshing pineapple mojito",
+      "exciting variety of dishes"
+    ]
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "restaurant": {
+    "id": "761b97ce-8a9f-4f4e-92d6-d064f4d96c39",
+    "name": "Pecan Square Café",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T02:56:49.651Z",
+    "scores": {
+      "vibrant": 6,
+      "romantic": 7,
+      "trendy": 8,
+      "stylish": 9,
+      "immersive": 6,
+      "inviting": 8,
+      "overall": 8
+    },
+    "imageTags": [
+      "bloody mary cocktail",
+      "elegant cocktail presentation",
+      "stylish drinks tray",
+      "lemon garnish drinks",
+      "white wine glass",
+      "minimalist modern decor",
+      "elegant table settings",
+      "white textured walls",
+      "abstract wall art",
+      "natural wood chairs",
+      "polished wood ceiling",
+      "brown leather stools",
+      "geometric tiled floor",
+      "variety of spirits",
+      "sleek modern bar",
+      "airy natural lighting",
+      "stylish modern decor",
+      "contemporary open kitchen",
+      "sleek wooden interior",
+      "intimate dining tables",
+      "wood-fired pizza crust",
+      "creamy broccoli topping",
+      "inviting dining setting",
+      "melty cheese blend",
+      "rustic charred edges",
+      "elegant table setting",
+      "fresh vegetable garnish",
+      "creamy tomato soup",
+      "chilled sparkling drink",
+      "cozy dining atmosphere",
+      "shredded cheese topping",
+      "golden brown edges",
+      "fresh kale garnish",
+      "savory veggie pizza",
+      "crispy rustic crust"
+    ],
+    "reviewTags": [
+      "excellent cocktail selection",
+      "family-style courses",
+      "yummy splurge meal",
+      "good portion sizes",
+      "beautiful warm atmosphere",
+      "incredible steak",
+      "attentive hands off service",
+      "delicious pizzas",
+      "high quality food",
+      "amazing tartare",
+      "superb cocktail menu",
+      "super fresh ingredients",
+      "super well done food",
+      "farm to table concept",
+      "very good ambiance"
+    ]
+  }
+}

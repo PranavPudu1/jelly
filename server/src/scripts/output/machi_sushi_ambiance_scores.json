@@ -1,0 +1,32 @@
+{
+  "restaurant": {
+    "id": "f7409973-4b24-4e27-b35b-b825ca303869",
+    "name": "Machi Sushi",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T02:55:49.057Z",
+    "scores": {
+      "vibrant": 8,
+      "romantic": 6,
+      "trendy": 7,
+      "stylish": 8,
+      "immersive": 5,
+      "inviting": 7,
+      "overall": 7
+    },
+    "imageTags": [
+      "assorted sushi platter",
+      "vibrant sushi rolls",
+      "colorful fish selections",
+      "sauce drizzled delicacies",
+      "freshly prepared nigiri",
+      "assorted sashimi platter",
+      "cucumber salad cups",
+      "artful presentation style",
+      "fresh salmon and tuna",
+      "vibrant leafy greens"
+    ],
+    "reviewTags": []
+  }
+}

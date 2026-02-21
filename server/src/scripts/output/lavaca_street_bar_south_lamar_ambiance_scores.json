@@ -1,0 +1,48 @@
+{
+  "restaurant": {
+    "id": "d56d7bca-50b5-4e98-9f1f-bd8dc462fb28",
+    "name": "Lavaca Street Bar - South Lamar",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T02:55:16.067Z",
+    "scores": {
+      "vibrant": 7,
+      "romantic": 3,
+      "trendy": 6,
+      "stylish": 6,
+      "immersive": 5,
+      "inviting": 8,
+      "overall": 6
+    },
+    "imageTags": [
+      "outdoor dining area",
+      "distinctive vintage signage",
+      "inviting red awnings",
+      "comfortable wooden seating",
+      "casual street bar vibe",
+      "savory meat filling",
+      "fresh salsa dip",
+      "crispy tortilla quesadillas",
+      "golden grilled edges",
+      "mouthwatering cheese oozing",
+      "fresh tomato chunks",
+      "creamy blue cheese dressing",
+      "crispy bacon bits topping",
+      "subtle dill herb garnish",
+      "crisp iceberg lettuce wedge"
+    ],
+    "reviewTags": [
+      "welcoming environment",
+      "best bar in town",
+      "amazing staff service",
+      "yearly jaguars gatherings",
+      "supportive team atmosphere",
+      "fun atmosphere",
+      "exceptional service",
+      "cool neighborhood bar",
+      "unique bar food",
+      "korean fried chicken sandwich"
+    ]
+  }
+}

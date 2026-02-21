@@ -1,0 +1,48 @@
+{
+  "restaurant": {
+    "id": "d3549b6e-0320-47f3-8cb5-39b7f06072f0",
+    "name": "Hops & Thyme",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:07:02.926Z",
+    "scores": {
+      "flavorful": 7,
+      "authentic": 6,
+      "satisfying": 8,
+      "comforting": 7,
+      "aromatic": 7,
+      "appetizing": 8,
+      "overall": 7
+    },
+    "imageTags": [
+      "variety of cured meats",
+      "artisanal charcuterie platter",
+      "garnished with olives",
+      "accompanied by condiments",
+      "colorful cheese selection",
+      "crispy seasoned fries",
+      "toasted brioche bun",
+      "fresh herb garnish",
+      "grilled chicken sandwich",
+      "satisfying lunch option",
+      "refreshing summer drinks",
+      "vibrant garnishes with citrus",
+      "colorful cocktail assortment",
+      "stylish bar presentation",
+      "artfully crafted beverages",
+      "crispy cornbread cubes",
+      "golden toasted edges",
+      "savory crunchy bites",
+      "delicious appetizer option",
+      "creamy flavored spread"
+    ],
+    "reviewTags": [
+      "perfectly cooked wings",
+      "large selection of tap beer",
+      "sunday brunch offerings",
+      "amazing customer service",
+      "welcoming staff atmosphere"
+    ]
+  }
+}

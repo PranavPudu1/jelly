@@ -1,0 +1,73 @@
+{
+  "restaurant": {
+    "id": "0ff35ab0-acc3-472e-98dd-98e9df009229",
+    "name": "La Plancha",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:07:55.867Z",
+    "scores": {
+      "flavorful": 8,
+      "authentic": 9,
+      "satisfying": 8,
+      "comforting": 7,
+      "aromatic": 7,
+      "appetizing": 8,
+      "overall": 8
+    },
+    "imageTags": [
+      "contemporary urban setting",
+      "large glass windows",
+      "modern storefront design",
+      "clean sidewalk entry",
+      "minimalist street facade",
+      "fresh shredded lettuce",
+      "sunlit lunch platter",
+      "toasted Mexican bread",
+      "outdoor café setting",
+      "crispy egg sandwich",
+      "red checkered basket",
+      "soft flour tortilla",
+      "creamy orange sauce",
+      "scrambled eggs taco",
+      "savory breakfast wrap",
+      "fresh microgreens garnish",
+      "creamy avocado spread",
+      "shredded meat filling",
+      "loaded gourmet sandwich",
+      "drizzled with white sauce",
+      "fresh herbs garnish",
+      "checkered paper lining",
+      "iced horchata drink",
+      "colorful food arrangement",
+      "Mexican street food presentation",
+      "vibrant orange soda",
+      "rustic wooden table setting",
+      "crispy fried chicken sandwich",
+      "fresh leafy lettuce topping",
+      "grilled egg on sandwich"
+    ],
+    "reviewTags": [
+      "seasoned street corn",
+      "no gimmicks",
+      "mexico city flashbacks",
+      "authentic mexican flavors",
+      "crispy cheesy quesadilla",
+      "variety of sandwiches",
+      "generous portions",
+      "buffalo chicken sandwich",
+      "perfect amount of spice",
+      "peach sweet tea",
+      "creative tostadas",
+      "delicious tostadas",
+      "home cooked quality",
+      "easy to reach location",
+      "hearty led endeavor",
+      "soft flour tortilla",
+      "favorite breakfast taco",
+      "something special taco",
+      "fresh and flavorful",
+      "great torta"
+    ]
+  }
+}

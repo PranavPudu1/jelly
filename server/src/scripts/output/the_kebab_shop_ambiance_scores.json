@@ -1,0 +1,53 @@
+{
+  "restaurant": {
+    "id": "8957f5e5-cebb-4993-8b03-18db133e961f",
+    "name": "The Kebab Shop",
+    "price": "$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T02:59:24.989Z",
+    "scores": {
+      "vibrant": 7,
+      "romantic": 3,
+      "trendy": 6,
+      "stylish": 6,
+      "immersive": 4,
+      "inviting": 7,
+      "overall": 6
+    },
+    "imageTags": [
+      "fresh vegetable toppings",
+      "flavorful grilled wraps",
+      "distinctive toasted tortillas",
+      "crispy fries inside wraps",
+      "spicy green sauce drizzle",
+      "pickled red onions topping",
+      "creamy garlic sauce drizzle",
+      "loaded carne asada fries",
+      "crispy golden French fries",
+      "spicy green salsa on side",
+      "colorful fresh toppings",
+      "crunchy tortilla chips",
+      "creamy yogurt sauce drizzle",
+      "vibrant mixed salad bowl",
+      "grilled chicken with vegetables",
+      "colorful fresh ingredients",
+      "zesty green sauce drizzle",
+      "vibrant mixed greens salad",
+      "savory grilled chicken bowls",
+      "tasty falafel with sauce",
+      "fresh garden salad",
+      "flavored yellow rice",
+      "zesty dipping sauces",
+      "grilled chicken skewers",
+      "succulent marinated beef"
+    ],
+    "reviewTags": [
+      "casual dining atmosphere",
+      "a little pricey for lunch",
+      "tasty overall experience",
+      "work-friendly environment",
+      "olive pit incident"
+    ]
+  }
+}

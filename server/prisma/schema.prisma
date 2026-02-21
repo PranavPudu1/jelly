@@ -23,6 +23,8 @@ model Restaurant {
     ambianceScore    Float?   @default(0)
     foodQualityScore Float?   @default(0)
 
+    attributes   Json?    @default("{}")
+
     images      RestaurantImage[]
     reviews     Review[]
     menu        MenuItem[]

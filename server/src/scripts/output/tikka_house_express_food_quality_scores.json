@@ -1,0 +1,42 @@
+{
+  "restaurant": {
+    "id": "f4473953-ee68-4413-9abe-54dc794dfdba",
+    "name": "Tikka House Express",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:13:23.653Z",
+    "scores": {
+      "flavorful": 8,
+      "authentic": 7,
+      "satisfying": 9,
+      "comforting": 8,
+      "aromatic": 8,
+      "appetizing": 7,
+      "overall": 8
+    },
+    "imageTags": [],
+    "reviewTags": [
+      "really yummy food",
+      "very filling and flavorful",
+      "great portion sizes",
+      "good seating options",
+      "communicative and nice servers",
+      "variety of flavors",
+      "great value for money",
+      "fantastic quantity of food",
+      "unbeatable price",
+      "great combo options",
+      "friendly service",
+      "butter paneer combo",
+      "better than nearby options",
+      "limited outdoor seating",
+      "varied menu selection",
+      "great service experience",
+      "lovely dining atmosphere",
+      "first experience eating indian food",
+      "informative food explanations",
+      "definitely delicious food"
+    ]
+  }
+}

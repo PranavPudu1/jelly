@@ -1,0 +1,43 @@
+{
+  "restaurant": {
+    "id": "cd44112c-0d4d-4aec-8323-7c1d70e5530b",
+    "name": "Espetos Churrasqueria",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:05:33.964Z",
+    "scores": {
+      "flavorful": 9,
+      "authentic": 8,
+      "satisfying": 9,
+      "comforting": 8,
+      "aromatic": 9,
+      "appetizing": 9,
+      "overall": 9
+    },
+    "imageTags": [
+      "fresh garden salad",
+      "colorful vegetable garnish",
+      "full-bodied red wine",
+      "creamy mozzarella ball",
+      "crisp asparagus spears"
+    ],
+    "reviewTags": [
+      "exceptional service experience",
+      "carefully prepared garnishes",
+      "curated dining experience",
+      "impeccable food quality",
+      "diverse drink options",
+      "great dining experience",
+      "impeccable service",
+      "excellent overall quality",
+      "best restaurant in the region",
+      "very good food",
+      "fancy atmosphere",
+      "spectacular drink show",
+      "amazing steak and meats",
+      "great wine selection",
+      "best brazilian steak house"
+    ]
+  }
+}

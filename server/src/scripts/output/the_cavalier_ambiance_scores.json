@@ -1,0 +1,63 @@
+{
+  "restaurant": {
+    "id": "bb4c53cd-4315-464f-b130-a46fb4dda616",
+    "name": "The Cavalier",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T02:59:08.411Z",
+    "scores": {
+      "vibrant": 6,
+      "romantic": 3,
+      "trendy": 6,
+      "stylish": 5,
+      "immersive": 4,
+      "inviting": 7,
+      "overall": 5
+    },
+    "imageTags": [
+      "crispy seasoned fries",
+      "gourmet sandwich presentation",
+      "checkered paper lining",
+      "pickle garnish detail",
+      "juicy cheese burger",
+      "reflective bar mirror",
+      "whiskey bottle display",
+      "no politics sign",
+      "rustic wooden ceiling",
+      "inviting bar atmosphere",
+      "casual dining presentation",
+      "crispy golden fries",
+      "classic french fries",
+      "side of dipping sauce",
+      "black and white paper",
+      "deviled eggs with bacon",
+      "creamy yolk mixture",
+      "smoky garnished topping",
+      "vibrant red sauce base",
+      "finely chopped green herbs",
+      "casual dining setup",
+      "checkered paper basket",
+      "crispy tater tots",
+      "juicy gourmet burgers",
+      "bottle of beer",
+      "crispy fried chicken",
+      "savory sweet pairing",
+      "buttermilk waffles stack",
+      "garnished with pickles",
+      "blackberry lemonade drink"
+    ],
+    "reviewTags": [
+      "great food and service",
+      "great atmosphere and playlist",
+      "sweet and savory sauce",
+      "perfect chicken sandwich",
+      "bogo burger monday",
+      "creamy deviled eggs",
+      "warm flavorful gumbo",
+      "spicy green chilies",
+      "order from the bar",
+      "self seating arrangement"
+    ]
+  }
+}

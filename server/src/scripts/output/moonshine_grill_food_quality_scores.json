@@ -1,0 +1,37 @@
+{
+  "restaurant": {
+    "id": "b35f74ce-a7aa-409c-a594-d56ad3f7753b",
+    "name": "Moonshine Grill",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:09:30.669Z",
+    "scores": {
+      "flavorful": 7,
+      "authentic": 8,
+      "satisfying": 8,
+      "comforting": 9,
+      "aromatic": 7,
+      "appetizing": 7,
+      "overall": 7
+    },
+    "imageTags": [],
+    "reviewTags": [
+      "attentive helpful service",
+      "buttery delicious biscuits",
+      "satisfying chicken and waffles",
+      "touch of spice gravy",
+      "unique popcorn appetizer",
+      "well made drinks",
+      "good atmosphere",
+      "hopping monday night",
+      "harvest bowl",
+      "chicken fried steak",
+      "sunday southern brunch variety",
+      "authentic place for brunch",
+      "various dishes and desserts",
+      "courteous and friendly staff",
+      "vibrant ambiance"
+    ]
+  }
+}

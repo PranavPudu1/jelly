@@ -1,0 +1,37 @@
+{
+  "restaurant": {
+    "id": "d105829d-2daf-4169-b5cc-1a6f8ebe3f36",
+    "name": "Wicked Wings South Austin",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:01:04.506Z",
+    "scores": {
+      "vibrant": 7,
+      "romantic": 4,
+      "trendy": 8,
+      "stylish": 7,
+      "immersive": 5,
+      "inviting": 7,
+      "overall": 6
+    },
+    "imageTags": [
+      "outdoor seating area",
+      "illuminated restaurant sign",
+      "modern casual dining",
+      "open late hours",
+      "welcoming storefront design",
+      "melted cheese topping",
+      "crispy thin crust",
+      "loaded meat feast pizza",
+      "fresh green peppers",
+      "hearty toppings variety",
+      "garnished with lime",
+      "served on a bar countertop",
+      "amber-colored beverage",
+      "chilled glass with ice",
+      "refreshing cocktail drink"
+    ],
+    "reviewTags": []
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "restaurant": {
+    "id": "48dcb30b-182e-4d1d-b675-c669b789f62e",
+    "name": "Patrizi's",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T02:56:47.764Z",
+    "scores": {
+      "vibrant": 6,
+      "romantic": 5,
+      "trendy": 6,
+      "stylish": 7,
+      "immersive": 5,
+      "inviting": 7,
+      "overall": 6
+    },
+    "imageTags": [
+      "seasoned with black pepper",
+      "vibrant red color",
+      "sprigs of aromatic rosemary",
+      "freshly sliced tomatoes",
+      "prepped for roasting",
+      "rustic wooden table",
+      "herb garnish sprinkle",
+      "savory breadcrumb topping",
+      "creamy fettuccine alfredo",
+      "grilled chicken slice",
+      "rustic outdoor dining",
+      "shaved parmesan cheese",
+      "creamy fettuccine pasta",
+      "freshly cracked black pepper",
+      "topped with arugula",
+      "garnished with fresh herbs",
+      "golden crispy edges",
+      "toasted artisan bread",
+      "topped with finely grated cheese",
+      "flavorful garlic spread",
+      "freshly grated cheese",
+      "creamy pasta dish",
+      "herb garnish presentation",
+      "rich flavorful sauce",
+      "crispy bacon bits"
+    ],
+    "reviewTags": [
+      "friendly staff",
+      "versatile eating areas",
+      "nice outdoor seating",
+      "cool bar atmosphere",
+      "combination pasta plate"
+    ]
+  }
+}

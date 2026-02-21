@@ -1,0 +1,43 @@
+{
+  "restaurant": {
+    "id": "c9f3016a-bd9d-402d-92e1-06401d114138",
+    "name": "Golden Tiger",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:06:27.885Z",
+    "scores": {
+      "flavorful": 6,
+      "authentic": 5,
+      "satisfying": 7,
+      "comforting": 8,
+      "aromatic": 6,
+      "appetizing": 7,
+      "overall": 6
+    },
+    "imageTags": [
+      "outdoor casual dining",
+      "golden french fries",
+      "crispy fried chicken wings",
+      "juicy cheeseburgers with pickles",
+      "classic diner-style presentation",
+      "crispy fried chicken sandwich",
+      "cheesy melted goodness",
+      "fresh lettuce and toppings",
+      "savory burger trio",
+      "delectable spicy sauce",
+      "soft toasted burger bun",
+      "melted cheddar cheese slice",
+      "creamy spicy sauce drizzle",
+      "juicy grilled beef patty",
+      "fresh crisp lettuce topping"
+    ],
+    "reviewTags": [
+      "outdoor patio and bar",
+      "cool and relaxing vibe",
+      "great dipping sauce",
+      "awesome golden burger",
+      "need seasoning chicken sandos"
+    ]
+  }
+}

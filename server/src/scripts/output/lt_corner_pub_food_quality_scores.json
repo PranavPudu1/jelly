@@ -1,0 +1,42 @@
+{
+  "restaurant": {
+    "id": "0d6cfaf5-996c-47a6-bbb3-007343ae7e51",
+    "name": "LT Corner Pub",
+    "price": "$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:07:52.979Z",
+    "scores": {
+      "flavorful": 6,
+      "authentic": 5,
+      "satisfying": 7,
+      "comforting": 7,
+      "aromatic": 5,
+      "appetizing": 5,
+      "overall": 6
+    },
+    "imageTags": [],
+    "reviewTags": [
+      "great prices",
+      "plenty of seating",
+      "live bands performing",
+      "hidden gem inside",
+      "delicious drinks",
+      "casual atmosphere",
+      "no food service on sunday",
+      "decent drink prices",
+      "small friendly sports bar",
+      "local customers hangout",
+      "shepherd's pie",
+      "great irish nachos",
+      "good beer selection",
+      "ada compliant restrooms",
+      "quick food service",
+      "hydrating drinks",
+      "satisfying hunger",
+      "great karaoke experience",
+      "friendly service from kelli",
+      "fun with friends"
+    ]
+  }
+}

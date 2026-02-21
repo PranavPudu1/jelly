@@ -1,0 +1,37 @@
+{
+  "restaurant": {
+    "id": "99b1216b-853b-46e7-aa01-247987c5a92e",
+    "name": "The Bayou Shack",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T02:59:06.166Z",
+    "scores": {
+      "vibrant": 7,
+      "romantic": 4,
+      "trendy": 5,
+      "stylish": 6,
+      "immersive": 5,
+      "inviting": 7,
+      "overall": 6
+    },
+    "imageTags": [
+      "fresh lemon wedges",
+      "spicy sausage and corn",
+      "flavorful Cajun seasoning",
+      "succulent shrimp platter",
+      "boiled red potatoes",
+      "steaming crab leg platter",
+      "succulent shrimp and sausage",
+      "bold garlic butter sauce",
+      "sweet corn on the cob",
+      "spicy seafood medley",
+      "vibrant vegetable medley",
+      "fresh garden salad",
+      "crispy fried chicken strips",
+      "sliced hard-boiled eggs",
+      "toasted crouton topping"
+    ],
+    "reviewTags": []
+  }
+}

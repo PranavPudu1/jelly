@@ -3,11 +3,11 @@ import * as Location from 'expo-location';
 
 // Set to true to use test location (Madrid, Spain)
 // Set to false to use real GPS location
-const USE_TEST_LOCATION = true;
+const USE_TEST_LOCATION = false;
 
 const TEST_LOCATION = {
-    latitude: 40.4168,  // Madrid, Spain
-    longitude: -3.7038,
+    latitude: 30.2672,  // Austin, TX
+    longitude: -97.7431,
 };
 
 interface LocationContextType {

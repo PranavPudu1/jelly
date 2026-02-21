@@ -1,0 +1,73 @@
+{
+  "restaurant": {
+    "id": "e2c37267-5210-4a4d-9da7-3f3861e28f2f",
+    "name": "Citizens All Day",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:04:18.716Z",
+    "scores": {
+      "flavorful": 7,
+      "authentic": 6,
+      "satisfying": 8,
+      "comforting": 8,
+      "aromatic": 7,
+      "appetizing": 8,
+      "overall": 7
+    },
+    "imageTags": [
+      "variety of gourmet items",
+      "colorful product display",
+      "artisan snacks and drinks",
+      "stylish shelving unit",
+      "modern retail atmosphere",
+      "fluffy stacked pancakes",
+      "fresh mixed berries",
+      "dusting of powdered sugar",
+      "breakfast plate presentation",
+      "maple syrup dipping sauce",
+      "inviting outdoor seating",
+      "striped awnings style",
+      "playful signage design",
+      "vibrant teal exterior",
+      "bright and sunny atmosphere",
+      "fluffy golden waffles",
+      "crispy fried chicken wings",
+      "toasted almond flakes",
+      "pickled red cabbage garnish",
+      "sliced green peppers topping",
+      "fresh mint garnish",
+      "creamy whipped topping",
+      "rich maple syrup drizzle",
+      "caramelized banana pancakes",
+      "sweet breakfast indulgence",
+      "artistic latte art design",
+      "vibrant turquoise cup",
+      "delicate milk foam patterns",
+      "stylish marble tabletop",
+      "creamy coffee beverage"
+    ],
+    "reviewTags": [
+      "affordable brunch menu",
+      "unique banana bread blend",
+      "authentic italian semolina spaghetti",
+      "perfectly cooked calamari",
+      "considerate and friendly service",
+      "awesome server experience",
+      "delish shared dishes",
+      "local small business support",
+      "banana french toast dessert",
+      "needed vibe in austin",
+      "super crispy hash brown",
+      "classic eggs benedict",
+      "enjoyable food and drinks",
+      "delightful blueberry pancake",
+      "banana bread french toast",
+      "welcoming service",
+      "90s music ambiance",
+      "green goddess shakshuka",
+      "banana french toast",
+      "tasty and fresh food"
+    ]
+  }
+}

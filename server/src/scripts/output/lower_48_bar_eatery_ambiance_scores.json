@@ -1,0 +1,53 @@
+{
+  "restaurant": {
+    "id": "bfee7359-a6f8-4aa4-bce1-bf28fc5a08bb",
+    "name": "Lower 48 Bar & Eatery",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T02:55:38.019Z",
+    "scores": {
+      "vibrant": 8,
+      "romantic": 5,
+      "trendy": 8,
+      "stylish": 8,
+      "immersive": 6,
+      "inviting": 9,
+      "overall": 8
+    },
+    "imageTags": [
+      "outdoor seating area",
+      "modern architectural design",
+      "industrial style staircase",
+      "welcoming entryway vibe",
+      "illuminated signage at night",
+      "rustic wooden ceiling",
+      "comfortable communal seating",
+      "welcoming open layout",
+      "vibrant bar atmosphere",
+      "large windows with natural light",
+      "crispy fried chicken",
+      "fresh fruit garnish",
+      "fluffy golden waffles",
+      "savory-sweet flavor contrast",
+      "rich maple syrup drizzle"
+    ],
+    "reviewTags": [
+      "brunch options available",
+      "delicious chicken caesar salad",
+      "friendly professional staff",
+      "family-friendly restaurant",
+      "low-stress dining experience",
+      "delicious food options",
+      "supportive dining environment",
+      "accommodating to picky eaters",
+      "friendly staff experience",
+      "family friendly place",
+      "attentive service",
+      "house-made syrup",
+      "incredibly friendly staff",
+      "best chicken and waffles",
+      "excellent eggs benedict"
+    ]
+  }
+}

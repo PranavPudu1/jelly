@@ -1,0 +1,42 @@
+{
+  "restaurant": {
+    "id": "89145cf2-5241-41d0-835a-9f162c2d4b0a",
+    "name": "Pastissimo",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:10:08.351Z",
+    "scores": {
+      "flavorful": 8,
+      "authentic": 7,
+      "satisfying": 9,
+      "comforting": 8,
+      "aromatic": 7,
+      "appetizing": 7,
+      "overall": 8
+    },
+    "imageTags": [],
+    "reviewTags": [
+      "fresh to order pasta",
+      "outstanding value pricing",
+      "thoughtful and balanced sauces",
+      "restaurant-quality food",
+      "best pasta in austin",
+      "flavorful marinara sauce",
+      "classic rotini dish",
+      "fresh pasta with bite",
+      "helpful and sweet staff",
+      "perfect post-movie meal",
+      "welcoming and calm environment",
+      "big portions for the price",
+      "comfortable dining experience",
+      "really good pasta",
+      "affordable pasta dishes",
+      "great with friends",
+      "flexible menu options",
+      "blown away by flavors",
+      "customizable dining experience",
+      "fresh and homemade pasta"
+    ]
+  }
+}

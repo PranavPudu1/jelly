@@ -1,0 +1,42 @@
+{
+  "restaurant": {
+    "id": "68f7f0e7-78e9-470d-aa09-0c9f99b44c83",
+    "name": "The Greek Bar 🧿",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T02:59:20.128Z",
+    "scores": {
+      "vibrant": 8,
+      "romantic": 6,
+      "trendy": 7,
+      "stylish": 8,
+      "immersive": 7,
+      "inviting": 8,
+      "overall": 8
+    },
+    "imageTags": [
+      "rustic wooden furniture",
+      "colorful decor accents",
+      "spacious outdoor seating",
+      "string lights overhead",
+      "inviting casual atmosphere",
+      "fluffy stack of pancakes",
+      "fresh citrus toppings",
+      "garnished with powdered sugar",
+      "drizzled with maple syrup",
+      "butter melting on pancakes",
+      "fresh seafood presentation",
+      "assorted appetizers on table",
+      "variety of colorful dishes",
+      "celebratory drink clinking",
+      "vibrant Mediterranean flavors",
+      "grilled lamb chops",
+      "charred meat edges",
+      "vibrant green chimichurri",
+      "plated with rustic flair",
+      "succulent tender cuts"
+    ],
+    "reviewTags": []
+  }
+}

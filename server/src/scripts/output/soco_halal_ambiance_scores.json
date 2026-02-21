@@ -1,0 +1,32 @@
+{
+  "restaurant": {
+    "id": "4b338427-a02e-4061-961c-80825d9fb5cd",
+    "name": "Soco halal",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T02:58:25.133Z",
+    "scores": {
+      "vibrant": 7,
+      "romantic": 4,
+      "trendy": 6,
+      "stylish": 7,
+      "immersive": 5,
+      "inviting": 6,
+      "overall": 6
+    },
+    "imageTags": [
+      "delicate sweet treats",
+      "nutty dessert squares",
+      "almond crunch bites",
+      "pink presentation box",
+      "colorful pistachio topping",
+      "freshly prepared flatbread wrap",
+      "grilled meat with toppings",
+      "vibrant green arugula",
+      "zesty sauce drizzled",
+      "colorful diced vegetables"
+    ],
+    "reviewTags": []
+  }
+}

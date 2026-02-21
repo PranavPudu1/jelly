@@ -1,0 +1,47 @@
+{
+  "restaurant": {
+    "id": "ae2b8c7a-a579-45e2-8a50-d6d54c3ee9c9",
+    "name": "Maple Street Biscuit Company",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:09:11.939Z",
+    "scores": {
+      "flavorful": 7,
+      "authentic": 8,
+      "satisfying": 9,
+      "comforting": 9,
+      "aromatic": 7,
+      "appetizing": 8,
+      "overall": 8
+    },
+    "imageTags": [
+      "crispy fried chicken sandwich",
+      "warm buttery biscuit layers",
+      "classic Southern comfort food",
+      "savory and satisfying meal",
+      "fluffy buttermilk biscuit",
+      "rustic wooden table setting",
+      "fried egg topping",
+      "crispy fried potato cakes",
+      "creamy sausage gravy",
+      "huge biscuit sandwich meal",
+      "flaky buttermilk biscuits",
+      "crispy fried chicken stack",
+      "sweet maple syrup drizzle",
+      "savory breakfast indulgence",
+      "layered comfort food",
+      "fluffy scrambled eggs",
+      "crispy bacon strips",
+      "fresh cilantro garnish",
+      "savory breakfast taco",
+      "zesty salsa topping",
+      "perfectly cooked eggs",
+      "fluffy buttermilk biscuits",
+      "savory breakfast platter",
+      "creamy sausage gravy",
+      "golden runny yolks"
+    ],
+    "reviewTags": []
+  }
+}

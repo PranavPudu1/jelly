@@ -1,0 +1,58 @@
+{
+  "restaurant": {
+    "id": "e1a621cb-438e-4d50-8068-f83a4effae36",
+    "name": "Bill Miller BBQ",
+    "price": "$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:02:53.787Z",
+    "scores": {
+      "flavorful": 5,
+      "authentic": 6,
+      "satisfying": 7,
+      "comforting": 6,
+      "aromatic": 5,
+      "appetizing": 5,
+      "overall": 5
+    },
+    "imageTags": [
+      "rustic red wooden facade",
+      "decorative star window shutters",
+      "quaint barbecue restaurant exterior",
+      "stylish industrial light fixtures",
+      "inviting local dining atmosphere",
+      "scrambled egg filling",
+      "soft flour tortilla",
+      "crispy bacon strip",
+      "casual dining option",
+      "simple breakfast wrap",
+      "brightly lit service area",
+      "modern fast food counter",
+      "colorful Easter decorations",
+      "welcoming order signage",
+      "digital menu displays",
+      "savory green bean side",
+      "sweet and tangy barbecue chicken",
+      "crispy fried chicken tenders",
+      "seasoned golden french fries",
+      "creamy macaroni and cheese"
+    ],
+    "reviewTags": [
+      "need for employee retraining",
+      "disappointing taco experience",
+      "lack of ingredients",
+      "minimal effort from staff",
+      "poor value for money",
+      "friendly and attentive staff",
+      "fresh salads and tacos",
+      "exceptional hospitality",
+      "generous portion sizes",
+      "superior service experience",
+      "friendly service",
+      "fast service",
+      "going back again",
+      "excellent salsa",
+      "pork tamales"
+    ]
+  }
+}

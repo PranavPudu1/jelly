@@ -1,0 +1,27 @@
+{
+  "restaurant": {
+    "id": "0dfd1187-9355-4b86-addf-af90b295ff8d",
+    "name": "CARVE American Grille - Barton Creek",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:03:27.407Z",
+    "scores": {
+      "flavorful": 8,
+      "authentic": 7,
+      "satisfying": 8,
+      "comforting": 9,
+      "aromatic": 8,
+      "appetizing": 8,
+      "overall": 8
+    },
+    "imageTags": [],
+    "reviewTags": [
+      "great service",
+      "complimentary dessert trio",
+      "gruyère popovers and jalapeño corn",
+      "romantic anniversary celebration",
+      "delicious perfectly cooked steak"
+    ]
+  }
+}

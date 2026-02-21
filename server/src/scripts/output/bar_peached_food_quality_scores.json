@@ -1,0 +1,73 @@
+{
+  "restaurant": {
+    "id": "091b7343-d7c4-4ac3-90b3-d8d95695e71c",
+    "name": "Bar Peached",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:02:41.038Z",
+    "scores": {
+      "flavorful": 8,
+      "authentic": 7,
+      "satisfying": 8,
+      "comforting": 9,
+      "aromatic": 8,
+      "appetizing": 9,
+      "overall": 8
+    },
+    "imageTags": [
+      "colorful abstract artwork",
+      "rustic wooden walls",
+      "comfy yellow seating",
+      "bright sunny interior",
+      "wide airy windows",
+      "creamy whipped topping",
+      "decadent chocolate dessert",
+      "cozy coffee mugs",
+      "rich chocolate drizzle",
+      "intricate flower tattoo",
+      "refreshing citrus drinks",
+      "lemon garnish cocktail",
+      "just served beverages",
+      "elegant flute glass",
+      "salt-rimmed glass",
+      "creamy pasta dish",
+      "elegant ceramic plating",
+      "gourmet cheese topping",
+      "handmade egg noodles",
+      "rustic meat sauce",
+      "creamy sauce drizzle",
+      "wooden table setting",
+      "sesame seeds garnish",
+      "fresh scallion topping",
+      "crispy loaded fries",
+      "creamy sauce drizzle",
+      "lime garnish slices",
+      "crunchy nut pieces",
+      "vibrant vegetable toppings",
+      "freshly made tacos",
+      "decadent dessert bowls",
+      "whipped cream toppings",
+      "chocolate caramel drizzle",
+      "birthday candle addition",
+      "colorful sprinkle decoration",
+      "outdoor evening setting",
+      "neon bar sign",
+      "warm glowing ambiance",
+      "inviting night atmosphere",
+      "tree wrapped lights"
+    ],
+    "reviewTags": [
+      "nice outdoor seating",
+      "great selection of food",
+      "phenomenal bingsu",
+      "cute cozy atmosphere",
+      "outstanding burger",
+      "wonderful and relaxing spot",
+      "revolving beer tap",
+      "delicious belgian lager",
+      "delicious outdoor seating",
+      "exciting beer selection"
+    ]
+  }
+}

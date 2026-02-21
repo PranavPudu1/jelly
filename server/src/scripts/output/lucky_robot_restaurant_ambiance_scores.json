@@ -1,0 +1,68 @@
+{
+  "restaurant": {
+    "id": "00c2a2ce-2c2b-4826-8c5d-4c8f2f2b47c0",
+    "name": "Lucky Robot Restaurant",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T02:55:40.602Z",
+    "scores": {
+      "vibrant": 9,
+      "romantic": 6,
+      "trendy": 9,
+      "stylish": 8,
+      "immersive": 7,
+      "inviting": 7,
+      "overall": 8
+    },
+    "imageTags": [
+      "eclectic wall art",
+      "hanging cherry blossoms",
+      "rustic wooden furniture",
+      "modern swing seating",
+      "neon lighting installation",
+      "fresh herb garnish",
+      "colorful vegetable medley",
+      "gourmet plating style",
+      "vibrant beet presentation",
+      "artistic culinary display",
+      "creamy sauce drizzle",
+      "sesame seed garnish",
+      "edamame side dish",
+      "wooden platter presentation",
+      "colorful sushi assortment",
+      "artistic ice display",
+      "elegant sushi presentation",
+      "intricate cocktail pairings",
+      "flower garnished sashimi",
+      "vibrant nigiri selection",
+      "artistic plating presentation",
+      "elegant ceramic dishes",
+      "vibrant color contrast",
+      "fresh floral garnish",
+      "delicate seafood arrangement",
+      "craft beer pairing",
+      "soft boiled eggs",
+      "steamed edamame beans",
+      "pickled cucumber slices",
+      "flavorful ramen bowl"
+    ],
+    "reviewTags": [
+      "fair price",
+      "packed with flavor",
+      "birthday celebration atmosphere",
+      "generous portion",
+      "warm and attentive service",
+      "c-3po roll",
+      "tailored omakase experience",
+      "super fresh fish",
+      "exceptional experience every time",
+      "careful ingredient knowledge",
+      "unbelievably scrumptious karagge",
+      "attentive service lacking",
+      "uncomfortable seating",
+      "amazing sushi plates",
+      "excellent food"
+    ]
+  }
+}

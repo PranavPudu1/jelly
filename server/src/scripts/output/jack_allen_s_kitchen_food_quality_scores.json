@@ -1,0 +1,27 @@
+{
+  "restaurant": {
+    "id": "cf2a7070-ec68-4fcf-b9f1-0ef4eaa3af06",
+    "name": "Jack Allen's Kitchen",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:07:19.179Z",
+    "scores": {
+      "flavorful": 7,
+      "authentic": 6,
+      "satisfying": 8,
+      "comforting": 8,
+      "aromatic": 7,
+      "appetizing": 7,
+      "overall": 7
+    },
+    "imageTags": [],
+    "reviewTags": [
+      "sweet potato fries",
+      "yummy burgers",
+      "great care service",
+      "enjoyable evening",
+      "tasty steaks"
+    ]
+  }
+}

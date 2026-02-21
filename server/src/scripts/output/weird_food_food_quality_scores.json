@@ -1,0 +1,37 @@
+{
+  "restaurant": {
+    "id": "0aba31e7-d8a5-446d-8ebd-7461d32e9860",
+    "name": "WEIRD FOOD",
+    "price": "$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:14:13.129Z",
+    "scores": {
+      "flavorful": 7,
+      "authentic": 5,
+      "satisfying": 8,
+      "comforting": 7,
+      "aromatic": 6,
+      "appetizing": 7,
+      "overall": 6
+    },
+    "imageTags": [
+      "creamy white sauce",
+      "loaded fries platter",
+      "colorful vegetable medley",
+      "spicy red sauce drizzle",
+      "tender crispy chicken",
+      "crispy golden fries",
+      "spicy red sauce drizzle",
+      "flavorful falafel wraps",
+      "fresh lettuce and veggies",
+      "creamy tangy dressing",
+      "fresh garden salad",
+      "tangy tomato salsa",
+      "savory rice base",
+      "creamy tahini drizzle",
+      "flavorful falafel patties"
+    ],
+    "reviewTags": []
+  }
+}

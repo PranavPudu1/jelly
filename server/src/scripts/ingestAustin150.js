@@ -13,11 +13,12 @@ const CONFIG = {
     GOOGLE_API_BASE_URL: 'https://places.googleapis.com/v1',
 
     // Target configuration
-    TARGET_RESTAURANTS: 150,
+    TARGET_RESTAURANTS: 500,
     MAX_RESULTS_PER_SEARCH: 20, // Google API limit
 
     // Austin neighborhoods and areas to search
     SEARCH_LOCATIONS: [
+        // Original 12
         { name: 'Downtown Austin', lat: 30.2672, lng: -97.7431, radius: 2000 },
         { name: 'South Congress', lat: 30.2447, lng: -97.7501, radius: 2000 },
         { name: 'East Austin', lat: 30.2631, lng: -97.7186, radius: 2000 },
@@ -30,6 +31,21 @@ const CONFIG = {
         { name: 'Bouldin Creek', lat: 30.2514, lng: -97.7636, radius: 1500 },
         { name: 'Barton Hills', lat: 30.2594, lng: -97.7814, radius: 1500 },
         { name: 'Westlake', lat: 30.2986, lng: -97.8125, radius: 2000 },
+        // Expanded coverage
+        { name: 'South Lamar', lat: 30.2358, lng: -97.7686, radius: 2000 },
+        { name: 'Rainey Street', lat: 30.2588, lng: -97.7368, radius: 1200 },
+        { name: 'Red River District', lat: 30.2700, lng: -97.7368, radius: 1200 },
+        { name: 'The Domain', lat: 30.4022, lng: -97.7328, radius: 2000 },
+        { name: 'North Burnet', lat: 30.3558, lng: -97.7261, radius: 2000 },
+        { name: 'Cherrywood', lat: 30.2780, lng: -97.7186, radius: 1500 },
+        { name: 'Travis Heights', lat: 30.2430, lng: -97.7368, radius: 1500 },
+        { name: 'Oak Hill', lat: 30.2275, lng: -97.8653, radius: 2000 },
+        { name: 'Cedar Park', lat: 30.5052, lng: -97.8203, radius: 2500 },
+        { name: 'Round Rock', lat: 30.5083, lng: -97.6789, radius: 2500 },
+        { name: 'Pflugerville', lat: 30.4394, lng: -97.6200, radius: 2000 },
+        { name: 'Lakeway', lat: 30.3585, lng: -97.9772, radius: 2000 },
+        { name: 'South Austin Slaughter', lat: 30.1697, lng: -97.7828, radius: 2000 },
+        { name: 'Allandale', lat: 30.3416, lng: -97.7500, radius: 1500 },
     ],
 
     // Rate limiting

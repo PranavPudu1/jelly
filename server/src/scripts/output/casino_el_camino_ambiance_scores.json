@@ -1,0 +1,47 @@
+{
+  "restaurant": {
+    "id": "7c9f5684-737c-401a-bda8-bb408294af4f",
+    "name": "Casino El Camino",
+    "price": "$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T02:50:58.177Z",
+    "scores": {
+      "vibrant": 9,
+      "romantic": 4,
+      "trendy": 7,
+      "stylish": 8,
+      "immersive": 8,
+      "inviting": 7,
+      "overall": 8
+    },
+    "imageTags": [
+      "neon open sign",
+      "vintage storefront design",
+      "colorful urban architecture",
+      "downtown city vibe",
+      "quaint neighborhood bar",
+      "vibrant nightlife atmosphere",
+      "casual dining experience",
+      "colorful bar lighting",
+      "retro-style seating",
+      "unique eclectic decor",
+      "crispy golden fries",
+      "toasted soft bun",
+      "juicy grilled hamburger patty",
+      "fresh lettuce and bacon",
+      "cheddar cheese melting",
+      "salty rimmed glass",
+      "spicy tomato mix",
+      "fresh garden herbs",
+      "signature branding glass",
+      "colorful cocktail garnishes",
+      "outdoor dining area",
+      "colorful Mexican-themed decor",
+      "vibrant mural background",
+      "coin-filled water basin",
+      "unique decorative fountain"
+    ],
+    "reviewTags": []
+  }
+}

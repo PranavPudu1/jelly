@@ -1,0 +1,42 @@
+{
+  "restaurant": {
+    "id": "3ace7d0e-b274-44f7-9c00-3e5bd0c9e5ec",
+    "name": "PhoWok",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:10:18.059Z",
+    "scores": {
+      "flavorful": 7,
+      "authentic": 8,
+      "satisfying": 7,
+      "comforting": 8,
+      "aromatic": 8,
+      "appetizing": 7,
+      "overall": 7
+    },
+    "imageTags": [
+      "savory savory soup base",
+      "fresh bean sprouts garnish",
+      "steaming bowl of pho",
+      "fragrant herbal broth",
+      "vibrant green onions",
+      "classic sweet and sour",
+      "spicy garlic sauce",
+      "variety of Chinese entrees",
+      "family-friendly kids menu",
+      "diverse protein options",
+      "casual dining establishment",
+      "stone facade architecture",
+      "green awning roof",
+      "Vietnamese cuisine signage",
+      "modern restaurant branding",
+      "fresh lettuce garnish",
+      "crispy spring rolls",
+      "sweet dipping sauces",
+      "grilled beef over rice",
+      "golden fried wontons"
+    ],
+    "reviewTags": []
+  }
+}

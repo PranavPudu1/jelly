@@ -1,0 +1,58 @@
+{
+  "restaurant": {
+    "id": "554a04b9-0057-4288-8e84-7d0d69cb99ca",
+    "name": "The Peached Tortilla",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:13:02.133Z",
+    "scores": {
+      "flavorful": 8,
+      "authentic": 7,
+      "satisfying": 8,
+      "comforting": 8,
+      "aromatic": 7,
+      "appetizing": 8,
+      "overall": 8
+    },
+    "imageTags": [
+      "modern minimalist decor",
+      "inviting dining atmosphere",
+      "warm orange and yellow tones",
+      "vibrant geometric wall design",
+      "stylish wooden furniture",
+      "fresh cilantro garnish",
+      "three flavorful soft tacos",
+      "cheddar cheese sauce drizzle",
+      "spicy barbecue sauce finish",
+      "tender pulled meat topping",
+      "colorful fresh salad",
+      "creamy drizzled sauces",
+      "crisp garnished greens",
+      "three gourmet tacos",
+      "vibrant dining presentation",
+      "creamy poached egg topping",
+      "crunchy roasted peanuts",
+      "savory rice noodle base",
+      "spiced flavor infusion",
+      "fresh cucumber strands",
+      "casual dining experience",
+      "fresh cucumber slices",
+      "succulent marinated pork",
+      "fluffy steamed bao buns",
+      "vibrant green onions"
+    ],
+    "reviewTags": [
+      "attentive and friendly service",
+      "elevated personal experience",
+      "nostalgic popcorn ice cream",
+      "perfectly cooked steak and eggs",
+      "melt in your mouth pork belly",
+      "pork belly buns",
+      "left more than full",
+      "came in hungry",
+      "umami chicken wings",
+      "open seats at the bar"
+    ]
+  }
+}

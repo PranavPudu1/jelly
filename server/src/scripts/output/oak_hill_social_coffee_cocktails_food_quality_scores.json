@@ -1,0 +1,37 @@
+{
+  "restaurant": {
+    "id": "7534ecc7-07eb-4fc9-a31c-ca25fc4de773",
+    "name": "Oak Hill Social Coffee & Cocktails",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:09:52.233Z",
+    "scores": {
+      "flavorful": 8,
+      "authentic": 7,
+      "satisfying": 8,
+      "comforting": 7,
+      "aromatic": 8,
+      "appetizing": 8,
+      "overall": 8
+    },
+    "imageTags": [],
+    "reviewTags": [
+      "outstanding service",
+      "top-notch food",
+      "must-try cocktail",
+      "perfect year-round",
+      "excellent hospitality",
+      "inviting interior design",
+      "excellent coffee",
+      "spacious outdoor area",
+      "live event venue",
+      "stylish indoor space",
+      "full bar selection",
+      "barista blended coffee drinks",
+      "afternoon pick me up",
+      "indoor and outdoor seating",
+      "cool austin outdoor space"
+    ]
+  }
+}

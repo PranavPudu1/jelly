@@ -1,0 +1,38 @@
+{
+  "restaurant": {
+    "id": "8d538cab-a5d1-477c-8bd3-45810ab57d22",
+    "name": "Bluefin Sushi & Ramen",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T02:50:14.726Z",
+    "scores": {
+      "vibrant": 8,
+      "romantic": 5,
+      "trendy": 7,
+      "stylish": 8,
+      "immersive": 6,
+      "inviting": 8,
+      "overall": 7
+    },
+    "imageTags": [
+      "served on bamboo leaves",
+      "authentic Japanese cuisine",
+      "vibrant salmon sashimi platter",
+      "garnished with colorful roe",
+      "fresh seafood delicacy"
+    ],
+    "reviewTags": [
+      "top notch service",
+      "consistent excellent food",
+      "blue crab crunch roll",
+      "kind and accommodating staff",
+      "tonkatsu ramen with spice",
+      "variety of sushi",
+      "best lunch bento box",
+      "spectacular chirashi bowl",
+      "enthusiastic staff",
+      "sushi bar atmosphere"
+    ]
+  }
+}

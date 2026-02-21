@@ -1,0 +1,32 @@
+{
+  "restaurant": {
+    "id": "2f92cf08-5775-4d43-a0d0-e9b78a75dc74",
+    "name": "Pepita's Cafe & Bar",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:10:14.795Z",
+    "scores": {
+      "flavorful": 8,
+      "authentic": 9,
+      "satisfying": 8,
+      "comforting": 8,
+      "aromatic": 7,
+      "appetizing": 7,
+      "overall": 8
+    },
+    "imageTags": [],
+    "reviewTags": [
+      "authentic mexican flavors",
+      "fresh and delicious food",
+      "fantastic happy hour",
+      "regular lunch spot",
+      "favorite new mexican restaurant",
+      "inviting atmosphere",
+      "nice welcoming service",
+      "great blueberry mojitos",
+      "bomb nachos and fajitas",
+      "cute hidden gem"
+    ]
+  }
+}

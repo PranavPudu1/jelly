@@ -1,0 +1,37 @@
+{
+  "restaurant": {
+    "id": "f0d95453-e2d4-49a6-92dc-e2af1539a944",
+    "name": "Laurel Restaurant",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:08:22.029Z",
+    "scores": {
+      "flavorful": 6,
+      "authentic": 5,
+      "satisfying": 7,
+      "comforting": 5,
+      "aromatic": 5,
+      "appetizing": 6,
+      "overall": 6
+    },
+    "imageTags": [],
+    "reviewTags": [
+      "locally sourced steak",
+      "incredibly tender filet",
+      "kind and accommodating service",
+      "outstanding meal quality",
+      "beautiful special dinner",
+      "disappointing service",
+      "beautiful design",
+      "unsatisfactory food quality",
+      "watery oatmeal",
+      "limited tea selection",
+      "tasty chilean salmon",
+      "sizeable appetizers",
+      "delicious pistachio cake",
+      "posh nature-inspired atmosphere",
+      "friendly and kind service"
+    ]
+  }
+}

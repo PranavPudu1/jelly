@@ -1,0 +1,53 @@
+{
+  "restaurant": {
+    "id": "b499471d-47fe-41f9-9ed5-3eb350df6659",
+    "name": "Cosmic Pickle",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T02:51:33.008Z",
+    "scores": {
+      "vibrant": 9,
+      "romantic": 5,
+      "trendy": 8,
+      "stylish": 8,
+      "immersive": 7,
+      "inviting": 8,
+      "overall": 8
+    },
+    "imageTags": [
+      "modern bar design",
+      "vibrant social atmosphere",
+      "lush greenery decor",
+      "stylish pendant lighting",
+      "open concept seating",
+      "elegant glass presentation",
+      "warm wooden table setting",
+      "rich dark beer",
+      "frothy creamy head",
+      "craft brewery specialty",
+      "casual bar atmosphere",
+      "friendly staff interaction",
+      "colorful decor elements",
+      "modern rustic counter design",
+      "vibrant drink menu display",
+      "outdoor seating area",
+      "tree-lined surroundings",
+      "casual relaxed vibe",
+      "rustic wooden exterior",
+      "vibrant yellow furniture",
+      "retro neon sign",
+      "vibrant outdoor seating",
+      "twinkling string lights",
+      "colorful modern chairs",
+      "cozy night atmosphere"
+    ],
+    "reviewTags": [
+      "so so chill vibes",
+      "people working and chilling",
+      "very good taco food truck",
+      "best refreshing beverage",
+      "good coffee for australian standard"
+    ]
+  }
+}

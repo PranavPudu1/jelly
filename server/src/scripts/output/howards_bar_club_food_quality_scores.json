@@ -1,0 +1,32 @@
+{
+  "restaurant": {
+    "id": "ffc61fc2-0bde-4695-98e3-2f92ed9a55c0",
+    "name": "Howards Bar & Club",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:07:04.518Z",
+    "scores": {
+      "flavorful": 6,
+      "authentic": 5,
+      "satisfying": 7,
+      "comforting": 7,
+      "aromatic": 5,
+      "appetizing": 6,
+      "overall": 6
+    },
+    "imageTags": [],
+    "reviewTags": [
+      "cozy bar atmosphere",
+      "friendly bartender service",
+      "busy weekend vibe",
+      "best service experience",
+      "regular visit favorite",
+      "good vibes atmosphere",
+      "careful drink presentation",
+      "smashburger experience",
+      "great conversationalist bartender",
+      "master of cocktails"
+    ]
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "restaurant": {
+    "id": "1b0cb028-a0bb-4d26-8e19-eb6f94833e51",
+    "name": "Pita Shack Grill",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:10:24.009Z",
+    "scores": {
+      "flavorful": 8,
+      "authentic": 7,
+      "satisfying": 8,
+      "comforting": 8,
+      "aromatic": 8,
+      "appetizing": 7,
+      "overall": 8
+    },
+    "imageTags": [
+      "saffron-infused rice",
+      "colorful vegetable sides",
+      "fresh mint chutney",
+      "grilled spiced kebab",
+      "crispy naan accompaniment"
+    ],
+    "reviewTags": [
+      "thoughtful little extras",
+      "perfectly juicy meat",
+      "flavorful food experience",
+      "tasty lentil soup",
+      "warm welcome service",
+      "perfectly seasoned lentil soup",
+      "double portion chicken tikka",
+      "kind and welcoming service",
+      "phenomenal food quality",
+      "fresh delicious pita bread",
+      "good portion size",
+      "humble and nice service",
+      "grilled veggies",
+      "chicken tikka plate",
+      "decent soup with bread"
+    ]
+  }
+}

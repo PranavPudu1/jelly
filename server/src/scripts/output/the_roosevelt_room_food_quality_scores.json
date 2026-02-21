@@ -1,0 +1,53 @@
+{
+  "restaurant": {
+    "id": "049473cd-4d2a-4dc9-a0e9-2b98e60e1de2",
+    "name": "The Roosevelt Room",
+    "price": "$$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:13:08.453Z",
+    "scores": {
+      "flavorful": 8,
+      "authentic": 7,
+      "satisfying": 8,
+      "comforting": 7,
+      "aromatic": 8,
+      "appetizing": 9,
+      "overall": 8
+    },
+    "imageTags": [
+      "mint garnish for freshness",
+      "vibrant red and yellow",
+      "colorful fruit assortment",
+      "gelatinous beetroot cubes",
+      "fresh seasonal berries",
+      "smooth frothy texture",
+      "artistic drink presentation",
+      "edible rose petal garnish",
+      "elegantly crafted cocktail",
+      "romantic bar setting",
+      "elegant glassware presentation",
+      "refreshing minty beverage",
+      "rich dark wood textures",
+      "autumn-inspired cocktail garnishes",
+      "creative mixology artistry",
+      "soft ambient lighting",
+      "elegant bar atmosphere",
+      "whiskey served on the rocks",
+      "detailed crystal coaster",
+      "stylish glassware presentation"
+    ],
+    "reviewTags": [
+      "nice music",
+      "must go spot",
+      "upkeep atmosphere",
+      "heart of downtown",
+      "cocktail list",
+      "friendly and knowledgeable staff",
+      "expertly crafted drinks",
+      "classy yet comfortable atmosphere",
+      "top-tier cocktail experience",
+      "best espresso martinis"
+    ]
+  }
+}

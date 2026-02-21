@@ -1,0 +1,32 @@
+{
+  "restaurant": {
+    "id": "5a56688a-ad69-4772-baf6-1895c36a18d6",
+    "name": "Chat Patta Austin",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:04:02.101Z",
+    "scores": {
+      "flavorful": 8,
+      "authentic": 7,
+      "satisfying": 8,
+      "comforting": 9,
+      "aromatic": 8,
+      "appetizing": 7,
+      "overall": 8
+    },
+    "imageTags": [],
+    "reviewTags": [
+      "mango lassi",
+      "dahi puri",
+      "chicken paratha taco",
+      "kadak chai nostalgia",
+      "best halal food",
+      "food truck experience",
+      "fast indian food",
+      "tasty indian flavors",
+      "great for college students",
+      "quick service"
+    ]
+  }
+}

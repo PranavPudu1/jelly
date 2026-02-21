@@ -1,0 +1,52 @@
+{
+  "restaurant": {
+    "id": "3b75ef9b-7185-4d13-a906-6a0ff6a77677",
+    "name": "Nosh and Bevvy",
+    "price": "$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:09:47.653Z",
+    "scores": {
+      "flavorful": 6,
+      "authentic": 5,
+      "satisfying": 7,
+      "comforting": 8,
+      "aromatic": 6,
+      "appetizing": 6,
+      "overall": 6
+    },
+    "imageTags": [
+      "modern industrial decor",
+      "stylish pendant lighting",
+      "casual bar seating",
+      "rustic wooden counter",
+      "vintage liquor display",
+      "dimly lit atmosphere",
+      "vintage decor elements",
+      "casual sports bar vibe",
+      "television sports viewing",
+      "open seating arrangement",
+      "inviting restaurant exterior",
+      "modern outdoor seating",
+      "casual dining atmosphere",
+      "cozy evening lighting",
+      "soft illuminated entrance",
+      "comfort food delight",
+      "baked cheese topping",
+      "cast iron serving dish",
+      "creamy cheesy mash",
+      "hearty potato dish",
+      "hearty comfort food",
+      "black pepper seasoning",
+      "savory gravy on mashed potatoes",
+      "fresh chopped green onions",
+      "smoky grilled sausages",
+      "bubbly carbonation",
+      "golden amber beverage",
+      "laid-back bar setting",
+      "served in a pint glass",
+      "refreshing craft beer"
+    ],
+    "reviewTags": []
+  }
+}

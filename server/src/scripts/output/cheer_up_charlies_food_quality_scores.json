@@ -1,0 +1,38 @@
+{
+  "restaurant": {
+    "id": "56954f44-c154-4d1e-812b-bbd69c7a5d19",
+    "name": "Cheer Up Charlies",
+    "price": "$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:04:06.027Z",
+    "scores": {
+      "flavorful": 5,
+      "authentic": 4,
+      "satisfying": 6,
+      "comforting": 6,
+      "aromatic": 5,
+      "appetizing": 5,
+      "overall": 5
+    },
+    "imageTags": [
+      "cozy outdoor seating",
+      "food truck experience",
+      "soft string lighting",
+      "casual nighttime vibe",
+      "urban garden atmosphere"
+    ],
+    "reviewTags": [
+      "violet palmer cocktail",
+      "cool outside seating",
+      "pretty lights atmosphere",
+      "live bands and shows",
+      "customized drink suggestions",
+      "great shows and performances",
+      "friendly social atmosphere",
+      "grab drinks with friends",
+      "safe space for queers",
+      "austin staple bar"
+    ]
+  }
+}

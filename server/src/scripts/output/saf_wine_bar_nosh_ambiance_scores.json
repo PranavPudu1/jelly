@@ -1,0 +1,52 @@
+{
+  "restaurant": {
+    "id": "49ba025e-2b2d-4ccd-be9d-9f9c49dc8d14",
+    "name": "SAF Wine Bar & Nosh",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T02:57:50.078Z",
+    "scores": {
+      "vibrant": 8,
+      "romantic": 7,
+      "trendy": 8,
+      "stylish": 9,
+      "immersive": 7,
+      "inviting": 8,
+      "overall": 8
+    },
+    "imageTags": [
+      "vibrant colorful vegetables",
+      "assorted charcuterie platter",
+      "fresh seasonal fruits",
+      "crackers and gourmet cheese",
+      "artfully arranged meats",
+      "casual dining atmosphere",
+      "modern minimalist interior",
+      "large windows with natural light",
+      "greenery accents and decor",
+      "stylish wooden furniture",
+      "intimate seating arrangement",
+      "vibrant social atmosphere",
+      "elegant pendant lighting",
+      "modern wine bar setting",
+      "shelves lined with bottles",
+      "rustic wooden flooring",
+      "outdoor seating area",
+      "string lights overhead",
+      "sunny and inviting atmosphere",
+      "decorative potted plants",
+      "modern bar design",
+      "stylish wooden highchairs",
+      "soft golden lighting",
+      "well-stocked wine display",
+      "contemporary atmosphere",
+      "modern minimalist decor",
+      "crisp filtered water",
+      "soft candlelit glow",
+      "vibrant reflective surfaces",
+      "serene dining experience"
+    ],
+    "reviewTags": []
+  }
+}

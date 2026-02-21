@@ -1,0 +1,27 @@
+{
+  "restaurant": {
+    "id": "a45a512f-fc02-47ac-9551-fc2a73f7e045",
+    "name": "Bird Bird Biscuit",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:02:55.268Z",
+    "scores": {
+      "flavorful": 8,
+      "authentic": 7,
+      "satisfying": 8,
+      "comforting": 9,
+      "aromatic": 7,
+      "appetizing": 7,
+      "overall": 8
+    },
+    "imageTags": [],
+    "reviewTags": [
+      "best biscuit ever",
+      "really good orange juice",
+      "soft and buttery",
+      "full of flavor",
+      "worth stopping by"
+    ]
+  }
+}

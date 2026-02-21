@@ -1,0 +1,63 @@
+{
+  "restaurant": {
+    "id": "ec1bd306-9310-49c7-a05a-a92ac78dbb34",
+    "name": "Jack Allen's Kitchen",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T02:54:14.601Z",
+    "scores": {
+      "vibrant": 6,
+      "romantic": 4,
+      "trendy": 5,
+      "stylish": 6,
+      "immersive": 5,
+      "inviting": 7,
+      "overall": 6
+    },
+    "imageTags": [
+      "rustic wooden facade",
+      "urban casual atmosphere",
+      "inviting outdoor seating",
+      "welcoming entryway",
+      "vintage restaurant sign",
+      "spicy flavored sweet potato fries",
+      "garnished with lime wedges",
+      "topped with fresh cilantro",
+      "served with creamy dipping sauce",
+      "crispy and golden texture",
+      "casual dining atmosphere",
+      "relaxed group dining experience",
+      "colorful vegetable wall art",
+      "natural light streaming in",
+      "wooden decor accents",
+      "crispy fried chicken",
+      "seasoned green beans",
+      "creamy white gravy",
+      "mashed potatoes side",
+      "flavorful comfort meal"
+    ],
+    "reviewTags": [
+      "chicken and biscuits",
+      "nice breakfast choice",
+      "eggs barbara benedict",
+      "friendly waitress demeanor",
+      "relaxed atmosphere",
+      "attentive and friendly service",
+      "varied menu options",
+      "perfect noise level",
+      "tasty fried green tomatoes",
+      "great lunch meeting spot",
+      "delicious barbacoa stackers",
+      "pleasant brunch experience",
+      "pretty good enchiladas",
+      "satisfying avocado toast",
+      "light mimosas selection",
+      "too much breading on chicken",
+      "limited menu options",
+      "over fried hushbrown",
+      "overpriced food quality",
+      "farm raised trout"
+    ]
+  }
+}

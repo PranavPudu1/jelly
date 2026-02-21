@@ -1,0 +1,58 @@
+{
+  "restaurant": {
+    "id": "5b9d3a35-044c-4f7f-a7bc-4618d03950e6",
+    "name": "FoodHeads",
+    "price": "$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T02:52:59.258Z",
+    "scores": {
+      "vibrant": 8,
+      "romantic": 4,
+      "trendy": 6,
+      "stylish": 7,
+      "immersive": 6,
+      "inviting": 8,
+      "overall": 7
+    },
+    "imageTags": [
+      "charming outdoor seating",
+      "casual dining atmosphere",
+      "vintage style signage",
+      "colorful flower pots",
+      "inviting wooden porch",
+      "fresh vegetable layers",
+      "variety of fillings",
+      "healthy meal options",
+      "colorful wrapped sandwiches",
+      "whole wheat wrap goodness",
+      "outdoor seating area",
+      "colorful potted plants",
+      "quaint neighborhood cafe",
+      "charming vintage architecture",
+      "welcoming porch atmosphere",
+      "colorful flowers and greenery",
+      "vibrant outdoor signage",
+      "inviting community eatery",
+      "rustic metal shelving",
+      "charming plant arrangements",
+      "artisanal bread choices",
+      "gourmet sandwich selection",
+      "house-made pastrami delight",
+      "vibrant menu offerings",
+      "fresh ingredients emphasized"
+    ],
+    "reviewTags": [
+      "excellent tuscan bean soup",
+      "perfect grilled portobello sandwich",
+      "balsamic vinegar sides",
+      "generous portion size",
+      "great selection of salads",
+      "apple pork tenderloin delight",
+      "chicken pozole soup favorite",
+      "local austin charm",
+      "pulled pork sandwich disappointment",
+      "cozy homey vibe"
+    ]
+  }
+}

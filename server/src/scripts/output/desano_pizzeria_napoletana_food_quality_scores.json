@@ -1,0 +1,48 @@
+{
+  "restaurant": {
+    "id": "a2d5e6ea-7dbf-42df-a28c-a26b458c739e",
+    "name": "DeSano Pizzeria Napoletana",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:04:51.360Z",
+    "scores": {
+      "flavorful": 8,
+      "authentic": 8,
+      "satisfying": 7,
+      "comforting": 8,
+      "aromatic": 7,
+      "appetizing": 7,
+      "overall": 8
+    },
+    "imageTags": [
+      "modern industrial design",
+      "bright natural lighting",
+      "spacious dining area",
+      "decorative bicycle feature",
+      "community seating arrangement"
+    ],
+    "reviewTags": [
+      "delicious wine selection",
+      "pizza school experience",
+      "memorable anniversary celebration",
+      "welcoming and professional staff",
+      "outstanding salad and meatballs",
+      "good pizza options",
+      "lacks ranch dipping",
+      "pricey compared to others",
+      "high quality ingredients",
+      "varied menu selections",
+      "poor customer service",
+      "unwelcoming atmosphere",
+      "authentic chicago pizza",
+      "comfort food experience",
+      "hyper vigilant staff",
+      "family-friendly atmosphere",
+      "quick service",
+      "good drink options",
+      "high end pizza",
+      "amazing pizza"
+    ]
+  }
+}

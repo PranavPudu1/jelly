@@ -1,0 +1,32 @@
+{
+  "restaurant": {
+    "id": "3beb26a7-e6e7-4034-aafb-0c300b42e8be",
+    "name": "Bouldin Acres",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:03:11.565Z",
+    "scores": {
+      "flavorful": 7,
+      "authentic": 6,
+      "satisfying": 8,
+      "comforting": 8,
+      "aromatic": 7,
+      "appetizing": 7,
+      "overall": 7
+    },
+    "imageTags": [],
+    "reviewTags": [
+      "exceeded my expectations",
+      "unexpected dessert delight",
+      "tres leches cheesecake",
+      "best burgers ever",
+      "wagyu recommendation",
+      "sports on tvs",
+      "games to play",
+      "pickle ball courts",
+      "decent bar food",
+      "beef brisket philly"
+    ]
+  }
+}

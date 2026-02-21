@@ -1,0 +1,73 @@
+{
+  "restaurant": {
+    "id": "7af9c663-4f5e-4d46-822f-1a1286499764",
+    "name": "Carpenters Hall",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:03:50.384Z",
+    "scores": {
+      "flavorful": 7,
+      "authentic": 6,
+      "satisfying": 8,
+      "comforting": 8,
+      "aromatic": 7,
+      "appetizing": 8,
+      "overall": 7
+    },
+    "imageTags": [
+      "bright natural light",
+      "cozy wooden seating",
+      "industrial lighting fixtures",
+      "vintage union banner",
+      "brick wall interior",
+      "natural light windows",
+      "industrial chic decor",
+      "casual dining atmosphere",
+      "large indoor plants",
+      "exposed ceiling beams",
+      "sunny side up eggs",
+      "crispy breakfast potatoes",
+      "hearty breakfast plate",
+      "fresh avocado toast",
+      "juicy steak slices",
+      "herb garnish sprinkle",
+      "chickpea tomato stew",
+      "poached eggs topping",
+      "cozy brunch setting",
+      "rustic sourdough bread",
+      "cocktail options menu",
+      "detailed cocktail descriptions",
+      "modern drink selection",
+      "creative mocktail names",
+      "elegant beverage presentation",
+      "green potted plants",
+      "festive Christmas tree",
+      "brick exterior entrance",
+      "simple holiday decorations",
+      "rustic outdoor atmosphere",
+      "warm cozy lighting",
+      "wooden ceiling panels",
+      "modern minimalist cafe",
+      "barista preparation area",
+      "brick counter design",
+      "fresh arugula topping",
+      "elegant dining presentation",
+      "creamy hollandaise drizzle",
+      "crispy bacon base",
+      "succulent roasted chicken"
+    ],
+    "reviewTags": [
+      "absolutely love the ambiance",
+      "great service",
+      "love the environment",
+      "small curated menu",
+      "enjoyed everything ordered",
+      "nice patio weather",
+      "relaxing and peaceful",
+      "beautiful inside seating",
+      "fantastic service",
+      "delicious chicken sandwich"
+    ]
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "restaurant": {
+    "id": "a6cdaddc-819c-4663-86ea-503ef758bba2",
+    "name": "Swedish Hill Westlake",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T02:58:41.872Z",
+    "scores": {
+      "vibrant": 6,
+      "romantic": 5,
+      "trendy": 7,
+      "stylish": 8,
+      "immersive": 5,
+      "inviting": 7,
+      "overall": 6
+    },
+    "imageTags": [
+      "sesame seeded bagel sandwich",
+      "flaky buttery croissant",
+      "rich dark coffee",
+      "heart-shaped latte art",
+      "colorful berry yogurt bowl",
+      "cozy outdoor seating",
+      "artisan coffee presentation",
+      "creamy textured latte",
+      "stylish white cup",
+      "smooth frothy surface",
+      "delectable sweet croissants",
+      "assorted flaky pastries",
+      "golden brown crusts",
+      "artisanal baked goods display",
+      "rich buttery layers",
+      "wooden serving tray",
+      "smooth latte art",
+      "creamy icing topping",
+      "freshly baked cinnamon roll",
+      "cozy café atmosphere",
+      "fresh arugula salad",
+      "sunny side up egg",
+      "colorful vegetable presentation",
+      "sliced radish garnish",
+      "delicate prosciutto slices",
+      "crispy breakfast bacon",
+      "scrambled eggs with bacon",
+      "artisanal latte with heart design",
+      "fresh seasonal fruit bowl",
+      "savory quiche with greens"
+    ],
+    "reviewTags": [
+      "seeded bread",
+      "spendy",
+      "flavor combinations",
+      "chef's kiss",
+      "most delicious veggie sandwich"
+    ]
+  }
+}

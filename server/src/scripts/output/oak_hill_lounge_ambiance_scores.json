@@ -1,0 +1,63 @@
+{
+  "restaurant": {
+    "id": "8e32931b-e360-48ac-8ca5-947b7fbba53b",
+    "name": "Oak Hill Lounge",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T02:56:35.101Z",
+    "scores": {
+      "vibrant": 8,
+      "romantic": 5,
+      "trendy": 6,
+      "stylish": 7,
+      "immersive": 6,
+      "inviting": 5,
+      "overall": 6
+    },
+    "imageTags": [
+      "rustic wooden decor",
+      "casual social atmosphere",
+      "cozy lounge seating",
+      "vibrant bar lighting",
+      "entertainment on screens",
+      "cozy booth seating",
+      "casual bar atmosphere",
+      "vibrant neon lighting",
+      "pool table centerpiece",
+      "playful game room vibe",
+      "colorful drink coasters",
+      "cozy wooden tabletop setting",
+      "decorative crystal shot glass",
+      "vibrant bar lighting effects",
+      "warm candlelit atmosphere",
+      "elegant crystal glassware",
+      "dimly lit lounge setting",
+      "vintage playing cards",
+      "cozy candlelight glow",
+      "rustic wooden bar surface"
+    ],
+    "reviewTags": [
+      "not your typical dive bar",
+      "friendly social vibe",
+      "neighborhood bar atmosphere",
+      "proper cocktails",
+      "proficient staff service",
+      "shameful service experience",
+      "poor dining location",
+      "local exclusivity vibe",
+      "not welcoming to outsiders",
+      "compared unfavorably to detour",
+      "creepy atmosphere",
+      "awkward social interactions",
+      "unprofessional service",
+      "lack of customer protection",
+      "unasked warm tequila shot",
+      "neighborhood bar vibe",
+      "friendly staff service",
+      "dart games available",
+      "solid pool tables",
+      "great cocktail selection"
+    ]
+  }
+}

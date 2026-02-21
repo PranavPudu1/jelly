@@ -1,0 +1,73 @@
+{
+  "restaurant": {
+    "id": "41ecd4e9-fb60-48f2-8bd7-4a9609e86d97",
+    "name": "Clark's Oyster Bar - Austin",
+    "price": "$$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T02:51:21.007Z",
+    "scores": {
+      "vibrant": 8,
+      "romantic": 6,
+      "trendy": 7,
+      "stylish": 8,
+      "immersive": 7,
+      "inviting": 8,
+      "overall": 8
+    },
+    "imageTags": [
+      "vibrant outdoor seating",
+      "twinkling string lights",
+      "casual dining experience",
+      "colorful striped awnings",
+      "friendly social atmosphere",
+      "freshly shucked oysters",
+      "variety of dipping sauces",
+      "ice-filled serving platter",
+      "stylish cocktail pairing",
+      "squeezed lemon garnish",
+      "freshly shucked oysters",
+      "elegant dining experience",
+      "lemon and cocktail sauce",
+      "premium shellfish selection",
+      "iced seafood platter",
+      "tangy tomato ketchup",
+      "zesty olive oil drizzle",
+      "crispy fried shoestring potatoes",
+      "creamy mayonnaise dressing",
+      "lobster roll with fresh herbs",
+      "aromatic garlic and herbs",
+      "steaming seafood broth",
+      "vibrant yellow sauce",
+      "fresh clams and mussels",
+      "toasted sourdough slices",
+      "colorful radish garnish",
+      "refreshing citrus ceviche",
+      "delicate fish bites",
+      "herb-infused olive oil",
+      "vibrant jalapeño slices",
+      "vibrant citrus dressing",
+      "delicate herb accents",
+      "garnished with capers",
+      "fresh seafood carpaccio",
+      "tender fish slices",
+      "colorful seafood presentation",
+      "iced oysters on display",
+      "freshly caught seafood platter",
+      "garnished with lemon slices",
+      "succulent shrimp and crab"
+    ],
+    "reviewTags": [
+      "excellent service",
+      "oysters shrimp linguine",
+      "clam chowder hot sauce",
+      "casual fine dining mix",
+      "inside seating preference",
+      "super attentive service",
+      "chocolate mousse dessert",
+      "kind and respectful staff",
+      "clam chowder recommendation",
+      "linguine and clams"
+    ]
+  }
+}

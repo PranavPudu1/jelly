@@ -1,0 +1,43 @@
+{
+  "restaurant": {
+    "id": "52123dba-b714-49d5-9cbb-fbda10c845ea",
+    "name": "Dogwood Domain",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:05:07.318Z",
+    "scores": {
+      "flavorful": 7,
+      "authentic": 6,
+      "satisfying": 6,
+      "comforting": 7,
+      "aromatic": 6,
+      "appetizing": 7,
+      "overall": 6
+    },
+    "imageTags": [
+      "vibrant city nightlife",
+      "cozy outdoor dining atmosphere",
+      "illuminated storefronts and restaurants",
+      "charming urban street scene",
+      "festive holiday lights"
+    ],
+    "reviewTags": [
+      "high spending at lavaca",
+      "bloody mary was pretty good",
+      "disappointing service experience",
+      "not accommodating for game",
+      "empty bar atmosphere",
+      "nice place to look around",
+      "rooftop bar experience",
+      "overlooks the domain",
+      "decent food selection",
+      "crowded and small space",
+      "homey atmosphere",
+      "friendly bartender",
+      "perfectly prepared food",
+      "welcoming and attentive staff",
+      "full of flavor"
+    ]
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "restaurant": {
+    "id": "916e8e85-72f6-4159-acaf-47695b5dd420",
+    "name": "The League Kitchen & Tavern",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:12:50.212Z",
+    "scores": {
+      "flavorful": 6,
+      "authentic": 5,
+      "satisfying": 7,
+      "comforting": 7,
+      "aromatic": 6,
+      "appetizing": 6,
+      "overall": 6
+    },
+    "imageTags": [
+      "toasted brioche bun",
+      "crispy fried chicken sandwich",
+      "golden crispy french fries",
+      "fresh coleslaw toppings",
+      "house-made ketchup dip",
+      "expansive liquor display",
+      "sleek modern bar design",
+      "dimly lit overhead lights",
+      "comfortable dark wood stools",
+      "open seating arrangement",
+      "casual outdoor seating",
+      "warm evening glow",
+      "cozy neighborhood eatery",
+      "inviting patio atmosphere",
+      "rustic stone facade",
+      "crispy french fries",
+      "fresh lettuce and tomato",
+      "rich mayonnaise spread",
+      "toasted savory sandwich",
+      "accompanied by ketchup"
+    ],
+    "reviewTags": [
+      "casual bar atmosphere",
+      "tasty mac n cheese",
+      "long wait for service",
+      "delicious hamburger",
+      "friendly recommendation",
+      "fairly quiet atmosphere",
+      "excess olive oil soup",
+      "great server experience",
+      "tasty meal options",
+      "quick food service"
+    ]
+  }
+}

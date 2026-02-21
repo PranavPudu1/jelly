@@ -1,0 +1,53 @@
+{
+  "restaurant": {
+    "id": "8b67f094-e1ff-4ef8-84b7-1a705ab5b76f",
+    "name": "Willie's Grill & Icehouse",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:14:25.131Z",
+    "scores": {
+      "flavorful": 6,
+      "authentic": 5,
+      "satisfying": 7,
+      "comforting": 6,
+      "aromatic": 6,
+      "appetizing": 7,
+      "overall": 6
+    },
+    "imageTags": [
+      "brick facade restaurant",
+      "casual dining exterior",
+      "bright signage display",
+      "accessible parking available",
+      "takeout service entrance",
+      "charred lemon for garnish",
+      "steamed green vegetable medley",
+      "savory dipping sauce on the side",
+      "seasoned rice with vibrant colors",
+      "grilled salmon fillet with glaze",
+      "tangy dipping sauce",
+      "steamed broccoli and carrots",
+      "fluffy seasoned rice",
+      "citrusy lemon garnish",
+      "grilled fish filet",
+      "crispy fried fish tacos",
+      "zesty creamy sauce",
+      "seasoned golden french fries",
+      "fresh lettuce and pico",
+      "savory dipping ketchup"
+    ],
+    "reviewTags": [
+      "great dining experience",
+      "delicious rice",
+      "kind and professional service",
+      "fried shrimp tacos",
+      "cheese tortillas",
+      "pleasant ambiance overall",
+      "dry chicken steak",
+      "average mashed potatoes",
+      "nice staff service",
+      "sticky rice texture"
+    ]
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "restaurant": {
+    "id": "f3e4e477-d407-419b-82ce-4200f2de9ec7",
+    "name": "Tuscano Italian Kitchen",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:00:18.709Z",
+    "scores": {
+      "vibrant": 6,
+      "romantic": 7,
+      "trendy": 7,
+      "stylish": 8,
+      "immersive": 6,
+      "inviting": 8,
+      "overall": 7
+    },
+    "imageTags": [
+      "string lights decor",
+      "warm inviting atmosphere",
+      "neon restaurant signage",
+      "open for dining",
+      "cozy Italian eatery exterior",
+      "spacious dining layout",
+      "modern industrial lighting",
+      "inviting lounge area",
+      "cozy atmosphere with plants",
+      "stylish minimalist decor",
+      "savory garlic sauce",
+      "garnished with parsley",
+      "freshly chopped bell peppers",
+      "creamy shrimp fettuccine",
+      "tender pasta noodles",
+      "herb garnish topping",
+      "freshly grated parmesan",
+      "creamy fettuccine alfredo",
+      "hearty Italian comfort dish",
+      "baked cheesy lasagna",
+      "freshly grated parmesan",
+      "herb garnished dish",
+      "thick ribbon noodles",
+      "savory Italian flavors",
+      "rich meat sauce pasta"
+    ],
+    "reviewTags": [
+      "delicious cocktails",
+      "stuffed dates and bruschetta",
+      "funny and attentive service",
+      "chicken parm and chicken piccada",
+      "large bourbon selection",
+      "fantastic service experience",
+      "chicken piccata to pizza",
+      "wonderful bread dip",
+      "pleasant dining atmosphere",
+      "creative and refreshing cocktails",
+      "great service",
+      "family celebration atmosphere",
+      "fried shrimp appetizers",
+      "cajun pasta",
+      "spectacular dinner experience"
+    ]
+  }
+}

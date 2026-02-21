@@ -1,0 +1,38 @@
+{
+  "restaurant": {
+    "id": "d950ee19-5c7a-46d0-8067-36e319c869ba",
+    "name": "SPREAD & CO.",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T02:57:53.786Z",
+    "scores": {
+      "vibrant": 8,
+      "romantic": 5,
+      "trendy": 7,
+      "stylish": 7,
+      "immersive": 6,
+      "inviting": 8,
+      "overall": 7
+    },
+    "imageTags": [
+      "artisan multigrain toast",
+      "crisp microgreens topping",
+      "sprinkled black sesame seeds",
+      "fresh radish slices",
+      "zesty avocado spread"
+    ],
+    "reviewTags": [
+      "oily fondue texture",
+      "lovely ambiance",
+      "great team service",
+      "fun dining experience",
+      "fondue for 2 special",
+      "variety of snacks",
+      "austin dining gem",
+      "vibrant atmosphere",
+      "scrumptious mortadella",
+      "frequent dining spot"
+    ]
+  }
+}

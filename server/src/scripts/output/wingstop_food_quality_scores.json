@@ -1,0 +1,32 @@
+{
+  "restaurant": {
+    "id": "7debcbc5-6668-481d-827f-75f6b640b631",
+    "name": "Wingstop",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:14:26.705Z",
+    "scores": {
+      "flavorful": 6,
+      "authentic": 5,
+      "satisfying": 7,
+      "comforting": 6,
+      "aromatic": 5,
+      "appetizing": 5,
+      "overall": 6
+    },
+    "imageTags": [],
+    "reviewTags": [
+      "great service experience",
+      "clean restaurant environment",
+      "consistently nice atmosphere",
+      "reliable dining experience",
+      "exceptional food quality",
+      "long thick veggie sticks",
+      "bold spicy barbecue sauce",
+      "quick delivery service",
+      "underwhelming hawaiian wings",
+      "soggy seasoned fries"
+    ]
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "restaurant": {
+    "id": "0a6895ef-ed4b-4b46-94d1-21a9103c92f4",
+    "name": "Acre 41",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:02:04.057Z",
+    "scores": {
+      "flavorful": 8,
+      "authentic": 7,
+      "satisfying": 8,
+      "comforting": 8,
+      "aromatic": 8,
+      "appetizing": 9,
+      "overall": 8
+    },
+    "imageTags": [
+      "sophisticated bar setup",
+      "elegant dim lighting",
+      "polished marble countertop",
+      "warm gold accents",
+      "luxurious leather chairs",
+      "creamy dipping sauce",
+      "herb garnish presentation",
+      "rustic restaurant branding",
+      "tricolor roasted carrots",
+      "grilled bone-in chop",
+      "gourmet dining experience",
+      "fresh oyster presentation",
+      "savory meatball skillet",
+      "seafood platter display",
+      "iced shrimp arrangement",
+      "modern circular chandeliers",
+      "sleek open bar design",
+      "dim romantic lighting",
+      "elegant leather chairs",
+      "luxurious dining atmosphere",
+      "elegant dinner presentation",
+      "creamy beef pasta",
+      "crispy fried onions",
+      "savory mushroom sauce",
+      "pappardelle noodles dish",
+      "creamy mashed potatoes",
+      "elegant table setting",
+      "roasted garlic garnish",
+      "grilled steak dish",
+      "silky table napkin",
+      "garlic rosemary garnish",
+      "juicy ribeye steak",
+      "broccoli side serving",
+      "tender medium rare",
+      "charred grill marks"
+    ],
+    "reviewTags": [
+      "flavorful wagyu meatballs",
+      "spectacular acre style filet",
+      "heavenly bread pudding",
+      "must-try creamy spinach",
+      "intimate with low lighting",
+      "outstanding texas filet",
+      "romantic setting without crowds",
+      "delicious apple mule",
+      "great bourbon drink",
+      "personable and helpful service"
+    ]
+  }
+}

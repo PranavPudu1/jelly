@@ -1,0 +1,53 @@
+{
+  "restaurant": {
+    "id": "e57faedb-81c1-4931-bbfb-be6610f4abf6",
+    "name": "Blue Corn Harvest Bar & Grill Round Rock",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T02:50:10.690Z",
+    "scores": {
+      "vibrant": 7,
+      "romantic": 4,
+      "trendy": 6,
+      "stylish": 7,
+      "immersive": 5,
+      "inviting": 8,
+      "overall": 6
+    },
+    "imageTags": [
+      "fluffy scrambled eggs",
+      "crispy bacon strips",
+      "whipped cream topping",
+      "sweet French toast",
+      "rich berry sauce drizzle",
+      "colorful vegetable medley",
+      "fluffy mashed potatoes",
+      "crispy fried catfish fillet",
+      "creamy white gravy topping",
+      "steamed seasonal vegetables",
+      "inviting entrance design",
+      "clear glass doors",
+      "modern stone facade",
+      "stylish signage display",
+      "outdoor seating planters",
+      "refreshing citrus cocktail",
+      "salted rim presentation",
+      "vibrant yellow color",
+      "ice-filled drink",
+      "garnished with orange slice"
+    ],
+    "reviewTags": [
+      "attentive service",
+      "pleasant morning atmosphere",
+      "recommended queso",
+      "really good food",
+      "uncrowded brunch experience",
+      "great event space",
+      "special menus for events",
+      "accommodating and helpful staff",
+      "responsive communication",
+      "delicious food offerings"
+    ]
+  }
+}

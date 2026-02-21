@@ -1,0 +1,27 @@
+{
+  "restaurant": {
+    "id": "76fef2cd-af26-4779-ab73-78249d611ac7",
+    "name": "La Traviata",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T02:55:00.663Z",
+    "scores": {
+      "vibrant": 5,
+      "romantic": 6,
+      "trendy": 4,
+      "stylish": 5,
+      "immersive": 4,
+      "inviting": 6,
+      "overall": 5
+    },
+    "imageTags": [
+      "crispy fried chicken",
+      "pasta with marinara sauce",
+      "sprinkled with fresh herbs",
+      "topped with melted cheese",
+      "hearty Italian comfort dish"
+    ],
+    "reviewTags": []
+  }
+}

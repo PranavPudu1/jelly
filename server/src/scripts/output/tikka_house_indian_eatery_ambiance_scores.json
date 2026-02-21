@@ -1,0 +1,27 @@
+{
+  "restaurant": {
+    "id": "0bf202b7-8cb7-4cd8-b55f-e325cd3f0819",
+    "name": "Tikka House Indian Eatery",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:00:03.884Z",
+    "scores": {
+      "vibrant": 7,
+      "romantic": 5,
+      "trendy": 6,
+      "stylish": 7,
+      "immersive": 5,
+      "inviting": 7,
+      "overall": 6
+    },
+    "imageTags": [
+      "flavorful aromatic spices",
+      "spiced basmati rice dish",
+      "savory mixed vegetables",
+      "vibrant red onion slices",
+      "fresh lemon wedge garnish"
+    ],
+    "reviewTags": []
+  }
+}

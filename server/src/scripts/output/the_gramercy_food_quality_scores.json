@@ -1,0 +1,37 @@
+{
+  "restaurant": {
+    "id": "9ca113cd-8647-4084-86c0-739d7b42379e",
+    "name": "The Gramercy",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:12:37.155Z",
+    "scores": {
+      "flavorful": 8,
+      "authentic": 7,
+      "satisfying": 8,
+      "comforting": 7,
+      "aromatic": 8,
+      "appetizing": 8,
+      "overall": 8
+    },
+    "imageTags": [],
+    "reviewTags": [
+      "fresh ingredients",
+      "great service",
+      "plenty of seating",
+      "beautifully decorated interior",
+      "delicious flavorful food",
+      "amazing food",
+      "delicious wings and cocktails",
+      "friendly and inviting staff",
+      "fun enjoyable evening out",
+      "dog-friendly environment",
+      "delicious salmon and ribs",
+      "great drinks selection",
+      "friendly and patient service",
+      "amazing restaurant ambiance",
+      "perfect for date night"
+    ]
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "restaurant": {
+    "id": "60db1f44-934b-42ca-bcac-4f18880a5145",
+    "name": "Tandoori Lounge + Bar (Indian Cuisine)",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T02:58:51.381Z",
+    "scores": {
+      "vibrant": 8,
+      "romantic": 5,
+      "trendy": 6,
+      "stylish": 7,
+      "immersive": 6,
+      "inviting": 8,
+      "overall": 7
+    },
+    "imageTags": [
+      "colorful salad presentation",
+      "fresh garden vegetables",
+      "grilled marinated fish",
+      "herb and spice topping",
+      "vibrant citrus garnishes",
+      "fresh cilantro garnish",
+      "crispy golden samosas",
+      "savory vegetable filling",
+      "plated with colorful slaw",
+      "flaky pastry texture"
+    ],
+    "reviewTags": [
+      "garlic naan bread",
+      "perfect for chilly evenings",
+      "fantastic dining atmosphere",
+      "delicious chicken samosas",
+      "unique old fashioned cocktail",
+      "inviting dining atmosphere",
+      "special meal prepared by the chef",
+      "delicious garlic naan",
+      "best indian food",
+      "personal chef interaction",
+      "third visit experience",
+      "garlic nan",
+      "incredible food service",
+      "butter chicken mild spice",
+      "sweet nan recommendation"
+    ]
+  }
+}

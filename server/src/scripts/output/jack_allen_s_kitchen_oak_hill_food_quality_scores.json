@@ -1,0 +1,48 @@
+{
+  "restaurant": {
+    "id": "bfdb8a2c-5d58-4d77-969a-67ce713498a9",
+    "name": "Jack Allen's Kitchen Oak Hill",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:07:20.810Z",
+    "scores": {
+      "flavorful": 6,
+      "authentic": 5,
+      "satisfying": 6,
+      "comforting": 5,
+      "aromatic": 6,
+      "appetizing": 7,
+      "overall": 6
+    },
+    "imageTags": [
+      "casual seating arrangement",
+      "stylish high-top tables",
+      "modern open-air bar",
+      "social atmosphere with friends",
+      "brightly lit bar area",
+      "fresh colorful vegetables",
+      "grilled chicken salad",
+      "crispy chickpea toppings",
+      "vibrant healthy meal",
+      "creamy feta cheese",
+      "modern architectural design",
+      "spacious outdoor seating",
+      "inviting contemporary facade",
+      "surrounding greenery",
+      "cloudy atmospheric backdrop",
+      "grilled salmon fillet",
+      "colorful vegetable medley",
+      "fresh apple slaw",
+      "crunchy pecan topping",
+      "fragrant herb rice"
+    ],
+    "reviewTags": [
+      "fried green tomatoes disappointment",
+      "poor service timing",
+      "overcooked mushrooms",
+      "horseradish crusted salmon",
+      "lack of green vegetables"
+    ]
+  }
+}

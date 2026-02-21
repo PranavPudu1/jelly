@@ -1,0 +1,73 @@
+{
+  "restaurant": {
+    "id": "f9bbdfad-b701-4add-8bae-4dc283588619",
+    "name": "Kalimotxo",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T02:54:36.657Z",
+    "scores": {
+      "vibrant": 8,
+      "romantic": 7,
+      "trendy": 9,
+      "stylish": 8,
+      "immersive": 7,
+      "inviting": 8,
+      "overall": 8
+    },
+    "imageTags": [
+      "dim ambient lighting",
+      "vibrant wall art",
+      "modern lively decor",
+      "plush booth seating",
+      "greenery dividers",
+      "casual dining presentation",
+      "glazed brioche bun",
+      "melted cheese topping",
+      "jalapeño garnish",
+      "gourmet cheeseburger",
+      "crispy potato wedges",
+      "rustic stone table",
+      "simple ceramic bowl",
+      "creamy white dressing",
+      "spicy red sauce drizzle",
+      "fresh mixed salad",
+      "crispy arancini balls",
+      "sparkling water refreshment",
+      "cheesy potato slice",
+      "elegant glass plate",
+      "marble countertop setting",
+      "artisan crafted drink",
+      "vibrant purple cocktail",
+      "citrus lemon slice",
+      "fresh rosemary garnish",
+      "artistic culinary plating",
+      "vibrant green sauce",
+      "fresh tomato garnish",
+      "seared tuna presentation",
+      "grilled pepper topping",
+      "smooth creamy texture",
+      "sleek stoneware plate",
+      "caramelized cheesecake slice",
+      "cubed fruit topping",
+      "warm ambient lighting"
+    ],
+    "reviewTags": [
+      "best bites of the night",
+      "collaborative staff",
+      "super sexy vibes",
+      "dim lighting",
+      "impressive tequila selection",
+      "warm attentive service",
+      "vibrant flavors",
+      "beautiful plating",
+      "artistic presentation",
+      "balanced creative cocktails",
+      "spanish beer selection",
+      "excellent croquettes",
+      "really good tapas",
+      "best city cheesecake",
+      "authentic spanish food"
+    ]
+  }
+}

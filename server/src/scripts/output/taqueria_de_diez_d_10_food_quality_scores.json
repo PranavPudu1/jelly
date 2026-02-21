@@ -1,0 +1,38 @@
+{
+  "restaurant": {
+    "id": "962c68e1-b355-472b-bce1-634101704903",
+    "name": "Taqueria De Diez (D/10)",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:12:10.571Z",
+    "scores": {
+      "flavorful": 8,
+      "authentic": 9,
+      "satisfying": 7,
+      "comforting": 8,
+      "aromatic": 8,
+      "appetizing": 7,
+      "overall": 8
+    },
+    "imageTags": [
+      "served with fresh toppings",
+      "succulent marinated tacos",
+      "vertical grill with meat",
+      "juicy roasted meats",
+      "kebab-style preparation"
+    ],
+    "reviewTags": [
+      "fantastic service",
+      "authentic tacos al pastor",
+      "must-try green salsa",
+      "delicious cheese quesadilla",
+      "spacious and spotless",
+      "tasty fresh tacos",
+      "strong food smell",
+      "confusing ordering process",
+      "clean and neat environment",
+      "quick bite spot"
+    ]
+  }
+}

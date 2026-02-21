@@ -1,0 +1,27 @@
+{
+  "restaurant": {
+    "id": "4c162100-5ccd-40c7-83ff-53bb3d416c53",
+    "name": "Whisler’s",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:01:00.848Z",
+    "scores": {
+      "vibrant": 5,
+      "romantic": 8,
+      "trendy": 6,
+      "stylish": 7,
+      "immersive": 7,
+      "inviting": 8,
+      "overall": 7
+    },
+    "imageTags": [
+      "cozy bar seating",
+      "vintage chandelier lighting",
+      "rustic stone walls",
+      "high ceiling with intricate details",
+      "candlelit counter atmosphere"
+    ],
+    "reviewTags": []
+  }
+}

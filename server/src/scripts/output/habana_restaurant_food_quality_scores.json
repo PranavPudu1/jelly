@@ -1,0 +1,52 @@
+{
+  "restaurant": {
+    "id": "5724a2b8-31ac-41ee-a189-331bcff433cb",
+    "name": "Habana Restaurant",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:06:35.268Z",
+    "scores": {
+      "flavorful": 7,
+      "authentic": 8,
+      "satisfying": 7,
+      "comforting": 8,
+      "aromatic": 7,
+      "appetizing": 8,
+      "overall": 7
+    },
+    "imageTags": [
+      "natural wooden furniture",
+      "tropical outdoor seating",
+      "thatched roof huts",
+      "casual island dining",
+      "shaded garden atmosphere",
+      "Cuban sandwich style",
+      "cheese and ham layers",
+      "juicy shredded pork",
+      "decorative flag toothpicks",
+      "plantain bread substitute",
+      "shredded pork bowl",
+      "rustic wooden table setting",
+      "pickled red onions garnish",
+      "seasoned rice with beans",
+      "lime wedges for garnish",
+      "dim ambient lighting",
+      "cozy seating area",
+      "casual bar setting",
+      "colorful cocktail menu",
+      "vibrant green cocktail",
+      "warm ambient lighting",
+      "rustic wooden tables",
+      "large group seating",
+      "mural painted ceiling",
+      "cozy dining space",
+      "wooden table setting",
+      "vibrant blue drink",
+      "tropical cocktail duo",
+      "fresh lime slice accent",
+      "pineapple garnish detail"
+    ],
+    "reviewTags": []
+  }
+}

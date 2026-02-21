@@ -1,0 +1,73 @@
+{
+  "restaurant": {
+    "id": "8bdcbd49-af00-4b18-8493-952985bdcefa",
+    "name": "Tacos provincia",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T02:58:49.341Z",
+    "scores": {
+      "vibrant": 8,
+      "romantic": 3,
+      "trendy": 7,
+      "stylish": 6,
+      "immersive": 6,
+      "inviting": 7,
+      "overall": 7
+    },
+    "imageTags": [
+      "fresh avocado slices",
+      "crispy corn tortillas",
+      "zesty lime wedge",
+      "tender beef tacos",
+      "chopped cilantro garnish",
+      "variety of beverage options",
+      "colorful food truck menu",
+      "vibrant salsa and sauces",
+      "cooks preparing fresh meals",
+      "street food preparation area",
+      "crispy doritos locos",
+      "sweet churros with cinnamon",
+      "variety of Mexican snacks",
+      "colorful street food offerings",
+      "refreshing fruit cup",
+      "colorful food truck signage",
+      "variety of vibrant beverages",
+      "nighttime street food vibe",
+      "menu highlights and specials",
+      "team serving delicious tacos",
+      "lively nightlife scene",
+      "street food vendors",
+      "bustling urban atmosphere",
+      "crowded outdoor dining",
+      "colorful neon signage",
+      "colorful menu display",
+      "fresh shrimp taco",
+      "cabbage and salsa toppings",
+      "traditional Mexican torta",
+      "variety of taco options"
+    ],
+    "reviewTags": [
+      "nice kick salsas",
+      "fresh tortillas",
+      "seasoned meat",
+      "casual taco spot",
+      "crispy toppings",
+      "food truck experience",
+      "friendly staff",
+      "bilingual menu options",
+      "colombian flavors",
+      "fresh tacos",
+      "slow service experience",
+      "lack of attention to orders",
+      "flavorful asada tacos",
+      "overpriced plain fries",
+      "incorrect taco toppings",
+      "marginally better than taco bell",
+      "tastes incredible late night",
+      "crappy food",
+      "not worth seeking out",
+      "good in a pinch"
+    ]
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "restaurant": {
+    "id": "42edbdb0-7ece-444f-b6fe-39bb4d2ef8fe",
+    "name": "Pelons Tex Mex",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:10:13.309Z",
+    "scores": {
+      "flavorful": 7,
+      "authentic": 6,
+      "satisfying": 7,
+      "comforting": 8,
+      "aromatic": 7,
+      "appetizing": 8,
+      "overall": 7
+    },
+    "imageTags": [
+      "vibrant neon signage",
+      "urban outdoor setting",
+      "ornate angel statue",
+      "quirky artistic vibe",
+      "colorful decorative elements"
+    ],
+    "reviewTags": []
+  }
+}

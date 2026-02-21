@@ -1,0 +1,32 @@
+{
+  "restaurant": {
+    "id": "cd04bf37-1e0b-4d5d-88c0-8d4ef063289a",
+    "name": "Tacowey Rainey",
+    "price": "$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:12:07.574Z",
+    "scores": {
+      "flavorful": 8,
+      "authentic": 9,
+      "satisfying": 7,
+      "comforting": 8,
+      "aromatic": 7,
+      "appetizing": 6,
+      "overall": 8
+    },
+    "imageTags": [],
+    "reviewTags": [
+      "friendly staff",
+      "reasonable prices",
+      "first food stop",
+      "delicious tacos",
+      "authentic taco experience",
+      "fresh lime wedge",
+      "flavorful marinated pork",
+      "taco stand ambiance",
+      "quick taco service",
+      "beef steak tacos"
+    ]
+  }
+}

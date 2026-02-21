@@ -1,0 +1,63 @@
+{
+  "restaurant": {
+    "id": "b07dccfc-ac76-47f1-85bb-baa21e22093a",
+    "name": "Plank Provisions",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:10:25.764Z",
+    "scores": {
+      "flavorful": 8,
+      "authentic": 7,
+      "satisfying": 8,
+      "comforting": 7,
+      "aromatic": 8,
+      "appetizing": 9,
+      "overall": 8
+    },
+    "imageTags": [
+      "warm wooden accents",
+      "comfortable booth seating",
+      "sleek coastal design",
+      "vibrant ocean mural",
+      "stylish hanging lanterns",
+      "fresh herb garnish",
+      "crispy pan-seared fish",
+      "delicate citrus drizzle",
+      "roasted seasonal vegetables",
+      "tart pomegranate seeds",
+      "elegant seafood presentation",
+      "freshly shucked oysters",
+      "classic cocktail sauces",
+      "delicate briny flavor",
+      "served on ice platter",
+      "fresh green onions",
+      "creamy pasta dish",
+      "grilled chicken slices",
+      "spicy tomato sauce",
+      "dark textured plate",
+      "artfully presented bowl",
+      "fresh green microgreens garnish",
+      "savory Asian-inspired dish",
+      "flavorful stir-fried noodles",
+      "succulent seared steak slices"
+    ],
+    "reviewTags": [
+      "friendly and knowledgeable service",
+      "flaky and flavorful salmon",
+      "fresh and delicious oysters",
+      "engaged without being intrusive",
+      "perfectly cooked flat iron steak",
+      "welcoming staff",
+      "beautiful interior",
+      "happy hour deals",
+      "exceptionally fresh food",
+      "incredibly fresh oysters",
+      "welcoming atmosphere",
+      "superb drinks",
+      "austin cuisine experience",
+      "timely food service",
+      "amazing service"
+    ]
+  }
+}

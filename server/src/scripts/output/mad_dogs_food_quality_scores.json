@@ -1,0 +1,27 @@
+{
+  "restaurant": {
+    "id": "d67c5118-8484-48b0-9cc2-432d2531b0be",
+    "name": "Mad Dogs",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:08:56.650Z",
+    "scores": {
+      "flavorful": 2,
+      "authentic": 2,
+      "satisfying": 2,
+      "comforting": 1,
+      "aromatic": 1,
+      "appetizing": 1,
+      "overall": 1
+    },
+    "imageTags": [],
+    "reviewTags": [
+      "disgusting food presentation",
+      "unappetizing meal appearance",
+      "poor quality hot dog",
+      "chili cheese dog disaster",
+      "failed order experience"
+    ]
+  }
+}

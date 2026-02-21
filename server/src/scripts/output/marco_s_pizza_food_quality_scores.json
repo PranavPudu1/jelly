@@ -1,0 +1,27 @@
+{
+  "restaurant": {
+    "id": "27647f90-dbb4-4578-87eb-42cf1d9eb476",
+    "name": "Marco's Pizza",
+    "price": "$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:09:16.578Z",
+    "scores": {
+      "flavorful": 2,
+      "authentic": 2,
+      "satisfying": 2,
+      "comforting": 2,
+      "aromatic": 2,
+      "appetizing": 2,
+      "overall": 2
+    },
+    "imageTags": [],
+    "reviewTags": [
+      "incomplete food order",
+      "incorrect sandwich preparation",
+      "pathetic business practice",
+      "awful delivery service",
+      "jumbled location menu"
+    ]
+  }
+}

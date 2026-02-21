@@ -1,0 +1,53 @@
+{
+  "restaurant": {
+    "id": "33c65063-abdf-4362-8bc2-f64ed9dfe8cb",
+    "name": "The Potluck",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:13:05.346Z",
+    "scores": {
+      "flavorful": 7,
+      "authentic": 5,
+      "satisfying": 7,
+      "comforting": 8,
+      "aromatic": 6,
+      "appetizing": 6,
+      "overall": 6
+    },
+    "imageTags": [
+      "casual dining space",
+      "nighttime outdoor setting",
+      "modern food kiosk",
+      "inviting exterior decor",
+      "bright orange signage"
+    ],
+    "reviewTags": [
+      "flavorful gumbo",
+      "samples of loose cannon",
+      "mighty wings",
+      "amazing breaded wings",
+      "casual comedic atmosphere",
+      "welcoming staff",
+      "perfect crunch wings",
+      "loose cannon wings",
+      "very tasty flavors",
+      "crack wings special",
+      "great fast customer service",
+      "trump wings flavor",
+      "wing flavor options",
+      "helpful staff experience",
+      "ranch seasoning powder",
+      "good customer service",
+      "frequent visitor experience",
+      "lack of flavor variety",
+      "overpowered by ranch powder",
+      "always out of ranch",
+      "fabulous menu selection",
+      "perfect for wing gatherings",
+      "convenient location",
+      "protein filled options",
+      "well-lit atmosphere"
+    ]
+  }
+}

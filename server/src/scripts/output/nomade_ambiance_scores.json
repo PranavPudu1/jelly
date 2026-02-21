@@ -1,0 +1,37 @@
+{
+  "restaurant": {
+    "id": "39d7867c-1533-4b37-bca7-4e8c22e0f826",
+    "name": "Nomade",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T02:56:28.450Z",
+    "scores": {
+      "vibrant": 6,
+      "romantic": 7,
+      "trendy": 6,
+      "stylish": 7,
+      "immersive": 5,
+      "inviting": 8,
+      "overall": 6
+    },
+    "imageTags": [],
+    "reviewTags": [
+      "mexican beach vibe",
+      "duck pancho with apricot pairing",
+      "lackluster barbacoa dish",
+      "hamachi ceviche with pineapple",
+      "chipped plates service",
+      "cozy outdoor seating",
+      "thoughtful meal pacing",
+      "thanksgiving 4-course tasting menu",
+      "calm vibe atmosphere",
+      "rich crispy pork belly",
+      "tres leches cake",
+      "delicious guacamole",
+      "outdoor dining vibes",
+      "super sweet service",
+      "attentive server"
+    ]
+  }
+}

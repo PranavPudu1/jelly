@@ -1,0 +1,32 @@
+{
+  "restaurant": {
+    "id": "46f03039-bcbb-4137-ba00-803aec81a0b0",
+    "name": "USTA KABABGY Round Rock",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:13:50.275Z",
+    "scores": {
+      "flavorful": 8,
+      "authentic": 9,
+      "satisfying": 8,
+      "comforting": 8,
+      "aromatic": 8,
+      "appetizing": 7,
+      "overall": 8
+    },
+    "imageTags": [],
+    "reviewTags": [
+      "authentic homemade mediterranean",
+      "healthy mediterranean options",
+      "outstanding service staff",
+      "best mediterranean food",
+      "fresh and airy pita bread",
+      "mixed kebab plate",
+      "excellent baba ganoush",
+      "highly recommended restaurant",
+      "great moroccan tea",
+      "lamb flatbread lahmbiajin"
+    ]
+  }
+}

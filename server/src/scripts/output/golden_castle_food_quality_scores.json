@@ -1,0 +1,27 @@
+{
+  "restaurant": {
+    "id": "302e1f8e-41e1-4675-a962-8773209e15c4",
+    "name": "Golden Castle",
+    "price": "$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:06:26.357Z",
+    "scores": {
+      "flavorful": 6,
+      "authentic": 5,
+      "satisfying": 7,
+      "comforting": 6,
+      "aromatic": 5,
+      "appetizing": 6,
+      "overall": 6
+    },
+    "imageTags": [],
+    "reviewTags": [
+      "casual dining experience",
+      "amazing golden castle",
+      "hefty sliders",
+      "worth the wait",
+      "affordable meal options"
+    ]
+  }
+}

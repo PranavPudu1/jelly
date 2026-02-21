@@ -1,0 +1,48 @@
+{
+  "restaurant": {
+    "id": "8d9fcc53-0d8c-41c5-800c-3a2a69a3f0bc",
+    "name": "Santa Catarina Mexican Restaurant - Cherrywood",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:11:21.984Z",
+    "scores": {
+      "flavorful": 8,
+      "authentic": 9,
+      "satisfying": 8,
+      "comforting": 8,
+      "aromatic": 8,
+      "appetizing": 9,
+      "overall": 8
+    },
+    "imageTags": [
+      "flavorful rice and beans",
+      "colorful plate presentation",
+      "vibrant pomegranate garnish",
+      "creamy savory sauce",
+      "fresh garden ambiance",
+      "crispy tortilla chips",
+      "creamy avocado sauce",
+      "topped with fresh pico",
+      "zesty pickled onions",
+      "crumbled cheese sprinkle",
+      "traditional Mexican dish",
+      "black beans with sour cream",
+      "creamy guacamole on lettuce",
+      "steamed in banana leaves",
+      "colorful pickled onion garnish",
+      "freshly made tacos",
+      "creamy avocado sauce",
+      "flavorful black beans",
+      "crisp cabbage garnish",
+      "traditional ceramic plate"
+    ],
+    "reviewTags": [
+      "authentic mexican flavors",
+      "great decoration and cleanliness",
+      "lively spot for brunch",
+      "flavorful and well-prepared",
+      "welcoming and attentive staff"
+    ]
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "restaurant": {
+    "id": "43068f9d-72b1-44de-8235-87790f88fec3",
+    "name": "Eggs Up Grill",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:05:22.388Z",
+    "scores": {
+      "flavorful": 7,
+      "authentic": 6,
+      "satisfying": 8,
+      "comforting": 8,
+      "aromatic": 7,
+      "appetizing": 7,
+      "overall": 7
+    },
+    "imageTags": [],
+    "reviewTags": [
+      "extensive breakfast brunch menu",
+      "upbeat background music",
+      "bright inviting space",
+      "beautiful fruit display",
+      "amazing service",
+      "reasonable priced menu",
+      "clean and wide variety",
+      "creative recipes",
+      "understand your order",
+      "spectacular service",
+      "great service",
+      "founders hash with grits",
+      "family owned feel",
+      "consistently delightful food",
+      "strawberry croissant doughnuts"
+    ]
+  }
+}

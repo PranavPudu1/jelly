@@ -1,0 +1,48 @@
+{
+  "restaurant": {
+    "id": "b7093326-c7bd-431b-96a8-ef6bd22c0982",
+    "name": "Grilled Chicken",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:06:33.518Z",
+    "scores": {
+      "flavorful": 7,
+      "authentic": 6,
+      "satisfying": 5,
+      "comforting": 6,
+      "aromatic": 6,
+      "appetizing": 5,
+      "overall": 6
+    },
+    "imageTags": [
+      "affordable snack prices",
+      "crispy onion rings selection",
+      "variety of burgers listed",
+      "refreshing lassi yogurt drink",
+      "grilled chicken menu options",
+      "grilled chicken menu",
+      "nighttime food service",
+      "food truck exterior",
+      "variety of soft drinks",
+      "open sign illumination"
+    ],
+    "reviewTags": [
+      "generous portions",
+      "friendly staff",
+      "fast service",
+      "fresh food",
+      "full of flavor",
+      "lack of customer care",
+      "feeling scammed",
+      "overpriced lamb sandwich",
+      "few pieces of meat",
+      "disappointing portion size",
+      "satisfying taste sensation",
+      "unforgettable dining experience",
+      "delicious unique flavors",
+      "highly recommended experience",
+      "fantastic fresh food"
+    ]
+  }
+}

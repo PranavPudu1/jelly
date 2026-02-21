@@ -1,0 +1,48 @@
+{
+  "restaurant": {
+    "id": "c832b962-dc38-49c0-a0da-d232d5c07e78",
+    "name": "Doc B's Restaurant",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:05:03.930Z",
+    "scores": {
+      "flavorful": 7,
+      "authentic": 6,
+      "satisfying": 8,
+      "comforting": 7,
+      "aromatic": 6,
+      "appetizing": 8,
+      "overall": 7
+    },
+    "imageTags": [
+      "crispy sweet potato fries",
+      "elegant dining presentation",
+      "colorful garden salad",
+      "refreshing cocktail drink",
+      "savory grilled chicken dish",
+      "nighttime cityscape charm",
+      "bustling outdoor seating",
+      "modern urban architecture",
+      "stylish glass facade",
+      "illuminated restaurant signage",
+      "inviting glass entrance",
+      "spacious outdoor seating",
+      "stylish stone accents",
+      "modern urban restaurant design",
+      "bright daytime atmosphere"
+    ],
+    "reviewTags": [
+      "custom espresso martini",
+      "delicious fried chicken",
+      "delicious chicken parm",
+      "gracious waitress",
+      "polite and fast service",
+      "excellent service",
+      "good atmosphere",
+      "decent fried chicken",
+      "loud live music",
+      "substitute sides option"
+    ]
+  }
+}

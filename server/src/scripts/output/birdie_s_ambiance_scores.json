@@ -1,0 +1,57 @@
+{
+  "restaurant": {
+    "id": "94732a09-fb31-46a4-ae6e-bd1255fb8f60",
+    "name": "Birdie's",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T02:50:05.743Z",
+    "scores": {
+      "vibrant": 7,
+      "romantic": 6,
+      "trendy": 8,
+      "stylish": 8,
+      "immersive": 6,
+      "inviting": 7,
+      "overall": 7
+    },
+    "imageTags": [
+      "cozy casual seating",
+      "modern minimalist design",
+      "bright natural lighting",
+      "colorful striped pillows",
+      "polished concrete floors",
+      "herb garnish topping",
+      "rustic ceramic plate",
+      "crispy fish skin",
+      "savory seafood sauce",
+      "juicy grilled prawns",
+      "olive oil drizzle",
+      "soft serve ice cream",
+      "cozy counter seating",
+      "wine and dessert pairing",
+      "moist cake slice",
+      "crispy seasoned fries",
+      "shredded parmesan topping",
+      "citrus lemon wedge",
+      "white dish presentation",
+      "fresh ground pepper",
+      "casual dining setup",
+      "open kitchen design",
+      "wooden bar seating",
+      "cozy rug accents",
+      "industrial ceiling fixtures",
+      "fine dining presentation",
+      "crispy bread accompaniment",
+      "red wine pairing",
+      "gourmet appetizer dish",
+      "elegant steak tartare",
+      "rustic wooden table",
+      "freshly grated parmesan",
+      "seasoned black pepper",
+      "mushroom pasta dish",
+      "creamy orecchiette pasta"
+    ],
+    "reviewTags": []
+  }
+}

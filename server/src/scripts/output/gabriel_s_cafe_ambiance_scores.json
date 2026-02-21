@@ -1,0 +1,73 @@
+{
+  "restaurant": {
+    "id": "f0844d81-3086-421d-bb2f-7baaf0669877",
+    "name": "Gabriel's Cafe",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T02:53:08.756Z",
+    "scores": {
+      "vibrant": 6,
+      "romantic": 4,
+      "trendy": 7,
+      "stylish": 7,
+      "immersive": 5,
+      "inviting": 7,
+      "overall": 6
+    },
+    "imageTags": [
+      "casual dining atmosphere",
+      "bright spacious layout",
+      "modern sports bar vibe",
+      "contemporary wooden furniture",
+      "large wall-mounted TVs",
+      "crispy seasoned fries",
+      "casual outdoor dining",
+      "classic cheeseburger setup",
+      "fresh lettuce toppings",
+      "cold craft beverage",
+      "elegant cocktail glass",
+      "dimly lit setting",
+      "salt rimmed margarita",
+      "golden drink hue",
+      "cozy bar atmosphere",
+      "wooden table setting",
+      "roasted brussels sprouts",
+      "crispy smashed potatoes",
+      "savory brown sauce",
+      "juicy steak entree",
+      "crispy seasoned fries",
+      "juicy gourmet burger",
+      "rich melted cheese",
+      "metal ketchup holder",
+      "fresh leafy lettuce",
+      "crispy tortilla chips",
+      "fresh cilantro garnish",
+      "spicy tomato salsa",
+      "pickled red onions",
+      "grilled beef taco",
+      "warm wooden flooring",
+      "cozy café atmosphere",
+      "open hallway view",
+      "modern casual entrance",
+      "inviting interior lighting",
+      "neutral color palette",
+      "modern casual setting",
+      "framed wall art",
+      "comfortable seating area",
+      "wooden table accents"
+    ],
+    "reviewTags": [
+      "tasty smoke beef taco",
+      "flavorful cheese dip",
+      "smoky taco flavor",
+      "fresh salad ingredients",
+      "great friendly service",
+      "quick late bite",
+      "very polite bartender",
+      "delicious tortilla soup",
+      "open before midnight",
+      "convenient hotel restaurant"
+    ]
+  }
+}

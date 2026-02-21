@@ -1,0 +1,73 @@
+{
+  "restaurant": {
+    "id": "e6f5efac-4f39-41bf-bfca-b172462bf6a7",
+    "name": "Suerte",
+    "price": "$$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:11:49.066Z",
+    "scores": {
+      "flavorful": 8,
+      "authentic": 8,
+      "satisfying": 7,
+      "comforting": 7,
+      "aromatic": 8,
+      "appetizing": 9,
+      "overall": 8
+    },
+    "imageTags": [
+      "natural light interior",
+      "modern wooden shelves",
+      "well-stocked bar area",
+      "contemporary restaurant design",
+      "open bar concept",
+      "crispy tortilla chips",
+      "casual dining setup",
+      "assorted dipping sauces",
+      "fresh lime wedges",
+      "pulled pork tacos",
+      "soft corn tortillas",
+      "wooden table setting",
+      "diced onion garnish",
+      "fresh guacamole topping",
+      "shredded beef tacos",
+      "colorful brunch cocktails",
+      "menu highlights brunch specials",
+      "artisan wooden table",
+      "variety of drink presentations",
+      "refreshing tropical flavors",
+      "cozy dining atmosphere",
+      "woven pendant lighting",
+      "warm wooden interiors",
+      "friendly social setting",
+      "bustling open kitchen",
+      "moody bar setting",
+      "salt-rimmed lime garnish",
+      "artisanal cocktail presentation",
+      "frothy pink cocktail",
+      "dim candlelit ambiance",
+      "vibrant edible flowers",
+      "radish and mushroom medley",
+      "rustic wooden dish",
+      "gourmet flatbread presentation",
+      "microgreen topping garnish"
+    ],
+    "reviewTags": [
+      "excellent bar service",
+      "upscale mexican restaurant",
+      "amazing jalapeno pops",
+      "special norteno menu",
+      "succulent wagyu beef",
+      "juicy tender pork",
+      "avocado lime contrast",
+      "make your own taco",
+      "perfect suadero taco",
+      "sauce carried tuna",
+      "impressive tequila selection",
+      "gentle and smooth desserts",
+      "house made tortillas",
+      "dark and moody vibe",
+      "incredible ceviche dish"
+    ]
+  }
+}

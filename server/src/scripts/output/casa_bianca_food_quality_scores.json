@@ -1,0 +1,68 @@
+{
+  "restaurant": {
+    "id": "de03cfb4-e7a0-488f-9398-27061be90f51",
+    "name": "Casa Bianca",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:03:52.114Z",
+    "scores": {
+      "flavorful": 8,
+      "authentic": 7,
+      "satisfying": 8,
+      "comforting": 7,
+      "aromatic": 8,
+      "appetizing": 9,
+      "overall": 8
+    },
+    "imageTags": [
+      "modern wooden interior",
+      "sleek wooden flooring",
+      "bright natural daylight",
+      "pastel green seating",
+      "hanging pendant lighting",
+      "layered dessert creation",
+      "powdered sugar topping",
+      "outdoor dining setting",
+      "chocolate mousse filling",
+      "crisp pastry layers",
+      "wooden table presentation",
+      "freshly shucked oysters",
+      "lemon garnish drizzle",
+      "fine dining appetizer",
+      "seafood on crushed ice",
+      "vibrant cocktails display",
+      "striped paper straw",
+      "fresh citrus garnish",
+      "chic bar backdrop",
+      "modern terrazzo countertop",
+      "glazed chicken wings",
+      "green onion garnish",
+      "decorative floral plate",
+      "crispy fried coating",
+      "savory sticky sauce",
+      "elegant seafood plating",
+      "spicy hot sauce drizzle",
+      "raw oyster presentation",
+      "chilled fresh oysters",
+      "crushed ice bed",
+      "wooden table setting",
+      "fresh herb garnish",
+      "light citrus dressing",
+      "celery leaf decoration",
+      "elegant plated dish",
+      "wooden table setting",
+      "herb crusted fish",
+      "artistic food presentation",
+      "rustic blue china",
+      "creamy side spread"
+    ],
+    "reviewTags": [
+      "crispy confit fried chicken wings",
+      "warm and inviting ambiance",
+      "exceptional service with attention to detail",
+      "fresh oysters and well seasoned",
+      "perfectly cooked branzino"
+    ]
+  }
+}

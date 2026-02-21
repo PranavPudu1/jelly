@@ -1,0 +1,37 @@
+{
+  "restaurant": {
+    "id": "8cd26696-9138-4cd7-b978-4da20ae1fabd",
+    "name": "Another Broken Egg Cafe",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:02:14.513Z",
+    "scores": {
+      "flavorful": 7,
+      "authentic": 6,
+      "satisfying": 8,
+      "comforting": 8,
+      "aromatic": 7,
+      "appetizing": 7,
+      "overall": 7
+    },
+    "imageTags": [],
+    "reviewTags": [
+      "excellent service experience",
+      "kind and helpful staff",
+      "seasonal items always great",
+      "enjoyable dining atmosphere",
+      "clear explanations of menu",
+      "quick food delivery",
+      "relaxed dining experience",
+      "genuine care for details",
+      "attentive and warm service",
+      "positive and calm attitude",
+      "hash brown benedict",
+      "free beignets",
+      "incredible and friendly staff",
+      "amazing food experience",
+      "floridian omelette"
+    ]
+  }
+}

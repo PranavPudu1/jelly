@@ -1,0 +1,27 @@
+{
+  "restaurant": {
+    "id": "4875bad0-685e-43d1-9c72-5c937410e321",
+    "name": "Nightcap",
+    "price": "$$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:09:41.803Z",
+    "scores": {
+      "flavorful": 8,
+      "authentic": 7,
+      "satisfying": 8,
+      "comforting": 7,
+      "aromatic": 8,
+      "appetizing": 8,
+      "overall": 8
+    },
+    "imageTags": [],
+    "reviewTags": [
+      "kind and attentive staff",
+      "delicious food and drinks",
+      "indoor and outdoor seating",
+      "happy hour deals",
+      "champagne greeting"
+    ]
+  }
+}

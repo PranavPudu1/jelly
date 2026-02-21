@@ -1,0 +1,48 @@
+{
+  "restaurant": {
+    "id": "0689c526-65ae-462a-b6c0-72a9a10a6c08",
+    "name": "Shogun Japanese Grill & Sushi Bar",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T02:58:13.691Z",
+    "scores": {
+      "vibrant": 9,
+      "romantic": 6,
+      "trendy": 8,
+      "stylish": 8,
+      "immersive": 7,
+      "inviting": 8,
+      "overall": 8
+    },
+    "imageTags": [
+      "vibrant floral garnish",
+      "fresh seafood presentation",
+      "exquisite sushi platter",
+      "luxurious sashimi variety",
+      "artistic wooden boat display",
+      "elegant wooden accents",
+      "artistic decor elements",
+      "interactive dining experience",
+      "modern sushi bar design",
+      "vibrant lighting displays",
+      "inviting social atmosphere",
+      "charming cat figurine centerpiece",
+      "colorful liquor bottle display",
+      "modern industrial bar design",
+      "whimsical whale light fixtures",
+      "contemporary wooden accents",
+      "vibrant backdrop shelves",
+      "modern sushi bar interior",
+      "stylish bottle display",
+      "unique lighting fixtures"
+    ],
+    "reviewTags": [
+      "great food",
+      "friendly staff",
+      "entertaining dining experience",
+      "recommended grill dishes",
+      "fun chef performance"
+    ]
+  }
+}

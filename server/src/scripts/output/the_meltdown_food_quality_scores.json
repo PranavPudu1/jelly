@@ -1,0 +1,58 @@
+{
+  "restaurant": {
+    "id": "b9b2e95e-6422-4c43-a902-f2f761e5e93b",
+    "name": "The Meltdown",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:12:56.871Z",
+    "scores": {
+      "flavorful": 4,
+      "authentic": 3,
+      "satisfying": 6,
+      "comforting": 5,
+      "aromatic": 4,
+      "appetizing": 5,
+      "overall": 4
+    },
+    "imageTags": [
+      "crispy golden bread",
+      "layered meat and cheese",
+      "hearty lunchtime favorites",
+      "savory grilled fillings",
+      "toasted gourmet sandwiches",
+      "toasted whole grain bread",
+      "crispy golden-brown hash",
+      "savory cheesy egg dish",
+      "satisfying breakfast plate",
+      "freshly cracked sunny-side-up eggs",
+      "crispy french fries",
+      "grilled sandwich with beef",
+      "savoury melted cheese",
+      "refreshing beverage cup",
+      "takeout lunch meal",
+      "crispy toasted bread",
+      "savory sandwich filling",
+      "layered turkey and lettuce",
+      "fresh avocado spread",
+      "takeout packaging",
+      "artisan bread selection",
+      "cheesy comfort food",
+      "variety of sandwich options",
+      "fries on the side",
+      "detailed itemized receipt"
+    ],
+    "reviewTags": [
+      "poor customer service",
+      "disappointing dining experience",
+      "no refund policy",
+      "missing bacon on sandwich",
+      "incorrect order experience",
+      "affordable casual dining",
+      "uninspired flavor profile",
+      "standard diner experience",
+      "okay breakfast options",
+      "fake meat dishes"
+    ]
+  }
+}

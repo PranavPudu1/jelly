@@ -1,0 +1,63 @@
+{
+  "restaurant": {
+    "id": "66baeb5c-3af3-4ba2-be36-81083ba31c8f",
+    "name": "Cenote",
+    "price": "$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T02:51:03.847Z",
+    "scores": {
+      "vibrant": 8,
+      "romantic": 4,
+      "trendy": 7,
+      "stylish": 8,
+      "immersive": 7,
+      "inviting": 8,
+      "overall": 7
+    },
+    "imageTags": [
+      "iced coffee beverage",
+      "sweet potato fries side",
+      "homemade coleslaw filling",
+      "crispy fried chicken burger",
+      "dipping ketchup cup",
+      "spicy dipping sauce",
+      "hearty breakfast sandwich",
+      "scrambled eggs with bacon",
+      "cheddar cheese melting",
+      "flaky buttery croissant",
+      "creamy coffee texture",
+      "freshly brewed espresso",
+      "paired coffee cups",
+      "casual wooden tabletop",
+      "artfully swirled latte",
+      "vibrant turquoise walls",
+      "whimsical forest mural",
+      "rustic wood furniture",
+      "inviting casual atmosphere",
+      "bright sunlight streaming",
+      "vibrant street mural",
+      "captivating wall art",
+      "dynamic goldfish swimming",
+      "artistic urban expression",
+      "lush greenery backdrop",
+      "charming outdoor signage",
+      "creative coffee offerings",
+      "inviting greenery surroundings",
+      "rustic cafe atmosphere",
+      "relaxed dining vibes"
+    ],
+    "reviewTags": [
+      "nice & fresh ingredients",
+      "amazing half sammy salad",
+      "good cold brew whiskey",
+      "great experience overall",
+      "delicious cappuccino art",
+      "delicious pistachio shortbread",
+      "chilaquiles and migas confusion",
+      "austin-y breakfast",
+      "touristy dining experience",
+      "lack of beverage knowledge"
+    ]
+  }
+}

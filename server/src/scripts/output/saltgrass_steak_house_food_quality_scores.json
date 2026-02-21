@@ -1,0 +1,32 @@
+{
+  "restaurant": {
+    "id": "6307ba52-b390-4138-aaf5-5e3816d9deaf",
+    "name": "Saltgrass Steak House",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:11:16.815Z",
+    "scores": {
+      "flavorful": 7,
+      "authentic": 6,
+      "satisfying": 8,
+      "comforting": 8,
+      "aromatic": 7,
+      "appetizing": 7,
+      "overall": 7
+    },
+    "imageTags": [
+      "crispy golden fries",
+      "grilled chicken breast",
+      "smoky barbecue ribs",
+      "rich dipping sauces",
+      "satisfying hearty meal",
+      "caramelized Brussels sprouts",
+      "rustic diner presentation",
+      "rich creamy horseradish",
+      "succulent prime rib slice",
+      "side of savory au jus"
+    ],
+    "reviewTags": []
+  }
+}

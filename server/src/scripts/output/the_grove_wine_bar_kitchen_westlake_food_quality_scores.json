@@ -1,0 +1,32 @@
+{
+  "restaurant": {
+    "id": "4f5a609d-d437-4241-8901-eb04ee28f6cf",
+    "name": "The Grove Wine Bar & Kitchen - Westlake",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:12:44.704Z",
+    "scores": {
+      "flavorful": 7,
+      "authentic": 6,
+      "satisfying": 7,
+      "comforting": 8,
+      "aromatic": 7,
+      "appetizing": 7,
+      "overall": 7
+    },
+    "imageTags": [],
+    "reviewTags": [
+      "eating outside under oak trees",
+      "very fresh ingredients",
+      "nice courtyard seating",
+      "hickory smoked bacon",
+      "toasted sourdough sandwich",
+      "great service",
+      "delicious food",
+      "cramped indoor seating",
+      "multiple tables close together",
+      "other grove locations preferred"
+    ]
+  }
+}

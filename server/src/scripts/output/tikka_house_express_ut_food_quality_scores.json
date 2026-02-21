@@ -1,0 +1,37 @@
+{
+  "restaurant": {
+    "id": "d25a0a11-632c-45b1-9510-aea76c5c88ca",
+    "name": "Tikka house express UT",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:13:28.478Z",
+    "scores": {
+      "flavorful": 8,
+      "authentic": 7,
+      "satisfying": 8,
+      "comforting": 7,
+      "aromatic": 8,
+      "appetizing": 8,
+      "overall": 8
+    },
+    "imageTags": [],
+    "reviewTags": [
+      "satisfying dishes",
+      "welcoming atmosphere",
+      "friendly server staff",
+      "quality cuisine",
+      "pleasant dining experience",
+      "affordable dining options",
+      "convenient campus location",
+      "friendly service environment",
+      "casual eating experience",
+      "highly recommend for students",
+      "exquisite dish presentation",
+      "delicious menu options",
+      "outstanding flavor profile",
+      "diverse culinary offerings",
+      "exceptional taste experience"
+    ]
+  }
+}

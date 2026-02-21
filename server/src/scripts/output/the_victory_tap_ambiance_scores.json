@@ -1,0 +1,48 @@
+{
+  "restaurant": {
+    "id": "5e07cabf-6778-4bf9-8ee7-55070882d2b3",
+    "name": "The Victory Tap",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T02:59:52.835Z",
+    "scores": {
+      "vibrant": 8,
+      "romantic": 3,
+      "trendy": 7,
+      "stylish": 7,
+      "immersive": 5,
+      "inviting": 7,
+      "overall": 7
+    },
+    "imageTags": [
+      "outdoor seating area",
+      "modern patio furniture",
+      "rustic stone wall",
+      "vibrant mural backdrop",
+      "colorful sunshade canopies",
+      "fresh lettuce and tomato",
+      "crispy fried chicken sandwich",
+      "spicy buffalo sauce drizzle",
+      "dipping sauce on the side",
+      "golden crispy French fries",
+      "creamy guacamole topping",
+      "fresh pico de gallo",
+      "spicy jalapeno slices",
+      "loaded chicken nachos",
+      "savory cheese blend"
+    ],
+    "reviewTags": [
+      "bar food nothing special",
+      "spicy chicken pasta",
+      "golf game machine",
+      "old fashion cocktail",
+      "great bartenders",
+      "outstanding service",
+      "very attentive staff",
+      "best hot wings",
+      "fast food delivery",
+      "delicious fresh burgers"
+    ]
+  }
+}

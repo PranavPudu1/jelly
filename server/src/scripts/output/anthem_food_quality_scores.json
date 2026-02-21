@@ -1,0 +1,53 @@
+{
+  "restaurant": {
+    "id": "ba80664a-a909-4d75-9652-5565acc4ef67",
+    "name": "Anthem",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:02:16.255Z",
+    "scores": {
+      "flavorful": 7,
+      "authentic": 6,
+      "satisfying": 8,
+      "comforting": 7,
+      "aromatic": 7,
+      "appetizing": 8,
+      "overall": 7
+    },
+    "imageTags": [
+      "crispy fried wontons",
+      "garnished with scallions",
+      "spicy orange sauce",
+      "flavorful filling",
+      "bite-sized appetizers",
+      "refreshing summer beverage",
+      "spicy rim garnished drink",
+      "decorative citrus slice",
+      "vibrant tropical presentation",
+      "frozen fruity cocktail",
+      "colorful wall art",
+      "inviting dining atmosphere",
+      "modern lighting fixtures",
+      "stylish interior decor",
+      "vibrant green booths"
+    ],
+    "reviewTags": [
+      "tender brisket tacos",
+      "asian texas flavor combinations",
+      "very friendly attentive service",
+      "outstanding adult beverages",
+      "comfortable air conditioned setting",
+      "go-to restaurant",
+      "must-try brisket rangoons",
+      "welcoming and efficient staff",
+      "delicious peach fuzzy",
+      "great for large groups",
+      "chicken and waffles",
+      "not busy atmosphere",
+      "shrimp and fries",
+      "quick seating and service",
+      "eclectic menu offerings"
+    ]
+  }
+}

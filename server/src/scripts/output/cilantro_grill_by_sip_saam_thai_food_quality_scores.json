@@ -1,0 +1,27 @@
+{
+  "restaurant": {
+    "id": "f368d837-eb6a-48fb-8091-eb6866fbf112",
+    "name": "Cilantro Grill by Sip Saam Thai",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:04:15.310Z",
+    "scores": {
+      "flavorful": 8,
+      "authentic": 7,
+      "satisfying": 8,
+      "comforting": 8,
+      "aromatic": 8,
+      "appetizing": 8,
+      "overall": 8
+    },
+    "imageTags": [],
+    "reviewTags": [
+      "vibrant dining experience",
+      "top notch asian cuisine",
+      "pad see ew perfection",
+      "delightful papaya dish",
+      "fusion of cultures"
+    ]
+  }
+}

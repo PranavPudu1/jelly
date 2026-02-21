@@ -1,0 +1,58 @@
+{
+  "restaurant": {
+    "id": "c6f5f8a8-a4d4-497a-a7b8-7fa72310aed1",
+    "name": "Dai Due",
+    "price": "$$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:04:46.770Z",
+    "scores": {
+      "flavorful": 8,
+      "authentic": 7,
+      "satisfying": 8,
+      "comforting": 9,
+      "aromatic": 8,
+      "appetizing": 9,
+      "overall": 8
+    },
+    "imageTags": [
+      "hearty breakfast platter",
+      "fresh garden salad",
+      "smoky pulled pork sandwiches",
+      "fluffy pancakes with toppings",
+      "sunny-side-up eggs",
+      "juicy grilled beef burger",
+      "crispy fried onions garnish",
+      "topped with pickles",
+      "side of creamy macaroni",
+      "sesame seed brioche bun",
+      "smoky charred brisket slices",
+      "crispy bark texture",
+      "seasoned with salt flakes",
+      "juicy pink meat center",
+      "served on white platter",
+      "crispy golden fries",
+      "savory side dish",
+      "appetizing restaurant presentation",
+      "house-made dipping sauces",
+      "freshly cooked potatoes",
+      "coarse sea salt topping",
+      "artisanal plating style",
+      "smoky grilled steak",
+      "crispy charred exterior",
+      "juicy tender meat",
+      "perfectly cooked sunny side eggs",
+      "charred rustic bread slices",
+      "sweet berry jam on the side",
+      "crispy golden roasted potatoes",
+      "buttery grits with cheese"
+    ],
+    "reviewTags": [
+      "impeccable service experience",
+      "wild boar charcuterie board",
+      "creative fresh food",
+      "smoked duck breast decadence",
+      "thinly sliced pastrami reuben"
+    ]
+  }
+}

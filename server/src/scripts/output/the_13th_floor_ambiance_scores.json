@@ -1,0 +1,37 @@
+{
+  "restaurant": {
+    "id": "a17c64e5-5885-469e-b77f-6147a32f7872",
+    "name": "The 13th floor",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T02:59:04.311Z",
+    "scores": {
+      "vibrant": 7,
+      "romantic": 3,
+      "trendy": 6,
+      "stylish": 5,
+      "immersive": 4,
+      "inviting": 5,
+      "overall": 5
+    },
+    "imageTags": [],
+    "reviewTags": [
+      "empty bar vibe",
+      "aggressive tone",
+      "lack of customer service",
+      "rude bartender behavior",
+      "uncomfortable restroom experience",
+      "friendly staff",
+      "decent stage",
+      "amazing live band",
+      "really good sound system",
+      "large selection of beverages",
+      "friendly bartenders",
+      "loud live music",
+      "excellent music venue",
+      "tasty ranch water",
+      "really good bands"
+    ]
+  }
+}

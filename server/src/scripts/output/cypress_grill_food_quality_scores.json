@@ -1,0 +1,33 @@
+{
+  "restaurant": {
+    "id": "1a914801-73ac-4d05-b83c-8a339da3ef7b",
+    "name": "Cypress Grill",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:04:44.909Z",
+    "scores": {
+      "flavorful": 8,
+      "authentic": 7,
+      "satisfying": 8,
+      "comforting": 7,
+      "aromatic": 8,
+      "appetizing": 8,
+      "overall": 8
+    },
+    "imageTags": [
+      "modern outdoor seating",
+      "sunny patio area",
+      "contemporary metal framework",
+      "stylish storefront signage",
+      "greenery planter boxes"
+    ],
+    "reviewTags": [
+      "fresh and crisp salad",
+      "thoughtfully selected ingredients",
+      "generously portioned dish",
+      "bold cajun flavor",
+      "perfectly blackened shrimp"
+    ]
+  }
+}

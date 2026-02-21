@@ -1,0 +1,32 @@
+{
+  "restaurant": {
+    "id": "7716b5e2-61e2-4653-a318-82967bee377e",
+    "name": "The Dirdie Birdie",
+    "price": "$$$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T02:59:13.789Z",
+    "scores": {
+      "vibrant": 8,
+      "romantic": 5,
+      "trendy": 9,
+      "stylish": 8,
+      "immersive": 7,
+      "inviting": 7,
+      "overall": 8
+    },
+    "imageTags": [
+      "modern industrial decor",
+      "casual lounge atmosphere",
+      "vibrant indoor greenery",
+      "soft overhead lighting",
+      "leather seating arrangements",
+      "lively social atmosphere",
+      "modern bar area",
+      "miniature golf setup",
+      "playful urban decor",
+      "colorful neon signage"
+    ],
+    "reviewTags": []
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "restaurant": {
+    "id": "478c40ec-a246-49fd-b41e-e2db77e2703c",
+    "name": "Mandola's Italian Kitchen",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:09:10.302Z",
+    "scores": {
+      "flavorful": 6,
+      "authentic": 7,
+      "satisfying": 6,
+      "comforting": 5,
+      "aromatic": 6,
+      "appetizing": 6,
+      "overall": 6
+    },
+    "imageTags": [
+      "savoury lemon garnish",
+      "spaghetti with fresh tomatoes",
+      "freshly baked artisan bread",
+      "grilled salmon with tomatoes",
+      "roasted asparagus and zucchini"
+    ],
+    "reviewTags": [
+      "unhygienic experience",
+      "generally good food",
+      "poor food safety",
+      "negative dining experience",
+      "unpleasant surprise",
+      "clean and cozy atmosphere",
+      "friendly and polite staff",
+      "fresh and tasty food",
+      "prepared with great care",
+      "service with a smile"
+    ]
+  }
+}

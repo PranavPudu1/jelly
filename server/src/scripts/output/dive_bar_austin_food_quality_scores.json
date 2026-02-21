@@ -1,0 +1,27 @@
+{
+  "restaurant": {
+    "id": "d8ce9a26-8214-40bf-bb18-dfc16e8b1088",
+    "name": "Dive Bar Austin",
+    "price": "$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:05:02.337Z",
+    "scores": {
+      "flavorful": 4,
+      "authentic": 5,
+      "satisfying": 6,
+      "comforting": 5,
+      "aromatic": 4,
+      "appetizing": 4,
+      "overall": 4
+    },
+    "imageTags": [],
+    "reviewTags": [
+      "great drinks",
+      "down to earth vibes",
+      "happening atmosphere",
+      "worth a visit",
+      "great staff"
+    ]
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "restaurant": {
+    "id": "9be6e50f-390b-4771-b55a-9004b035c985",
+    "name": "District Kitchen + Cocktails (Anderson Lane)",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:05:00.777Z",
+    "scores": {
+      "flavorful": 8,
+      "authentic": 7,
+      "satisfying": 9,
+      "comforting": 8,
+      "aromatic": 8,
+      "appetizing": 9,
+      "overall": 8
+    },
+    "imageTags": [
+      "toasted flatbread base",
+      "creamy garlic sauce",
+      "skewered grilled kebabs",
+      "charred tomato garnish",
+      "vibrant plate presentation"
+    ],
+    "reviewTags": [
+      "guava key lime pie",
+      "super good whipped feta",
+      "spring pasta for main course",
+      "moroccan lamb and whipped feta",
+      "cozy dining experience",
+      "welcoming and relaxed atmosphere",
+      "generous portion sizes",
+      "fresh and flavorful dishes",
+      "attentive but unobtrusive service",
+      "balanced and memorable flavors",
+      "alice in wonderland theme",
+      "perfect patio atmosphere",
+      "famous truffle fries",
+      "delicious wedge salad",
+      "delectable carrot zucchini cake"
+    ]
+  }
+}

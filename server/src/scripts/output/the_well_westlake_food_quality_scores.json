@@ -1,0 +1,38 @@
+{
+  "restaurant": {
+    "id": "58e66e10-b8ce-49b8-9698-d1fc9de63d0e",
+    "name": "The Well Westlake",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:13:19.297Z",
+    "scores": {
+      "flavorful": 8,
+      "authentic": 7,
+      "satisfying": 8,
+      "comforting": 7,
+      "aromatic": 8,
+      "appetizing": 9,
+      "overall": 8
+    },
+    "imageTags": [
+      "colorful fresh salads",
+      "vibrant seasonal vegetables",
+      "hearty whole grain sandwich",
+      "crunchy toasted seeds",
+      "light and healthy meal",
+      "pickled onion garnish",
+      "fresh arugula salad",
+      "smoked salmon topping",
+      "zesty lemon drizzle",
+      "artisan whole grain toast"
+    ],
+    "reviewTags": [
+      "amazing food and drinks",
+      "worry-free dining experience",
+      "exceptional food quality",
+      "frequent dining destination",
+      "freedom from cross contamination"
+    ]
+  }
+}

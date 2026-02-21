@@ -1,0 +1,37 @@
+{
+  "restaurant": {
+    "id": "6f439666-0ad9-4965-bbb5-b10a02a087bf",
+    "name": "SP Brazilian SteakHouse",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:11:07.636Z",
+    "scores": {
+      "flavorful": 8,
+      "authentic": 9,
+      "satisfying": 8,
+      "comforting": 8,
+      "aromatic": 8,
+      "appetizing": 7,
+      "overall": 8
+    },
+    "imageTags": [],
+    "reviewTags": [
+      "outstanding service",
+      "bacon wrapped chicken",
+      "good selection of meat",
+      "fried bananas and grilled pineapple",
+      "wonderful desserts",
+      "amazing accommodating staff",
+      "brazilian steakhouse experience",
+      "delicious salad bar",
+      "big back heaven",
+      "authentic brazilian flavors",
+      "exceptional service",
+      "attentive to every detail",
+      "clean and fresh ingredients",
+      "delicious and perfectly cooked meat",
+      "well kept salad bar"
+    ]
+  }
+}

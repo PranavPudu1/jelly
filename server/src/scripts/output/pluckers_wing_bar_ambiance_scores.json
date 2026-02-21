@@ -1,0 +1,37 @@
+{
+  "restaurant": {
+    "id": "c90c4719-9ba2-432a-bda2-b55cbd55c5da",
+    "name": "Pluckers Wing Bar",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T02:57:09.909Z",
+    "scores": {
+      "vibrant": 8,
+      "romantic": 3,
+      "trendy": 6,
+      "stylish": 5,
+      "immersive": 5,
+      "inviting": 8,
+      "overall": 6
+    },
+    "imageTags": [],
+    "reviewTags": [
+      "great atmosphere",
+      "personalized attention",
+      "highly recommended service",
+      "friendly staff experience",
+      "exceptional customer service",
+      "great service",
+      "helpful staff",
+      "generous with cherries",
+      "refreshing shirley temple",
+      "delicious holy mac",
+      "orders came out accurately",
+      "excellent service by walker",
+      "wings are sooo good",
+      "spicy ranch dipping sauce",
+      "best place to watch games"
+    ]
+  }
+}

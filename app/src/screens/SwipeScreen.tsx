@@ -89,7 +89,8 @@ export default function SwipeScreen() {
         long: userLocation?.longitude || 0,
         radius,
         filters: apiFilters,
-        preferences: user?.preferences, // Use user's preference weights for custom sorting
+        preferences: user?.preferences,
+        context: user?.mealContext, // LLM re-ranking context from ContextScreen
         limit: 10,
     });
 

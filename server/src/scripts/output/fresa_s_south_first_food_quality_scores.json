@@ -1,0 +1,32 @@
+{
+  "restaurant": {
+    "id": "3691f408-e917-4d01-9054-4ad8482be557",
+    "name": "Fresa's - South First",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:06:08.468Z",
+    "scores": {
+      "flavorful": 5,
+      "authentic": 4,
+      "satisfying": 6,
+      "comforting": 5,
+      "aromatic": 5,
+      "appetizing": 5,
+      "overall": 5
+    },
+    "imageTags": [],
+    "reviewTags": [
+      "great flavor queso dip",
+      "bland taco ingredients",
+      "overwhelming toppings without flavor",
+      "great outdoor patio ambiance",
+      "slow and inconsistent service",
+      "large group friendly",
+      "delicious agua frescas",
+      "zero complaints about food",
+      "busy parking situation",
+      "warm and prompt service"
+    ]
+  }
+}

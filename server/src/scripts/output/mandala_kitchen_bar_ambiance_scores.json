@@ -1,0 +1,37 @@
+{
+  "restaurant": {
+    "id": "46e54e96-32f7-468b-9bca-441cf3b5615d",
+    "name": "Mandala Kitchen & Bar",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T02:55:58.950Z",
+    "scores": {
+      "vibrant": 6,
+      "romantic": 7,
+      "trendy": 6,
+      "stylish": 7,
+      "immersive": 5,
+      "inviting": 8,
+      "overall": 6
+    },
+    "imageTags": [],
+    "reviewTags": [
+      "cozy patio atmosphere",
+      "big portion sizes",
+      "great city view",
+      "delicious thai food",
+      "polite server",
+      "mini pancakes and pad thai",
+      "amazing dish suggestions",
+      "great weekend dinner spot",
+      "vietnamese chicken curry",
+      "welcoming and attentive service",
+      "sweet and savory combination",
+      "unique coconut cream sauce",
+      "heavily topped rice pie",
+      "crispy rice crust",
+      "well-balanced cajun spices"
+    ]
+  }
+}

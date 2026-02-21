@@ -1,0 +1,32 @@
+{
+  "restaurant": {
+    "id": "da518061-bf23-4a47-a5d3-24d6cc0e119c",
+    "name": "El Naranjo",
+    "price": "$$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:05:26.112Z",
+    "scores": {
+      "flavorful": 8,
+      "authentic": 7,
+      "satisfying": 8,
+      "comforting": 7,
+      "aromatic": 8,
+      "appetizing": 9,
+      "overall": 8
+    },
+    "imageTags": [
+      "modern minimalist decor",
+      "casual dining atmosphere",
+      "stylish pendant lighting",
+      "vibrant yellow walls",
+      "artistic framed photographs",
+      "fluffy white rice",
+      "fresh edible flowers garnish",
+      "rich dark mole sauce",
+      "crispy golden plantains",
+      "succulent sliced duck breast"
+    ],
+    "reviewTags": []
+  }
+}

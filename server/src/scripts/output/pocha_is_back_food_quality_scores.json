@@ -1,0 +1,42 @@
+{
+  "restaurant": {
+    "id": "ba8a67de-b885-4d40-a20a-ad9948aef819",
+    "name": "Pocha is Back",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:10:29.972Z",
+    "scores": {
+      "flavorful": 8,
+      "authentic": 9,
+      "satisfying": 8,
+      "comforting": 9,
+      "aromatic": 8,
+      "appetizing": 8,
+      "overall": 8
+    },
+    "imageTags": [
+      "nostalgic atmosphere",
+      "retro Korean pub signage",
+      "vintage architectural aesthetic",
+      "charming street scene",
+      "quaint urban vibe",
+      "elegantly presented slices",
+      "chilled dessert platter",
+      "rich chocolate drizzle",
+      "creamy green tea ice cream",
+      "smooth and refreshing",
+      "spicy seafood noodle soup",
+      "savory spicy beef stew",
+      "traditional Korean dishes",
+      "steamed pork with kimchi",
+      "hearty kimchi hot pot",
+      "steamed white rice",
+      "sizzling grilled pork",
+      "refreshing cold drinks",
+      "traditional Korean cuisine",
+      "colorful side dishes"
+    ],
+    "reviewTags": []
+  }
+}

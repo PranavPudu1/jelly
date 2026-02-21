@@ -1,0 +1,63 @@
+{
+  "restaurant": {
+    "id": "9b304d1c-a5be-4070-83e8-748c16f07c33",
+    "name": "The Pizza Press",
+    "price": "$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T02:59:40.828Z",
+    "scores": {
+      "vibrant": 7,
+      "romantic": 3,
+      "trendy": 7,
+      "stylish": 6,
+      "immersive": 5,
+      "inviting": 6,
+      "overall": 6
+    },
+    "imageTags": [
+      "assorted gourmet pizzas",
+      "colorful vegetable toppings",
+      "fresh herb garnishes",
+      "rustic wooden paddles",
+      "dipping sauces assortment",
+      "evening urban atmosphere",
+      "modern storefront design",
+      "hanging potted plants",
+      "bright illuminated signage",
+      "inviting glass facade",
+      "fresh cilantro garnish",
+      "crispy thin crust",
+      "barbecue sauce drizzle",
+      "colorful vegetable medley",
+      "gourmet pizza toppings",
+      "casual dining setup",
+      "wooden serving board",
+      "crispy cheese edges",
+      "thin crust pizza",
+      "pepperoni and sausage toppings",
+      "crispy golden crust",
+      "side of marinara sauce",
+      "cheesy garlic breadsticks",
+      "sprinkled herbal seasoning",
+      "sliced for sharing",
+      "cozy booth seating",
+      "industrial ceiling design",
+      "seasonal pumpkin decor",
+      "artisanal pendant lighting",
+      "brick wall kitchen backdrop"
+    ],
+    "reviewTags": [
+      "nice pizza",
+      "limited toppings",
+      "good flavor",
+      "not extra crispy",
+      "conveyor belt pizza",
+      "good customer service",
+      "thin-crusted pizza",
+      "personalized to your liking",
+      "pizza press team",
+      "served quickly"
+    ]
+  }
+}

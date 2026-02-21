@@ -1,0 +1,37 @@
+{
+  "restaurant": {
+    "id": "ce4919a7-b5f3-4d46-96a3-e88499d92f89",
+    "name": "Haywire",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:06:42.526Z",
+    "scores": {
+      "flavorful": 7,
+      "authentic": 6,
+      "satisfying": 8,
+      "comforting": 8,
+      "aromatic": 7,
+      "appetizing": 8,
+      "overall": 7
+    },
+    "imageTags": [
+      "colorful cocktail presentation",
+      "salted rim garnishes",
+      "vibrant drink hues",
+      "fresh lime slices",
+      "artisan mixology craft",
+      "unique wooden serving vessel",
+      "dramatic visual effect",
+      "artisan drink with garnish",
+      "crafted cocktail experience",
+      "smoky whiskey presentation",
+      "crispy fried chicken",
+      "buttery mashed potatoes",
+      "rustic wooden table setting",
+      "sautéed green vegetables",
+      "creamy white gravy"
+    ],
+    "reviewTags": []
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "restaurant": {
+    "id": "b8363116-8ffe-4ddd-87c0-a97e869f4904",
+    "name": "Blind Salamander Kitchen & Bar",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T02:50:08.853Z",
+    "scores": {
+      "vibrant": 4,
+      "romantic": 7,
+      "trendy": 5,
+      "stylish": 6,
+      "immersive": 5,
+      "inviting": 7,
+      "overall": 6
+    },
+    "imageTags": [],
+    "reviewTags": [
+      "good portion size",
+      "well presented food",
+      "quiet atmosphere",
+      "tasty lamp chop",
+      "nice place inside resort",
+      "attentive and pleasant service",
+      "roasting marshmallows activity",
+      "inventive and flavorful dishes",
+      "fun dining experience",
+      "special date night destination"
+    ]
+  }
+}

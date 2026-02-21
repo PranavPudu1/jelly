@@ -1,0 +1,73 @@
+{
+  "restaurant": {
+    "id": "cf6afb84-d5f3-4146-ba05-32e4febc57bf",
+    "name": "Marufuku Ramen Austin",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T02:56:06.388Z",
+    "scores": {
+      "vibrant": 6,
+      "romantic": 5,
+      "trendy": 7,
+      "stylish": 8,
+      "immersive": 5,
+      "inviting": 7,
+      "overall": 6
+    },
+    "imageTags": [
+      "open airy layout",
+      "large glass windows",
+      "sleek pendant lighting",
+      "modern wooden decor",
+      "minimalist furniture style",
+      "tender pork slices",
+      "hearty ramen bowl",
+      "colorful vegetable toppings",
+      "seaweed garnish touch",
+      "savory broth flavors",
+      "tender pork slices",
+      "soft boiled egg",
+      "traditional Japanese dish",
+      "creamy broth ramen",
+      "vibrant mixed toppings",
+      "fresh green garnish",
+      "tabletop soy sauce",
+      "spicy ramen bowl",
+      "rich orange broth",
+      "hard-boiled egg topping",
+      "savory takoyaki balls",
+      "creamy ramen broth",
+      "fresh scallion garnish",
+      "sesame chicken topping",
+      "perfect soft-boiled egg",
+      "casual dining presentation",
+      "wooden serving board",
+      "glazed roast chicken",
+      "sizzling chicken platter",
+      "crispy bean sprouts",
+      "wooden beam ceiling",
+      "large glass windows",
+      "casual dining crowd",
+      "modern chandelier lighting",
+      "bottle-lined bar display",
+      "casual dining presentation",
+      "crispy calamari tentacles",
+      "lightly battered snack",
+      "savory fried appetizer",
+      "lemon aioli dip"
+    ],
+    "reviewTags": [
+      "satisfying ramen",
+      "warm and inviting interior",
+      "creamy matcha cheesecake",
+      "fancy dinner date",
+      "great umami taste",
+      "enjoyable atmosphere",
+      "best ramen place",
+      "typical service quality",
+      "limited menu selection",
+      "delicious broths"
+    ]
+  }
+}

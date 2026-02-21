@@ -1,0 +1,37 @@
+{
+  "restaurant": {
+    "id": "d013b246-680d-45f4-9b93-736c2ed609c5",
+    "name": "Backporch Social",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:02:32.545Z",
+    "scores": {
+      "flavorful": 3,
+      "authentic": 2,
+      "satisfying": 5,
+      "comforting": 4,
+      "aromatic": 3,
+      "appetizing": 3,
+      "overall": 3
+    },
+    "imageTags": [],
+    "reviewTags": [
+      "fun games available",
+      "large deck with seating",
+      "great area for kids",
+      "outdoor stage area",
+      "clean inside with tables",
+      "fun dj atmosphere",
+      "great staff service",
+      "live music on thursdays",
+      "welcoming patio",
+      "great kids play area",
+      "sweet potato fries",
+      "good for families and kids",
+      "great hangout place",
+      "not recommended for eating",
+      "tasted like frozen food"
+    ]
+  }
+}

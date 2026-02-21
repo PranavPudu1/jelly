@@ -1,0 +1,58 @@
+{
+  "restaurant": {
+    "id": "5e9557b9-1f59-404a-a02c-3179cb1af5c0",
+    "name": "Austin's Very Own Saltt",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:02:23.435Z",
+    "scores": {
+      "flavorful": 8,
+      "authentic": 7,
+      "satisfying": 8,
+      "comforting": 9,
+      "aromatic": 8,
+      "appetizing": 7,
+      "overall": 8
+    },
+    "imageTags": [
+      "informal dining atmosphere",
+      "modern decor aesthetic",
+      "bright green awnings",
+      "well-lit entrance area",
+      "welcoming seafood restaurant facade",
+      "hearty comfort food",
+      "savory fried chicken platter",
+      "scallions and spice blend",
+      "tender marinated chicken",
+      "crispy golden French fries"
+    ],
+    "reviewTags": [
+      "happy hour with coworkers",
+      "friendly and generous service",
+      "art and music interior",
+      "boudin balls",
+      "work day relaxation spot",
+      "perfectly crispy chicken",
+      "great food and great people",
+      "kind and welcoming owner",
+      "flavorful fried shrimp tacos",
+      "fluffy waffles",
+      "beautiful energy and vibe",
+      "soft and fluffy waffles",
+      "perfectly fried chicken",
+      "light tempura-style fry",
+      "live r&b jazz atmosphere",
+      "tingling spice flavor",
+      "highly recommend return",
+      "perfect crispness fries",
+      "signature drink brown sugar",
+      "fried perfectly catfish",
+      "house made jalapeño ranch",
+      "thoroughly seasoned chicken",
+      "best turtle cheesecake",
+      "amazing music",
+      "artsy decor"
+    ]
+  }
+}

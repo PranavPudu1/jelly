@@ -1,0 +1,48 @@
+{
+  "restaurant": {
+    "id": "2d9d50b8-eee4-49f5-8372-db41fecb5904",
+    "name": "Lustre Pearl Rainey",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:08:50.255Z",
+    "scores": {
+      "flavorful": 5,
+      "authentic": 4,
+      "satisfying": 6,
+      "comforting": 6,
+      "aromatic": 5,
+      "appetizing": 6,
+      "overall": 5
+    },
+    "imageTags": [
+      "outdoor string lights",
+      "nighttime urban setting",
+      "casual dining atmosphere",
+      "screen for entertainment",
+      "large grassy area",
+      "rustic wooden decor",
+      "vibrant purple lighting",
+      "inviting outdoor seating",
+      "laid-back social atmosphere",
+      "accessible drink counter",
+      "rustic wooden decor",
+      "lively bar atmosphere",
+      "vibrant neon lighting",
+      "unique mounted moose head",
+      "disco ball reflections",
+      "urban dining atmosphere",
+      "inviting entrance design",
+      "rustic outdoor seating area",
+      "vibrant yellow food truck",
+      "casual neighborhood pub"
+    ],
+    "reviewTags": [
+      "great prices",
+      "great ambience",
+      "best staff",
+      "friendly manager",
+      "great bar"
+    ]
+  }
+}

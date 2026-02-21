@@ -1,0 +1,68 @@
+{
+  "restaurant": {
+    "id": "fffffa59-3bb3-4e99-9905-9b0fb8d2c16e",
+    "name": "Joe's Slice of Sicily",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:07:29.316Z",
+    "scores": {
+      "flavorful": 8,
+      "authentic": 9,
+      "satisfying": 8,
+      "comforting": 9,
+      "aromatic": 8,
+      "appetizing": 8,
+      "overall": 8
+    },
+    "imageTags": [
+      "pizza by the slice",
+      "authentic New York pizza",
+      "wooden logs display",
+      "craft and organic groceries",
+      "quaint local market",
+      "rich tomato sauce",
+      "crispy golden crust",
+      "fresh basil garnish",
+      "melted mozzarella cheese",
+      "classic margherita pizza",
+      "rich cheesy filling",
+      "dripping with sauce",
+      "crispy crust texture",
+      "flaky golden calzone",
+      "savory meat and vegetable",
+      "savory chicken parm rolls",
+      "crispy golden empanadas",
+      "variety of savory fillings",
+      "flaky calzone pastries",
+      "BBQ chicken flavors",
+      "creamy ranch dipping sauce",
+      "hot cheesy pizza slices",
+      "crispy pepperoni topping",
+      "garlic butter breadsticks",
+      "savory pizza takeout meal",
+      "casual dining atmosphere",
+      "bright colorful signage",
+      "fresh produce display",
+      "welcoming open layout",
+      "menu on large screens",
+      "house salad selections available",
+      "Italian calzones and rolls",
+      "varied sandwich menu options",
+      "affordable pizza slices",
+      "appetizers with unique flavors"
+    ],
+    "reviewTags": [
+      "personal touch in cooking",
+      "community-focused atmosphere",
+      "commitment to quality ingredients",
+      "real warmth in cooking",
+      "authentic ny pizza",
+      "flavorful garlic knots",
+      "delicious pepperoni slice",
+      "authentic pizza experience",
+      "great conversation with owner",
+      "cozy lunch spot"
+    ]
+  }
+}

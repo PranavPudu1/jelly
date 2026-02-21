@@ -1,0 +1,62 @@
+{
+  "restaurant": {
+    "id": "16932c26-d218-4bd2-ae57-05e7f4a007f7",
+    "name": "ACHIAME OCTAVIOS KITCHEN",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:01:56.921Z",
+    "scores": {
+      "flavorful": 6,
+      "authentic": 5,
+      "satisfying": 7,
+      "comforting": 7,
+      "aromatic": 6,
+      "appetizing": 6,
+      "overall": 6
+    },
+    "imageTags": [
+      "stuffed breakfast burrito",
+      "grilled tortilla wrap",
+      "savory beef filling",
+      "diced avocado slices",
+      "side of hot peppers",
+      "cheesy scrambled eggs",
+      "avocado and salsa",
+      "side of spicy jalapeños",
+      "hearty breakfast burrito",
+      "grilled flour tortilla",
+      "crinkle cut fries",
+      "fresh lettuce topping",
+      "classic cheeseburger serving",
+      "casual diner presentation",
+      "basket paper liner",
+      "crispy chicken sandwich",
+      "crinkle cut fries",
+      "fresh lettuce topping",
+      "black serving basket",
+      "brioche bun",
+      "metal serving tray",
+      "loaded burger sandwich",
+      "fast food platter",
+      "crispy crinkle-cut fries",
+      "checkered wrap presentation",
+      "fluffy scrambled eggs",
+      "creamy dipping sauce",
+      "fresh tomato slices",
+      "crispy bacon slices",
+      "brioche breakfast sandwich",
+      "fresh avocado slices",
+      "soft flour tortilla",
+      "spicy jalapeño toppings",
+      "diced tomato salsa",
+      "grilled beef filling",
+      "creamy sesame dressing",
+      "sliced fresh avocado",
+      "vibrant veggie bowl",
+      "black beans and corn",
+      "colorful tomato medley"
+    ],
+    "reviewTags": []
+  }
+}

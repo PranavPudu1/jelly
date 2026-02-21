@@ -1,0 +1,42 @@
+{
+  "restaurant": {
+    "id": "9b4f35fe-61cf-4c2c-b4b5-1e0d493d2a2f",
+    "name": "Violet Sky Rooftop Lounge",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:14:09.869Z",
+    "scores": {
+      "flavorful": 7,
+      "authentic": 6,
+      "satisfying": 7,
+      "comforting": 6,
+      "aromatic": 7,
+      "appetizing": 8,
+      "overall": 7
+    },
+    "imageTags": [
+      "modern bar setup",
+      "dimly lit interior",
+      "sleek countertops",
+      "variety of liquor bottles",
+      "artisanal cocktail ingredients",
+      "diverse wine selection",
+      "Italian wine offerings",
+      "elegant rooftop bar",
+      "local Texas wines",
+      "affordable pricing options",
+      "elegant wine pairing",
+      "colorful plate presentation",
+      "crisp cucumber slices",
+      "juicy grilled steak slices",
+      "fresh garden salad garnish",
+      "colorful cocktail presentation",
+      "premium glassware",
+      "intimate evening vibes",
+      "refreshing sunset cocktails",
+      "elegant rooftop drinks"
+    ],
+    "reviewTags": []
+  }
+}

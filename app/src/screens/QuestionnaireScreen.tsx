@@ -384,7 +384,7 @@ export default function QuestionnaireScreen({
         }
 
         AnimationPresets.buttonPress(buttonScale).start(() => {
-            navigation.replace('MainTabs');
+            navigation.replace('Context');
         });
     }
 

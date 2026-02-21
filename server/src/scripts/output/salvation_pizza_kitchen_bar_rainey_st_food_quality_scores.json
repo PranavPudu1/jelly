@@ -1,0 +1,37 @@
+{
+  "restaurant": {
+    "id": "048f429d-e4c0-4148-abb6-902249f4b7f2",
+    "name": "Salvation Pizza Kitchen & Bar - Rainey St",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:11:20.389Z",
+    "scores": {
+      "flavorful": 7,
+      "authentic": 6,
+      "satisfying": 7,
+      "comforting": 8,
+      "aromatic": 7,
+      "appetizing": 6,
+      "overall": 7
+    },
+    "imageTags": [],
+    "reviewTags": [
+      "slow service",
+      "good food",
+      "not enough seating",
+      "unacceptable wait time",
+      "poor timing of meals",
+      "delicious food",
+      "new ownership",
+      "full dining area",
+      "dirty martini pizza",
+      "great management",
+      "fresh delicious food",
+      "margerhita pizza with pepperoni",
+      "excellent customer service",
+      "great place for drinks",
+      "friendly professional staff"
+    ]
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "restaurant": {
+    "id": "c67a66b4-9a0e-46fd-8bf2-588cad95b6a8",
+    "name": "Alpetra Plus",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:02:08.244Z",
+    "scores": {
+      "flavorful": 7,
+      "authentic": 8,
+      "satisfying": 8,
+      "comforting": 8,
+      "aromatic": 7,
+      "appetizing": 7,
+      "overall": 7
+    },
+    "imageTags": [
+      "crispy fried okra",
+      "golden brown coating",
+      "savory crunchy texture",
+      "southern comfort food",
+      "bite-sized vegetables",
+      "fresh garden salad",
+      "aluminum takeout container",
+      "sliced gyro meat",
+      "spicy jalapeno garnish",
+      "crispy cucumber slices",
+      "creamy sauce drizzle",
+      "hearty comfort food",
+      "loaded cheese fries",
+      "topped with lettuce",
+      "foil tray serving",
+      "crispy falafel balls",
+      "sesame seed coating",
+      "takeout parchment wrap",
+      "deep fried texture",
+      "traditional middle eastern",
+      "urban dining experience",
+      "halal food truck",
+      "nighttime street setting",
+      "multicultural cuisine options",
+      "bright neon signage",
+      "crispy falafel balls",
+      "fresh vegetable salad",
+      "colorful pickled garnishes",
+      "fragrant yellow rice",
+      "plated in foil tray",
+      "creamy yogurt sauce",
+      "juicy cherry tomatoes",
+      "herb infused pita",
+      "grilled eggplant filling",
+      "fresh vegetable wrap"
+    ],
+    "reviewTags": [
+      "good customer service",
+      "working hard for us",
+      "falafel of rice",
+      "food truck",
+      "gyro of rice",
+      "beautiful food truck",
+      "creamy jalapeño sauce",
+      "chicken over rice",
+      "best in the campus",
+      "warm place to sit",
+      "affordable prices",
+      "exciting west campus find",
+      "pickled baby corn addition",
+      "best chicken over rice",
+      "fresh and crispy salad"
+    ]
+  }
+}

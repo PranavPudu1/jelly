@@ -18,6 +18,7 @@ import LocationProvider from './src/contexts/LocationContext';
 import SplashScreenComponent from './src/screens/SplashScreen';
 import AuthScreen from './src/screens/AuthScreen';
 import QuestionnaireScreen from './src/screens/QuestionnaireScreen';
+import ContextScreen from './src/screens/ContextScreen';
 import SwipeScreen from './src/screens/SwipeScreen';
 import SavedRestaurantsScreen from './src/screens/SavedRestaurantsScreen';
 import UserProfileScreen from './src/screens/UserProfileScreen';
@@ -29,6 +30,7 @@ export type RootStackParamList = {
     Splash: undefined;
     Auth: undefined;
     Questionnaire: undefined;
+    Context: undefined;
     MainTabs: undefined;
 };
 
@@ -188,6 +190,11 @@ export default function App() {
                                         <Stack.Screen
                                             name="Questionnaire"
                                             component={ QuestionnaireScreen }
+                                        />
+
+                                        <Stack.Screen
+                                            name="Context"
+                                            component={ ContextScreen }
                                         />
 
                                         <Stack.Screen name="MainTabs" component={ MainTabs } />

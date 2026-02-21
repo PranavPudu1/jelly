@@ -1,0 +1,53 @@
+{
+  "restaurant": {
+    "id": "883868df-15dc-4d19-8dbe-c213ce1ce56c",
+    "name": "épicerie",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:14:48.480Z",
+    "scores": {
+      "flavorful": 8,
+      "authentic": 7,
+      "satisfying": 8,
+      "comforting": 9,
+      "aromatic": 8,
+      "appetizing": 8,
+      "overall": 8
+    },
+    "imageTags": [
+      "intimate seating arrangement",
+      "warm wooden accents",
+      "festive holiday decorations",
+      "cozy rustic dining area",
+      "inviting bar counter ambiance",
+      "garnished with chives",
+      "succulent grilled steak",
+      "crispy golden fries",
+      "creamy dipping sauce",
+      "rich red wine pairing"
+    ],
+    "reviewTags": [
+      "delightful trout tartare",
+      "cozy quaint atmosphere",
+      "generous and polite service",
+      "delicious fried shrimp po boy",
+      "perfectly baked french onion",
+      "delicious but pricey food",
+      "dark crunchy biscuits",
+      "paris-like atmosphere",
+      "intimate lunch or dinner",
+      "quaint quiet small vibe",
+      "friendly and attentive staff",
+      "perfect birthday celebration",
+      "relaxed airy bright atmosphere",
+      "smoke signal cocktail",
+      "amazing dining experience",
+      "outstanding food",
+      "relaxing dining experience",
+      "peaches with meringue",
+      "exceptional bartender service",
+      "adorable atmosphere"
+    ]
+  }
+}

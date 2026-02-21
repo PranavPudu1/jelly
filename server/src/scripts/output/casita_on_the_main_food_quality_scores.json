@@ -1,0 +1,43 @@
+{
+  "restaurant": {
+    "id": "c2104b62-3997-49d8-a0b8-3ef42074db41",
+    "name": "Casita on the Main",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:03:56.775Z",
+    "scores": {
+      "flavorful": 8,
+      "authentic": 7,
+      "satisfying": 8,
+      "comforting": 9,
+      "aromatic": 7,
+      "appetizing": 8,
+      "overall": 8
+    },
+    "imageTags": [
+      "melted cheesy goodness",
+      "toasted buttery bread",
+      "loaded with toppings",
+      "golden crunchy exterior",
+      "savory grilled sandwich",
+      "tender juicy meat",
+      "zesty dipping sauce",
+      "fresh crispy lettuce",
+      "hearty indulgent flavors",
+      "fluffy sandwich buns",
+      "casual dining setup",
+      "foil-wrapped fresh ingredients",
+      "colorful dipping sauces",
+      "coffee to complement meal",
+      "savory breakfast tacos"
+    ],
+    "reviewTags": [
+      "friendly staff",
+      "great flavor tacos",
+      "in-house salsa",
+      "family owned restaurant",
+      "classic breakfast spot"
+    ]
+  }
+}

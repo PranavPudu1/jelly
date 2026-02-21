@@ -1,0 +1,33 @@
+{
+  "restaurant": {
+    "id": "24563d1d-610a-4048-91d3-14af19a9325d",
+    "name": "Phoebe's Diner",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:10:19.457Z",
+    "scores": {
+      "flavorful": 5,
+      "authentic": 4,
+      "satisfying": 6,
+      "comforting": 7,
+      "aromatic": 5,
+      "appetizing": 6,
+      "overall": 5
+    },
+    "imageTags": [
+      "fluffy scrambled eggs",
+      "rich creamy gravy",
+      "crispy fried chicken atop eggs",
+      "savory breakfast plate",
+      "hearty side of hash browns"
+    ],
+    "reviewTags": [
+      "friendly staff",
+      "cutesy place",
+      "too much lemon",
+      "liquid smoke flavor",
+      "minimalist effort"
+    ]
+  }
+}

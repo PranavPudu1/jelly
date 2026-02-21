@@ -1,0 +1,53 @@
+{
+  "restaurant": {
+    "id": "320ff029-448d-422a-b92f-1fd77c4cba4b",
+    "name": "Sundancer Grill",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:11:52.101Z",
+    "scores": {
+      "flavorful": 8,
+      "authentic": 6,
+      "satisfying": 8,
+      "comforting": 9,
+      "aromatic": 7,
+      "appetizing": 8,
+      "overall": 8
+    },
+    "imageTags": [
+      "casual relaxed atmosphere",
+      "rustic wooden furniture",
+      "airy waterfront dining",
+      "open floor plan layout",
+      "large windows and natural light",
+      "fresh green lettuce",
+      "crispy golden fries",
+      "toasted brioche bun",
+      "juicy bacon cheeseburger",
+      "thick red onion slices",
+      "outdoor seating available",
+      "welcoming red accents",
+      "charming wooden facade",
+      "cozy lakeside dining",
+      "quaint waterfront view",
+      "charming outdoor seating",
+      "cozy roadside eatery",
+      "surrounding natural greenery",
+      "well-lit welcoming facade",
+      "rustic architectural style",
+      "crispy fried chicken tenders",
+      "toasted white bread slices",
+      "heaping comfort food platter",
+      "homestyle diner meal",
+      "golden brown french fries"
+    ],
+    "reviewTags": [
+      "fresh crisp side salad",
+      "blackened fish tacos",
+      "helpful friendly service",
+      "incredibly flavorful dishes",
+      "fantastic dining experience"
+    ]
+  }
+}

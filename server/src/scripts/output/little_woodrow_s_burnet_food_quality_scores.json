@@ -1,0 +1,62 @@
+{
+  "restaurant": {
+    "id": "0f8cfea5-deba-4d3b-b123-1c4ff0226659",
+    "name": "Little Woodrow's Burnet",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:08:38.915Z",
+    "scores": {
+      "flavorful": 6,
+      "authentic": 5,
+      "satisfying": 7,
+      "comforting": 7,
+      "aromatic": 6,
+      "appetizing": 6,
+      "overall": 6
+    },
+    "imageTags": [
+      "bright neon signage",
+      "vibrant craft beer selection",
+      "informal social atmosphere",
+      "large flat-screen TV",
+      "cozy wooden bar interior",
+      "outdoor dining setting",
+      "plaid paper serving dish",
+      "thick crust pizza slice",
+      "chilled amber beer",
+      "black olives and herbs",
+      "open airy layout",
+      "casual dining atmosphere",
+      "rustic wooden furniture",
+      "vintage sports memorabilia",
+      "vibrant colorful lighting",
+      "vibrant outdoor seating",
+      "lively atmosphere with fans",
+      "colorful patio furniture",
+      "rustic brick bar area",
+      "spacious wooden deck",
+      "casual dining atmosphere",
+      "local bar establishment",
+      "vintage neon sign",
+      "live trivia events",
+      "Texas style pizza",
+      "rustic wooden architecture",
+      "casual dining atmosphere",
+      "spacious outdoor seating",
+      "large shade-providing tree",
+      "vibrant welcoming signage",
+      "casual dining vibe",
+      "outdoor seating area",
+      "rustic wooden exterior",
+      "colorful mural art",
+      "welcoming porch entrance",
+      "colorful neon lighting",
+      "casual bar atmosphere",
+      "vintage brick wall decor",
+      "television sports broadcast",
+      "craft beer on display"
+    ],
+    "reviewTags": []
+  }
+}

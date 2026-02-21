@@ -1,0 +1,32 @@
+{
+  "restaurant": {
+    "id": "9caf4a78-2ebd-43ac-9fd7-604364fa4b94",
+    "name": "Bungalow",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:03:21.943Z",
+    "scores": {
+      "flavorful": 6,
+      "authentic": 5,
+      "satisfying": 7,
+      "comforting": 6,
+      "aromatic": 5,
+      "appetizing": 7,
+      "overall": 6
+    },
+    "imageTags": [],
+    "reviewTags": [
+      "adorable vintage house front",
+      "plush indoor upscale seating",
+      "funky mirror art experience",
+      "chill secret back yard area",
+      "great for group photos",
+      "outdoor dining experience",
+      "neat seating in back courtyard",
+      "ranch water cocktails",
+      "margarita recommendation",
+      "photo opportunity mural"
+    ]
+  }
+}

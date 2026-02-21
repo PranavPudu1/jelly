@@ -1,0 +1,68 @@
+{
+  "restaurant": {
+    "id": "02052853-c979-4eeb-8b19-8c4e1eec47c7",
+    "name": "Buenos Aires Café",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T02:50:27.091Z",
+    "scores": {
+      "vibrant": 8,
+      "romantic": 7,
+      "trendy": 6,
+      "stylish": 8,
+      "immersive": 7,
+      "inviting": 8,
+      "overall": 8
+    },
+    "imageTags": [
+      "long communal tables",
+      "intimate dining setup",
+      "warm cozy lighting",
+      "artistic wall decor",
+      "rustic wooden beams",
+      "grilled meats selection",
+      "elegant cheese platter",
+      "fresh seasonal vegetables",
+      "exquisite table setting",
+      "varied gourmet dishes",
+      "chimichurri dipping sauce",
+      "lemon garnish centerpiece",
+      "herb sprinkled presentation",
+      "mixed grilled meats",
+      "sliced crusty bread",
+      "rustic wooden platter",
+      "golden baked empanadas",
+      "fresh herb garnish",
+      "chimichurri sauce accompaniment",
+      "savory pastry appetizer",
+      "fresh lemon garnish",
+      "grilled meat platter",
+      "chimichurri sauce accompaniment",
+      "herb sprinkled steak",
+      "assorted bread slices",
+      "vibrant mural facade",
+      "inviting cafe entrance",
+      "colorful outdoor seating",
+      "chalkboard menu sign",
+      "cozy street-side decor"
+    ],
+    "reviewTags": [
+      "totally delicious flan",
+      "awesome food",
+      "passion fruit margaritas",
+      "great choice empanadas",
+      "wonderful staff of servers",
+      "delicious desserts",
+      "good cocktails",
+      "delicious empanadas",
+      "step in and see desserts",
+      "can't go wrong ordering desserts",
+      "amazing staff",
+      "sincere replacement effort",
+      "high price dishes",
+      "very good service",
+      "wrong meat doneness"
+    ]
+  }
+}

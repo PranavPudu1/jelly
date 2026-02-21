@@ -1,0 +1,42 @@
+{
+  "restaurant": {
+    "id": "e40f9dd9-039f-4391-bd5c-66a1ef5eca11",
+    "name": "The Rainey House",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T02:59:44.860Z",
+    "scores": {
+      "vibrant": 8,
+      "romantic": 4,
+      "trendy": 7,
+      "stylish": 6,
+      "immersive": 5,
+      "inviting": 6,
+      "overall": 6
+    },
+    "imageTags": [],
+    "reviewTags": [
+      "incredible staff",
+      "espresso martinis to die for",
+      "bangin music",
+      "perfect afternoon spot",
+      "cosmic loves cocktail",
+      "disappointing service experience",
+      "broken outdoor televisions",
+      "lacking atmosphere",
+      "opening day chaos",
+      "flat and inconsistent drinks",
+      "great cocktails",
+      "best bar on rainey street",
+      "unique drink selection",
+      "lively nightlife vibe",
+      "different and fun atmosphere",
+      "great food",
+      "great drinks",
+      "highly recommended",
+      "awesome music",
+      "sxsw atmosphere"
+    ]
+  }
+}

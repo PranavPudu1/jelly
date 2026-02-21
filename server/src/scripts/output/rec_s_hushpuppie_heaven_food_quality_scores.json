@@ -1,0 +1,68 @@
+{
+  "restaurant": {
+    "id": "92338787-1cb4-48c2-9c4f-0fa0d987a241",
+    "name": "Rec's Hushpuppie Heaven",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:10:50.102Z",
+    "scores": {
+      "flavorful": 7,
+      "authentic": 6,
+      "satisfying": 8,
+      "comforting": 8,
+      "aromatic": 7,
+      "appetizing": 7,
+      "overall": 7
+    },
+    "imageTags": [
+      "casual dining atmosphere",
+      "vibrant outdoor seating",
+      "colorful exterior signage",
+      "inviting neighborhood eatery",
+      "sunny sidewalk view",
+      "casual dining exterior",
+      "bright colorful signage",
+      "simple brick facade",
+      "convenient neighborhood spot",
+      "local eatery charm",
+      "savory onion rings",
+      "golden cornmeal crusted fish",
+      "seasoned fried seafood selection",
+      "flavorful hush puppies",
+      "crispy fried shrimp platter",
+      "creamy dipping sauces",
+      "basket with checkered paper",
+      "crispy golden corn fritters",
+      "fluffy interior texture",
+      "satisfying snack platter",
+      "creamy green sauce",
+      "savory grilled meat",
+      "toasty soft bun",
+      "fresh diced tomatoes",
+      "loaded sandwich goodness",
+      "casual dining atmosphere",
+      "welcoming food spot",
+      "rustic brick exterior",
+      "local eatery charm",
+      "colorful signage design"
+    ],
+    "reviewTags": [
+      "fair crinkle cut fries",
+      "delicious shrimp hushpuppies",
+      "moist and tender fish",
+      "crispy catfish basket",
+      "inviting lunch atmosphere",
+      "shrimp and jalapeño stuffed hush puppies",
+      "small and clean atmosphere",
+      "perfectly breaded catfish",
+      "fried shrimp and catfish combo",
+      "seasoned fries",
+      "excellent service experience",
+      "clean and welcoming atmosphere",
+      "crispy catfish basket",
+      "golden brown hushpuppies",
+      "creamy macaroni and cheese"
+    ]
+  }
+}

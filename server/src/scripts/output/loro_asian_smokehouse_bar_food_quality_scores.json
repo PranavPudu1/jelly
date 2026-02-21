@@ -1,0 +1,27 @@
+{
+  "restaurant": {
+    "id": "a752722f-6649-467c-a927-66f5fcf734be",
+    "name": "Loro Asian Smokehouse & Bar",
+    "price": "$$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:08:43.473Z",
+    "scores": {
+      "flavorful": 8,
+      "authentic": 7,
+      "satisfying": 8,
+      "comforting": 8,
+      "aromatic": 8,
+      "appetizing": 8,
+      "overall": 8
+    },
+    "imageTags": [
+      "eye-catching mural design",
+      "Asian smokehouse signage",
+      "smoked meats feature",
+      "outdoor dining atmosphere",
+      "cold beer offerings"
+    ],
+    "reviewTags": []
+  }
+}

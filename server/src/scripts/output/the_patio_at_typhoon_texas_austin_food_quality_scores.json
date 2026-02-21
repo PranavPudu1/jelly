@@ -1,0 +1,48 @@
+{
+  "restaurant": {
+    "id": "086b5b00-9a0b-4726-a70e-a1c06b9a39c0",
+    "name": "The Patio at Typhoon Texas Austin",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:12:58.902Z",
+    "scores": {
+      "flavorful": 6,
+      "authentic": 5,
+      "satisfying": 7,
+      "comforting": 7,
+      "aromatic": 5,
+      "appetizing": 6,
+      "overall": 6
+    },
+    "imageTags": [
+      "refreshing iced beverage",
+      "carbonated drink with ice",
+      "garnished with apple slice",
+      "jarred drink presentation",
+      "stylish rustic decor",
+      "casual dining experience",
+      "crispy golden French fries",
+      "condiment packets on the tray",
+      "juicy beef hamburger piled with toppings",
+      "paper tray presentation",
+      "golden brown exterior",
+      "rustic presentation style",
+      "served with dipping sauce",
+      "freshly prepared appetizer",
+      "crispy fried okra bites",
+      "zesty tomato salsa",
+      "crispy and golden",
+      "perfect game day snack",
+      "appetizer sharing platter",
+      "freshly made tortilla chips"
+    ],
+    "reviewTags": [
+      "casual dining spot",
+      "best chicken strips",
+      "fun dining atmosphere",
+      "great music and drinks",
+      "great family experience"
+    ]
+  }
+}

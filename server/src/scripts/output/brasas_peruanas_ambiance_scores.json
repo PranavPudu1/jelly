@@ -1,0 +1,38 @@
+{
+  "restaurant": {
+    "id": "ef90de3c-34da-426e-9ac0-2dec7a12cda9",
+    "name": "Brasas Peruanas",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T02:50:24.491Z",
+    "scores": {
+      "vibrant": 5,
+      "romantic": 3,
+      "trendy": 4,
+      "stylish": 5,
+      "immersive": 3,
+      "inviting": 6,
+      "overall": 4
+    },
+    "imageTags": [
+      "fluffy white rice",
+      "savory soy sauce glaze",
+      "crispy golden french fries",
+      "sizzling beef with vegetables",
+      "colorful stir-fried onions"
+    ],
+    "reviewTags": [
+      "slow service experience",
+      "different version of chicken soup",
+      "made fresh to order",
+      "flavorful fried rice",
+      "delicious beef empanada",
+      "attentive service",
+      "odd layout",
+      "tallarin saltado limeño",
+      "tacu tacu limeño",
+      "less tender beef"
+    ]
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "restaurant": {
+    "id": "546c0871-06b8-451e-adaf-78a6c9b1043b",
+    "name": "Ojos Locos Sports Cantina (South Austin, TX)",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:10:02.965Z",
+    "scores": {
+      "flavorful": 6,
+      "authentic": 5,
+      "satisfying": 7,
+      "comforting": 6,
+      "aromatic": 5,
+      "appetizing": 5,
+      "overall": 6
+    },
+    "imageTags": [],
+    "reviewTags": [
+      "cold beer",
+      "legit chips and salsa",
+      "huge wings",
+      "lots of tvs",
+      "lively music"
+    ]
+  }
+}

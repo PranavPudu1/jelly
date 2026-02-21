@@ -1,0 +1,32 @@
+{
+  "restaurant": {
+    "id": "3f9605d2-4f35-4573-8639-01bf092168ba",
+    "name": "Little Brother",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:08:35.953Z",
+    "scores": {
+      "flavorful": 7,
+      "authentic": 6,
+      "satisfying": 7,
+      "comforting": 6,
+      "aromatic": 7,
+      "appetizing": 7,
+      "overall": 7
+    },
+    "imageTags": [],
+    "reviewTags": [
+      "zesty zombie coffee drink",
+      "passionate and knowledgeable staff",
+      "fantastic espresso and americano",
+      "washed ethiopian coffee",
+      "bar in the afternoon and night",
+      "great vibe",
+      "super cool bar",
+      "80s movies",
+      "super nes video games",
+      "cool owner"
+    ]
+  }
+}

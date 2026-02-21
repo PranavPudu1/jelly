@@ -1,0 +1,53 @@
+{
+  "restaurant": {
+    "id": "41cf63a7-c889-4f42-a53b-a7d5092c5958",
+    "name": "Lee’s Kitchen + Cocktails",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:08:27.769Z",
+    "scores": {
+      "flavorful": 6,
+      "authentic": 7,
+      "satisfying": 6,
+      "comforting": 7,
+      "aromatic": 7,
+      "appetizing": 6,
+      "overall": 6
+    },
+    "imageTags": [
+      "warm inviting atmosphere",
+      "stylish bar area",
+      "elegant floral centerpieces",
+      "bright airy dining space",
+      "modern minimalistic decor",
+      "variety of dipping sauces",
+      "rich aromatic broth",
+      "sliced meat and onions",
+      "fresh herbs and greens",
+      "steaming bowl of pho",
+      "iced coffee drinks",
+      "stylish glassware display",
+      "delicate floral arrangement",
+      "refreshing beverage presentation",
+      "modern cafe setting",
+      "savory dipping sauces",
+      "grilled chicken fillets",
+      "fluffy fried rice",
+      "freshly chopped scallions",
+      "colorful diced vegetables"
+    ],
+    "reviewTags": [
+      "lovely atmosphere",
+      "great service experience",
+      "frozen grocery-store egg rolls",
+      "off pho flavor",
+      "authentic vietnamese options",
+      "cozy outdoor patio",
+      "exceptional cocktail selection",
+      "thoughtfully prepared appetizers",
+      "rich flavorful pho",
+      "welcoming family atmosphere"
+    ]
+  }
+}

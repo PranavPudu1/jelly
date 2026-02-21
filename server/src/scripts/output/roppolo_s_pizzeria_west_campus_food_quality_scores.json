@@ -1,0 +1,27 @@
+{
+  "restaurant": {
+    "id": "d7f47ad1-1a47-463c-91a0-cb2ed444c0b1",
+    "name": "Roppolo’s Pizzeria West Campus",
+    "price": "$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:10:58.323Z",
+    "scores": {
+      "flavorful": 8,
+      "authentic": 7,
+      "satisfying": 8,
+      "comforting": 9,
+      "aromatic": 7,
+      "appetizing": 7,
+      "overall": 8
+    },
+    "imageTags": [],
+    "reviewTags": [
+      "awesome atmosphere",
+      "best pizza we've ever tasted",
+      "new regular",
+      "warm and welcoming team",
+      "best crust around"
+    ]
+  }
+}

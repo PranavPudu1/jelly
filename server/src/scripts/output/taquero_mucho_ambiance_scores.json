@@ -1,0 +1,43 @@
+{
+  "restaurant": {
+    "id": "a7b2e4f5-15bf-4521-9eeb-a8623c3ca045",
+    "name": "Taquero Mucho",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T02:58:54.830Z",
+    "scores": {
+      "vibrant": 9,
+      "romantic": 6,
+      "trendy": 9,
+      "stylish": 8,
+      "immersive": 7,
+      "inviting": 8,
+      "overall": 8
+    },
+    "imageTags": [
+      "refreshing summer drinks",
+      "stylish glassware display",
+      "colorful cocktail drinks",
+      "garnished beverage presentation",
+      "vibrant nightlife atmosphere",
+      "floral hanging installations",
+      "vibrant pink interior design",
+      "modern chic restaurant decor",
+      "neon light signage accents",
+      "spacious dining area layout",
+      "fluffy white rice",
+      "hearty beans soup",
+      "vibrant pink tortillas",
+      "savory grilled meat",
+      "tangy onion garnish"
+    ],
+    "reviewTags": [
+      "tender flavorful carnitas",
+      "relaxed enjoyable meal",
+      "fun vibrant energy",
+      "best I’ve had in a long time",
+      "courteous prompt service"
+    ]
+  }
+}

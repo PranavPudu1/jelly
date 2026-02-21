@@ -1,0 +1,63 @@
+{
+  "restaurant": {
+    "id": "2052263d-476f-4d72-99b8-f4842720cac8",
+    "name": "Tommy Want Wingy",
+    "price": "$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:13:31.178Z",
+    "scores": {
+      "flavorful": 8,
+      "authentic": 7,
+      "satisfying": 8,
+      "comforting": 9,
+      "aromatic": 7,
+      "appetizing": 8,
+      "overall": 8
+    },
+    "imageTags": [
+      "playful cartoonish design",
+      "casual urban eatery",
+      "food truck street art",
+      "inviting outdoor dining",
+      "colorful food truck branding",
+      "crispy golden coating",
+      "colorful cartoon figure",
+      "giant fried chicken leg",
+      "festive food presentation",
+      "restaurant branding paper",
+      "variety of flavorful sauces",
+      "tater tots with ranch",
+      "unique food truck menu",
+      "savory garlic fries",
+      "crispy chicken lollipops",
+      "outdoor string lights",
+      "casual dining atmosphere",
+      "rustic wooden exterior",
+      "inviting gathering space",
+      "vintage saloon signage"
+    ],
+    "reviewTags": [
+      "never disappoints",
+      "food trailer experience",
+      "reliable quality",
+      "long-standing favorite",
+      "tommy want wingy",
+      "electric atmosphere",
+      "cold brew",
+      "south austin vibe",
+      "bar intersection energy",
+      "stellar wings",
+      "casual ordering experience",
+      "delicious crispy wings",
+      "perfectly cooked food",
+      "even better tots",
+      "underrated food truck",
+      "hot buffalo sauce",
+      "conveniently located",
+      "plenty of places to walk",
+      "best wings in atx",
+      "food made to order"
+    ]
+  }
+}

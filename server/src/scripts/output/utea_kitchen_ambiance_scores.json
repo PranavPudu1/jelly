@@ -1,0 +1,32 @@
+{
+  "restaurant": {
+    "id": "2859f5d5-4631-4f92-b92e-7a1d8073724f",
+    "name": "UTea Kitchen",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:00:28.558Z",
+    "scores": {
+      "vibrant": 7,
+      "romantic": 4,
+      "trendy": 6,
+      "stylish": 6,
+      "immersive": 5,
+      "inviting": 7,
+      "overall": 6
+    },
+    "imageTags": [
+      "fresh garden salad",
+      "steamed edamame beans",
+      "crispy spring rolls with sauce",
+      "crunchy tortilla strips",
+      "vibrant cherry tomatoes",
+      "fresh green herbs assortment",
+      "crunchy bean sprouts mix",
+      "vibrant salad presentation",
+      "sliced spicy jalapeños",
+      "healthy vegetable selection"
+    ],
+    "reviewTags": []
+  }
+}

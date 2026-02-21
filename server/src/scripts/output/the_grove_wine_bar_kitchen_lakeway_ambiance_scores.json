@@ -1,0 +1,58 @@
+{
+  "restaurant": {
+    "id": "282aa524-52bc-4979-949e-bbd7bc21d04b",
+    "name": "The Grove Wine Bar & Kitchen - Lakeway",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T02:59:21.991Z",
+    "scores": {
+      "vibrant": 7,
+      "romantic": 8,
+      "trendy": 8,
+      "stylish": 8,
+      "immersive": 6,
+      "inviting": 8,
+      "overall": 7
+    },
+    "imageTags": [
+      "soft ambient lighting",
+      "contemporary wooden accents",
+      "large arched windows",
+      "spacious modern dining area",
+      "elegant wine display wall",
+      "warm ambient lighting",
+      "modern industrial decor",
+      "elegant dining atmosphere",
+      "extensive wine collection",
+      "stylish seating options",
+      "artisanal toasted bruschetta",
+      "savory avocado spread",
+      "crisp apple and blue cheese",
+      "vibrant fresh tomato garnish",
+      "topped with crispy bacon",
+      "served on metal tray",
+      "fresh lettuce and tomato",
+      "savory deli-style sandwich",
+      "toasted sandwich rolls",
+      "crispy homemade potato chips",
+      "modern architectural design",
+      "spacious outdoor area",
+      "stunning panoramic views",
+      "bright blue sky",
+      "lush green hillside"
+    ],
+    "reviewTags": [
+      "excellent service",
+      "texas red fish",
+      "intimate outside seating",
+      "best bruschetta",
+      "memorable dining experience",
+      "pretty good noodles",
+      "best views",
+      "lesser vegetarian options",
+      "tejas bowl",
+      "better cheese pizza"
+    ]
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "restaurant": {
+    "id": "c6e678b7-25e6-43a1-b9bd-32936f910d88",
+    "name": "Crazy Conchaz",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T02:51:35.117Z",
+    "scores": {
+      "vibrant": 8,
+      "romantic": 5,
+      "trendy": 7,
+      "stylish": 7,
+      "immersive": 6,
+      "inviting": 9,
+      "overall": 7
+    },
+    "imageTags": [],
+    "reviewTags": [
+      "incredible service",
+      "amazing hibiscus tea",
+      "hidden gem for breakfast",
+      "best breakfast tacos",
+      "perfect breakfast experience",
+      "welcoming environment",
+      "amazing bartender service",
+      "best drinks all night",
+      "super friendly atmosphere",
+      "attentive drink service",
+      "delicious conchaz sliders",
+      "great time chatting",
+      "beautiful lively venue",
+      "$3 mimosas deal",
+      "friendly bartenders and gm"
+    ]
+  }
+}

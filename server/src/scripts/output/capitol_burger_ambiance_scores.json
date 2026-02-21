@@ -1,0 +1,48 @@
+{
+  "restaurant": {
+    "id": "d479d8d6-a173-4126-ba2b-7d11cc445159",
+    "name": "Capitol Burger",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T02:50:49.585Z",
+    "scores": {
+      "vibrant": 6,
+      "romantic": 3,
+      "trendy": 5,
+      "stylish": 5,
+      "immersive": 4,
+      "inviting": 7,
+      "overall": 5
+    },
+    "imageTags": [
+      "zesty green salsa",
+      "sliced avocado garnish",
+      "savory grilled meat tacos",
+      "crispy taco shells",
+      "fresh cilantro and onion",
+      "fresh lettuce and tomato",
+      "juicy beef patty",
+      "crispy cheesy fries",
+      "yellow wax paper wrap",
+      "bacon topped burger"
+    ],
+    "reviewTags": [
+      "friendly owner service",
+      "delicious diablo burger",
+      "limited parking availability",
+      "authentic barbacoa tacos",
+      "great customer experience",
+      "packed with flavor",
+      "crispy perfectly seasoned fries",
+      "best burger spots",
+      "hot and fresh food",
+      "huge juicy burgers",
+      "made to perfection",
+      "always hot fries",
+      "fresh and tasty ingredients",
+      "new go-to burger joint",
+      "delicious seasoning on meat"
+    ]
+  }
+}

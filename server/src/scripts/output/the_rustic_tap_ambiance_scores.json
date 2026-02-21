@@ -1,0 +1,42 @@
+{
+  "restaurant": {
+    "id": "b8f0a3e1-5222-45ce-8f20-df0614e58ae0",
+    "name": "The Rustic Tap",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T02:59:48.069Z",
+    "scores": {
+      "vibrant": 7,
+      "romantic": 5,
+      "trendy": 6,
+      "stylish": 6,
+      "immersive": 7,
+      "inviting": 6,
+      "overall": 6
+    },
+    "imageTags": [],
+    "reviewTags": [
+      "live music performances",
+      "amazing sound quality",
+      "intimate week night vibe",
+      "great west austin spot",
+      "up-and-coming artists",
+      "live music atmosphere",
+      "easy to drink cocktails",
+      "campfire-style setups",
+      "laid-back spot",
+      "cozy homey vibe",
+      "cool door guy",
+      "horrible service",
+      "disappointing experience",
+      "automatic 20% gratuity",
+      "bartenders in bad mood",
+      "numerous large screens",
+      "food hits the spot",
+      "live music venue",
+      "texas and national bands",
+      "great place to watch games"
+    ]
+  }
+}

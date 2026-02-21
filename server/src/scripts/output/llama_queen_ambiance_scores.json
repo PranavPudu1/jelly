@@ -1,0 +1,73 @@
+{
+  "restaurant": {
+    "id": "97520ca7-e159-4420-ae6b-6f60fdcad3d9",
+    "name": "Llama Queen",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T02:55:32.160Z",
+    "scores": {
+      "vibrant": 8,
+      "romantic": 7,
+      "trendy": 7,
+      "stylish": 8,
+      "immersive": 7,
+      "inviting": 8,
+      "overall": 8
+    },
+    "imageTags": [
+      "cozy outdoor seating",
+      "wooden picnic tables",
+      "lush green plants",
+      "string lights ambiance",
+      "outdoor patio heaters",
+      "crispy golden potatoes",
+      "fluffy white rice",
+      "colorful vegetable mix",
+      "vibrant Peruvian dish",
+      "savory beef strips",
+      "peruvian cuisine menu",
+      "classic dishes selection",
+      "varied seafood options",
+      "to share or start appetizers",
+      "traditional dessert choices",
+      "fresh cilantro garnish",
+      "vibrant ceviche bowl",
+      "sweet potato slices",
+      "marinated red onions",
+      "crispy calamari topping",
+      "garnished cocktail glasses",
+      "stylish evening ambiance",
+      "warm wooden table setting",
+      "vibrant fruity cocktails",
+      "elegant drink presentation",
+      "wooden table setting",
+      "savory dipping sauce",
+      "rustic ceramic plate",
+      "crispy fried seafood",
+      "colorful vegetable garnish",
+      "rustic wooden table",
+      "fluffy white rice",
+      "colorful vegetable garnish",
+      "creamy bean stew",
+      "tender meat chunks",
+      "wooden table setting",
+      "grilled beef skewers",
+      "roasted baby potatoes",
+      "black presentation plate",
+      "herb chimichurri topping"
+    ],
+    "reviewTags": [
+      "prompt and friendly service",
+      "good portion size",
+      "tasty beef dishes",
+      "large group friendly",
+      "tasty chicken dishes",
+      "vibrant dining vibe",
+      "traditional peruvian drinks",
+      "authentic classic dishes",
+      "great for family visits",
+      "amazing sunset view"
+    ]
+  }
+}

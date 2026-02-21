@@ -1,0 +1,32 @@
+{
+  "restaurant": {
+    "id": "5b0b6bab-e63e-42fe-8644-890ef8f2f56c",
+    "name": "CHOO SANDO",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T02:50:35.160Z",
+    "scores": {
+      "vibrant": 8,
+      "romantic": 4,
+      "trendy": 8,
+      "stylish": 7,
+      "immersive": 5,
+      "inviting": 7,
+      "overall": 7
+    },
+    "imageTags": [
+      "bright yellow wall decor",
+      "inviting seating area",
+      "modern pastry display case",
+      "charming floral accents",
+      "sleek black and white flooring",
+      "crispy pork cutlet sandwich",
+      "tender meat with sauce",
+      "Japanese style katsu sando",
+      "fluffy white bread layers",
+      "savory cabbage filling"
+    ],
+    "reviewTags": []
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "restaurant": {
+    "id": "63011506-13fc-4a38-92a2-d0ec3d219949",
+    "name": "Flower Child",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:05:54.445Z",
+    "scores": {
+      "flavorful": 7,
+      "authentic": 6,
+      "satisfying": 7,
+      "comforting": 7,
+      "aromatic": 6,
+      "appetizing": 8,
+      "overall": 7
+    },
+    "imageTags": [
+      "warm ambient lighting",
+      "modern industrial decor",
+      "open kitchen design",
+      "fresh greenery accents",
+      "inviting communal seating",
+      "grilled chicken slices",
+      "colorful vegetable medley",
+      "fresh garden salads",
+      "artful wooden table setting",
+      "rich red wine glass",
+      "outdoor dining area",
+      "modern rustic design",
+      "vibrant green exterior",
+      "playful colorful seating",
+      "inviting garden display"
+    ],
+    "reviewTags": [
+      "beautifully presented food",
+      "delicious food",
+      "amazing atmosphere",
+      "extremely nice service",
+      "cute decorations"
+    ]
+  }
+}

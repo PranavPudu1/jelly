@@ -1,0 +1,62 @@
+{
+  "restaurant": {
+    "id": "8b6ab5bf-428d-478b-80a9-c014a330ec2a",
+    "name": "Hippy Eats and Spiritual Healing",
+    "price": "$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:06:49.924Z",
+    "scores": {
+      "flavorful": 7,
+      "authentic": 8,
+      "satisfying": 7,
+      "comforting": 6,
+      "aromatic": 7,
+      "appetizing": 8,
+      "overall": 7
+    },
+    "imageTags": [
+      "bright fluorescent lighting",
+      "cozy culinary workspace",
+      "vibrant colored dishware",
+      "organized counter space",
+      "compact restaurant kitchen",
+      "crispy falafel balls",
+      "creamy hummus dip",
+      "stuffed grape leaves",
+      "fresh Greek salad mix",
+      "Mediterranean platter arrangement",
+      "crispy falafel balls",
+      "stuffed grape leaves",
+      "fresh greek salad mix",
+      "creamy hummus drizzle",
+      "colorful mediterranean platter",
+      "vibrant food truck",
+      "peaceful spiritual theme",
+      "healing and readings available",
+      "rustic outdoor vibe",
+      "international flavor offerings",
+      "savory meat filling",
+      "hearty handheld meal",
+      "stuffed pita bread",
+      "crispy baked texture",
+      "grilled vegetables mix",
+      "outdoor food truck",
+      "casual picnic setting",
+      "strawberry milkshake delight",
+      "relaxed park atmosphere",
+      "handcrafted beverage cup",
+      "fresh lime wedges",
+      "colorful veggie bowl",
+      "jalapeno pepper slices",
+      "checkered table surface",
+      "spicy cream drizzle",
+      "colorful veggie filling",
+      "crusty baguette bread",
+      "healthy sandwich option",
+      "checker pattern paper",
+      "fresh vegetable sandwich"
+    ],
+    "reviewTags": []
+  }
+}

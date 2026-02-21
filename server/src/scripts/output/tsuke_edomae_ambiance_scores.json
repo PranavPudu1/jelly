@@ -1,0 +1,73 @@
+{
+  "restaurant": {
+    "id": "234ca5f6-13a4-4119-adf1-f523db13ec2b",
+    "name": "Tsuke Edomae",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:00:11.636Z",
+    "scores": {
+      "vibrant": 6,
+      "romantic": 8,
+      "trendy": 8,
+      "stylish": 9,
+      "immersive": 7,
+      "inviting": 8,
+      "overall": 8
+    },
+    "imageTags": [
+      "soft ambient lighting",
+      "modern Japanese decor",
+      "artistic wall projection",
+      "private dining experience",
+      "minimalist wooden interior",
+      "freshly sliced tuna sushi",
+      "savory ocean flavor",
+      "premium quality sashimi",
+      "vibrant pink tuna cuts",
+      "traditional Japanese presentation",
+      "artistic plate presentation",
+      "evocative ocean flavors",
+      "savoring fresh seafood",
+      "delicate sea urchin sushi",
+      "premium sushi experience",
+      "crispy golden topping",
+      "artisan culinary creation",
+      "delicate flavor profile",
+      "creamy textured dessert",
+      "rich custard base",
+      "artful presentation on plate",
+      "perfectly molded rice",
+      "succulent shrimp topping",
+      "fresh and flavorful ingredients",
+      "delicate sushi craftsmanship"
+    ],
+    "reviewTags": [
+      "surprising uni highlight",
+      "perfectly balanced sushi",
+      "exceptional fish quality",
+      "engaging and personable chef",
+      "intimate minimalist space",
+      "enjoyable dining experience",
+      "kind and personable chef",
+      "well-balanced delicate seasoning",
+      "fresh and high-quality sashimi",
+      "excellent uni and sake selection",
+      "inviting cozy atmosphere",
+      "best sushi in austin",
+      "spectacular service",
+      "fresh and well balanced",
+      "attention to detail",
+      "intimate dining experience",
+      "best quality sushi",
+      "small cozy setting",
+      "fun shared atmosphere",
+      "passionate staff knowledge",
+      "amazing birthday dinner",
+      "make reservations early",
+      "fab omakase experience",
+      "felt taken care of",
+      "chef mike's stories"
+    ]
+  }
+}

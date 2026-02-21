@@ -1,0 +1,38 @@
+{
+  "restaurant": {
+    "id": "b2e859b5-a515-412e-89e4-20273543e811",
+    "name": "Jack & Ginger's",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:07:15.579Z",
+    "scores": {
+      "flavorful": 6,
+      "authentic": 7,
+      "satisfying": 8,
+      "comforting": 8,
+      "aromatic": 6,
+      "appetizing": 7,
+      "overall": 6
+    },
+    "imageTags": [
+      "creamy dipping sauces",
+      "green checkered paper",
+      "sea salt sprinkled",
+      "rustic aluminum tray",
+      "soft giant pretzel"
+    ],
+    "reviewTags": [
+      "traditional irish style pub",
+      "friendly attentive servers",
+      "jumbo pretzels and queso",
+      "intimate seating area",
+      "fresh beer on tap",
+      "lively atmosphere",
+      "friendly service",
+      "great place to hang out",
+      "solid drinks",
+      "good food and good vibes"
+    ]
+  }
+}

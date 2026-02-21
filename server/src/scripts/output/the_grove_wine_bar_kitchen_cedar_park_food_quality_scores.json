@@ -1,0 +1,37 @@
+{
+  "restaurant": {
+    "id": "6ca5ed46-76bd-4782-96ba-0e289114a1ac",
+    "name": "The Grove Wine Bar & Kitchen - Cedar Park",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:12:40.288Z",
+    "scores": {
+      "flavorful": 7,
+      "authentic": 6,
+      "satisfying": 8,
+      "comforting": 7,
+      "aromatic": 7,
+      "appetizing": 8,
+      "overall": 7
+    },
+    "imageTags": [],
+    "reviewTags": [
+      "gluten free friendly menu",
+      "modern coffeehouse vibe",
+      "upscale bistro atmosphere",
+      "creamy miso dressing",
+      "perfect brunch cocktail",
+      "excellent service",
+      "great outdoor seating",
+      "relaxing atmosphere",
+      "fresh food offerings",
+      "great wine selection",
+      "soft poached eggs",
+      "hollandaise sauce perfection",
+      "beautifully decorated restaurant",
+      "great location with parking",
+      "indoor and outdoor seating"
+    ]
+  }
+}

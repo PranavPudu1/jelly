@@ -1,0 +1,68 @@
+{
+  "restaurant": {
+    "id": "a23221e3-3abf-4cab-b847-b4adc2107f6e",
+    "name": "Five Four Restaurant & Drafthouse- Cedar Park",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T02:52:46.282Z",
+    "scores": {
+      "vibrant": 5,
+      "romantic": 3,
+      "trendy": 4,
+      "stylish": 5,
+      "immersive": 3,
+      "inviting": 6,
+      "overall": 4
+    },
+    "imageTags": [
+      "crispy fried chicken",
+      "creamy white gravy",
+      "buttery cheddar biscuit",
+      "fluffy mashed potatoes",
+      "fresh coleslaw salad",
+      "melted cheddar cheese",
+      "crispy golden fries",
+      "fresh lettuce and tomato",
+      "juicy grilled beef patty",
+      "toasted sesame seed bun",
+      "crispy tortilla chips",
+      "crispy fried appetizers",
+      "creamy cheese dip",
+      "warm bread rolls",
+      "spicy salsa contrast",
+      "creamy chicken penne pasta",
+      "fresh spinach and herbs",
+      "toasted garlic bread slices",
+      "grated parmesan cheese topping",
+      "side of tortilla chips",
+      "buttery toasted bread",
+      "crispy golden french fries",
+      "hearty sandwich with au jus",
+      "smooth tangy dipping sauces",
+      "savory roast beef filling",
+      "crispy onion rings",
+      "creamy macaroni cheese",
+      "hearty comfort meal",
+      "smoky barbecued ribs",
+      "satisfying savory platter"
+    ],
+    "reviewTags": [
+      "sweet potato fries",
+      "flavorful potato soup",
+      "great place to eat",
+      "blackened ribeye steak",
+      "quickly corrected service",
+      "attentive service",
+      "good flavor",
+      "food served warm",
+      "tequila wrappers",
+      "chicken fried steak",
+      "dry chicken fried chicken",
+      "good cuban sandwich",
+      "small portion sizes",
+      "disappointing dining experience",
+      "lacking service quality"
+    ]
+  }
+}

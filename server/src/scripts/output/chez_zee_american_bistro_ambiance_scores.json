@@ -1,0 +1,43 @@
+{
+  "restaurant": {
+    "id": "fd4cb838-76e8-48f0-9f8e-ce1809b0c386",
+    "name": "Chez Zee American Bistro",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T02:51:12.931Z",
+    "scores": {
+      "vibrant": 7,
+      "romantic": 8,
+      "trendy": 6,
+      "stylish": 7,
+      "immersive": 6,
+      "inviting": 8,
+      "overall": 7
+    },
+    "imageTags": [
+      "charming outdoor seating",
+      "lush green plants",
+      "inviting walkway atmosphere",
+      "cozy overhead lighting",
+      "vibrant table decor"
+    ],
+    "reviewTags": [
+      "bland chicken breast",
+      "chewy gamey steak",
+      "great cheesecake",
+      "oily pasta dish",
+      "poor kids pizza",
+      "delicious food",
+      "cute setup",
+      "thoughtful touches",
+      "attentive and kind service",
+      "great drink recommendations",
+      "friendly and helpful staff",
+      "complimentary fried pickle chips",
+      "low lights and soft music",
+      "new orleans pecan chicken",
+      "top of the line service"
+    ]
+  }
+}

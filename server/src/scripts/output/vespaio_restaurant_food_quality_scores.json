@@ -1,0 +1,73 @@
+{
+  "restaurant": {
+    "id": "b28c2feb-d82c-44e1-88da-6cac4552b784",
+    "name": "Vespaio Restaurant",
+    "price": "$$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:14:05.381Z",
+    "scores": {
+      "flavorful": 9,
+      "authentic": 8,
+      "satisfying": 9,
+      "comforting": 9,
+      "aromatic": 8,
+      "appetizing": 9,
+      "overall": 8
+    },
+    "imageTags": [
+      "dim ambient lighting",
+      "wine bottle display",
+      "casual dining setting",
+      "cozy dining area",
+      "wooden chairs and tables",
+      "hearty lasagna serving",
+      "rich tomato sauce",
+      "melted cheese layers",
+      "garnished with parsley",
+      "savory sausage topping",
+      "rich tomato sauce",
+      "grated parmesan topping",
+      "crispy toasted bread",
+      "fresh burrata cheese",
+      "fresh arugula side",
+      "rustic wooden table",
+      "creamy pasta dish",
+      "fresh herb garnish",
+      "shaved parmesan topping",
+      "cozy dining ambiance",
+      "vibrant social gathering",
+      "cozy wooden furnishings",
+      "upscale dining atmosphere",
+      "elegant floral arrangements",
+      "soft chandelier lighting",
+      "bright natural lighting",
+      "toasted rustic bread",
+      "creamy poached egg",
+      "crisp arugula salad",
+      "fresh sliced tomatoes",
+      "colorful vegetable medley",
+      "rich flavorful sauce",
+      "fresh basil fettuccine",
+      "garnished with parmesan cheese",
+      "creamy shrimp pasta dish"
+    ],
+    "reviewTags": [
+      "beautiful atmosphere",
+      "delicious italian food",
+      "fantastic service",
+      "perfect espresso martini",
+      "incredible desserts",
+      "small crowded tables",
+      "fancy atmosphere",
+      "high noise level",
+      "large portion sizes",
+      "staff buzzing close",
+      "fantastic ravioli",
+      "delicious caico pasta",
+      "off the charts food",
+      "amazing bolognese",
+      "lifetime of memories"
+    ]
+  }
+}

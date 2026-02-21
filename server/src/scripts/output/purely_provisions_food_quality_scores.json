@@ -1,0 +1,32 @@
+{
+  "restaurant": {
+    "id": "84bd7aa3-1406-4089-9353-fd8e66ce4554",
+    "name": "Purely Provisions",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:10:39.394Z",
+    "scores": {
+      "flavorful": 7,
+      "authentic": 6,
+      "satisfying": 8,
+      "comforting": 7,
+      "aromatic": 7,
+      "appetizing": 8,
+      "overall": 7
+    },
+    "imageTags": [
+      "polished stainless steel finish",
+      "coffee brewing technology",
+      "professional espresso machine",
+      "barista preparation station",
+      "commercial coffee equipment",
+      "melty cheese topping",
+      "tangy pickle slices",
+      "toasted brioche bun",
+      "juicy flavorful filling",
+      "savory barbecue chicken sandwich"
+    ],
+    "reviewTags": []
+  }
+}

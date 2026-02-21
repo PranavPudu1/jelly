@@ -1,0 +1,27 @@
+{
+  "restaurant": {
+    "id": "35af9d33-454f-441e-b22c-dc36bb4dc57e",
+    "name": "The Iron Grill",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:12:47.177Z",
+    "scores": {
+      "flavorful": 7,
+      "authentic": 6,
+      "satisfying": 8,
+      "comforting": 8,
+      "aromatic": 7,
+      "appetizing": 7,
+      "overall": 7
+    },
+    "imageTags": [],
+    "reviewTags": [
+      "made to order smash burgers",
+      "martins sesame bun",
+      "piping hot burgers",
+      "highly recommended sidewinder fries",
+      "fresh crisp veggies"
+    ]
+  }
+}

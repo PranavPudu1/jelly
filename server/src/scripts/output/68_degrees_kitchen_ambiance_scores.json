@@ -1,0 +1,42 @@
+{
+  "restaurant": {
+    "id": "00f98a7e-b7f7-4a23-9a1c-6972e911e175",
+    "name": "68 Degrees Kitchen",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T02:49:01.076Z",
+    "scores": {
+      "vibrant": 4,
+      "romantic": 8,
+      "trendy": 5,
+      "stylish": 6,
+      "immersive": 4,
+      "inviting": 7,
+      "overall": 6
+    },
+    "imageTags": [],
+    "reviewTags": [
+      "mac and cheese balls",
+      "fries as a side",
+      "weekday dinner",
+      "glass of wine",
+      "ok ambience",
+      "special burrata",
+      "best special ravioli",
+      "amazing calamari",
+      "mac and cheese bites",
+      "attentive waitress",
+      "nice date night dinner",
+      "enjoyed our pastas",
+      "intimate restaurant atmosphere",
+      "didn’t love dessert",
+      "romantic dining experience",
+      "attentive service",
+      "cozy atmosphere",
+      "small lunch crowd",
+      "plenty of parking",
+      "great bolognese pasta"
+    ]
+  }
+}

@@ -36,7 +36,7 @@ const CONFIG = {
     BATCH_SIZE: 20, // Number of reviews to process concurrently
     MAX_RETRIES: 3, // Maximum retry attempts for failed API calls
     RETRY_DELAY_MS: 1000, // Initial retry delay (exponential backoff)
-    OPENAI_MODEL: 'gpt-4o', // OpenAI model to use
+    OPENAI_MODEL: 'gpt-4o-mini', // OpenAI model to use
 };
 
 // ============================================================================
@@ -244,8 +244,11 @@ async function getUnprocessedReviews(batchSize, skip = 0) {
         const reviews = await prisma.review.findMany({
             take: batchSize,
             skip: skip,
+            where: {
+                tags: { none: {} }, // Only fetch reviews with no tags yet
+            },
             orderBy: {
-                dateAdded: 'asc', // Process oldest first
+                dateAdded: 'asc',
             },
         });
 

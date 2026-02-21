@@ -1,0 +1,37 @@
+{
+  "restaurant": {
+    "id": "0f512567-2690-451a-b916-5b92372fe750",
+    "name": "Xian Sushi and Noodle",
+    "price": "$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:01:13.392Z",
+    "scores": {
+      "vibrant": 3,
+      "romantic": 2,
+      "trendy": 3,
+      "stylish": 3,
+      "immersive": 2,
+      "inviting": 4,
+      "overall": 3
+    },
+    "imageTags": [],
+    "reviewTags": [
+      "delicious food",
+      "randomly chosen gem",
+      "happy dining experience",
+      "great staff",
+      "pleasant surprise",
+      "different dan dan noodles",
+      "okay overall flavor",
+      "tough cut of beef",
+      "unsatisfactory to-go experience",
+      "cold and lukewarm noodles",
+      "disappointing dining experience",
+      "kind and attentive staff",
+      "dusty restaurant cleanliness",
+      "mediocre sushi quality",
+      "raw pork dumplings"
+    ]
+  }
+}

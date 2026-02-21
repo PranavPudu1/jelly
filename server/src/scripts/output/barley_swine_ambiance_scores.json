@@ -1,0 +1,47 @@
+{
+  "restaurant": {
+    "id": "2a2dce4b-8e7c-4d70-9dc8-980fd1e85f19",
+    "name": "Barley Swine",
+    "price": "$$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T02:49:52.478Z",
+    "scores": {
+      "vibrant": 8,
+      "romantic": 7,
+      "trendy": 8,
+      "stylish": 9,
+      "immersive": 7,
+      "inviting": 8,
+      "overall": 8
+    },
+    "imageTags": [
+      "inviting dining atmosphere",
+      "open kitchen setup",
+      "colorful glass jars",
+      "warm wooden bar",
+      "rustic kitchen decor",
+      "elegant dining presentation",
+      "variety of textures and flavors",
+      "craft cocktails with garnishes",
+      "vibrant colorful ingredients",
+      "artfully plated gourmet dishes",
+      "fresh leafy greens",
+      "artfully plated dish",
+      "flavorful savory elements",
+      "tender roasted beef",
+      "rich sauce drizzle",
+      "vibrant herb oil drizzle",
+      "artful plating presentation",
+      "delicate garnish of vegetables",
+      "rich, savory sauce",
+      "succulent pink roast meat",
+      "earthy ceramic bowl",
+      "delicate seafood presentation",
+      "vibrant herb sauce",
+      "artisan wooden table",
+      "stylish cocktail pairing"
+    ],
+    "reviewTags": []
+  }
+}

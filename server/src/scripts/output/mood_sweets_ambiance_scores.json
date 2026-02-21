@@ -1,0 +1,32 @@
+{
+  "restaurant": {
+    "id": "d6855d65-b1d2-4792-90c4-44a8c97b03cb",
+    "name": "MOOD Sweets",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T02:55:47.636Z",
+    "scores": {
+      "vibrant": 8,
+      "romantic": 4,
+      "trendy": 7,
+      "stylish": 7,
+      "immersive": 6,
+      "inviting": 7,
+      "overall": 7
+    },
+    "imageTags": [
+      "casual outdoor dining",
+      "nighttime street food",
+      "colorful food truck design",
+      "unique branding elements",
+      "cooking in progress",
+      "irresistible sweet toppings",
+      "crispy crepe style dessert",
+      "golden powdered sugar dusting",
+      "matcha green tea sauce",
+      "decadent chocolate drizzle"
+    ],
+    "reviewTags": []
+  }
+}

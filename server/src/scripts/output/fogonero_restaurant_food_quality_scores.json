@@ -1,0 +1,38 @@
+{
+  "restaurant": {
+    "id": "913130bf-b878-4fa7-9f08-7afaabab2545",
+    "name": "Fogonero Restaurant",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:05:55.888Z",
+    "scores": {
+      "flavorful": 8,
+      "authentic": 7,
+      "satisfying": 8,
+      "comforting": 9,
+      "aromatic": 8,
+      "appetizing": 8,
+      "overall": 8
+    },
+    "imageTags": [
+      "creamy avocado slices",
+      "garnished with cilantro",
+      "rich black beans",
+      "fried egg on rice",
+      "savory pulled pork"
+    ],
+    "reviewTags": [
+      "delicious food",
+      "definite repeater",
+      "clean atmosphere",
+      "super friendly service",
+      "great food recommendations",
+      "attentive and friendly service",
+      "vegetarian-friendly options",
+      "fresh and decadent flavors",
+      "delicious rich cachapa",
+      "perfectly fried tequenos"
+    ]
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "restaurant": {
+    "id": "5ab2aa81-75a7-4c14-8e42-129a687ffaee",
+    "name": "Q Bola Cuban Restaurant - Round Rock",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:10:41.176Z",
+    "scores": {
+      "flavorful": 8,
+      "authentic": 9,
+      "satisfying": 8,
+      "comforting": 9,
+      "aromatic": 8,
+      "appetizing": 8,
+      "overall": 8
+    },
+    "imageTags": [
+      "crispy topping garnish",
+      "dark textured plate",
+      "grilled chicken with sauce",
+      "colorful tropical drink",
+      "stylish restaurant signage",
+      "tropical fruit salad garnish",
+      "savory ham and cheese waffle",
+      "crispy golden crinkle fries",
+      "delectable sweet potato pancakes",
+      "gourmet steak with sauce"
+    ],
+    "reviewTags": [
+      "cozy and attentive service",
+      "ropa vieja",
+      "cuban coffee",
+      "refresing maracuyá mojito",
+      "heavenly arroz con leche de coco"
+    ]
+  }
+}

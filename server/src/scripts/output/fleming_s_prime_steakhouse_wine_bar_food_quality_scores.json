@@ -1,0 +1,58 @@
+{
+  "restaurant": {
+    "id": "1f5d99b7-e999-45b3-89ed-130d37327587",
+    "name": "Fleming’s Prime Steakhouse & Wine Bar",
+    "price": "$$$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:05:52.758Z",
+    "scores": {
+      "flavorful": 8,
+      "authentic": 7,
+      "satisfying": 9,
+      "comforting": 8,
+      "aromatic": 8,
+      "appetizing": 9,
+      "overall": 8
+    },
+    "imageTags": [
+      "modern casual vibe",
+      "outdoor dining patio",
+      "lush green planters",
+      "sunlit table settings",
+      "covered seating area",
+      "succulent lobster tail",
+      "fine dining experience",
+      "premium filet mignon presentation",
+      "rich hollandaise sauce drizzle",
+      "elegantly plated meals",
+      "soft ambient lighting",
+      "open kitchen view",
+      "tastefully arranged tables",
+      "formal dining setup",
+      "elegant wooden decor",
+      "succulent grilled steak",
+      "elegant table setting",
+      "charred green peppers",
+      "hearty dinner presentation",
+      "creamy baked potato"
+    ],
+    "reviewTags": [
+      "perfectly cooked steak",
+      "exceptional service",
+      "artisanal butter variety",
+      "clean and elegant interior",
+      "gorgeous setting",
+      "cozy family dining experience",
+      "delightful dessert options",
+      "delicious seafood appetizers",
+      "fantastic surf and turf",
+      "attentive and accommodating staff",
+      "delicious calamari appetizer",
+      "full dining tables atmosphere",
+      "great steak cooked medium rare",
+      "great sound system design",
+      "efficient but rushed service"
+    ]
+  }
+}

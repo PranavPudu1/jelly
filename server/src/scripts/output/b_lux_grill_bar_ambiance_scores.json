@@ -1,0 +1,42 @@
+{
+  "restaurant": {
+    "id": "59da1f78-4ebd-46f8-85e5-7753741afa4c",
+    "name": "B-LUX Grill & Bar",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T02:49:33.536Z",
+    "scores": {
+      "vibrant": 6,
+      "romantic": 3,
+      "trendy": 5,
+      "stylish": 5,
+      "immersive": 4,
+      "inviting": 7,
+      "overall": 5
+    },
+    "imageTags": [],
+    "reviewTags": [
+      "friendly service",
+      "excellent food",
+      "top-tier service",
+      "attention to detail",
+      "professional and warm staff",
+      "attentive server recommendations",
+      "delicious wings",
+      "great dessert shake",
+      "friendly and welcoming service",
+      "appetizer fries and tator tots",
+      "handheld burgers",
+      "bowling alley connection",
+      "friendly service recommendations",
+      "appetizer selection",
+      "high top seating",
+      "juicy flavorful burgers",
+      "massive milkshakes",
+      "plenty of space to relax",
+      "double patties satisfaction",
+      "fries smothered in queso"
+    ]
+  }
+}

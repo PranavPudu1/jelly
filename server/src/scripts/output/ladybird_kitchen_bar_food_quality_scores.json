@@ -1,0 +1,27 @@
+{
+  "restaurant": {
+    "id": "2b4f9330-93d2-4bf5-b1b1-1e2de5fc3ffc",
+    "name": "Ladybird Kitchen + Bar",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:08:03.281Z",
+    "scores": {
+      "flavorful": 6,
+      "authentic": 5,
+      "satisfying": 7,
+      "comforting": 8,
+      "aromatic": 6,
+      "appetizing": 6,
+      "overall": 6
+    },
+    "imageTags": [],
+    "reviewTags": [
+      "casual dining experience",
+      "friendly and attentive service",
+      "comfort-style options",
+      "freshly prepared meals",
+      "relaxed and social atmosphere"
+    ]
+  }
+}

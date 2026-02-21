@@ -1,0 +1,47 @@
+{
+  "restaurant": {
+    "id": "8771feeb-4db6-4389-b33f-4b7524b3909a",
+    "name": "Bufalina Due",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T02:50:29.040Z",
+    "scores": {
+      "vibrant": 6,
+      "romantic": 5,
+      "trendy": 8,
+      "stylish": 8,
+      "immersive": 5,
+      "inviting": 7,
+      "overall": 7
+    },
+    "imageTags": [
+      "inviting entrance area",
+      "muted color palette",
+      "modern restaurant signage",
+      "stylish storefront design",
+      "contemporary architectural features",
+      "fresh colorful salad",
+      "elegantly plated appetizer",
+      "vibrant vegetable toppings",
+      "creamy yogurt dressing",
+      "crunchy granola base",
+      "garnished with scallions",
+      "lightly seasoned with herbs",
+      "creamy white sauce topping",
+      "freshly baked artisan pizza",
+      "thin crust with zucchini",
+      "creamy burrata cheese",
+      "elegant floral plate",
+      "fresh basil garnish",
+      "artisan crusty bread",
+      "roasted squash medley",
+      "rich tomato sauce base",
+      "crispy charred pizza crust",
+      "handcrafted artisanal pizza",
+      "savory pepperoni slices",
+      "melted cheese layer"
+    ],
+    "reviewTags": []
+  }
+}

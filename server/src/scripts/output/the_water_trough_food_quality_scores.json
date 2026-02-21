@@ -1,0 +1,58 @@
+{
+  "restaurant": {
+    "id": "548d90db-c618-4620-889b-a57897ebaae2",
+    "name": "The Water Trough",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:13:17.693Z",
+    "scores": {
+      "flavorful": 6,
+      "authentic": 5,
+      "satisfying": 7,
+      "comforting": 6,
+      "aromatic": 6,
+      "appetizing": 7,
+      "overall": 6
+    },
+    "imageTags": [
+      "modern rustic design",
+      "bright sunny atmosphere",
+      "casual dining experience",
+      "spacious outdoor seating",
+      "natural greenery surroundings",
+      "colorful vegetable medley",
+      "toasted crispy bread",
+      "drizzled balsamic reduction",
+      "creamy mozzarella cheese",
+      "fresh basil and tomatoes"
+    ],
+    "reviewTags": [
+      "good breakfast options",
+      "excellent and friendly service",
+      "live music experience",
+      "satisfying dinner meals",
+      "wood fire atmosphere",
+      "juicy lsc burger",
+      "lively dining atmosphere",
+      "live music experience",
+      "good breakfast tacos",
+      "savory country fried steak",
+      "overly salty fries and burger",
+      "tasty but spicy salmon",
+      "lacked traditional ambiance",
+      "disruptive service style",
+      "pleasant location",
+      "slow service",
+      "untrained staff",
+      "awkward waiting experience",
+      "beautiful restaurant decor",
+      "incorrect food orders",
+      "cute place",
+      "pleasant atmosphere",
+      "live music",
+      "unattentive service",
+      "nice table by the fireplace"
+    ]
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "restaurant": {
+    "id": "eb5bf56c-8485-46d6-b7df-2ddbb1dc33b0",
+    "name": "Clive",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:04:23.992Z",
+    "scores": {
+      "flavorful": 6,
+      "authentic": 5,
+      "satisfying": 7,
+      "comforting": 6,
+      "aromatic": 5,
+      "appetizing": 7,
+      "overall": 6
+    },
+    "imageTags": [
+      "stylish outdoor seating",
+      "inviting entrance design",
+      "Texas flag display",
+      "vibrant illuminated signage",
+      "modern urban architecture",
+      "lively social atmosphere",
+      "vibrant outdoor seating",
+      "string lights overhead",
+      "wooden deck design",
+      "nighttime gathering spot",
+      "charming historic building",
+      "elevated outdoor seating",
+      "modern urban architecture",
+      "stylish illuminated signage",
+      "vibrant city atmosphere"
+    ],
+    "reviewTags": []
+  }
+}

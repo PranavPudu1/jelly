@@ -1,0 +1,48 @@
+{
+  "restaurant": {
+    "id": "2cc4e67b-612a-45f0-8008-6e520463cd29",
+    "name": "Yamas Greek Restaurant",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:14:33.732Z",
+    "scores": {
+      "flavorful": 8,
+      "authentic": 9,
+      "satisfying": 8,
+      "comforting": 7,
+      "aromatic": 8,
+      "appetizing": 8,
+      "overall": 8
+    },
+    "imageTags": [
+      "artistic wall decor",
+      "striking serpent-themed mural",
+      "enigmatic face surrounded by snakes",
+      "modern artistic expression",
+      "unique visual centerpiece",
+      "fresh herb garnish",
+      "creamy hummus variety",
+      "spiced olive oil drizzle",
+      "assorted Mediterranean dips",
+      "grilled warm pita bread"
+    ],
+    "reviewTags": [
+      "beautiful inviting atmosphere",
+      "tasty fried calamari",
+      "long wait times",
+      "perfectly cooked octopus",
+      "improved service flow",
+      "authentic greek flavors",
+      "gorgeous outdoor ambiance",
+      "private bar for parties",
+      "cool brunch vibe with dj",
+      "misting fans on patio",
+      "top notch service",
+      "well made drink inspired by greece",
+      "tender and juicy meat",
+      "delicious rice dish",
+      "fresh and relaxing atmosphere"
+    ]
+  }
+}

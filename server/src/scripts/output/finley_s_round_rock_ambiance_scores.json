@@ -1,0 +1,48 @@
+{
+  "restaurant": {
+    "id": "6f3884ac-18d4-4b24-9a0c-80c8fb3766c6",
+    "name": "Finley's Round Rock",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T02:52:43.147Z",
+    "scores": {
+      "vibrant": 6,
+      "romantic": 4,
+      "trendy": 6,
+      "stylish": 7,
+      "immersive": 5,
+      "inviting": 7,
+      "overall": 6
+    },
+    "imageTags": [
+      "flavorful dipping sauces",
+      "savory brussels sprouts dish",
+      "crispy fried tater tots",
+      "creamy mac and cheese",
+      "warm tortilla chips",
+      "outdoor dining area",
+      "modern wooden decor",
+      "inviting entrance signage",
+      "spacious patio seating",
+      "sunny open space"
+    ],
+    "reviewTags": [
+      "poor customer service",
+      "spicy blackened chicken pasta",
+      "lack of menu clarity",
+      "drowning in sauce brussel sprouts",
+      "no wait, quick seating",
+      "friendly staff",
+      "relaxing gastro bar",
+      "expensive for food",
+      "nice outdoor patio",
+      "decent beer selection",
+      "bland house margaritas",
+      "sweet potato fries with vinegar",
+      "shady tree seating",
+      "well done korean BBQ wings",
+      "large size patios"
+    ]
+  }
+}

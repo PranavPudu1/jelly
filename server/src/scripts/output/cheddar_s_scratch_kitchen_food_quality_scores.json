@@ -1,0 +1,53 @@
+{
+  "restaurant": {
+    "id": "2dfd9f16-e637-43f1-bac2-a16008e4d550",
+    "name": "Cheddar's Scratch Kitchen",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:04:03.800Z",
+    "scores": {
+      "flavorful": 5,
+      "authentic": 4,
+      "satisfying": 6,
+      "comforting": 7,
+      "aromatic": 5,
+      "appetizing": 6,
+      "overall": 5
+    },
+    "imageTags": [
+      "freshly baked pastries",
+      "glossy caramel drizzle",
+      "flaky buttery croissants",
+      "delectable breakfast treat",
+      "golden crispy layers",
+      "inviting restaurant entrance",
+      "charming outdoor seating",
+      "lush landscaped greenery",
+      "welcoming stone facade",
+      "cozy wooden benches",
+      "rich dipping sauce",
+      "loaded cheesy fries",
+      "crispy fried chicken tenders",
+      "creamy spinach artichoke dip",
+      "tortilla chip garnish"
+    ],
+    "reviewTags": [
+      "chill atmosphere",
+      "quick service",
+      "hot food",
+      "flavor experience",
+      "great for date night",
+      "rundown restaurant atmosphere",
+      "cold and dry burger",
+      "cold grilled fish",
+      "poorly managed establishment",
+      "neglected seating area",
+      "outdoor seating available",
+      "friendly bartenders",
+      "delicious monte cristo",
+      "cheesy alfredo pasta",
+      "good-price food"
+    ]
+  }
+}

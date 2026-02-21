@@ -1,0 +1,48 @@
+{
+  "restaurant": {
+    "id": "1a2537fd-6d8f-4177-b24c-fba94ed0a4e5",
+    "name": "True Food Kitchen",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:00:09.637Z",
+    "scores": {
+      "vibrant": 7,
+      "romantic": 4,
+      "trendy": 8,
+      "stylish": 8,
+      "immersive": 6,
+      "inviting": 8,
+      "overall": 7
+    },
+    "imageTags": [
+      "spacious dining layout",
+      "modern industrial design",
+      "warm wooden accents",
+      "vibrant green seating",
+      "natural light from windows",
+      "outdoor seating area",
+      "modern casual dining",
+      "relaxed dining atmosphere",
+      "greenery and shade",
+      "bright welcoming facade",
+      "sliced red onions",
+      "juicy veggie patty",
+      "fresh leaf lettuce",
+      "toasted sesame seed bun",
+      "creamy cheddar cheese",
+      "modern architectural design",
+      "lush greenery accents",
+      "inviting outdoor seating",
+      "bright sunny exterior",
+      "clean minimalist facade"
+    ],
+    "reviewTags": [
+      "gluten free options",
+      "beautiful french wine",
+      "best quality food",
+      "friendly prompt service",
+      "vegan vegetarian options"
+    ]
+  }
+}

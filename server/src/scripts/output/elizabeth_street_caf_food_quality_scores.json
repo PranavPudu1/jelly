@@ -1,0 +1,27 @@
+{
+  "restaurant": {
+    "id": "d7bc803e-5cc2-4bb7-be18-ce5acf87b721",
+    "name": "Elizabeth Street Café",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:05:28.969Z",
+    "scores": {
+      "flavorful": 7,
+      "authentic": 6,
+      "satisfying": 7,
+      "comforting": 8,
+      "aromatic": 7,
+      "appetizing": 7,
+      "overall": 7
+    },
+    "imageTags": [],
+    "reviewTags": [
+      "cozy bright environment",
+      "fresh and thoughtfully made",
+      "full of flavor coffee",
+      "warm and charming vibes",
+      "perfectly austin atmosphere"
+    ]
+  }
+}

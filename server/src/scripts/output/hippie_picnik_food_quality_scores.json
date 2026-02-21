@@ -1,0 +1,53 @@
+{
+  "restaurant": {
+    "id": "27466ddc-04e7-4531-bfe7-a5369f91d940",
+    "name": "Hippie PicNik",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:06:48.393Z",
+    "scores": {
+      "flavorful": 8,
+      "authentic": 7,
+      "satisfying": 9,
+      "comforting": 9,
+      "aromatic": 8,
+      "appetizing": 8,
+      "overall": 8
+    },
+    "imageTags": [
+      "crispy seasoned fries",
+      "creamy cilantro dressing",
+      "colorful shredded vegetables",
+      "rich spicy dipping sauce",
+      "vibrant fresh salsa"
+    ],
+    "reviewTags": [
+      "crispy seasoned fries",
+      "cozy backyard atmosphere",
+      "fantastic caramel cheesecake",
+      "juicy texan beef bratwurst",
+      "plenty of seating space",
+      "beyond amazing service",
+      "addicting hippie crunchwrap",
+      "friendly owner interaction",
+      "complimentary sorbet",
+      "stellar food quality",
+      "enjoyable dragon fruit drink",
+      "crispy and addictive fries",
+      "insanely good texan bratwurst",
+      "fun and inviting vibe",
+      "relaxed outdoor setup",
+      "crunch wraps & loaded fries",
+      "playlist on point",
+      "amazing vibes",
+      "made with love and detail",
+      "dog friendly",
+      "nice surprise with gummy bears",
+      "amazing service",
+      "free italian ice scoop",
+      "best german food",
+      "bratwurst dogs"
+    ]
+  }
+}

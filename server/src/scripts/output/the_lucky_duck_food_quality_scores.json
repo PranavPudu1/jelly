@@ -1,0 +1,53 @@
+{
+  "restaurant": {
+    "id": "1531c02b-3865-44c4-b069-4831a0f3e811",
+    "name": "The Lucky Duck",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:12:55.223Z",
+    "scores": {
+      "flavorful": 7,
+      "authentic": 6,
+      "satisfying": 7,
+      "comforting": 8,
+      "aromatic": 7,
+      "appetizing": 7,
+      "overall": 7
+    },
+    "imageTags": [
+      "large screen entertainment",
+      "twinkling string lights",
+      "nighttime social atmosphere",
+      "casual wooden seating",
+      "lively outdoor gathering",
+      "rustic charm atmosphere",
+      "casual gathering spot",
+      "perfect evening lighting",
+      "colorful food trucks",
+      "vibrant outdoor dining",
+      "colorful street art",
+      "vibrant neon signage",
+      "urban brick exterior",
+      "quirky restaurant atmosphere",
+      "modern casual eatery"
+    ],
+    "reviewTags": [
+      "very good pink non alcoholic drink",
+      "sunday brunch vibe",
+      "live music experience",
+      "food truck option",
+      "friendly sweet bartender",
+      "delicious wings",
+      "tasty pickle fries",
+      "fresh and hot food",
+      "really chill place",
+      "lively dj's set",
+      "friendly service",
+      "light bites and snacks",
+      "solid selection of beers",
+      "well-crafted drinks",
+      "relaxed atmosphere"
+    ]
+  }
+}

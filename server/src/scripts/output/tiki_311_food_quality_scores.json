@@ -1,0 +1,32 @@
+{
+  "restaurant": {
+    "id": "d24ba02c-1004-4968-9829-26fbc47ef162",
+    "name": "TIKI 311",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:11:59.166Z",
+    "scores": {
+      "flavorful": 7,
+      "authentic": 6,
+      "satisfying": 7,
+      "comforting": 6,
+      "aromatic": 7,
+      "appetizing": 8,
+      "overall": 7
+    },
+    "imageTags": [
+      "steamed white rice",
+      "fresh garden salad",
+      "creamy macaroni salad",
+      "grilled teriyaki chicken",
+      "light sesame dressing",
+      "colorful vegetable mix",
+      "unique tropical serving style",
+      "grilled pineapple presentation",
+      "savory and flavorful blend",
+      "pineapple fried rice dish"
+    ],
+    "reviewTags": []
+  }
+}

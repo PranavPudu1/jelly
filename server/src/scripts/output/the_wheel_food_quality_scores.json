@@ -1,0 +1,43 @@
+{
+  "restaurant": {
+    "id": "e498210a-3b40-4f83-aaa4-aff725d9bcbc",
+    "name": "The Wheel",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:13:21.400Z",
+    "scores": {
+      "flavorful": 6,
+      "authentic": 5,
+      "satisfying": 7,
+      "comforting": 6,
+      "aromatic": 5,
+      "appetizing": 7,
+      "overall": 6
+    },
+    "imageTags": [
+      "spacious outdoor seating",
+      "inviting porch area",
+      "modern yet rustic design",
+      "decorative bicycle theme",
+      "vibrant urban eatery exterior",
+      "colorful wall art",
+      "outdoor seating area",
+      "rustic wooden tables",
+      "casual dining atmosphere",
+      "lush green decor",
+      "inviting bar atmosphere",
+      "rustic wooden accents",
+      "handwritten cocktail menu",
+      "vintage bicycle decor",
+      "creative drink combinations"
+    ],
+    "reviewTags": [
+      "nice and chill seating area",
+      "quality cocktails",
+      "close to nearby restaurants",
+      "experienced and friendly bartenders",
+      "great place for a night cap"
+    ]
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "restaurant": {
+    "id": "cd7465e9-03fe-467b-97aa-1b654826e0da",
+    "name": "Fresno Grill",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T02:53:06.945Z",
+    "scores": {
+      "vibrant": 8,
+      "romantic": 4,
+      "trendy": 7,
+      "stylish": 7,
+      "immersive": 6,
+      "inviting": 8,
+      "overall": 7
+    },
+    "imageTags": [
+      "inviting casual atmosphere",
+      "local artwork decor",
+      "vibrant green metal chairs",
+      "rustic wooden countertops",
+      "cozy lounge seating area",
+      "fresh cilantro garnish",
+      "squeeze of lime",
+      "fluffy white rice base",
+      "grilled chicken with sesame",
+      "sweet corn kernels",
+      "fluffy white rice",
+      "fresh mixed vegetables",
+      "spicy grilled chicken",
+      "colorful salad garnish",
+      "zesty dipping sauce"
+    ],
+    "reviewTags": []
+  }
+}

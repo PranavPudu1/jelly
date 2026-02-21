@@ -1,0 +1,63 @@
+{
+  "restaurant": {
+    "id": "a8a5130d-d6bd-43d6-b9b3-669c0e442252",
+    "name": "Lake Travis Biergarten",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T02:55:05.710Z",
+    "scores": {
+      "vibrant": 8,
+      "romantic": 4,
+      "trendy": 6,
+      "stylish": 7,
+      "immersive": 7,
+      "inviting": 9,
+      "overall": 8
+    },
+    "imageTags": [
+      "casual outdoor seating",
+      "rustic wooden beams",
+      "relaxed atmosphere",
+      "greenery accents",
+      "open air dining space",
+      "outdoor seating area",
+      "colorful decor accents",
+      "vibrant bar atmosphere",
+      "friendly bartender interaction",
+      "lively entertainment screen",
+      "fenced recreational area",
+      "open grassy landscape",
+      "surrounded by green trees",
+      "sunlit outdoor tennis court",
+      "rustic picnic tables nearby",
+      "vibrant peacock display",
+      "rustic outdoor decor",
+      "colorful signage assortment",
+      "charming natural setting",
+      "lush green vegetation",
+      "casual outdoor dining",
+      "friendly neighborhood vibe",
+      "rustic charm seating",
+      "vibrant green food truck",
+      "colorful taco menu",
+      "lush green surroundings",
+      "spacious outdoor seating",
+      "relaxed picnic atmosphere",
+      "colorful umbrella shades",
+      "open sky and sunlight"
+    ],
+    "reviewTags": [
+      "welcoming return experience",
+      "super personable service",
+      "knowledgeable about drinks",
+      "best margs ever",
+      "strong and fresh martini",
+      "delicious food",
+      "dog and kid friendly",
+      "great place for families",
+      "great spot to watch sports",
+      "fun stuff to do"
+    ]
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "restaurant": {
+    "id": "df06383d-a049-4a53-83ad-585942ff8567",
+    "name": "North Italia",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:09:46.028Z",
+    "scores": {
+      "flavorful": 7,
+      "authentic": 6,
+      "satisfying": 8,
+      "comforting": 8,
+      "aromatic": 7,
+      "appetizing": 8,
+      "overall": 7
+    },
+    "imageTags": [
+      "exposed brick walls",
+      "open airy layout",
+      "industrial modern lighting",
+      "vibrant communal atmosphere",
+      "stylish pendant light fixtures",
+      "well-stocked bar shelves",
+      "intimate evening dining",
+      "vibrant floral arrangements",
+      "modern technology display",
+      "rustic brick wall decor",
+      "crispy breaded chicken",
+      "fresh parsley garnish",
+      "hearty comfort food",
+      "marinara sauce topping",
+      "creamy pasta with cheese"
+    ],
+    "reviewTags": []
+  }
+}

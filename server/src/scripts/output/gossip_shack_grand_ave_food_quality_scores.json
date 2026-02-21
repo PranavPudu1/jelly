@@ -1,0 +1,52 @@
+{
+  "restaurant": {
+    "id": "f6372c1e-7778-4629-aa4d-a24ac700d53b",
+    "name": "Gossip Shack GRAND AVE",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:06:29.463Z",
+    "scores": {
+      "flavorful": 7,
+      "authentic": 6,
+      "satisfying": 8,
+      "comforting": 9,
+      "aromatic": 7,
+      "appetizing": 8,
+      "overall": 7
+    },
+    "imageTags": [
+      "warm welcoming atmosphere",
+      "bright inviting signage",
+      "charming casual eatery",
+      "prominent chicken and waffles",
+      "specializing in comfort food",
+      "checkered paper liner",
+      "wavy golden waffle fries",
+      "dipping sauce container",
+      "crispy fried chicken pieces",
+      "hands sharing food",
+      "savory dipping sauce",
+      "crispy seasoned chicken wings",
+      "sweet and spicy sauce",
+      "refreshing fruit drink",
+      "checkered paper presentation",
+      "crispy fried chicken",
+      "fluffy golden waffles",
+      "sweet maple syrup",
+      "refreshing drink cup",
+      "colorful checkered packaging",
+      "casual dining atmosphere",
+      "wooden communal tables",
+      "entertainment on screens",
+      "modern fast-casual decor",
+      "colorful wall decorations",
+      "maple syrup drizzle",
+      "fluffy golden waffles",
+      "creamy ranch dipping sauce",
+      "crispy fried chicken wings",
+      "platter takeout container"
+    ],
+    "reviewTags": []
+  }
+}

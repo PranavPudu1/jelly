@@ -1,0 +1,43 @@
+{
+  "restaurant": {
+    "id": "8abb3776-d42d-423c-8f88-bbb67766f929",
+    "name": "IHOP",
+    "price": "$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:07:07.823Z",
+    "scores": {
+      "flavorful": 6,
+      "authentic": 5,
+      "satisfying": 7,
+      "comforting": 8,
+      "aromatic": 5,
+      "appetizing": 6,
+      "overall": 6
+    },
+    "imageTags": [
+      "open kitchen design",
+      "casual dining atmosphere",
+      "stainless steel prep area",
+      "colorful condiment station",
+      "accessible restroom signage",
+      "casual dining atmosphere",
+      "IHOP branded coffee mug",
+      "cozy breakfast setting",
+      "lightly brewed coffee",
+      "wooden table surface",
+      "comfortable outdoor seating",
+      "casual dining exterior",
+      "accessible ramp entrance",
+      "colorful signage display",
+      "highway-adjacent location"
+    ],
+    "reviewTags": [
+      "fresh and hot food",
+      "great service teamwork",
+      "perfectly made meals",
+      "friendly and helpful server",
+      "awesome pickup experience"
+    ]
+  }
+}

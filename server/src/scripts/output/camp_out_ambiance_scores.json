@@ -1,0 +1,53 @@
+{
+  "restaurant": {
+    "id": "91c0c239-ba3a-40c7-a9cc-b21977b3a4be",
+    "name": "Camp Out",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T02:50:44.779Z",
+    "scores": {
+      "vibrant": 7,
+      "romantic": 3,
+      "trendy": 5,
+      "stylish": 6,
+      "immersive": 5,
+      "inviting": 6,
+      "overall": 6
+    },
+    "imageTags": [
+      "crispy tortilla chips",
+      "cheesy loaded nachos",
+      "fresh jalapeño slices",
+      "black bean topping",
+      "vibrant garnish of onions",
+      "casual picnic tables",
+      "outdoor dining area",
+      "string lights overhead",
+      "lively family-friendly space",
+      "rustic wooden pavilion"
+    ],
+    "reviewTags": [
+      "dry grilled cheese",
+      "unlit campfires",
+      "limited menu options",
+      "burnt chicken sandwich",
+      "grimey tables",
+      "outdoor picnic tables",
+      "family-friendly atmosphere",
+      "fun vibe for kids",
+      "decent fried chicken sandwich",
+      "uninterested service staff",
+      "delicious burgers",
+      "sunset dining experience",
+      "amazing beers on tap",
+      "great evening atmosphere",
+      "s'mores kit dessert",
+      "casual dining experience",
+      "tufted play area",
+      "good food and drinks",
+      "attached to dog bar",
+      "nice outdoor fire pits"
+    ]
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "restaurant": {
+    "id": "72c5998b-0f21-43d3-8c40-1c8e944f26d8",
+    "name": "La Torta Loca",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:07:58.746Z",
+    "scores": {
+      "flavorful": 8,
+      "authentic": 9,
+      "satisfying": 8,
+      "comforting": 7,
+      "aromatic": 7,
+      "appetizing": 6,
+      "overall": 8
+    },
+    "imageTags": [
+      "casual picnic seating",
+      "bright outdoor lighting",
+      "vibrant red food trailer",
+      "food truck at night",
+      "lively roadside atmosphere",
+      "casual outdoor seating",
+      "bright overhead lighting",
+      "nighttime dining experience",
+      "food truck atmosphere",
+      "artificial turf flooring"
+    ],
+    "reviewTags": [
+      "best tortas",
+      "authentic filling",
+      "delicious ingredients",
+      "tasty flavors",
+      "satisfying portion size"
+    ]
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "restaurant": {
+    "id": "621ee5c3-7cfc-49a1-b3fe-6b6dce2d6792",
+    "name": "District Kitchen + Cocktails",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:04:59.421Z",
+    "scores": {
+      "flavorful": 8,
+      "authentic": 7,
+      "satisfying": 8,
+      "comforting": 7,
+      "aromatic": 8,
+      "appetizing": 9,
+      "overall": 8
+    },
+    "imageTags": [
+      "lush greenery surroundings",
+      "welcoming outdoor seating",
+      "vibrant floral landscaping",
+      "modern rustic architecture",
+      "sunny weather patio",
+      "modern bar setup",
+      "industrial lighting fixtures",
+      "stylish high-top seating",
+      "urban chic interior design",
+      "bold octopus mural",
+      "decadent chocolate mousse",
+      "rich and creamy texture",
+      "garnished with mint leaves",
+      "sugar-coated ginger slices",
+      "served in elegant glass",
+      "fresh lime wedge",
+      "rich tomato-based beverage",
+      "bacon crispy topping",
+      "vibrant bloody mary drink",
+      "spicy shrimp cocktail garnish",
+      "intimate dining atmosphere",
+      "cozy leather seating",
+      "modern industrial lighting",
+      "dimly lit restaurant interior",
+      "rustic wooden wall decor",
+      "grilled meat skewers",
+      "warm pita bread",
+      "fresh tangy yogurt sauce",
+      "creamy hummus spread",
+      "charred cherry tomatoes"
+    ],
+    "reviewTags": [
+      "accommodating service",
+      "cocktails and appetizers",
+      "great option for large parties",
+      "nice atmosphere for dinner",
+      "suitable for smaller groups",
+      "exceptional service",
+      "delicious food",
+      "fun waiter experience",
+      "celebratory atmosphere",
+      "thoughtful birthday card",
+      "light snacking options",
+      "friendly dining atmosphere",
+      "great sauce pairings",
+      "spicy shishito peppers",
+      "casual late night vibe"
+    ]
+  }
+}

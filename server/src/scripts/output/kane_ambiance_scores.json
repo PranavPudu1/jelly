@@ -1,0 +1,32 @@
+{
+  "restaurant": {
+    "id": "e6881c97-3b43-4b7c-a3f7-6ef986d3cb06",
+    "name": "KANE",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T02:54:34.837Z",
+    "scores": {
+      "vibrant": 8,
+      "romantic": 6,
+      "trendy": 8,
+      "stylish": 9,
+      "immersive": 7,
+      "inviting": 7,
+      "overall": 8
+    },
+    "imageTags": [
+      "assorted sushi platter",
+      "squid sushi with citrus zest",
+      "luxurious fish roe toppings",
+      "salmon with wasabi garnish",
+      "beautifully presented nigiri",
+      "fresh seafood delight",
+      "colorful garnish assortment",
+      "delicate sashimi presentation",
+      "vibrant texture contrast",
+      "tangy citrus sauce"
+    ],
+    "reviewTags": []
+  }
+}

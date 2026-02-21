@@ -1,0 +1,42 @@
+{
+  "restaurant": {
+    "id": "26c97904-7a10-4f1f-82d5-6c6bd0337c0f",
+    "name": "ASTI Trattoria",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T02:49:05.877Z",
+    "scores": {
+      "vibrant": 5,
+      "romantic": 8,
+      "trendy": 6,
+      "stylish": 7,
+      "immersive": 5,
+      "inviting": 8,
+      "overall": 7
+    },
+    "imageTags": [],
+    "reviewTags": [
+      "busy but welcoming atmosphere",
+      "improved food quality",
+      "lovely friendly service",
+      "perfect date night spot",
+      "amazing spaghetti carbonara",
+      "cozy dining atmosphere",
+      "authentic carbonara dish",
+      "stuffed mushrooms with truffle oil",
+      "fantastic waiter service",
+      "innovative italian cuisine",
+      "amazing desserts selection",
+      "respectful attentive service",
+      "decadent dessert experience",
+      "pleasant dining atmosphere",
+      "bittersweet chocolate cannoli",
+      "indulgent chocolate cannoli",
+      "well dressed caesar salad",
+      "comfortable dining atmosphere",
+      "thoughtful wine list",
+      "excellent and kind service"
+    ]
+  }
+}

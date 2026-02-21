@@ -1,0 +1,42 @@
+{
+  "restaurant": {
+    "id": "c88ea3dc-809d-462a-9283-05d7cdc07dbe",
+    "name": "Aleidas Restaurant",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T02:49:14.240Z",
+    "scores": {
+      "vibrant": 8,
+      "romantic": 5,
+      "trendy": 7,
+      "stylish": 8,
+      "immersive": 6,
+      "inviting": 9,
+      "overall": 8
+    },
+    "imageTags": [],
+    "reviewTags": [
+      "fresh juices",
+      "heavenly flavors",
+      "nice vibes",
+      "beautiful ambiance",
+      "flavors dance in your mouth",
+      "amazing food options",
+      "huge arepas",
+      "colorful modern interior",
+      "best queso ever",
+      "kind owner service",
+      "bright and colorful space",
+      "frozen margaritas are a+",
+      "clean and relaxed atmosphere",
+      "flavorful variety of sauces",
+      "friendly owner and staff",
+      "family-friendly atmosphere",
+      "fantastic service",
+      "delicious food",
+      "owner sharing stories",
+      "knowledge of food"
+    ]
+  }
+}

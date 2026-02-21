@@ -1,0 +1,73 @@
+{
+  "restaurant": {
+    "id": "32bc7683-35f6-4222-8468-461bfb12cae6",
+    "name": "The Charbroil House",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:12:27.141Z",
+    "scores": {
+      "flavorful": 8,
+      "authentic": 7,
+      "satisfying": 8,
+      "comforting": 7,
+      "aromatic": 7,
+      "appetizing": 8,
+      "overall": 8
+    },
+    "imageTags": [
+      "fresh lettuce layers",
+      "crispy toasted bread",
+      "juicy tomato slices",
+      "stacked gourmet sandwich",
+      "savory bacon strips",
+      "crispy golden crust",
+      "vibrant pink background",
+      "melted cheese layers",
+      "juicy smoked meat",
+      "stacked grilled sandwich",
+      "diced tomato topping",
+      "fresh cilantro garnish",
+      "classic Mexican tacos",
+      "succulent beef filling",
+      "crispy corn tortillas",
+      "grilled bell peppers",
+      "toasted hoagie rolls",
+      "vibrant blue background",
+      "sizzling beef filling",
+      "cheesy steak sandwiches",
+      "soft tortilla shells",
+      "fresh colorful vegetables",
+      "zesty lime wedges",
+      "vibrant vegetarian tacos",
+      "herb garnished falafel",
+      "grilled philly sandwiches",
+      "charbroiled burger selection",
+      "taco and sandwich combos",
+      "signature taco variety",
+      "savory beef and toppings",
+      "loaded fries variety",
+      "grilled cheese sandwiches",
+      "avocado and bacon extras",
+      "brisket grilled delights",
+      "cheesecake dessert options",
+      "crispy bacon strips",
+      "melted cheddar cheese",
+      "fresh lettuce and tomato",
+      "juicy bacon cheeseburger",
+      "soft sandwich bun"
+    ],
+    "reviewTags": [
+      "amazing food",
+      "will order again",
+      "satisfying meal",
+      "value for money",
+      "generous portion sizes",
+      "bold taste experience",
+      "spicy flavor profile",
+      "kick jalapeno burger",
+      "excellent burger quality",
+      "unique topping combination"
+    ]
+  }
+}

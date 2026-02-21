@@ -1,0 +1,32 @@
+{
+  "restaurant": {
+    "id": "ef2a3676-0eb8-41a6-b421-a96ac5442cbd",
+    "name": "Zalat Pizza",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:01:19.321Z",
+    "scores": {
+      "vibrant": 6,
+      "romantic": 3,
+      "trendy": 5,
+      "stylish": 6,
+      "immersive": 4,
+      "inviting": 7,
+      "overall": 5
+    },
+    "imageTags": [
+      "crispy fried chicken wings",
+      "golden and savory spices",
+      "mouthwatering pizza background",
+      "zesty ranch dipping sauce",
+      "appetizing wooden platter presentation",
+      "fresh garden salad",
+      "crispy chicken wings",
+      "pepperoni pizza slices",
+      "buttery crouton topping",
+      "cheesy and saucy goodness"
+    ],
+    "reviewTags": []
+  }
+}

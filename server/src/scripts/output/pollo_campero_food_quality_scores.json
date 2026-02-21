@@ -1,0 +1,43 @@
+{
+  "restaurant": {
+    "id": "4131227a-64bf-4ef7-801e-f5271dd0c31f",
+    "name": "Pollo Campero",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:10:34.903Z",
+    "scores": {
+      "flavorful": 7,
+      "authentic": 6,
+      "satisfying": 8,
+      "comforting": 7,
+      "aromatic": 6,
+      "appetizing": 7,
+      "overall": 7
+    },
+    "imageTags": [
+      "colorful vegetable salad",
+      "side of golden fries",
+      "steaming hot meal",
+      "crispy fried chicken plate",
+      "refreshing soft drink",
+      "family-friendly atmosphere",
+      "vibrant colored exterior",
+      "modern fast food design",
+      "clear blue sky backdrop",
+      "spacious parking area",
+      "spacious outdoor seating",
+      "modern fast food design",
+      "welcoming glass facade",
+      "brightly colored exterior",
+      "vibrant urban atmosphere"
+    ],
+    "reviewTags": [
+      "variety of beverages",
+      "super flavorful chicken",
+      "dense yuca fries",
+      "better than chick-fil-a nuggets",
+      "self-serve pepsi products"
+    ]
+  }
+}

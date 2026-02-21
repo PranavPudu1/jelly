@@ -1,0 +1,68 @@
+{
+  "restaurant": {
+    "id": "2bc33905-13cf-4230-8578-f7687ac02901",
+    "name": "Aris",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T02:49:23.768Z",
+    "scores": {
+      "vibrant": 7,
+      "romantic": 8,
+      "trendy": 9,
+      "stylish": 9,
+      "immersive": 7,
+      "inviting": 8,
+      "overall": 8
+    },
+    "imageTags": [
+      "warm ambient lighting",
+      "modern industrial design",
+      "elegant wine display",
+      "open concept seating",
+      "sleek bar area",
+      "intimate bar setting",
+      "elegant wine pairing",
+      "artisan bread assortment",
+      "rustic slate serving",
+      "gourmet olive oil dip",
+      "savory appetizer dish",
+      "creamy dipping sauce",
+      "gourmet dining presentation",
+      "crispy fried rolls",
+      "elegant black platter",
+      "vibrant green cocktail",
+      "elegant marble bar",
+      "cocktail garnish details",
+      "bartender black uniform",
+      "espresso martini glass",
+      "elegant dessert presentation",
+      "fruit garnished crème brûlée",
+      "modern gourmet plating",
+      "marble table aesthetic",
+      "delicate pastry nest",
+      "elegant leather menu holder",
+      "gourmet seafood dishes",
+      "varied fresh appetizers",
+      "upscale raw bar selection",
+      "luxury caviar offerings",
+      "grilled lamb chops",
+      "elegant fine dining",
+      "charred vegetable medley",
+      "rustic black plate",
+      "rich savory glaze",
+      "buffet style setup",
+      "gourmet dish presentation",
+      "artisanal bread display",
+      "elegant dark table",
+      "plush seating arrangement"
+    ],
+    "reviewTags": [
+      "incredible vibes",
+      "meet frank",
+      "bottle of ployez-jaquemart nv",
+      "incredible service",
+      "incredible food"
+    ]
+  }
+}

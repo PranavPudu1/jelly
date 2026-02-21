@@ -1,0 +1,38 @@
+{
+  "restaurant": {
+    "id": "6653fbea-1fe3-4aa2-8ae6-d39f5a3fe7a7",
+    "name": "Phoenix Grille",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:10:21.143Z",
+    "scores": {
+      "flavorful": 7,
+      "authentic": 6,
+      "satisfying": 8,
+      "comforting": 7,
+      "aromatic": 7,
+      "appetizing": 7,
+      "overall": 7
+    },
+    "imageTags": [
+      "thin chewy texture",
+      "charred golden edges",
+      "crispy griddled flatbread",
+      "savory filling remnants",
+      "black and white checkered lining",
+      "freshly prepared meal",
+      "crispy golden edges",
+      "cheesy flatbread wrap",
+      "grilled chicken fillings",
+      "delicious savory flavors"
+    ],
+    "reviewTags": [
+      "great value for money",
+      "chicken alfredo tacos",
+      "generous portion sizes",
+      "phoenix fries",
+      "perfectly made fries"
+    ]
+  }
+}

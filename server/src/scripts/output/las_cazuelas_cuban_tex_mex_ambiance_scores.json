@@ -1,0 +1,32 @@
+{
+  "restaurant": {
+    "id": "35826242-8d7e-4cd7-b231-b67d1788daae",
+    "name": "Las Cazuelas Cuban Tex-Mex",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T02:55:07.736Z",
+    "scores": {
+      "vibrant": 6,
+      "romantic": 4,
+      "trendy": 5,
+      "stylish": 6,
+      "immersive": 5,
+      "inviting": 7,
+      "overall": 6
+    },
+    "imageTags": [],
+    "reviewTags": [
+      "variety of dishes",
+      "excellent service",
+      "clean establishment",
+      "best cuban food",
+      "austin area gem",
+      "melt-in-your-mouth steak",
+      "highly recommended dining experience",
+      "completely remodeled restaurant",
+      "beautiful waitresses",
+      "knowledgeable staff"
+    ]
+  }
+}

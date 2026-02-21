@@ -1,0 +1,32 @@
+{
+  "restaurant": {
+    "id": "5cf2373e-d042-4d34-aeeb-f7a07b1c9d65",
+    "name": "Quince Lakehouse",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:10:42.616Z",
+    "scores": {
+      "flavorful": 8,
+      "authentic": 7,
+      "satisfying": 8,
+      "comforting": 7,
+      "aromatic": 8,
+      "appetizing": 8,
+      "overall": 8
+    },
+    "imageTags": [],
+    "reviewTags": [
+      "good energy ambience",
+      "spicy aioli shrimp tempura",
+      "top notch food",
+      "lake view patio",
+      "small menu selection",
+      "amazing kitchen staff",
+      "smooth planning process",
+      "private party venue",
+      "helpful event coordination",
+      "excellent service staff"
+    ]
+  }
+}

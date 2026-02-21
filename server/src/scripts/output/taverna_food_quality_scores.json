@@ -1,0 +1,33 @@
+{
+  "restaurant": {
+    "id": "6e4bb953-e246-4dbf-a574-474f057d2487",
+    "name": "Taverna",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T03:12:15.541Z",
+    "scores": {
+      "flavorful": 6,
+      "authentic": 5,
+      "satisfying": 6,
+      "comforting": 5,
+      "aromatic": 5,
+      "appetizing": 7,
+      "overall": 6
+    },
+    "imageTags": [
+      "modern minimalist decor",
+      "lush green plants",
+      "elegant table setting",
+      "white brick wall design",
+      "stylish wooden shelves"
+    ],
+    "reviewTags": [
+      "exceptional service",
+      "custom veggie pasta",
+      "fantastic outdoor atmosphere",
+      "delicious shrimp pasta",
+      "dry pizza margherita"
+    ]
+  }
+}

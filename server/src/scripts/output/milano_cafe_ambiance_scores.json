@@ -1,0 +1,32 @@
+{
+  "restaurant": {
+    "id": "2dc1d176-dccc-4cc3-8292-559f5e1188b2",
+    "name": "Milano Cafe",
+    "price": "$$"
+  },
+  "analysis": {
+    "timestamp": "2026-02-21T02:56:11.778Z",
+    "scores": {
+      "vibrant": 6,
+      "romantic": 8,
+      "trendy": 5,
+      "stylish": 7,
+      "immersive": 6,
+      "inviting": 7,
+      "overall": 7
+    },
+    "imageTags": [],
+    "reviewTags": [
+      "friendly service",
+      "beautiful presentation",
+      "perfect portion bruschetta",
+      "limoncello cake",
+      "artistic atmosphere",
+      "fine dining date spot",
+      "gluten free breading",
+      "hole in the wall charm",
+      "authentic chicken parm",
+      "peculiar service experience"
+    ]
+  }
+}
